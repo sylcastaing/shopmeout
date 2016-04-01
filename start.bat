@@ -1,0 +1,1 @@
+set DEBUG=shopmeout:* & npm start
