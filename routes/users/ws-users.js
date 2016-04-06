@@ -5,7 +5,7 @@ var usersAccessDb = require('../../models/users/usersAccessDb');
 
 router.get('/', function(req, res, next) {
 	usersAccessDb.createUser(function(result) {
-		if(result == "OKKK") {
+		if(result == "OK") {
 			res.send('Création OK');
 		} else {
 			res.send('Création KO...');
