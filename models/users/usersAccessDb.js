@@ -23,7 +23,7 @@ var usersAccessDb = {
 						if (err) {
 							console.log(err);
 							callback("KO");
-						} else {							
+						} else {
 							callback("OK");
 						}
 						db.close();
