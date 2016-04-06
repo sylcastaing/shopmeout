@@ -10,3 +10,7 @@ a {
 span.label {
 	color:#000;
 }
+
+#date {
+	border: 1px solid #555;
+}

@@ -1,12 +1,10 @@
 extends ../layout
 
-block scripts-header
-	script(src="/javascripts/users/userSignUp.js")
-
-
 block content
+
+
 	h1=title
-	form(name="signup", method="post")
+	form(name="signup", method="post", ng-submit="addClient")
 		div.input
 			input.input-block-level(type="text", name="email", placeholder="Email")
 		div.input
@@ -29,3 +27,6 @@ block content
 		div.actions
 			input(type="submit", value="S\'enregistrer")
 
+
+block scripts
+	script(src="/javascripts/users/userSignUp.js")
