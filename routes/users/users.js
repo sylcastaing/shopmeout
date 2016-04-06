@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var usersAccessDb = require('../models/users/usersAccessDb');
+var usersAccessDb = require('../../models/users/usersAccessDb');
 
 router.get('/', function(req, res, next) {
 	usersAccessDb.createUser(function(result) {

@@ -1,6 +1,7 @@
 {
 	"routes": [
 		{"pattern": "/", "route": "./routes/index"},
-		{"pattern": "/users", "route": "./routes/users"}
+		{"pattern": "/users", "route": "./routes/users/users"},
+		{"pattern": "/ws-users", "route": "./routes/users/ws-users"}
 	]
 }
