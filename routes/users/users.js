@@ -4,13 +4,15 @@ var router = express.Router();
 var usersAccessDb = require('../../models/users/usersAccessDb');
 
 router.get('/', function(req, res, next) {
-	usersAccessDb.createUser(function(result) {
-		if(result == "OK") {
-			res.send('Création OK');
-		} else {
-			res.send('Création KO...');
-		}
-	});
+	res.render('users/signIn', { title: 'Express' });
+});
+
+router.get('/sign-up', function(req, res, next) {
+	res.render('users/signUp', { title: 'Express' });
+});
+
+router.post('/sign-up', function(req, res, next) {
+	res.send('Post page', { name=res.sign-up.nom });
 });
 
 module.exports = router;
