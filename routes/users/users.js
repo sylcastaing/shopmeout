@@ -12,7 +12,8 @@ router.get('/sign-up', function(req, res, next) {
 });
 
 router.post('/sign-up', function(req, res, next) {
-	res.send('Post page', { name=res.sign-up.nom });
+	res.send('Post page', { //name=res.sign-up.nom 
+	});
 });
 
 module.exports = router;
