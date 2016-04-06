@@ -8,10 +8,33 @@ var usersAccessDb = {
 	// collection de la base de données
 	collectionBase : 'users',
 
-	createUser = function() {
+	createUser: function(callback) {
+		try {
+			MongoClient.connect(usersAccessDb.urlBase, function(err, db) {
 
-	},
-
+				if(err) {
+					console.log(err);
+					callback("KO");
+				} else {
+					db.collection(usersAccessDb.collectionBase).insertOne({
+						"name" : "Cécile",
+						"mail" : "bourratcecile.33@gmail.com"
+					}, function(err, result) {
+						if (err) {
+							console.log(err);
+							callback("KO");
+						} else {							
+							callback("OK");
+						}
+						db.close();
+					});
+				}
+			});
+		} catch(e) {
+			console.log(e);
+			callback("KO");
+		}
+	}
 }
 
 module.exports = usersAccessDb;
