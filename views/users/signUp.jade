@@ -1,31 +1,32 @@
 extends ../layout
 
-block scripts-header
-	script(src="/javascripts/users/userSignUp.js")
-
-
 block content
-	h1=title
-	form(name="signup", method="post")
-		div.input
-			input.input-block-level(type="text", name="email", placeholder="Email")
-		div.input
-			input.input-block-level(type="text", name="nom", placeholder="Nom")
-		div.input
-			input.input-block-level(type="text", name="prenom", placeholder="Prenom")
-		div.input
-			input.input-block-level(type="text", name="adresse", placeholder="Adresse")
-		div.input
-			input.input-block-level(type="text", name="telephone", placeholder="Telephone")
-		div.input
-			input.input-block-level(type="text", name="motDePasse", placeholder="Mot de passe")
-		div.input
-			label Femme
-			input(type='radio' name='sexe' value='1')
-			label Homme
-			input(type='radio' name='sexe' value='0')
-		div.input
-			input#date(name="date", placeholder="Date de naissance")
-		div.actions
-			input(type="submit", value="S\'enregistrer")
+	div(ng-app="sample" ng-controller="SignCtrl")
+		h1=title
+		form(name="signup", method="post", ng-submit="addClient")
+			div.input
+				input.input-block-level(type="text", name="email", placeholder="Email", ng-model="Email")
+			div.input
+				input.input-block-level(type="text", name="nom", placeholder="Nom" ng-model="nom")
+			div.input
+				input.input-block-level(type="text", name="prenom", placeholder="Prenom")
+			div.input
+				input.input-block-level(type="text", name="adresse", placeholder="Adresse")
+			div.input
+				input.input-block-level(type="text", name="telephone", placeholder="Telephone")
+			div.input
+				input.input-block-level(type="password", name="motDePasse", placeholder="Mot de passe" ng-model="motDePasse")
+			div.input
+				input.input-block-level(type="password" ng-model="confirmMotDePasse" equals-to="password")
+			div.input
+				label Femme
+				input(type='radio' name='sexe' value='1')
+				label Homme
+				input(type='radio' name='sexe' value='0')
+			div.input
+				input#date(name="date", placeholder="Date de naissance")
+			div.actions
+				input(type="submit", value="S\'enregistrer")
 
+block scripts
+	script(src="/javascripts/users/userSignUp.js")
