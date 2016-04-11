@@ -8,23 +8,20 @@ var usersAccessDb = {
 	// collection de la base de données
 	collectionBase : 'users',
 
-	createUser: function(callback) {
+	createUser: function(datas, callback) {
 		try {
 			MongoClient.connect(usersAccessDb.urlBase, function(err, db) {
 
 				if(err) {
 					console.log(err);
-					callback("KO");
+					callback(false);
 				} else {
-					db.collection(usersAccessDb.collectionBase).insertOne({
-						"name" : "Cécile",
-						"mail" : "bourratcecile.33@gmail.com"
-					}, function(err, result) {
+					db.collection(usersAccessDb.collectionBase).insertOne(datas, function(err, result) {
 						if (err) {
 							console.log(err);
-							callback("KO");
+							callback(false);
 						} else {
-							callback("OK");
+							callback(true);
 						}
 						db.close();
 					});
@@ -32,7 +29,36 @@ var usersAccessDb = {
 			});
 		} catch(e) {
 			console.log(e);
-			callback("KO");
+			callback(false);
+		}
+	},
+	checkAlreadyExist: function(email, callback) {
+		try {
+			MongoClient.connect(usersAccessDb.urlBase, function(err, db) {
+
+				if(err) {
+					console.log("erreur connexion à la base" + err);
+				} else {
+					db.collection(usersAccessDb.collectionBase).findOne({
+						"email" : email
+					}, function(err, result) {
+						db.close();
+						if (err) {
+							console.log("erreur récupération résultat" + err);
+						} else {
+							console.log("result =" + result);
+							if (result != null) {
+								console.log("result1 =" + result);
+							} else {
+								console.log("result2 =" + result);
+							}
+						}
+						
+					});
+				}
+			});
+		} catch(e) {
+			console.log("catch" + e);
 		}
 	}
 }
