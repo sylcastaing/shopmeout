@@ -12,7 +12,7 @@ router.post('/sign-up', function (req, res, next) {
 			console.log("lancement de la création de l'utilisateur");
 			usersAccessDb.createUser(req.body, function(result) {
 				res.json({
-					statut: (result)?("L'e-mail " + req.body.email + " a bien été ajouté."):"Erreur de création..."
+					statut: (result)?("L'e-mail " + req.body.mail + " a bien été ajouté."):"Erreur de création..."
 				});
 			});
 		} else {
@@ -41,21 +41,59 @@ router.post('/check-email', function (req, res, next) {
 });
 
 verifDatas = function (datas, callback) {
+
+	// Vérification de l'e-mail
 	verifEmail(datas, function(result, err) {
 		console.log((result)?"E-mail OK":"E-mail déjà présent dans la base");
-		callback(result, err);
+		// Vérification des autres champs
+		if (result) {
+			err = ""
+			isValid = true;
+			if (datas.nom == undefined ||  datas.nom == "") {
+				err = "Le nom est vide";
+				isValid = false;
+			}
+			if (isValid && (datas.prenom == undefined || datas.prenom == "")) {
+				err = "Le prénom est vide";
+				isValid = false;
+			}
+			if (isValid && (datas.adresse == undefined || datas.adresse == "")) {
+				err = "L'adresse est vide";
+				isValid = false;
+			}
+			if (isValid && (datas.telephone == undefined || datas.telephone == "")) {
+				err = "Le téléphone est vide";
+				isValid = false;
+			}
+			if (isValid && (datas.motDePasse == undefined || datas.motDePasse == "")) {
+				err = "Le mot de passe est vide";
+				isValid = false;
+			}
+			if (isValid && (datas.sexe == undefined || datas.sexe == "")) {
+				err = "Le sexe est vide";
+				isValid = false;
+			}
+			if (isValid && (datas.dateNaissance == undefined || datas.dateNaissance == "")) {
+				err = "La date de naissance est vide";
+				isValid = false;
+			}
+			callback(isValid, err);
+		} else {
+			callback(result, err);
+		}
 	});
+
 }
 
 verifEmail = function (datas, callback) {
-	if (datas.email && datas.email != "") {
+	if (datas.mail && datas.mail != "") {
 		// Vérification email valide :		
 		console.log('Test e-mail valide :');
-		if(isEmail(datas.email)) {
+		if(isEmail(datas.mail)) {
 
 			console.log('Test e-mail dans la base :');
 			// Vérification si email pas déjà dans la base
-			usersAccessDb.checkAlreadyExist(datas.email, function(result, err){
+			usersAccessDb.checkAlreadyExist(datas.mail, function(result, err){
 				console.log((!result)?'E-mail déjà dans la base':'E-mail pas encore dans la base - OK');
 				callback(!result, err);
 			});
