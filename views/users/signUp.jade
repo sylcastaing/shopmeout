@@ -3,30 +3,37 @@ extends ../layout
 block content
 	div(ng-app="sample" ng-controller="SignCtrl")
 		h1=title
-		form(name="signup", method="post", ng-submit="addClient")
+		form(name="signup", method="post", ng-submit="addClient()" novalidate)
 			div.input
-				input.input-block-level(type="text", name="email", placeholder="Email", ng-model="Email")
+				input.input-block-level(type="email", name="email", placeholder="Email", ng-model="user.mail", required, ng-minlength="2", ng-maxlength="20")
+				div(ng-messages="signup.prenom.$error", ng-messages-include="errors.jade",ng-if="signup.$submitted")
 			div.input
-				input.input-block-level(type="text", name="nom", placeholder="Nom" ng-model="nom")
+				input.input-block-level(type="text", name="nom", placeholder="Nom", ng-model="user.nom", required)
+				div(ng-messages="signup.prenom.$error", ng-messages-include="errors")
 			div.input
-				input.input-block-level(type="text", name="prenom", placeholder="Prenom")
+				input.input-block-level(type="text", name="prenom", placeholder="Prenom", ng-model="user.prenom", required)
+				div(ng-messages="signup.prenom.$error", ng-messages-include="errors")
 			div.input
-				input.input-block-level(type="text", name="adresse", placeholder="Adresse")
+				input.input-block-level(type="text", name="adresse", placeholder="Adresse", ng-model="user.adresse", required)
+				div(ng-messages="signup.prenom.$error", ng-messages-include="errors")
 			div.input
-				input.input-block-level(type="text", name="telephone", placeholder="Telephone")
+				input.input-block-level(type="text", name="telephone", placeholder="Telephone", ng-model="user.telephone", required)
+				div(ng-messages="signup.prenom.$error", ng-messages-include="errors")
 			div.input
-				input.input-block-level(type="password", name="motDePasse", placeholder="Mot de passe" ng-model="motDePasse")
+				input.input-block-level(type="password", name="motDePasse", placeholder="Mot de passe", ng-model="user.motDePasse", required)
+				div(ng-messages="signup.prenom.$error", ng-messages-include="errors")
 			div.input
-				input.input-block-level(type="password" ng-model="confirmMotDePasse" equals-to="password")
+				input.input-block-level(type="password" ng-model="confirmMotDePasse" equals-to="motDePasse", required)
+				div(ng-messages="signup.prenom.$error", ng-messages-include="errors")
 			div.input
 				label Femme
-				input(type='radio' name='sexe' value='1')
+				input(type='radio', name='sexe', value='1', ng-model="user.sexe")
 				label Homme
-				input(type='radio' name='sexe' value='0')
+				input(type='radio', name='sexe', value='0', ng-model="user.sexe")
 			div.input
-				input#date(name="date", placeholder="Date de naissance")
+				input#date(type="date", name="date", placeholder="Date de naissance", ng-model="user.date", required)
 			div.actions
-				input(type="submit", value="S\'enregistrer")
-
+				input(type="submit", ng-click="addClient(user)", value="S\'enregistrer")
+		pre {{user}}
 block scripts
 	script(src="/javascripts/users/userSignUp.js")
