@@ -38,6 +38,7 @@ var usersAccessDb = {
 
 				if(err) {
 					console.log("erreur connexion à la base" + err);
+					callback(true, err);
 				} else {
 					db.collection(usersAccessDb.collectionBase).findOne({
 						"email" : email
@@ -45,11 +46,14 @@ var usersAccessDb = {
 						db.close();
 						if (err) {
 							console.log("erreur récupération résultat" + err);
+							callback(true, err);
 						} else {
 							console.log("result =" + result);
 							if (result != null) {
+								callback(true, "Un compte existe déjà pour cet e-mail.");
 								console.log("result1 =" + result);
 							} else {
+								callback(false, "");
 								console.log("result2 =" + result);
 							}
 						}
@@ -59,6 +63,7 @@ var usersAccessDb = {
 			});
 		} catch(e) {
 			console.log("catch" + e);
+			callback(true, e);
 		}
 	}
 }
