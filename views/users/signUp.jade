@@ -5,35 +5,48 @@ block content
 		h1=title
 		form(name="signup", method="post", ng-submit="addClient()" novalidate)
 			div.input
-				input.input-block-level(type="email", name="email", placeholder="Email", ng-model="user.mail", required, ng-minlength="2", ng-maxlength="20")
-				div(ng-messages="signup.prenom.$error", ng-messages-include="errors.jade",ng-if="signup.$submitted")
+				input.input-block-level(type="email", name="email", placeholder="Email", ng-model="user.mail", required)
+				span(style="color:red", ng-show="signup.email.$invalid && signup.email.$touched")
+					span(ng-show="signup.email.$error.required") L'email est requis.
+					span(ng-show="signup.email.$error.email") L'adresse email n'est pas valide.
 			div.input
 				input.input-block-level(type="text", name="nom", placeholder="Nom", ng-model="user.nom", required)
-				div(ng-messages="signup.prenom.$error", ng-messages-include="errors")
+				span(style="color:red", ng-show="signup.nom.$invalid && signup.nom.$touched")
+					span(ng-show="signup.nom.$error.required") Le nom est requis.
 			div.input
 				input.input-block-level(type="text", name="prenom", placeholder="Prenom", ng-model="user.prenom", required)
-				div(ng-messages="signup.prenom.$error", ng-messages-include="errors")
+				span(style="color:red", ng-show="signup.prenom.$invalid && signup.prenom.$touched")
+					span(ng-show="signup.prenom.$error.required") Le prénom est requis.
 			div.input
 				input.input-block-level(type="text", name="adresse", placeholder="Adresse", ng-model="user.adresse", required)
-				div(ng-messages="signup.prenom.$error", ng-messages-include="errors")
+				span(style="color:red", ng-show="signup.adresse.$invalid && signup.adresse.$touched")
+					span(ng-show="signup.adresse.$error.required") L'adresse est requise.
 			div.input
 				input.input-block-level(type="text", name="telephone", placeholder="Telephone", ng-model="user.telephone", required)
-				div(ng-messages="signup.prenom.$error", ng-messages-include="errors")
+				span(style="color:red", ng-show="signup.telephone.$invalid && signup.telephone.$touched")
+					span(ng-show="signup.telephone.$error.required") Le téléphone est requis.
 			div.input
 				input.input-block-level(type="password", name="motDePasse", placeholder="Mot de passe", ng-model="user.motDePasse", required)
-				div(ng-messages="signup.prenom.$error", ng-messages-include="errors")
+				span(style="color:red", ng-show="signup.motDePasse.$invalid && signup.motDePasse.$touched")
+					span(ng-show="signup.motDePasse.$error.required") Le mot de passe est requis.
 			div.input
-				input.input-block-level(type="password" ng-model="confirmMotDePasse" equals-to="motDePasse", required)
-				div(ng-messages="signup.prenom.$error", ng-messages-include="errors")
+				input.input-block-level(type="password" name="confirmMdp", ng-model="confirmMotDePasse" equals-to="motDePasse", required)
+				span(style="color:red", ng-show="signup.confirmMdp.$invalid && signup.confirmMdp.$touched")
+					span(ng-show="signup.confirmMdp.$error.required") La confirmation du mot de passe est requise.
 			div.input
 				label Femme
 				input(type='radio', name='sexe', value='1', ng-model="user.sexe")
 				label Homme
 				input(type='radio', name='sexe', value='0', ng-model="user.sexe")
+			span(style="color:red", ng-show="signup.sexe.$invalid && signup.sexe.$touched")
+					span(ng-show="signup.sexe.$error.required") Le choix du sexe est obligatoire.
 			div.input
 				input#date(type="date", name="date", placeholder="Date de naissance", ng-model="user.date", required)
+			span(style="color:red", ng-show="signup.date.$invalid && signup.date.$touched")
+				span(ng-show="signup.date.$error.required") La date est obligatoire.
 			div.actions
-				input(type="submit", ng-click="addClient(user)", value="S\'enregistrer")
+				input(type="submit", value="S\'enregistrer", ng-disabled="signup.$invalid || dataLoading")
+				img(ng-if="dataLoading", src="../../public/images/Loading.gif")
 		pre {{user}}
 block scripts
 	script(src="/javascripts/users/userSignUp.js")
