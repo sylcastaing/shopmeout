@@ -1,52 +1,72 @@
 extends ../layout
 
 block content
-	div(ng-app="sample" ng-controller="SignCtrl")
-		h1=title
-		form(name="signup", method="post", ng-submit="addClient()" novalidate)
-			div.input
-				input.input-block-level(type="email", name="email", placeholder="Email", ng-model="user.mail", required)
-				span(style="color:red", ng-show="signup.email.$invalid && signup.email.$touched")
-					span(ng-show="signup.email.$error.required") L'email est requis.
-					span(ng-show="signup.email.$error.email") L'adresse email n'est pas valide.
-			div.input
-				input.input-block-level(type="text", name="nom", placeholder="Nom", ng-model="user.nom", required)
-				span(style="color:red", ng-show="signup.nom.$invalid && signup.nom.$touched")
-					span(ng-show="signup.nom.$error.required") Le nom est requis.
-			div.input
-				input.input-block-level(type="text", name="prenom", placeholder="Prenom", ng-model="user.prenom", required)
-				span(style="color:red", ng-show="signup.prenom.$invalid && signup.prenom.$touched")
-					span(ng-show="signup.prenom.$error.required") Le prénom est requis.
-			div.input
-				input.input-block-level(type="text", name="adresse", placeholder="Adresse", ng-model="user.adresse", required)
-				span(style="color:red", ng-show="signup.adresse.$invalid && signup.adresse.$touched")
-					span(ng-show="signup.adresse.$error.required") L'adresse est requise.
-			div.input
-				input.input-block-level(type="text", name="telephone", placeholder="Telephone", ng-model="user.telephone", required)
-				span(style="color:red", ng-show="signup.telephone.$invalid && signup.telephone.$touched")
-					span(ng-show="signup.telephone.$error.required") Le téléphone est requis.
-			div.input
-				input.input-block-level(type="password", name="motDePasse", placeholder="Mot de passe", ng-model="user.motDePasse", required)
-				span(style="color:red", ng-show="signup.motDePasse.$invalid && signup.motDePasse.$touched")
-					span(ng-show="signup.motDePasse.$error.required") Le mot de passe est requis.
-			div.input
-				input.input-block-level(type="password" name="confirmMdp", ng-model="confirmMotDePasse" equals-to="motDePasse", required)
-				span(style="color:red", ng-show="signup.confirmMdp.$invalid && signup.confirmMdp.$touched")
-					span(ng-show="signup.confirmMdp.$error.required") La confirmation du mot de passe est requise.
-			div.input
-				label Femme
-				input(type='radio', name='sexe', value='1', ng-model="user.sexe")
-				label Homme
-				input(type='radio', name='sexe', value='0', ng-model="user.sexe")
-			span(style="color:red", ng-show="signup.sexe.$invalid && signup.sexe.$touched")
-					span(ng-show="signup.sexe.$error.required") Le choix du sexe est obligatoire.
-			div.input
-				input#date(type="date", name="date", placeholder="Date de naissance", ng-model="user.date", required)
-			span(style="color:red", ng-show="signup.date.$invalid && signup.date.$touched")
-				span(ng-show="signup.date.$error.required") La date est obligatoire.
-			div.actions
-				input(type="submit", value="S\'enregistrer", ng-disabled="signup.$invalid || dataLoading")
-				img(ng-if="dataLoading", src="../../public/images/Loading.gif")
-		pre {{user}}
+	div.container(ng-app="sample" ng-controller="SignCtrl")
+		div(class="row centered-form")
+			div(class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4")
+				div(class="panel panel-default")
+					div(class="panel-heading")
+						h1(class="panel-title")=title
+					div.panel-body
+						form(name="signup", method="post", ng-submit="addClient()" novalidate)
+							div.row
+								div(class="col-xs-6 col-sm-6 col-md-6")
+									div.form-group
+											input(class="form-control input-sm", type="text", name="nom", placeholder="Nom", ng-model="user.nom", required)
+											span(style="color:red", ng-show="signup.nom.$invalid && signup.nom.$touched")
+												span(ng-show="signup.nom.$error.required") Le nom est requis.
+								div(class="col-xs-6 col-sm-6 col-md-6")
+									div.form-group
+										input(class="form-control input-sm", type="text", name="prenom", placeholder="Prenom", ng-model="user.prenom", required)
+										span(style="color:red", ng-show="signup.prenom.$invalid && signup.prenom.$touched")
+											span(ng-show="signup.prenom.$error.required") Le prénom est requis.
+							div.form-group
+								input(class ="form-control input-sm", type="email", name="email", placeholder="Email", ng-model="user.email", ng-blur="checkEmail()", required)
+								span(style="color:red", ng-show="signup.email.$invalid && signup.email.$touched")
+									span(ng-show="signup.email.$error.required") L'email est requis.
+									span(ng-show="signup.email.$error.email") L'adresse email n'est pas valide.
+							div.row
+								div(class="col-xs-6 col-sm-6 col-md-6")
+									div.form-group
+										input(class="form-control input-sm", type="password", name="motDePasse", placeholder="Mot de passe", ng-model="user.motDePasse", required)
+										span(style="color:red", ng-show="signup.motDePasse.$invalid && signup.motDePasse.$touched")
+											span(ng-show="signup.motDePasse.$error.required") Le mot de passe est requis.
+								div(class="col-xs-6 col-sm-6 col-md-6")
+									div.form-group
+										input(class="form-control input-sm", type="password" name="confirmMdp", placeholder="Mot de passe", ng-model="confirmMotDePasse" compare-to="user.motDePasse", required)
+										span(style="color:red", ng-show="signup.confirmMdp.$invalid && signup.confirmMdp.$touched")
+											span(ng-show="signup.confirmMdp.$error") Les deux mots de passe sont différents.
+							div.form-group
+								input(class="form-control input-sm", type="text", name="adresse", placeholder="Adresse", ng-model="user.adresse", required)
+								span(style="color:red", ng-show="signup.adresse.$invalid && signup.adresse.$touched")
+									span(ng-show="signup.adresse.$error.required") L'adresse est requise.
+							div.row
+								div(class="col-xs-6 col-sm-6 col-md-6")
+									div.form-group
+										input(class="form-control input-sm", type="text", name="codePostal", placeholder="Code postal", ng-model="user.codePostal", required)
+										span(style="color:red", ng-show="signup.codePostal.$invalid && signup.codePostal.$touched")
+											span(ng-show="signup.codePostal.$error.required") Le code postal est requis.
+								div(class="col-xs-6 col-sm-6 col-md-6")
+									div.form-group
+										input.input-block-level(class="form-control input-sm", type="text", name="ville", placeholder="Ville", ng-model="user.ville", required)
+										span(style="color:red", ng-show="signup.adresse.$invalid && signup.ville.$touched")
+											span(ng-show="signup.ville.$error.required") La ville est requise.
+							div.form-group
+								input(class="form-control input-sm", type="text", name="telephone", placeholder="Telephone", ng-model="user.telephone", required)
+								span(style="color:red", ng-show="signup.telephone.$invalid && signup.telephone.$touched")
+									span(ng-show="signup.telephone.$error.required") Le téléphone est requis.
+							div.form-group
+								label Femme
+								input(type='radio', name='sexe', value='1', ng-model="user.sexe", checked)
+								label Homme
+								input(type='radio', name='sexe', value='0', ng-model="user.sexe")
+							span(style="color:red", ng-show="signup.sexe.$invalid && signup.sexe.$touched")
+									span(ng-show="signup.sexe.$error.required") Le choix du sexe est obligatoire.
+							div.form-group
+								input#date(class="form-control input-sm", type="date", name="dateNaissance", placeholder="Date de naissance", ng-model="user.dateNaissance", required)
+								span(style="color:red", ng-show="signup.dateNaissance.$invalid && signup.dateNaissance.$touched")
+									span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
+							div.actions
+								input(type="submit", value="S\'enregistrer", ng-disabled="signup.$invalid" class="btn btn-info btn-block")
 block scripts
 	script(src="/javascripts/users/userSignUp.js")
