@@ -12,7 +12,7 @@ router.post('/sign-up', function (req, res, next) {
 			console.log("lancement de la création de l'utilisateur");
 			usersAccessDb.createUser(req.body, function(result) {
 				res.json({
-					statut: (result)?("L'e-mail " + req.body.mail + " a bien été ajouté."):"Erreur de création..."
+					statut: (result)?("L'e-mail " + req.body.email + " a bien été ajouté."):"Erreur de création..."
 				});
 			});
 		} else {
@@ -47,22 +47,40 @@ verifDatas = function (datas, callback) {
 		console.log((result)?"E-mail OK":"E-mail déjà présent dans la base");
 		// Vérification des autres champs
 		if (result) {
+			var valideTel = /^0[1-6]\d{8}$/;
+			var valideDate = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 			err = ""
 			isValid = true;
+			console.log ("caract tél : " + datas.telephone.length);
 			if (datas.nom == undefined ||  datas.nom == "") {
 				err = "Le nom est vide";
+				isValid = false;
+			} else if (isValid && datas.nom.length > 30) {
+				err = "Le nom est trop long";
 				isValid = false;
 			}
 			if (isValid && (datas.prenom == undefined || datas.prenom == "")) {
 				err = "Le prénom est vide";
 				isValid = false;
+			} else if (isValid && datas.prenom.length > 30) {
+				err = "Le prénom est trop long";
+				isValid = false;
 			}
 			if (isValid && (datas.adresse == undefined || datas.adresse == "")) {
 				err = "L'adresse est vide";
 				isValid = false;
+			} else if (isValid && datas.adresse.length > 60) {
+				err = "L'adresse est trop longue";
+				isValid = false;
 			}
 			if (isValid && (datas.telephone == undefined || datas.telephone == "")) {
 				err = "Le téléphone est vide";
+				isValid = false;
+			} else if (isValid && datas.telephone.length != 10) {
+				err = "Le téléphone ne contient pas 10 chiffres";
+				isValid = false;
+			} else if (isValid && !valideTel.test(datas.telephone)) {
+				err = "Le téléphone ne contient pas que des chiffres et/ou ne commence pas correctement";
 				isValid = false;
 			}
 			if (isValid && (datas.motDePasse == undefined || datas.motDePasse == "")) {
@@ -71,6 +89,9 @@ verifDatas = function (datas, callback) {
 			}
 			if (isValid && (datas.sexe == undefined || datas.sexe == "")) {
 				err = "Le sexe est vide";
+				isValid = false;
+			} else if (isValid && datas.sexe != "0" && datas.sexe != "1") {
+				err = "Le sexe n'est pas valide (différent de 0 ou 1)";
 				isValid = false;
 			}
 			if (isValid && (datas.dateNaissance == undefined || datas.dateNaissance == "")) {
@@ -86,14 +107,14 @@ verifDatas = function (datas, callback) {
 }
 
 verifEmail = function (datas, callback) {
-	if (datas.mail && datas.mail != "") {
+	if (datas.email && datas.email != "") {
 		// Vérification email valide :		
 		console.log('Test e-mail valide :');
-		if(isEmail(datas.mail)) {
+		if(isEmail(datas.email)) {
 
 			console.log('Test e-mail dans la base :');
 			// Vérification si email pas déjà dans la base
-			usersAccessDb.checkAlreadyExist(datas.mail, function(result, err){
+			usersAccessDb.checkAlreadyExist(datas.email, function(result, err){
 				console.log((!result)?'E-mail déjà dans la base':'E-mail pas encore dans la base - OK');
 				callback(!result, err);
 			});
