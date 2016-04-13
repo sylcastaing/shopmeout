@@ -1,12 +1,43 @@
 .page-header {
 	display: inline-flex;
 	width: 100%;
-	margin-top: -2%
+	margin-top: 0%;
 }
 
 #infos {
-	width: 60%;
+	width: 40%;
 	margin-left: 5%;
 	margin-right: 5%;
-	text-align: center
+	text-align: center;
+}
+
+.concept {
+	margin-top: 4%;
+}
+
+#btnconnexion {
+	margin-right: 4px;
+	background-color: #FF6600;
+	color : #FFFFFF;
+	margin-top: 20%;
+	font-family : Forte;
+	font-size : medium;
+}
+
+#btnsignup {
+	background-color: #0070C0;
+	color : #FFFFFF;
+	margin-top: 20%;
+	font-family : Forte;
+	font-size : medium;
+}
+
+#btnhelp {
+	margin-left : 4px;
+	margin-top: 20%;
+	font-family : Forte;
+	font-size : medium;
+	color : #FFFFFF;
+	background-color: #FF6600;
+	border-color : #FF6600;
 }

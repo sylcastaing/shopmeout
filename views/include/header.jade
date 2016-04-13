@@ -1,7 +1,16 @@
 .page-header
 	#logo
-		img(src='images/Logo_Petit_Maquette.png' alt='Logo Shopmeout' width='75%')
+		div.logo
+			img(src='images/Logo_Petit_Maquette.png' alt='Logo Shopmeout' width='75%')
+
 	#infos
-		h1 Explications sur le concept
+		div.concept
+			a(href="http://www.google.fr")
+				img(src='images/Bulle_concept.png' alt='Bulle Concept' width='50%')
+
 	#connexion
-		p Connexion/Inscription
+		div.groupbtn
+			button#btnconnexion.btn Connecte-toi !
+			button#btnsignup.btn Inscris-toi !
+			button#btnhelp.btn.btn-default(type='button', aria-label='Question Sign')
+				span.glyphicon.glyphicon-question-sign(aria-hidden='true')
