@@ -1,7 +1,35 @@
 var express = require('express');
 var router = express.Router();
-
+var passport = require('passport');
 var usersAccessDb = require('../../models/users/usersAccessDb');
+
+router.post('/sign-in', function (req, res, next) {
+	passport.authenticate('local', {session: true}, function(err, user, info) {
+		if (err) { 
+			res.json({
+				statut: false,
+				erreur: info
+			});
+		}
+		if (!user) { 
+			res.json({
+				statut: false,
+				erreur: info
+			});
+		}
+		else {
+			req.logIn(user, function(err) {
+				if (err) {
+					return next(err);
+				}
+				res.json({
+					statut: true,
+					erreur: ""
+				});
+			});
+		}
+	})(req, res, next);
+});
 
 router.post('/sign-up', function (req, res, next) {
 	// Vérification des données
