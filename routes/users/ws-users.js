@@ -2,12 +2,13 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var usersAccessDb = require('../../models/users/usersAccessDb');
+var usersMessages = require('properties-reader')('messages/users.messages.properties');
 
 router.post('/sign-in', function (req, res, next) {
 	if (req.isAuthenticated()) {
 		return res.json({
 			statut: false,
-			erreur: 'L\'utilisateur est déjà connecté'
+			erreur: usersMessages.get('users.alreadyconnect')
 		});
 	}
 

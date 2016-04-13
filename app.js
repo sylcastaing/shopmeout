@@ -11,6 +11,7 @@ mongoose.connect('mongodb://localhost:27017/shopmeout');
 var LocalStrategy = require('passport-local').Strategy;
 var usersModel = require('./models/users/usersModel');
 var User = mongoose.model('users', usersModel);
+var usersMessages = require('properties-reader')('messages/users.messages.properties');
 
 // Chargement de l'application
 var app = express();
@@ -68,7 +69,9 @@ passport.use(new LocalStrategy({
 			return done(err);
 		}
 		if (user == null) {
-			return done(null, false, { message: 'Identifiants incorrects' });
+			return done(null, false, {
+				message: usersMessages.get('users.connection.fail')
+			});
 		}
 		else {
 			return done(null, user);
