@@ -32,12 +32,12 @@ block content
 							div.row
 								div(class="col-xs-6 col-sm-6 col-md-6")
 									div.form-group
-										input(class="form-control input-sm", type="password", name="motDePasse", placeholder="Mot de passe", ng-model="user.motDePasse", required)
+										input(class="form-control input-sm", type="password", name="motDePasse", placeholder="Mot de passe", ng-model="motDePasse", required)
 										span(style="color:red", ng-show="signup.motDePasse.$invalid && signup.motDePasse.$touched")
 											span(ng-show="signup.motDePasse.$error.required") Le mot de passe est requis.
 								div(class="col-xs-6 col-sm-6 col-md-6")
 									div.form-group
-										input(class="form-control input-sm", type="password" name="confirmMdp", placeholder="Mot de passe", ng-model="confirmMotDePasse" compare-to="user.motDePasse", required)
+										input(class="form-control input-sm", type="password" name="confirmMdp", placeholder="Mot de passe", ng-model="confirmMotDePasse" compare-to="motDePasse", required)
 										span(style="color:red", ng-show="signup.confirmMdp.$invalid && signup.confirmMdp.$touched")
 											span(ng-show="signup.confirmMdp.$error") Les deux mots de passe sont différents.
 							div.form-group
