@@ -40,12 +40,17 @@ for (var i in routes['routes']) {
 
 // Gestion de l'authentification
 passport.serializeUser(function (user, done) {
-	done(null, user.email);
+	userSession = {
+		email: user.email,
+		nom: user.nom,
+		prenom: user.prenom
+	}
+	done(null, userSession);
 });
 
-passport.deserializeUser(function (email, done) {
+passport.deserializeUser(function (user, done) {
 	User.findOne({
-		email: email
+		email: user.email
 	}, function(err, user) {
 		done(err, user);
 	});
