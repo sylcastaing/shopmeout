@@ -7,7 +7,10 @@
 		img(src='images/Bulle_concept.png' alt='Bulle Concept' width='50%')
 
 	#connexion.groupbtn
-		button#btnconnexion.btn Connecte-toi !
-		button#btnsignup.btn Inscris-toi !
-		button#btnhelp.btn.btn-default(type='button', aria-label='Question Sign')
-			span.glyphicon.glyphicon-question-sign(aria-hidden='true')
+		a(href="/users/sign-in")
+			button#btnconnexion.btn Connecte-toi !
+		a(href="/users/sign-up")
+			button#btnsignup.btn Inscris-toi !
+		a(href="/")
+			button#btnhelp.btn.btn-default(type='button', aria-label='Question Sign')
+				span.glyphicon.glyphicon-question-sign(aria-hidden='true')
