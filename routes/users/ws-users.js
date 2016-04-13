@@ -18,7 +18,7 @@ router.post('/sign-in', function (req, res, next) {
 			});
 		}
 		else {
-			req.logIn(user, function(err) {
+			req.login(user, function(err) {
 				if (err) {
 					return next(err);
 				}
@@ -66,6 +66,13 @@ router.post('/check-email', function (req, res, next) {
 		});
 	});
 
+});
+
+router.post('/sign-out', function(req, res, next) {
+	req.session.destroy();
+	res.json({
+		"statut": req.isAuthenticated()
+	});
 });
 
 verifDatas = function (datas, callback) {
