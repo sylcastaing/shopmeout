@@ -25,7 +25,9 @@
  			data : { "email" : $scope.user.email}
  		}).success(function (data, status, headers, config){
 			if(data.statut==false && data.erreur!="E-mail vide à la récupération.") {
+				console.log(data);
 				$scope.signup.email.$error.emailPrise = true;
+				$scope.signup.email.$error.emailPriseMessage = data.erreur;
 			}
 			else {
 				$scope.signup.email.$error.emailPrise = false;
