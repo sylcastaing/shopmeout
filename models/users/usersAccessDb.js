@@ -41,7 +41,7 @@ var usersAccessDb = {
 					callback(true, err);
 				} else {
 					db.collection(usersAccessDb.collectionBase).findOne({
-						"mail" : email
+						"email" : email
 					}, function(err, result) {
 						db.close();
 						if (err) {

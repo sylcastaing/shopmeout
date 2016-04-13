@@ -5,7 +5,7 @@ var usersAccessDb = require('../../models/users/usersAccessDb');
 
 router.post('/sign-in', function (req, res, next) {
 	passport.authenticate('local', {session: true}, function(err, user, info) {
-		if (err) { 
+		if (err) {
 			res.json({
 				statut: false,
 				erreur: info
