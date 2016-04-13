@@ -1,21 +1,5 @@
-#btnconnexion {
-	background-color: #FF6600;
-	color : #FFFFFF;
-	font-family : Forte;
-	font-size : medium;
-}
-
-#btnsignup {
-	background-color: #0070C0;
-	color : #FFFFFF;
-	font-family : Forte;
-	font-size : medium;
-}
-
-#btnhelp {
-	font-family : Forte;
-	font-size : medium;
-	color : #FFFFFF;
-	background-color: #FF6600;
-	border-color : #FF6600;
+#bandeau {
+	font-family: Forte;
+	font-size: large;
+	background-color: #FFFFFF
 }
