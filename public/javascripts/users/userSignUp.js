@@ -1,10 +1,11 @@
  var app = angular.module('sample', []);
 
  app.controller("SignCtrl", function($scope, $http) {
+
  	$scope.addClient = function() {
 
  		$scope.user.motDePasse = CryptoJS.SHA1($scope.motDePasse).toString();
- 		
+ 		$scope.user.sexe = $scope.myModel['sexe'];
  		var res = $http({
  			method : 'POST',
  			url : '/ws-users/sign-up',
@@ -53,4 +54,22 @@
  			});
  		}
  	};
- });
+ }).directive('buttonsRadio', function() {
+	return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function($scope, element, attr, ctrl) {
+			element.bind('click', function() {
+				$scope.$apply(function(scope) {
+					ctrl.$setViewValue(attr.value);
+				});
+			});
+
+			$scope.$watch(attr.ngModel, function(newValue, oldValue) {
+				element.parent(".btn-group").find('button').removeClass("active");
+				element.parent(".btn-group") //.children()
+				.find("button[value='" + newValue + "']").addClass('active');
+			});
+		}
+	};
+});

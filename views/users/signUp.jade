@@ -32,7 +32,7 @@ block content
 							div.row
 								div(class="col-xs-6 col-sm-6 col-md-6")
 									div.form-group
-										input(class="form-control input-sm", type="password", name="motDePasse", placeholder="Mot de passe", ng-model="motDePasse",ng-maxlength="8",ng-minlength="18", required)
+										input(class="form-control input-sm", type="password", name="motDePasse", placeholder="Mot de passe", ng-model="motDePasse",ng-minlength="8",ng-maxlength="18", required)
 										span(style="color:red", ng-show="signup.motDePasse.$invalid && signup.motDePasse.$touched")
 											span(ng-show="signup.motDePasse.$error.required") Le mot de passe est requis.
 											span(ng-show="signup.motDePasse.$error.maxlength") Le mot de passe doit faire 18 caractères au maximum.
@@ -46,7 +46,7 @@ block content
 								input(class="form-control input-sm", type="text", name="adresse", placeholder="Adresse",ng-maxlength="60", ng-model="user.adresse", required)
 								span(style="color:red", ng-show="signup.adresse.$invalid && signup.adresse.$touched")
 									span(ng-show="signup.adresse.$error.required") L'adresse est requise.
-									span(ng-show="signup.adresse.$error.required") L'adresse est trop grande.
+									span(ng-show="signup.adresse.$error.maxlength") L'adresse est trop grande.
 							div.row
 								div(class="col-xs-6 col-sm-6 col-md-6")
 									div.form-group
@@ -66,11 +66,9 @@ block content
 							div.row
 								div(class="col-xs-12 col-sm-12 col-md-12")
 									div.form-group
-										div(class="btn-group")
-											label(class="btn btn-default") Femme
-												input(type='radio', name='sexe', value='0', ng-model="user.sexe")
-											label(class="btn btn-default") Homme
-												input(type='radio', name='sexe', value='1', ng-model="user.sexe")
+										div(class="btn-group",  data-toggle="buttons-radio")
+											button(type='button', value='0', ng-model="myModel['sexe']", buttons-radio="" class="btn") Femme
+											button(type='button', value='1', ng-model="myModel['sexe']", buttons-radio="" class="btn") Homme
 											span(style="color:red", ng-show="signup.sexe.$invalid && signup.sexe.$touched")
 												span(ng-show="signup.sexe.$error.required") Le choix du sexe est obligatoire.
 							div.row
