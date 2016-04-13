@@ -9,7 +9,15 @@ app.controller("SignCtrl", function($scope, $http) {
 			url : '/ws-users/sign-in',
 			data : $scope.user
 		}).success(function (data, status, headers, config){
-			if (status == '200') {
+			if(data.statut==false) {
+				$scope.signin.$error.login = true;
+				$scope.signin.$error.message = data.erreur.message;
+			}
+			else {
+				 document.location = '/';
+			}
+
+			 {
 				console.log("succes");
 				console.log(data);
 			}

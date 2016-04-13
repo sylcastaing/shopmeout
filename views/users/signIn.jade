@@ -15,8 +15,9 @@ block content
 							div.form-group
 								label(for="password") Mot de passe
 								input(type="password", class="form-control", id="password", placeholder="Entrez votre Mot de passe", ng-model="motDePasse")
+							span(style="color:red", ng-show="signin.$error.login") {{signin.$error.message}}
 							div.actions
-								input(type="submit", value="Conexion", ng-disabled="signin.$invalid" class="btn btn-info btn-block")
+								input(type="submit", value="Conexion", class="btn btn-info btn-block")
 block scripts-header
 	script(src="/javascripts/users/userSignIn.js")
 
