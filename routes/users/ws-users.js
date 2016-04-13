@@ -82,7 +82,7 @@ verifDatas = function (datas, callback) {
 		console.log((result)?"E-mail OK":"E-mail déjà présent dans la base");
 		// Vérification des autres champs
 		if (result) {
-			var valideTel = /^0[1-6]\d{8}$/;
+			var valideTel = /^0[1-9]\d{8}$/;
 			var valideDate = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 			err = ""
 			isValid = true;

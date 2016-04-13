@@ -12,17 +12,20 @@ block content
 							div.row
 								div(class="col-xs-6 col-sm-6 col-md-6")
 									div.form-group
-											input(class="form-control input-sm", type="text", name="nom", placeholder="Nom", ng-model="user.nom", required)
+											input(class="form-control input-sm", type="text", name="nom", placeholder="Nom", ng-model="user.nom",ng-maxlength="30", required)
 											span(style="color:red", ng-show="signup.nom.$invalid && signup.nom.$touched")
+												span(ng-show="signup.nom.$error.maxlength") Il faut au maximum 30 caractères.
 												span(ng-show="signup.nom.$error.required") Le nom est requis.
 								div(class="col-xs-6 col-sm-6 col-md-6")
 									div.form-group
-										input(class="form-control input-sm", type="text", name="prenom", placeholder="Prenom", ng-model="user.prenom", required)
+										input(class="form-control input-sm", type="text", name="prenom", placeholder="Prenom", ng-model="user.prenom",ng-maxlength="30", required)
 										span(style="color:red", ng-show="signup.prenom.$invalid && signup.prenom.$touched")
+											span(ng-show="signup.nom.$error.maxlength") Il faut au maximum 30 caractères.
 											span(ng-show="signup.prenom.$error.required") Le prénom est requis.
 							div.form-group
 								input(class ="form-control input-sm", type="email", name="email", placeholder="Email", ng-model="user.email", ng-blur="checkEmail()", required)
 								span(style="color:red", ng-show="signup.email.$invalid && signup.email.$touched")
+									span(ng-show="signup.email.$error.emailPrise") L'adresse email est déjà prise.
 									span(ng-show="signup.email.$error.required") L'email est requis.
 									span(ng-show="signup.email.$error.email") L'adresse email n'est pas valide.
 							div.row
@@ -55,17 +58,24 @@ block content
 								input(class="form-control input-sm", type="text", name="telephone", placeholder="Telephone", ng-model="user.telephone", required)
 								span(style="color:red", ng-show="signup.telephone.$invalid && signup.telephone.$touched")
 									span(ng-show="signup.telephone.$error.required") Le téléphone est requis.
-							div.form-group
-								label Femme
-								input(type='radio', name='sexe', value='1', ng-model="user.sexe", checked)
-								label Homme
-								input(type='radio', name='sexe', value='0', ng-model="user.sexe")
-							span(style="color:red", ng-show="signup.sexe.$invalid && signup.sexe.$touched")
-									span(ng-show="signup.sexe.$error.required") Le choix du sexe est obligatoire.
-							div.form-group
-								input#date(class="form-control input-sm", type="date", name="dateNaissance", placeholder="Date de naissance", ng-model="user.dateNaissance", required)
-								span(style="color:red", ng-show="signup.dateNaissance.$invalid && signup.dateNaissance.$touched")
-									span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
+							div.row
+								div(class="col-xs-12 col-sm-12 col-md-12")
+									div.form-group
+										div(class="btn-group")
+											label(class="btn btn-default") Femme
+												input(type='radio', name='sexe', value='1', ng-model="user.sexe")
+											label(class="btn btn-default") Homme
+												input(type='radio', name='sexe', value='0', ng-model="user.sexe")
+											span(style="color:red", ng-show="signup.sexe.$invalid && signup.sexe.$touched")
+												span(ng-show="signup.sexe.$error.required") Le choix du sexe est obligatoire.
+										div currently selected: {{user.sexe}}
+							div.row
+								div.form-group
+									label(class="control-label col-sm-5") Date de naissance
+									div(class="col-sm-7")
+										input(class="form-control input-sm", type="date", name="dateNaissance", placeholder="Date de naissance", ng-model="user.dateNaissance", required)
+										span(style="color:red", ng-show="signup.dateNaissance.$invalid && signup.dateNaissance.$touched")
+											span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
 							div.actions
 								input(type="submit", value="S\'enregistrer", ng-disabled="signup.$invalid" class="btn btn-info btn-block")
 block scripts
