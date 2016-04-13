@@ -5,6 +5,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/shopmeout');
+var LocalStrategy = require('passport-local').Strategy;
+var usersModel = require('./models/users/usersModel');
+var User = mongoose.model('users', usersModel);
 
 // Chargement de l'application
 var app = express();
@@ -20,14 +26,49 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
 
 // Gestion des routes
 var routes = require('./routes.json');
 
 for (var i in routes['routes']) {
-route = (routes['routes'][i]);
+	route = (routes['routes'][i]);
 	app.use(route['pattern'], require(route['route']));
 }
+
+// Gestion de l'authentification
+passport.serializeUser(function (user, done) {
+	done(null, user.email);
+});
+
+passport.deserializeUser(function (email, done) {
+	User.findOne({
+		email: email
+	}, function(err, user) {
+		done(err, user);
+	});
+});
+
+passport.use(new LocalStrategy({
+	usernameField: 'email',
+	passwordField: 'motDePasse'
+}, function(email, motDePasse, done) {
+	User.findOne({
+		email: email,
+		motDePasse: motDePasse
+	}, function (err, user) {
+		if (err) {
+			return done(err);
+		}
+		if (user == null) {
+			return done(null, false, { message: 'Identifiants incorrects' });
+		}
+		else {
+			return done(null, user);
+		}
+	});
+}));
 
 // Gestion de l'erreur 404
 app.use(function(req, res, next) {
