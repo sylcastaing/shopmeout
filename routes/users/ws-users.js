@@ -4,25 +4,32 @@ var passport = require('passport');
 var usersAccessDb = require('../../models/users/usersAccessDb');
 
 router.post('/sign-in', function (req, res, next) {
+	if (req.isAuthenticated()) {
+		return res.json({
+			statut: false,
+			erreur: 'L\'utilisateur est déjà connecté'
+		});
+	}
+
 	passport.authenticate('local', {session: true}, function(err, user, info) {
 		if (err) {
-			res.json({
+			return res.json({
 				statut: false,
 				erreur: info
 			});
 		}
 		if (!user) { 
-			res.json({
+			return res.json({
 				statut: false,
 				erreur: info
 			});
 		}
 		else {
-			req.login(user, function(err) {
+			return req.login(user, function(err) {
 				if (err) {
 					return next(err);
 				}
-				res.json({
+				return res.json({
 					statut: true,
 					erreur: ""
 				});

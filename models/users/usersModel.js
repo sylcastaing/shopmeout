@@ -1,9 +1,18 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var userModel = new Schema({
+var usersModel = new Schema({
 	email: String,
-	motDePasse: String
+	nom: String,
+	prenom: String,
+	dateNaissance: Date,
+	adresse: String,
+	codePostal: String,
+	ville: String,
+	telephone: String,
+	sexe: String,
+	motDePasse: String,
+	dateInscription: String
 });
 
-module.exports = mongoose.model('users', userModel);
+module.exports = mongoose.model('users', usersModel);
