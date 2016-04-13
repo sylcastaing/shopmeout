@@ -4,7 +4,7 @@ var router = express.Router();
 var usersAccessDb = require('../../models/users/usersAccessDb');
 
 router.get('/', function(req, res, next) {
-	res.render('users/signIn', { title: 'Express' });
+	res.render('users/signIn', { title: 'Connexion' });
 });
 
 router.get('/sign-up', function(req, res, next) {
