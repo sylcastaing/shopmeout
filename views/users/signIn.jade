@@ -11,13 +11,18 @@ block content
 						form(name="signin", method="post", ng-submit="connectClient()" novalidate)
 							div.form-group
 								label(for="login") Login
-								input(type="email",class="form-control", id="email", placeholder="Entrez votre Email", ng-model="user.email")
+								input(type="text",class="form-control", id="email", placeholder="Entrez votre Email", ng-model="user.email")
 							div.form-group
 								label(for="password") Mot de passe
 								input(type="password", class="form-control", id="password", placeholder="Entrez votre Mot de passe", ng-model="motDePasse")
-							span(style="color:red", ng-show="signin.$error.login") {{signin.$error.message}}
+								br
+								div(class="alert alert-danger", ng-show="signin.$error.login")
+									span(style="color:red" ) {{signin.$error.message}}
 							div.actions
-								input(type="submit", value="Conexion", class="btn btn-info btn-block")
+								input(type="submit", ng-disabled="dataLoading", value="Conexion", class="btn btn-info btn-block")
+							br
+							div(style="text-align:center")
+								img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
 block scripts-header
 	script(src="/javascripts/users/userSignIn.js")
 
