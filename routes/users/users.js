@@ -11,6 +11,10 @@ router.get('/sign-up', function(req, res, next) {
 	res.render('users/signUp', { title: 'Inscription utilisateur' });
 });
 
+router.get('/consult-profile', function(req, res, next) {
+	res.render('users/consultProfile', { title: 'Consultation du profil' });
+});
+
 router.post('/sign-up', function(req, res, next) {
 	res.send('Post page');
 });

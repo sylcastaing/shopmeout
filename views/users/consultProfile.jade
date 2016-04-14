@@ -1,0 +1,35 @@
+extends ../layout
+
+
+block content
+	div.container(ng-app="sample" ng-controller="SignCtrl")
+		div(class="panel panel-info")
+			div(class="panel-heading")
+				h3(class="panel-title") Nom du type
+			div(class="panel-body")
+				div(class="row")
+					div(class="col-md-9 col-lg-9")
+						table(class="table table-user-information")
+							tbody
+								tr
+									td Email:
+									td EMAIL{{email}}
+								tr
+									td Adresse:
+									td ADRESSE{{adresse}}
+								tr
+								tr
+									td Telephone:
+									td TEL{{telephone}}
+								tr
+								tr
+									td Sexe:
+									td SEX{{sexe}}
+								tr
+								tr
+									td Date de naissance:
+									td DATE{{dateNaissance}}
+								tr
+
+block scripts
+	script(src="/javascripts/users/userConsultProfile.js")

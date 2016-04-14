@@ -11,7 +11,14 @@
  			url : '/ws-users/sign-up',
  			data : $scope.user
  		}).success(function (data, status, headers, config){
-			console.log("succes");
+			console.log(data);
+			if(data.status) {
+				document.location="/";
+			}
+			else {
+				$scope.signup.$signUpError = true;
+				$scope.signup.$signUpErrorMsg = data.erreur;
+			}
 			console.log(data);
  		}).error(function (data, status, headers, config){
  			console.log("echec");

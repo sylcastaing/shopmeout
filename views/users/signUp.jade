@@ -80,5 +80,7 @@ block content
 											span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
 							div.actions
 								input(type="submit", value="S\'enregistrer", ng-disabled="signup.$invalid" class="btn btn-info btn-block")
+								span(style="color:red", ng-show="$scope.signup.$signUpError")
+									span {{$scope.signup.$signUpErrorMsg}}
 block scripts
 	script(src="/javascripts/users/userSignUp.js")
