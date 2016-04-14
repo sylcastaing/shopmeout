@@ -1,7 +1,7 @@
 #bandeau {
 	font-family: Forte;
 	font-size: large;
-	background-color: #FFFFFF
+	width: 100%;
 }
 
 .navbar .navbar-collapse {
