@@ -3,3 +3,7 @@
 	font-size: large;
 	background-color: #FFFFFF
 }
+
+.navbar .navbar-collapse {
+	text-align: center;
+}
