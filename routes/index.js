@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
 });
 
+router.get('/mentions-legales', function(req, res, next) {
+	res.render('mentionslegales', { title: 'Mentions Légales' });
+});
+
 module.exports = router;
