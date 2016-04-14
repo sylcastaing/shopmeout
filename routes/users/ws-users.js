@@ -73,7 +73,6 @@ router.post('/check-email', function (req, res, next) {
 			erreur: err
 		});
 	});
-
 });
 
 router.post('/sign-out', function(req, res, next) {
