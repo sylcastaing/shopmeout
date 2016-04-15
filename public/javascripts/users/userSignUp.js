@@ -24,8 +24,16 @@
 	 			url : '/ws-users/sign-up',
 	 			data : $scope.user
 	 		}).success(function (data, status, headers, config){
-	 			if(data.status) {
-	 				console.log("test");
+	 			if(data.statut) {
+	 				var autoCo = $http({
+						method : 'POST',
+						url : '/ws-users/sign-in',
+						data : { "email" : $scope.user.email, "motDePasse" : $scope.user.motDePasse }
+					}).success(function (data, status, headers, config){
+						console.log(data);
+			 		}).error(function (data, status, headers, config){
+	 					console.log("Il y a un problème avec la création du compte ou l'authentification");
+	 				});
 	 				document.location="/";
 	 			}
 	 			else {
