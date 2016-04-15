@@ -1,0 +1,9 @@
+#bandeau {
+	font-family: Forte;
+	font-size: large;
+	width: 100%;
+}
+
+.navbar .navbar-collapse {
+	text-align: center;
+}
