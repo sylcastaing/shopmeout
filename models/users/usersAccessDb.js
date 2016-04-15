@@ -55,6 +55,11 @@ var usersAccessDb = {
 	getUser: function(email,callback) {
 		User.findOne({
 			email: email
+		},
+		{
+			_id:0,
+			motDePasse:0,
+			__v:0
 		}, function(err,user) {
 			callback(user, err);
 		});

@@ -50,14 +50,14 @@ router.get('/consult-profile', function (req, res, next) {
 		else {
 		res.json({
 			user : null,
-			err : "L'utilisateur n'est pas authentifié"
+			err : usersMessages.get("users.consult.notConnected")
 		});
 		}
 	}
 	else {
 		res.json({
 			user : null,
-			err : "L'utilisateur n'est pas authentifié"
+			err : usersMessages.get("users.consult.notConnected")
 		});
 	}
 });
