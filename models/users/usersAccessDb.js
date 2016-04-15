@@ -51,6 +51,13 @@ var usersAccessDb = {
 				}
 			}
 		});
+	},
+	getUser: function(email,callback) {
+		User.findOne({
+			email: email
+		}, function(err,user) {
+			callback(user, err);
+		});
 	}
 }
 

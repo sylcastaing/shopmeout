@@ -42,7 +42,8 @@
 	 			}
 	 			console.log(data);
 	 		}).error(function (data, status, headers, config){
-	 			console.log("echec");
+	 			$scope.signup.$signUpError = true;
+ 				$scope.signup.$signUpErrorMsg = data.err;
 	 		});
  		}
  		console.log($scope.user);

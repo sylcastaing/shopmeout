@@ -36,6 +36,33 @@ router.post('/sign-up', function (req, res, next) {
 
 });
 
+
+router.get('/consult-profile', function (req, res, next) {
+	if (req.isAuthenticated()) {
+		if(req.session.passport.user.email) {
+			usersAccessDb.getUser(req.session.passport.user.email, function(user, err) {
+				res.json({
+					user : user,
+					err : err
+				});
+			});
+		}
+		else {
+		res.json({
+			user : null,
+			err : "L'utilisateur n'est pas authentifié"
+		});
+		}
+	}
+	else {
+		res.json({
+			user : null,
+			err : "L'utilisateur n'est pas authentifié"
+		});
+	}
+});
+
+
 router.post('/sign-out', function(req, res, next) {
 	req.session.destroy();
 	res.json({
