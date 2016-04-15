@@ -17,7 +17,12 @@ router.get('/sign-up', function(req, res, next) {
 });
 
 router.get('/consult-profile', function(req, res, next) {
-	res.render('users/consultProfile', { title: 'Consultation du profil' });
+	if (!req.isAuthenticated()) {
+		res.redirect('/users/');
+	}
+	else {
+		res.render('users/consultProfile', { title: 'Consultation du profil' });
+	}
 });
 
 module.exports = router;
