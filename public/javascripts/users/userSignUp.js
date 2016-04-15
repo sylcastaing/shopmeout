@@ -2,27 +2,41 @@
 
  app.controller("SignCtrl", function($scope, $http) {
 
+	 $scope.removeError = function() {
+	 	if($scope.signup.$error.sexeError) {
+	 		$scope.signup.$error.sexeError = false;
+	 	}
+	 }
+
  	$scope.addClient = function() {
 
- 		$scope.user.motDePasse = CryptoJS.SHA1($scope.motDePasse).toString();
- 		$scope.user.sexe = $scope.myModel['sexe'];
- 		var res = $http({
- 			method : 'POST',
- 			url : '/ws-users/sign-up',
- 			data : $scope.user
- 		}).success(function (data, status, headers, config){
- 			console.log(data);
- 			if(data.status) {
- 				document.location="/";
- 			}
- 			else {
- 				$scope.signup.$signUpError = true;
- 				$scope.signup.$signUpErrorMsg = data.erreur;
- 			}
- 			console.log(data);
- 		}).error(function (data, status, headers, config){
- 			console.log("echec");
- 		});
+ 		if($scope.myModel == undefined) {
+			$scope.signup.$error.sexeError = true;
+ 		}
+ 		else {
+ 			$scope.signup.$error.sexeError = false;
+ 			$scope.signup.$invalid = false;
+ 		
+	 		$scope.user.motDePasse = CryptoJS.SHA1($scope.motDePasse).toString();
+	 		$scope.user.sexe = $scope.myModel['sexe'];
+	 		var res = $http({
+	 			method : 'POST',
+	 			url : '/ws-users/sign-up',
+	 			data : $scope.user
+	 		}).success(function (data, status, headers, config){
+	 			if(data.status) {
+	 				console.log("test");
+	 				document.location="/";
+	 			}
+	 			else {
+	 				$scope.signup.$signUpError = true;
+	 				$scope.signup.$signUpErrorMsg = data.err;
+	 			}
+	 			console.log(data);
+	 		}).error(function (data, status, headers, config){
+	 			console.log("echec");
+	 		});
+ 		}
  		console.log($scope.user);
  	}
 
@@ -33,7 +47,7 @@
  			data : { "email" : $scope.user.email}
  		}).success(function (data, status, headers, config){
  			if(data.statut==false && data.erreur!="E-mail vide à la récupération.") {
- 				console.log(data);
+ 				$scope.signup.email.$invalid = true;
  				$scope.signup.email.$error.emailPrise = true;
  				$scope.signup.email.$error.emailPriseMessage = data.erreur;
  			}
@@ -62,6 +76,7 @@
  		}
  	};
  }).directive('buttonsRadio', function() {
+
  	return {
  		restrict: 'A',
  		require: 'ngModel',
