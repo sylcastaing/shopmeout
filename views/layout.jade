@@ -5,10 +5,13 @@ html
 		link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
 		link(rel='stylesheet', href='/stylesheets/main.css')
 		block styles
+		script(src='/javascripts/main.js')
 		script(src='/javascripts/inc/angular.min.js')
 		block scripts-header
 	body
 		block content
 		script(src='/javascripts/inc/jquery-2.2.2.min.js')
+		script(src='http://code.jquery.com/ui/1.11.4/jquery-ui.js')
 		script(src='/bootstrap/js/bootstrap.min.js')
+		script(src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js")
 		block scripts
