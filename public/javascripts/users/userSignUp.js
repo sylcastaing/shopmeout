@@ -57,7 +57,7 @@
  			if(data.statut==false && data.erreur!="E-mail vide à la récupération.") {
  				$scope.signup.email.$invalid = true;
  				$scope.signup.email.$error.emailPrise = true;
- 				$scope.signup.email.$error.emailPriseMessage = data.erreur;
+ 				$scope.signup.email.$error.emailPriseMessage = data.err;
  			}
  			else {
  				$scope.signup.email.$error.emailPrise = false;
