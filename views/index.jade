@@ -1,4 +1,52 @@
 extends layout
 
 block content
-	h1= title
+	#menu
+		ul(class="nav nav-tabs nav-justified")
+			li.active
+				a.item(href='#images', data-toggle="tab")
+					span.glyphicon.glyphicon-home(aria-hidden='true')
+			li
+				a.item(href='#proposerShopping', data-toggle="tab") Je propose un shopping !
+			li
+				a.item(href='#demanderShopping', data-toggle="tab") Je demande un shopping !
+	.tab-content
+		#images.tab-pane.fade.in.active
+			.row
+				.col-md-4.col-lg-4.col-sm-6
+					.thumbnail
+						img(src='images/test_dog.jpg', alt='MatchMeNow')
+						.caption
+							h3 Mon Shopping !
+							p ...
+							p
+								button#btnshopcart.btn.btn-default(type='button', aria-label='Shopping cart')
+									span.glyphicon.glyphicon-shopping-cart(aria-hidden='true')
+								button#btnsearch.btn.btn-default(type='button', aria-label='Search')
+									span.glyphicon.glyphicon-search(aria-hidden='true')
+				.col-md-4.col-lg-4.col-sm-6
+					.thumbnail
+						img(src='images/test_dog.jpg', alt='MatchMeNow')
+						.caption
+							h3 Mon Shopping !
+							p ...
+							p
+								button#btnshopcart.btn.btn-default(type='button', aria-label='Shopping cart')
+									span.glyphicon.glyphicon-shopping-cart(aria-hidden='true')
+								button#btnsearch.btn.btn-default(type='button', aria-label='Search')
+									span.glyphicon.glyphicon-search(aria-hidden='true')
+				.col-md-4.col-lg-4.col-sm-6
+					.thumbnail
+						img(src='images/test_dog.jpg', alt='MatchMeNow')
+						.caption
+							h3 Mon Shopping !
+							p ...
+							p
+								button#btnshopcart.btn.btn-default(type='button', aria-label='Shopping cart')
+									span.glyphicon.glyphicon-shopping-cart(aria-hidden='true')
+								button#btnsearch.btn.btn-default(type='button', aria-label='Search')
+									span.glyphicon.glyphicon-search(aria-hidden='true')
+		#proposerShopping.tab-pane.fade
+			include ./proposerShopping.jade
+		#demanderShopping.tab-pane.fade
+			include ./demanderShopping.jade
