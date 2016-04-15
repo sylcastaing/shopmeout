@@ -1,5 +1,9 @@
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
+var mongoose = require('mongoose');
+var usersModel = require('./usersModel');
+var User = mongoose.model('users', usersModel);
+var usersMessages = require('properties-reader')('messages/users.messages.properties');
 
 var usersAccessDb = {
 
@@ -9,62 +13,44 @@ var usersAccessDb = {
 	collectionBase : 'users',
 
 	createUser: function(datas, callback) {
-		try {
-			MongoClient.connect(usersAccessDb.urlBase, function(err, db) {
-
-				if(err) {
-					console.log(err);
-					callback(false);
+		User.create({
+			email: datas.email,
+			nom: datas.nom,
+			prenom: datas.prenom,
+			dateNaissance: datas.dateNaissance,
+			adresse: datas.adresse,
+			codePostal: datas.codePostal,
+			ville: datas.ville,
+			telephone: datas.telephone,
+			sexe: datas.sexe,
+			motDePasse: datas.motDePasse,
+			dateInscription: new Date()
+		}, function(err,user) {
+			if(err) {
+				callback(false, err);
+			} else {
+				if (user != null) {
+					callback(true, usersMessages.get("users.creation.email.alreadyExist"));
 				} else {
-					db.collection(usersAccessDb.collectionBase).insertOne(datas, function(err, result) {
-						if (err) {
-							console.log(err);
-							callback(false);
-						} else {
-							callback(true);
-						}
-						db.close();
-					});
+					callback(false, "");
 				}
-			});
-		} catch(e) {
-			console.log(e);
-			callback(false);
-		}
+			}
+		});
 	},
 	checkAlreadyExist: function(email, callback) {
-		try {
-			MongoClient.connect(usersAccessDb.urlBase, function(err, db) {
-
-				if(err) {
-					console.log("erreur connexion à la base" + err);
-					callback(true, err);
+		User.findOne({
+			email: email
+		}, function(err,user) {
+			if(err) {
+				callback(true, err);
+			} else {
+				if (user != null) {
+					callback(true, usersMessages.get("users.creation.email.alreadyExist"));
 				} else {
-					db.collection(usersAccessDb.collectionBase).findOne({
-						"email" : email
-					}, function(err, result) {
-						db.close();
-						if (err) {
-							console.log("erreur récupération résultat" + err);
-							callback(true, err);
-						} else {
-							console.log("result =" + result);
-							if (result != null) {
-								callback(true, "Un compte existe déjà pour cet e-mail.");
-								console.log("result1 =" + result);
-							} else {
-								callback(false, "");
-								console.log("result2 =" + result);
-							}
-						}
-						
-					});
+					callback(false, "");
 				}
-			});
-		} catch(e) {
-			console.log("catch" + e);
-			callback(true, e);
-		}
+			}
+		});
 	}
 }
 
