@@ -2,10 +2,10 @@ extends ../layout
 
 
 block content
-	div.container(ng-app="sample" ng-controller="SignCtrl")
+	div.container(ng-app="sample" ng-controller="ConsultProfileCtrl")
 		div(class="panel panel-info")
 			div(class="panel-heading")
-				h3(class="panel-title") Nom du type
+				h3(class="panel-title") Bienvenue sur votre profil {{user.prenom}} !
 			div(class="panel-body")
 				div(class="row")
 					div(class="col-md-9 col-lg-9")
@@ -13,22 +13,42 @@ block content
 							tbody
 								tr
 									td Email:
-									td EMAIL{{email}}
+									td {{user.email}}
+								tr
+								tr
+									td Nom:
+									td {{user.nom}}
+								tr
+								tr
+									td Prénom:
+									td {{user.prenom}}
 								tr
 									td Adresse:
-									td ADRESSE{{adresse}}
+									td {{user.adresse}}
+								tr
+								tr
+									td Code Postal:
+									td {{user.codePostal}}
+								tr
+								tr
+									td Ville:
+									td {{user.ville}}
 								tr
 								tr
 									td Telephone:
-									td TEL{{telephone}}
+									td {{user.telephone}}
 								tr
 								tr
 									td Sexe:
-									td SEX{{sexe}}
+									td {{user.sexe}}
 								tr
 								tr
 									td Date de naissance:
-									td DATE{{dateNaissance}}
+									td {{user.dateNaissance}}
+								tr
+								tr
+									td Inscrit depuis le :
+									td {{user.dateInscription | date:"dd/MM/yyyy"}}
 								tr
 
 block scripts
