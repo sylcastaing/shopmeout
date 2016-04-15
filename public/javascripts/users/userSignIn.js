@@ -12,7 +12,7 @@ app.controller("SignCtrl", function($scope, $http) {
 		}).success(function (data, status, headers, config){
 			if(data.statut==false) {
 				$scope.signin.$error.login = true;
-				$scope.signin.$error.message = data.erreur.message;
+				$scope.signin.$error.message = data.err.message;
 				$scope.dataLoading = false;
 			}
 			else {
