@@ -48,10 +48,10 @@ router.get('/consult-profile', function (req, res, next) {
 			});
 		}
 		else {
-		res.json({
-			user : null,
-			err : usersMessages.get("users.consult.notConnected")
-		});
+			res.json({
+				user : null,
+				err : usersMessages.get("users.consult.notConnected")
+			});
 		}
 	}
 	else {
@@ -85,26 +85,28 @@ usersConnect = function(req, res, next, callback) {
 	if (req.isAuthenticated()) {
 		callback(false, usersMessages.get('users.connection.alreadyconnect'));
 	}
-	passport.authenticate('local', {
-		session: true
-	}, function(err, user, info) {
-		if (err) {
-			callback(false, info);
-		}
-		if (!user) {
-			callback(false, info);
-		}
-		else {
-			return req.login(user, function(err) {
-				if (err) {
-					callback(false, err);
-				} else {
-					callback(true, "");
-				}
-			});
-		}
-	})
-	(req, res, next);
+	else {
+		passport.authenticate('local', {
+			session: true
+		}, function(err, user, info) {
+			if (err) {
+				callback(false, info);
+			}
+			else if (!user) {
+				callback(false, info);
+			}
+			else {
+				return req.login(user, function(err) {
+					if (err) {
+						callback(false, err);
+					} else {
+						callback(true, "");
+					}
+				});
+			}
+		})
+		(req, res, next);
+	}
 }
 
-	module.exports = router;
+module.exports = router;

@@ -4,7 +4,12 @@ var router = express.Router();
 var usersAccessDb = require('../../models/users/usersAccessDb');
 
 router.get('/', function(req, res, next) {
-	res.render('users/signIn', { title: 'Connexion' });
+	if (req.isAuthenticated()) {
+		res.redirect('/users/consult-profile');
+	}
+	else {
+		res.render('users/signIn', { title: 'Connexion' });
+	}
 });
 
 router.get('/sign-up', function(req, res, next) {
@@ -13,10 +18,6 @@ router.get('/sign-up', function(req, res, next) {
 
 router.get('/consult-profile', function(req, res, next) {
 	res.render('users/consultProfile', { title: 'Consultation du profil' });
-});
-
-router.post('/sign-up', function(req, res, next) {
-	res.send('Post page');
 });
 
 module.exports = router;
