@@ -30,9 +30,7 @@
 						url : '/ws-users/sign-in',
 						data : { "email" : $scope.user.email, "motDePasse" : $scope.user.motDePasse }
 					}).success(function (data, status, headers, config){
-						console.log(data);
 			 		}).error(function (data, status, headers, config){
-	 					console.log("Il y a un problème avec la création du compte ou l'authentification");
 	 				});
 	 				document.location="/";
 	 			}
@@ -40,13 +38,11 @@
 	 				$scope.signup.$signUpError = true;
 	 				$scope.signup.$signUpErrorMsg = data.err;
 	 			}
-	 			console.log(data);
 	 		}).error(function (data, status, headers, config){
 	 			$scope.signup.$signUpError = true;
  				$scope.signup.$signUpErrorMsg = data.err;
 	 		});
  		}
- 		console.log($scope.user);
  	}
 
  	$scope.checkEmail = function() {
@@ -64,7 +60,6 @@
  				$scope.signup.email.$error.emailPrise = false;
  			}
  		}).error(function (data, status, headers, config){
- 			console.log(data);
  		});
  	}
  })

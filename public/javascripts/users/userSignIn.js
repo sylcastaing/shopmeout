@@ -19,11 +19,9 @@ app.controller("SignCtrl", function($scope, $http) {
 				 document.location = '/';
 			}
 		}).error(function (data, status, headers, config){
-			console.log("echec");
 			$scope.signin.$error.login = true;
 			$scope.signin.$error.message = "Problème serveur";
 			$scope.dataLoading = false;
 		});
-		console.log($scope.user);
 	}
 })
