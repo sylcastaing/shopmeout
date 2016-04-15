@@ -39,7 +39,7 @@ router.post('/sign-up', function (req, res, next) {
 router.post('/sign-out', function(req, res, next) {
 	req.session.destroy();
 	res.json({
-		"statut": req.isAuthenticated()
+		statut: req.isAuthenticated()
 	});
 });
 
@@ -49,7 +49,7 @@ router.post('/check-email', function (req, res, next) {
 	usersValidation.verifEmail(req.body, function(result, err) {
 		res.json({
 			statut: result,
-			erreur: err
+			err: err
 		});
 	});
 });
