@@ -62,14 +62,6 @@ router.get('/consult-profile', function (req, res, next) {
 	}
 });
 
-
-router.post('/sign-out', function(req, res, next) {
-	req.session.destroy();
-	res.json({
-		statut: req.isAuthenticated()
-	});
-});
-
 router.post('/check-email', function (req, res, next) {
 	// Vérification des données
 
