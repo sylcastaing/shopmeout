@@ -1,0 +1,45 @@
+extends ../layout
+
+block content
+	div.container(ng-app="sample" ng-controller="")
+		div(class="row centered-form")
+			div(class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4")
+				div(class="panel panel-default")
+					div(class="panel-heading")
+						h1(class="panel-title")=title
+					div.panel-body
+						form(name="post-shop", method="post", ng-submit="PostShopCtrl" novalidate)
+							div.row
+								div(class="col-xs-12 col-sm-12 col-md-12")
+									div.form-group
+										label(class="control-label col-sm-5" id="labelDistance") Je choisis ma distance
+										div(class="btn-group",  data-toggle="buttons-radio")
+											button(type='button', value='0', ng-model="myModel['distance']", buttons-radio="" class="btn", ng-click="removeError()" checked) Moins de 1 km
+											button(type='button', value='1', ng-model="myModel['distance']", buttons-radio="" class="btn", ng-click="removeError()") Jusqu'à 5 km
+											button(type='button', value='2', ng-model="myModel['distance']", buttons-radio="" class="btn", ng-click="removeError()") Jusqu'à 10 km
+											button(type='button', value='3', ng-model="myModel['distance']", buttons-radio="" class="btn", ng-click="removeError()") Plus de 10 km
+							div.row
+								div(class="col-xs-12 col-sm-12 col-md-12")
+									div.form-group
+										label(class="control-label col-sm-5" id="labelNbShoppeur") Je veux livrer
+										div(class="btn-group",  data-toggle="buttons-radio")
+											button(type='button', value='0', ng-model="myModel['distance']", buttons-radio="" class="btn", ng-click="removeError()" checked="checked") 1 shoppeur
+											button(type='button', value='1', ng-model="myModel['distance']", buttons-radio="" class="btn", ng-click="removeError()") 2 shoppeurs
+											button(type='button', value='2', ng-model="myModel['distance']", buttons-radio="" class="btn", ng-click="removeError()") 3 shoppeurs
+											button(type='button', value='3', ng-model="myModel['distance']", buttons-radio="" class="btn", ng-click="removeError()") 4 shoppeurs
+							div.row
+								div(class="col-xs-12 col-sm-12 col-md-12")
+									div.form-group
+										label(class="control-label col-sm-5" id="labelNbShoppeur") Je veux livrer
+										div(class="btn-group",  data-toggle="buttons-radio")
+											button(type='button', value='0', ng-model="myModel['distance']", buttons-radio="" class="btn", ng-click="removeError()") Moins de 5 produits
+											button(type='button', value='1', ng-model="myModel['distance']", buttons-radio="" class="btn", ng-click="removeError()" checked="checked") Jusqu'à 10 produits
+											button(type='button', value='2', ng-model="myModel['distance']", buttons-radio="" class="btn", ng-click="removeError()") Plus de 10 produits
+							div.actions
+								input(type="submit", ng-disabled="dataLoading", value="Ajouter", class="btn btn-info btn-block")
+							br
+							div(style="text-align:center")
+								img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
+block scripts-header
+<!	script(src="/javascripts/users/postShop.js")>
+
