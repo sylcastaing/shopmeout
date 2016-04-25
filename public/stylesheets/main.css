@@ -10,29 +10,21 @@ span.label {
 	color:#000;
 }
 
+.align-center {
+	text-align: center;
+}
+
 .container {
 	padding: 20px;
 	top: 20px;
 }
 
-.centered-form{
-	margin-top: 60px;
+.wrap-spinner {
+	text-align: center;
 }
 
-.centered-form .panel{
-	background: rgba(255, 255, 255, 0.8);
-	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
-}
-.spinner{
-	width: 5%;
-	height: 5%;
-}
-#labelDate{
-	text-align:center;
-}
-
-#radioB{
-	text-align:center
+.spinner {
+	width: 20px;
 }
 
 #menu {

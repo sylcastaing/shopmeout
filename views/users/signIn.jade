@@ -21,8 +21,8 @@ block content
 							div.actions
 								input(type="submit", ng-disabled="dataLoading", value="Connexion", class="btn btn-info btn-block")
 							br
-							div(style="text-align:center")
-								img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
+							.wrap-spinner(ng-if="dataLoading")
+								img(class="spinner" src="../spinner.gif")
 block scripts-header
 	script(src="/javascripts/users/userSignIn.js")
 
