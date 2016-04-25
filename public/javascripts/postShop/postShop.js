@@ -1,27 +1,53 @@
 var app = angular.module('sample', []);
 
-app.controller("PostCtrl", function($scope, $http) {
+app.controller("PostShopCtrl", function($scope, $http) {
 
-	$scope.connectClient = function() {
-		$scope.user.motDePasse = CryptoJS.SHA1($scope.motDePasse).toString();
+	$scope.addPostShop = function() {
 		$scope.dataLoading = true;
-		var res = $http({
+		if($scope.myModel == undefined) {
+ 			console.log("toto");
+ 		}
+ 		else {
+			console.log($scope.myModel['distance']);
+ 		}
+		
+		/*var res = $http({
 			method : 'POST',
-			url : '/ws-users/sign-in',
-			data : $scope.user
+			url : '/ws-post-shop/postShop',
+			data : $scope.postShop
 		}).success(function (data, status, headers, config){
 			if(data.statut==false) {
-				$scope.signin.$error.login = true;
-				$scope.signin.$error.message = data.err.message;
+				$scope.postShop.$error.addPostShop = true;
+				$scope.postShop.$error.message = data.err.message;
 				$scope.dataLoading = false;
 			}
 			else {
 				 document.location = '/';
 			}
 		}).error(function (data, status, headers, config){
-			$scope.signin.$error.login = true;
-			$scope.signin.$error.message = "Problème serveur";
+				$scope.postShop.$error.addPostShop = true;
+			$scope.postShop.$error.message = "Problème serveur";
 			$scope.dataLoading = false;
-		});
+		});*/
 	}
 })
+.directive('buttonsRadio', function() {
+
+ 	return {
+ 		restrict: 'A',
+ 		require: 'ngModel',
+ 		link: function($scope, element, attr, ctrl) {
+ 			element.bind('click', function() {
+ 				$scope.$apply(function(scope) {
+ 					ctrl.$setViewValue(attr.value);
+ 				});
+ 			});
+
+ 			$scope.$watch(attr.ngModel, function(newValue, oldValue) {
+ 				element.parent(".btn-group").find('button').removeClass("active");
+					element.parent(".btn-group") //.children()
+					.find("button[value='" + newValue + "']").addClass('active');
+				});
+ 		}
+ 	};
+ });
