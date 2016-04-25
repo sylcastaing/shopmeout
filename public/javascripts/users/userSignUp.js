@@ -2,6 +2,8 @@
 
  app.controller("SignCtrl", function($scope, $http) {
 
+ 	$(".angular-content").show();
+
  	$scope.removeError = function() {
  		if($scope.signup.$error.sexeError) {
  			$scope.signup.$error.sexeError = false;
