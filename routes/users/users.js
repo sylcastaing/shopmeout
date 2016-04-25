@@ -25,4 +25,9 @@ router.get('/consult-profile', function(req, res, next) {
 	}
 });
 
+router.get('/sign-out', function(req, res, next) {
+	req.session.destroy();
+	res.redirect(req.header('Referer') || '/');
+});
+
 module.exports = router;
