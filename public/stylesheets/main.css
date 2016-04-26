@@ -10,10 +10,6 @@ span.label {
 	text-align: center;
 }
 
-.container {
-	color: #0A68C0;
-}
-
 span.label {
 	color:#000;
 }
@@ -22,7 +18,6 @@ span.label {
 	text-align: center;
 }
 
-.container {
 .centered-form{
 	margin-top: 60px;
 }
