@@ -22,7 +22,7 @@ block content
 								input(type="submit", ng-disabled="dataLoading", value="Connexion", class="btn btn-info btn-block")
 							br
 							.wrap-spinner(ng-if="dataLoading")
-								img(class="spinner" src="../spinner.gif")
+								img(class="spinner" src="#{baseUrl}/spinner.gif")
 block scripts-header
-	script(src="/javascripts/users/userSignIn.js")
+	script(src="#{baseUrl}/javascripts/users/userSignIn.js")
 
