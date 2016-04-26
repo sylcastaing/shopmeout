@@ -1,0 +1,55 @@
+body {
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+	color: #00B7FF;
+}
+
+span.label {
+	color:#000;
+}
+
+.container {
+	background-color: #f2f2f2;
+	border: 1px solid #ccc;
+	padding: 20px;
+	top: 20px;
+	-webkit-box-shadow: 0 2px 2px 1px rgba(0,0,0,0.2);
+	box-shadow: 0 2px 2px 1px rgba(0,0,0,0.2);
+}
+
+.centered-form{
+	margin-top: 60px;
+}
+
+.centered-form .panel{
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
+.spinner{
+	width: 5%;
+	height: 5%;
+}
+#labelDate{
+	text-align:center;
+}
+
+#radioB{
+	text-align:center
+}
+
+#menu {
+	font-family: Forte;
+	font-size: 24px;
+	padding: 20px, 0, 20px, 0;
+	background-color: #222
+	border-color:#080808;
+	margin-top: 20px;
+}
+
+#images {
+	margin-top: 10px;
+	margin-left: 5px;
+}

@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-	div.container(ng-app="sample" ng-controller="SignCtrl")
+	div.angular-content(ng-app="sample" ng-controller="SignCtrl")
 		div(class="row centered-form")
 			div(class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4")
 				div(class="panel panel-default")
@@ -65,7 +65,7 @@ block content
 									span(ng-show="signup.telephone.$error.minlength") Il doit y avoir 10 caractères
 							div.row
 								div(class="col-xs-12 col-sm-12 col-md-12")
-									div.form-group#radioB
+									div.form-group.align-center
 										div(class="btn-group",  data-toggle="buttons-radio")
 											button(type='button', value='0', ng-model="myModel['sexe']", buttons-radio="" class="btn", ng-click="removeError()") Femme
 											button(type='button', value='1', ng-model="myModel['sexe']", buttons-radio="" class="btn", ng-click="removeError()") Homme
@@ -73,7 +73,7 @@ block content
 												span(ng-show="signup.$error.sexeError") Le choix du sexe est obligatoire.
 							div.row
 								div.form-group
-									label(class="control-label col-sm-5" id="labelDate") Date de naissance
+									label(class="control-label col-sm-5 align-center") Date de naissance
 									div(class="col-sm-7")
 										input(class="form-control input-sm", type="date", name="dateNaissance", placeholder="Date de naissance", ng-model="user.dateNaissance", required)
 										span(style="color:red", ng-show="signup.dateNaissance.$invalid && signup.dateNaissance.$touched")

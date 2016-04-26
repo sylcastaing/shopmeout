@@ -12,12 +12,27 @@
 			#header-navbar-collapse-1.collapse.navbar-collapse
 				img(src='../images/Bulle_concept.png' alt='Concept' width='350px')
 				ul.nav.navbar-nav.navbar-right
+					if isAuthenticated
+						li.dropdown
+								a.dropdown-toggle(href='/users/consult-profile', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+									| Bonjour #{userPrenom} ! 
+									span.caret
+								ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+									li
+										a(href='/users/consult-profile') Mon profil
+									li
+										a(href='#') Mes listes de courses 
+									li
+										a(href='#') Mes demandes
+									li.divider(role='separator')
+									li
+										a(href='/users/sign-out') Déconnecte-toi
+					else
+						li
+							a(href="/users/") Connecte-toi !
+								span.sr-only (current)
+						li
+							a(href="/users/sign-up") Inscris-toi !
 					li
-						a(href="/users/") Connecte-toi !
-							span.sr-only (current)
-					li
-						a(href="/users/sign-up") Inscris-toi !
-					li
-						a(href="/users/faq")
+						a(href="/faq")
 							span.glyphicon.glyphicon-question-sign(aria-hidden='true')
-

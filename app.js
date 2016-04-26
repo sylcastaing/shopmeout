@@ -31,6 +31,14 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req,res,next){
+	res.locals.isAuthenticated = req.isAuthenticated();
+	if (req.isAuthenticated()) {
+		res.locals.userPrenom = req.session.passport.user.prenom;
+	}
+	next();
+});
+
 // Gestion des routes
 var routes = require('./routes.json');
 

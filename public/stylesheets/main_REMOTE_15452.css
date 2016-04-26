@@ -1,0 +1,42 @@
+body {
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+	color: #0A68C0;
+}
+
+span.label {
+	color:#000;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.container {
+	padding: 20px;
+	top: 20px;
+}
+
+.wrap-spinner {
+	text-align: center;
+}
+
+.spinner {
+	width: 20px;
+}
+
+#menu {
+	font-family: Forte;
+	font-size: 24px;
+	padding: 20px, 0, 20px, 0;
+	background-color: #222
+	border-color:#080808;
+	margin-top: 20px;
+}
+
+#images {
+	margin-top: 10px;
+	margin-left: 5px;
+}
