@@ -1,14 +1,18 @@
 var app = angular.module('sample', []);
 
 app.controller("PostShopCtrl", function($scope, $http) {
-
+	$scope.distance = "0";
+	$scope.nbShoppeur = "1";
+	$scope.nbArticle = "1";
 	$scope.addPostShop = function() {
 		$scope.dataLoading = true;
-		if($scope.myModel == undefined) {
+		if($scope == undefined) {
  			console.log("toto");
  		}
  		else {
-			console.log($scope.myModel['distance']);
+			console.log($scope.distance);
+			console.log($scope.nbShoppeur);
+			console.log($scope.nbArticle);
  		}
 		
 		/*var res = $http({
