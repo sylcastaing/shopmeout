@@ -36,6 +36,7 @@ app.use(function(req,res,next){
 	if (req.isAuthenticated()) {
 		res.locals.userPrenom = req.session.passport.user.prenom;
 	}
+	res.locals.baseUrl = "http://" + req.headers.host;
 	next();
 });
 
