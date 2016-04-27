@@ -75,7 +75,7 @@ block content
 								div.form-group
 									label(class="control-label col-sm-5 align-center") Date de naissance
 									div(class="col-sm-7")
-										input(class="form-control input-sm", type="date", name="dateNaissance", placeholder="Date de naissance", ng-model="user.dateNaissance", required)
+										input(class="form-control input-sm" type="date" ng-model-options="{timezone:'-0000'}" name="dateNaissance" placeholder="Date de naissance", ng-model="user.dateNaissance", required)
 										span(style="color:red", ng-show="signup.dateNaissance.$invalid && signup.dateNaissance.$touched")
 											span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
 							div.actions

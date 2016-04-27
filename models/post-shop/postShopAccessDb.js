@@ -9,7 +9,7 @@ var postShopAccessDb = {
 
 	createPostShop: function(datas, callback) {
 		PostShop.create({
-			nomShoppeur: datas.nomShoppeur,
+			mailShoppeur: datas.mailShoppeur,
 			date: datas.date,
 			codePostal: datas.codePostal,
 			magasin: datas.magasin,

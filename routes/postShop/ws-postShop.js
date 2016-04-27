@@ -10,8 +10,11 @@ var postShopMessages = require('properties-reader')('messages/postShop.messages.
 router.post('/postShop', function(req, res, next) {
 	if (req.isAuthenticated()) {
 		if(req.session.passport.user.prenom) {
-			req.body.nomShoppeur = req.session.passport.user.prenom;
+			req.body.mailShoppeur = req.session.passport.user.email;
 		}
+	}
+	else {
+		req.body.mailShoppeur = "";
 	}
 	// Vérification des données
 	postShopValidation.verifDatas(req.body, function (isValid, err) {
@@ -35,10 +38,7 @@ router.post('/postShop', function(req, res, next) {
 
 
 router.post('/search-postShop', function(req, res, next) {
-	var newDate = req.date.getUTCDate() + "/" + req.date.getUTCMonth() + "/" +req.date.getUTCFullYear()
-	req.date = newDate;
 	postShopAccessDb.searchPostShop(req.body, function(result, err) {
-
 			if(!err) {
 				res.json({
 					postShops: result,
