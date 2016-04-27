@@ -1,6 +1,6 @@
 var app = angular.module('sample', []);
 
-app.controller("PostShop2Ctrl", function($scope, $http) {
+app.controller("PostShopCtrl", function($scope, $http) {
 
 	$scope.removeErrorDistance = function() {
  		if($scope.postShop.$error.distanceError) {
