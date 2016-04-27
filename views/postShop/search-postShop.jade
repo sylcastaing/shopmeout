@@ -29,7 +29,7 @@ block content
 								div.form-group
 									label(class="control-label col-sm-5 align-center") Date du shopping
 									div(class="col-sm-7")
-										input(class="form-control input-sm", type="date", name="date", placeholder="Date", ng-model="date", required)
+										input(class="form-control input-sm" type="date" name="date" ng-model-options="{timezone:'-0000'}" placeholder="Date" ng-model="date" required)
 										span(style="color:red", ng-show="postshop.dateNaissance.$invalid && postshop.dateNaissance.$touched")
 											span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
 							br
