@@ -2,6 +2,8 @@ var app = angular.module('sample', []);
 
 app.controller("SignCtrl", function($scope, $http) {
 
+	$(".angular-content").show();
+
 	$scope.connectClient = function() {
 		$scope.user.motDePasse = CryptoJS.SHA1($scope.motDePasse).toString();
 		$scope.dataLoading = true;

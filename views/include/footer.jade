@@ -1,10 +1,13 @@
 #footer
 	.nav.navbar.navbar-default.navbar-bottom
 		.container-fluid
-			li
-				a(href="/mentions-legales") Mentions légales
-			li 
-				a(href="mailto:outmeshop@gmail.com") Contactez-nous
-			li
-				|ShopMeOut, 2016 
-				span.glyphicon.glyphicon-copyright-mark(aria-hidden='true')
+			ul.nav.navbar-nav
+				li
+					a(href="#{baseUrl}/mentions-legales") Mentions légales
+				li 
+					a(href="mailto:meoutshop@gmail.com") Contactez-nous
+			ul.nav.navbar-nav.navbar-right
+				li
+					p.navbar-text
+						|ShopMeOut, 2016 
+						span.glyphicon.glyphicon-copyright-mark(aria-hidden='true')

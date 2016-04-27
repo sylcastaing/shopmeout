@@ -2,20 +2,22 @@ doctype html
 html
 	head
 		title= title
-		link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
-		link(rel='stylesheet', href='/stylesheets/main.css')
-		link(rel='stylesheet', href='/stylesheets/header.css')
-		link(rel='stylesheet', href='/stylesheets/footer.css')
+		link(rel='stylesheet', href='#{baseUrl}/bootstrap/css/bootstrap.min.css')
+		link(rel='stylesheet', href='#{baseUrl}/stylesheets/main.css')
+		link(rel='stylesheet', href='#{baseUrl}/stylesheets/header.css')
+		link(rel='stylesheet', href='#{baseUrl}/stylesheets/footer.css')
+		link(rel='stylesheet', href='#{baseUrl}/stylesheets/faq.css')
 		block styles
-		script(src='/javascripts/main.js')
-		script(src='/javascripts/inc/angular.min.js')
+		script(src='#{baseUrl}/javascripts/main.js')
+		script(src='#{baseUrl}/javascripts/inc/angular.min.js')
 		block scripts-header
 	body
-		include ./include/header.jade
-		block content
-		include ./include/footer.jade
-		script(src='/javascripts/inc/jquery-2.2.2.min.js')
+		.container
+			include ./include/header.jade
+			block content
+			include ./include/footer.jade
+		script(src='#{baseUrl}/javascripts/inc/jquery-2.2.2.min.js')
 		script(src='http://code.jquery.com/ui/1.11.4/jquery-ui.js')
-		script(src='/bootstrap/js/bootstrap.min.js')
+		script(src='#{baseUrl}/bootstrap/js/bootstrap.min.js')
 		script(src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js")
 		block scripts

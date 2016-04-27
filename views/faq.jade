@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .replie
+    a.bouton-deplier Ouvrir
+  .deplie
+    span.bouton-replier Fermer
+    .montexte
+      | Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.
+  br
+  br
+  .replie
+    a.bouton-deplier Ouvrir
+  .deplie
+    a.bouton-replier Fermer
+    .montexte
+      | Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.
+
+block scripts
+  script(src="#{baseUrl}/javascripts/index/index.js")

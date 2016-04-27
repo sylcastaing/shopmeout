@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-	div.container(ng-app="sample" ng-controller="SignCtrl")
+	div.angular-content(ng-app="sample" ng-controller="SignCtrl")
 		div(class="row centered-form")
 			div(class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4")
 				div(class="panel panel-default")
@@ -21,8 +21,8 @@ block content
 							div.actions
 								input(type="submit", ng-disabled="dataLoading", value="Connexion", class="btn btn-info btn-block")
 							br
-							div(style="text-align:center")
-								img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
+							.wrap-spinner(ng-if="dataLoading")
+								img(class="spinner" src="#{baseUrl}/spinner.gif")
 block scripts-header
-	script(src="/javascripts/users/userSignIn.js")
+	script(src="#{baseUrl}/javascripts/users/userSignIn.js")
 

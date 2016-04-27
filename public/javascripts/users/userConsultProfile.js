@@ -8,6 +8,7 @@ app.controller("ConsultProfileCtrl", function($scope, $http) {
 			if(data.user != null) {
 				$scope.user = data.user;
 				$scope.user.sexe = ($scope.user.sexe == "0")?"Femme":"Homme";
+				$(".angular-content").show();
 			}
 			else {
 				 document.location = '/users';
