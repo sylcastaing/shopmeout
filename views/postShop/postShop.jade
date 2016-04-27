@@ -1,56 +1,60 @@
-extends ../layout
+div(class="modal fade" id="postShopModal" role="dialog" ng-app="sample" ng-controller="PostShopCtrl")
+	div(class="modal-dialog")
 
-block content
-	div(ng-app="sample" ng-controller="PostShopCtrl")
-		div(class="row centered-form")
-			div(class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4")
-				div(class="panel panel-default")
-					div(class="panel-heading")
-						h1(class="panel-title")=title
-					div.panel-body
-						form(name="postShop", method="post", ng-submit="addPostShop()" novalidate)
-							div.row
-								div(class="col-xs-12 col-sm-12 col-md-12")
+		// Modal content
+		div(class="modal-content")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal")&times;
+				h4(class="modal-title") Proposer un shopping
+			div(class="modal-body")
+				div(class="row centered-form")
+					div(class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4")
+						div.panel-body
+							form(name="postShop", method="post", ng-submit="addPostShop()" novalidate)
+								div.row
+									div(class="col-xs-12 col-sm-12 col-md-12")
+										div.form-group
+											label(class="control-label col-sm-5" id="labelDistance") Je choisis ma distance
+											div(class="btn-group" data-toggle="buttons-radio") 
+												button(type="button" class="btn btn-primary" ng-model="data.distance" value='0' buttons-radio="" ng-click="removeErrorDistance()") Moins de 1 km
+												button(type="button" class="btn btn-primary" ng-model="data.distance" value='1' buttons-radio="" ng-click="removeErrorDistance()") Jusqu'à 5 km
+												button(type="button" class="btn btn-primary" ng-model="data.distance" value='2' buttons-radio="" ng-click="removeErrorDistance()") Jusqu'à 10 km
+												button(type="button" class="btn btn-primary" ng-model="data.distance" value='3' buttons-radio="" ng-click="removeErrorDistance()") Plus de 10 km
+												span(style="color:red", ng-show="postShop.$error.distanceError") la distance est obligatoire.
+								div.row
+									div(class="col-xs-12 col-sm-12 col-md-12")
+										div.form-group
+											label(class="control-label col-sm-5" id="labelNbShoppeur") Je veux livrer
+											div(class="btn-group" data-toggle="buttons-radio") 
+												button(type="button" class="btn btn-primary" ng-model="data.nbShoppeur" value='1' buttons-radio="" ng-click="removeErrorNbShoppeur()") 1 shoppeur
+												button(type="button" class="btn btn-primary" ng-model="data.nbShoppeur" value='2' buttons-radio="" ng-click="removeErrorNbShoppeur()") 2 shoppeurs
+												button(type="button" class="btn btn-primary" ng-model="data.nbShoppeur" value='3' buttons-radio="" ng-click="removeErrorNbShoppeur()") 3 shoppeurs
+												button(type="button" class="btn btn-primary" ng-model="data.nbShoppeur" value='4' buttons-radio="" ng-click="removeErrorNbShoppeur()") 4 shoppeurs
+												span(style="color:red", ng-show="postShop.$error.NbShoppeurError") le nombre de shoppeur est obligatoire.
+								div.row
+									div(class="col-xs-12 col-sm-12 col-md-12")
+										div.form-group
+											label(class="control-label col-sm-5" id="labelNbArticles") Je veux livrer
+											div(class="btn-group" data-toggle="buttons-radio") 
+												button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='0' buttons-radio="" ng-click="removeErrorNbArticle()") Moins de 5 produits
+												button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='1' buttons-radio="" ng-click="removeErrorNbArticle()") Jusqu'à 10 produits
+												button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='2' buttons-radio="" ng-click="removeErrorNbArticle()") Plus de 10 produits
+												span(style="color:red", ng-show="postShop.$error.NbArticleError") le nombre d'article est obligatoire.
+								div.row
 									div.form-group
-										label(class="control-label col-sm-5" id="labelDistance") Je choisis ma distance
-										div(class="btn-group" data-toggle="buttons-radio") 
-											button(type="button" class="btn btn-primary" ng-model="data.distance" value='0' buttons-radio="" ng-click="removeErrorDistance()") Moins de 1 km
-											button(type="button" class="btn btn-primary" ng-model="data.distance" value='1' buttons-radio="" ng-click="removeErrorDistance()") Jusqu'à 5 km
-											button(type="button" class="btn btn-primary" ng-model="data.distance" value='2' buttons-radio="" ng-click="removeErrorDistance()") Jusqu'à 10 km
-											button(type="button" class="btn btn-primary" ng-model="data.distance" value='3' buttons-radio="" ng-click="removeErrorDistance()") Plus de 10 km
-											span(style="color:red", ng-show="postShop.$error.distanceError") la distance est obligatoire.
-							div.row
-								div(class="col-xs-12 col-sm-12 col-md-12")
-									div.form-group
-										label(class="control-label col-sm-5" id="labelNbShoppeur") Je veux livrer
-										div(class="btn-group" data-toggle="buttons-radio") 
-											button(type="button" class="btn btn-primary" ng-model="data.nbShoppeur" value='1' buttons-radio="" ng-click="removeErrorNbShoppeur()") 1 shoppeur
-											button(type="button" class="btn btn-primary" ng-model="data.nbShoppeur" value='2' buttons-radio="" ng-click="removeErrorNbShoppeur()") 2 shoppeurs
-											button(type="button" class="btn btn-primary" ng-model="data.nbShoppeur" value='3' buttons-radio="" ng-click="removeErrorNbShoppeur()") 3 shoppeurs
-											button(type="button" class="btn btn-primary" ng-model="data.nbShoppeur" value='4' buttons-radio="" ng-click="removeErrorNbShoppeur()") 4 shoppeurs
-											span(style="color:red", ng-show="postShop.$error.NbShoppeurError") le nombre de shoppeur est obligatoire.
-							div.row
-								div(class="col-xs-12 col-sm-12 col-md-12")
-									div.form-group
-										label(class="control-label col-sm-5" id="labelNbArticles") Je veux livrer
-										div(class="btn-group" data-toggle="buttons-radio") 
-											button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='0' buttons-radio="" ng-click="removeErrorNbArticle()") Moins de 5 produits
-											button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='1' buttons-radio="" ng-click="removeErrorNbArticle()") Jusqu'à 10 produits
-											button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='2' buttons-radio="" ng-click="removeErrorNbArticle()") Plus de 10 produits
-											span(style="color:red", ng-show="postShop.$error.NbArticleError") le nombre d'article est obligatoire.
-							div.row
-								div.form-group
-									label(class="control-label col-sm-5" id="labelDate") Date du shopping
-									div(class="col-sm-7")
-										input(class="form-control input-sm", type="date", name="dateShopping", placeholder="Date du Shopping", ng-model="data.date" ng-model-options="{timezone:'-0000'}" required)
-									div
-										span(style="color:red", ng-show="(postShop.dateShopping.$touched && postShop.dateShopping.$invalid) || postShop.$error.dateShopping") La date du shopping est obligatoire.
-							br
-							div(class="alert alert-danger", ng-show="postShop.$error.addPostShop")
-								span(style="color:red" ) {{postShop.$error.message}}
-							div.actions
-								input(type="submit", value="Ajouter", class="btn btn-info btn-block")
-							br
-block scripts-header
-	script(src="/javascripts/postShop/postShop.js")
+										label(class="control-label col-sm-5" id="labelDate") Date du shopping
+										div(class="col-sm-7")
+											input(class="form-control input-sm", type="date", name="dateShopping", placeholder="Date du Shopping", ng-model="data.date" ng-model-options="{timezone:'-0000'}" required)
+										div
+											span(style="color:red", ng-show="(postShop.dateShopping.$touched && postShop.dateShopping.$invalid) || postShop.$error.dateShopping") La date du shopping est obligatoire.
+								br
+								div(class="alert alert-danger", ng-show="postShop.$error.addPostShop")
+									span(style="color:red" ) {{postShop.$error.message}}
+								div.actions
+									input(type="submit", value="Ajouter", class="btn btn-info btn-block")
+								br
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default" data-dismiss="modal") Close
+
+
 
