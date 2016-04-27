@@ -48,7 +48,7 @@
  	}
 
  	$scope.checkEmail = function() {
- 		if($scope.signup.email.modelValue != undefined) {
+ 		if($scope.signup.email != undefined) {
  			var res = $http({
  				method : 'POST',
  				url : '/ws-users/check-email',
