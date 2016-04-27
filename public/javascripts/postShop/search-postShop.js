@@ -1,0 +1,88 @@
+var app = angular.module('sample', []);
+
+app.controller("PostShopCtrl", function($scope, $http) {
+
+	$scope.isDisabled = true;
+	$scope.boutonAdresse = "Changer mon adresse";
+
+	$scope.changeAdress = function() {
+			if($scope.isDisabled && $scope.adresseField != "") {
+				$scope.boutonAdresse = "Valider";
+				$scope.isDisabled = false;
+				$scope.postshop.$error.$invalid = false;
+			}
+			else if(!$scope.isDisabled && $scope.adresseField == "") {
+				$scope.isDisabled = false;
+				$scope.postshop.$error.adresseRequis=true;
+				$scope.postshop.$error.$invalid = true;
+			}
+			else if(!$scope.isDisabled && $scope.adresseField !="") {
+				$scope.boutonAdresse = "Changer mon adresse";
+				$scope.postshop.$error.adresseRequis=false;
+				$scope.postshop.$error.$invalid = false;
+				$scope.isDisabled = true;
+			}
+	}
+
+	var res = $http({
+		method : 'GET',
+		url : '/ws-users/consult-profile'
+	}).success(function (data, status, headers, config){
+		if(data.user != null) {
+			$scope.adresseField = data.user.adresse;
+		}
+		else {
+			console.log("test");
+			$scope.adresseField = "";
+			$scope.boutonAdresse = "Valider";
+			$scope.isDisabled = false;
+			$scope.postshop.$error.$invalid = true;
+		}
+
+	$scope.searchPostShop = function() {
+
+		//console.log($scope.date.getUTCDate());
+
+		//var newDate = $scope.date.getUTCDate() + "/" + $scope.date.getUTCMonth() + "/" +$scope.date.getUTCFullYear()
+
+		//console.log(newDate);
+
+		var critereProp = [{
+			"magasin": "Auchan",
+			"date": ""
+			//"nbArticle": $scope.nbArticle,
+		}];
+
+		var res = $http({
+				method : 'POST',
+				url : '/ws-post-shop/search-postShop',
+				data : critereProp
+			}).success(function (data, status, headers, config){
+				console.log(data);
+			});
+		}
+
+	});
+
+
+})
+.directive('buttonsRadio', function() {
+
+ 	return {
+ 		restrict: 'A',
+ 		require: 'ngModel',
+ 		link: function($scope, element, attr, ctrl) {
+ 			element.bind('click', function() {
+ 				$scope.$apply(function(scope) {
+ 					ctrl.$setViewValue(attr.value);
+ 				});
+ 			});
+
+ 			$scope.$watch(attr.ngModel, function(newValue, oldValue) {
+ 				element.parent(".btn-group").find('button').removeClass("active");
+					element.parent(".btn-group") //.children()
+					.find("button[value='" + newValue + "']").addClass('active');
+				});
+ 		}
+ 	};
+});

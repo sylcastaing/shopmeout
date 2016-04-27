@@ -33,4 +33,22 @@ router.post('/postShop', function(req, res, next) {
 });
 
 
+router.post('/search-postShop', function(req, res, next) {
+	var newDate = req.date.getUTCDate() + "/" + req.date.getUTCMonth() + "/" +req.date.getUTCFullYear()
+	req.date = newDate;
+	postShopAccessDb.searchPostShop(req.body, function(result, err) {
+
+			if(!err) {
+				res.json({
+					postShops: result,
+				});
+			}		
+			else {
+				console.log("erreur");
+			}
+	});
+	
+});
+
+
 module.exports = router;

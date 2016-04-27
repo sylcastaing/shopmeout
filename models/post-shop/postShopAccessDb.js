@@ -27,6 +27,18 @@ var postShopAccessDb = {
 				}
 			}
 		});
+	},
+	searchPostShop: function(datas,callback) {
+		PostShop.find({
+			date: datas.date,
+			magasin: datas.magasin
+		},
+		{
+			_id:0,
+			__v:0
+		}, function(err,user) {
+			callback(user, err);
+		});
 	}
 }
 
