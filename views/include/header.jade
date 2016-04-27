@@ -7,32 +7,32 @@
 					span.icon-bar
 					span.icon-bar
 					span.icon-bar
-				a.navbar(href='/')
-					img(src='../images/Logo_Petit_Maquette.png' alt='Logo Shopmeout' width='150px')
+				a.navbar(href='#{baseUrl}/')
+					img(src='#{baseUrl}/images/Logo_Petit_Maquette.png' alt='Logo Shopmeout' width='150px')
 			#header-navbar-collapse-1.collapse.navbar-collapse
-				img(src='../images/Bulle_concept.png' alt='Concept' width='350px')
+				img(src='#{baseUrl}/images/Bulle_concept.png' alt='Concept' width='350px')
 				ul.nav.navbar-nav.navbar-right
 					if isAuthenticated
 						li.dropdown
-								a.dropdown-toggle(href='/users/consult-profile', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+								a.dropdown-toggle(href='#{baseUrl}/users/consult-profile', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
 									| Bonjour #{userPrenom} ! 
 									span.caret
 								ul.dropdown-menu(aria-labelledby='dropdownMenu1')
 									li
-										a(href='/users/consult-profile') Mon profil
+										a(href='#{baseUrl}/users/consult-profile') Mon profil
 									li
 										a(href='#') Mes listes de courses 
 									li
 										a(href='#') Mes demandes
 									li.divider(role='separator')
 									li
-										a(href='/users/sign-out') Déconnecte-toi
+										a(href='#{baseUrl}/users/sign-out') Déconnecte-toi
 					else
 						li
-							a(href="/users/") Connecte-toi !
+							a(href="#{baseUrl}/users/") Connecte-toi !
 								span.sr-only (current)
 						li
-							a(href="/users/sign-up") Inscris-toi !
+							a(href="#{baseUrl}/users/sign-up") Inscris-toi !
 					li
-						a(href="/faq")
+						a(href="#{baseUrl}/faq")
 							span.glyphicon.glyphicon-question-sign(aria-hidden='true')

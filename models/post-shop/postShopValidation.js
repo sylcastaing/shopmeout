@@ -10,7 +10,7 @@ var postShopValidation = {
 		var valideCP = /^[0-9]{5}$/;
 		var err = "";
 		isValid=true;
-		if (isValid && (datas.nomShoppeur == undefined || datas.nomShoppeur == "")) {
+		if (isValid && (datas.mailShoppeur == undefined || datas.mailShoppeur == "")) {
 					err = postShopMessages.get("postShop.creation.nomShoppeur.empty");
 					isValid = false;
 		}

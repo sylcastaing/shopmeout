@@ -80,7 +80,6 @@ app.controller("PostShopCtrl", function($scope, $http) {
 
 	});
 
-
 })
 .directive('buttonsRadio', function() {
 
