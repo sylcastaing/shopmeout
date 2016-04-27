@@ -1,4 +1,4 @@
-div.container(ng-app="sample" ng-controller="SearchPostShopCtrl")
+div.container(ng-controller="SearchPostShopCtrl")
 	div(class="row centered-form")
 		div(class="col-xs-12 col-sm-12 col-md-12")
 			div(class="panel panel-default")
@@ -41,9 +41,9 @@ div.container(ng-app="sample" ng-controller="SearchPostShopCtrl")
 						div(style="text-align:center")
 							img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
 					p
-						button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signUpModal")
+						button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
 							span(class = "glyphicon glyphicon-plus-sign" )
-						include ./users/signUp.jade
+						include ./users/signIn.jade
 						include ./postShop/postShop.jade
 
 block scripts-header
