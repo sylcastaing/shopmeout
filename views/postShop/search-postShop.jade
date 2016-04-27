@@ -40,5 +40,10 @@ div.container(ng-app="sample" ng-controller="PostShopCtrl")
 						br
 						div(style="text-align:center")
 							img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
+					p
+						a(href="/post-shop")
+							button(type = "button" class = "btn btn-default")
+								span(class = "glyphicon glyphicon-plus-sign" )
+
 block scripts-header
-	script(src="/javascripts/postShop/search-postShop.js")
+	script(src="#{baseUrl}/javascripts/postShop/search-postShop.js")
