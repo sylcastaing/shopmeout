@@ -25,20 +25,22 @@ div.container(ng-app="sample" ng-controller="PostShopCtrl")
 						div.row
 							div(class="col-xs-12 col-sm-12 col-md-12")
 								div.form-group
-									label(class="control-label col-sm-5 align-center") Date du shopping
-									div(class="col-sm-7")
-										input(class="form-control input-sm" type="date" name="date" ng-model-options="{timezone:'-0000'}" placeholder="Date" ng-model="date" required)
-										span(style="color:red", ng-show="postshop.dateNaissance.$invalid && postshop.dateNaissance.$touched")
-											span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
+									label(class="control-label col-md-5") Date du shopping
+									div(class="col-md-2")
+										input(class="form-control input-sm" type="date" name="date" ng-model-options="{timezone:'-0000'}" placeholder="Date" ng-model="date" ng-blur="checkDateRequired()")
+										span(style="color:red", ng-show="postshop.$error.dateRequired")
+											span(ng-show="postshop.$error.dateRequired") La date est obligatoire.
 							br
 							div(class="alert alert-danger", ng-show="postShop.$error.addPostShop")
 								span(style="color:red" ) {{postShop.$error.message}}
 						div.row
 							span(style="color:red" ) {{distance}} {{nbShoppeur}} {{nbArticle}}
-						div.actions
-							input(type="submit", ng-disabled="dataLoading || postshop.$error.$invalid", value="Rechercher", class="btn btn-info btn-block")
+						div(class="actions col-md-3")
+							input(type="submit" ng-disabled="dataLoading || postshop.$error.$invalid" value="Rechercher" class="btn btn-info btn-block")
 						br
-						div(style="text-align:center")
+						div(class="align-center")
 							img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
+				div.resultat.align-center
+					{{resultRecherche}}
 block scripts-header
 	script(src="/javascripts/postShop/search-postShop.js")

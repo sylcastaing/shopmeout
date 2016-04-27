@@ -5,6 +5,13 @@ app.controller("PostShopCtrl", function($scope, $http) {
 	$scope.isDisabled = true;
 	$scope.boutonAdresse = "Changer mon adresse";
 
+	$scope.checkDateRequired = function() {
+		if($scope.date != undefined) {
+			$scope.postshop.$error.dateRequired = false;
+			$scope.postshop.$error.$invalid = false;
+		}
+	}
+
 	$scope.changeAdress = function() {
 			if($scope.isDisabled && $scope.adresseField != "") {
 				$scope.boutonAdresse = "Valider";
@@ -24,6 +31,8 @@ app.controller("PostShopCtrl", function($scope, $http) {
 			}
 	}
 
+
+	// On récupère l'adresse
 	var res = $http({
 		method : 'GET',
 		url : '/ws-users/consult-profile'
@@ -32,28 +41,41 @@ app.controller("PostShopCtrl", function($scope, $http) {
 			$scope.adresseField = data.user.adresse;
 		}
 		else {
-			console.log("test");
 			$scope.adresseField = "";
 			$scope.boutonAdresse = "Valider";
 			$scope.isDisabled = false;
 			$scope.postshop.$error.$invalid = true;
 		}
 
+
+
 	$scope.searchPostShop = function() {
+		if($scope.date == undefined) {
+			$scope.postshop.$error.dateRequired = true;
+			$scope.postshop.$error.$invalid = true;
+			$scope.resultRecherche = "";
+		}
+		else {
+			var critereProp = [{
+				"magasin": "Auchan",
+				"date": data.date
+				//"nbArticle": $scope.nbArticle,
+			}];
 
-		var critereProp = [{
-			"magasin": "Auchan",
-			"date": data.date
-			//"nbArticle": $scope.nbArticle,
-		}];
-
-		var res = $http({
-				method : 'POST',
-				url : '/ws-post-shop/search-postShop',
-				data : critereProp
-			}).success(function (data, status, headers, config){
-				console.log(data);
-			});
+			var res = $http({
+					method : 'POST',
+					url : '/ws-post-shop/search-postShop',
+					data : critereProp
+				}).success(function (data, status, headers, config) {
+					console.log(data);
+					if(data.length>0) {
+						$scope.resultRecherche = data;
+					}
+					else {
+						$scope.resultRecherche = "Il n'y a pas de résultats, désolé"
+					}
+				});
+			}
 		}
 
 	});

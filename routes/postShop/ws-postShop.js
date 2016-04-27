@@ -13,9 +13,6 @@ router.post('/postShop', function(req, res, next) {
 			req.body.mailShoppeur = req.session.passport.user.email;
 		}
 	}
-	else {
-		req.body.mailShoppeur = "";
-	}
 	// Vérification des données
 	postShopValidation.verifDatas(req.body, function (isValid, err) {
 		console.log(req.body);
@@ -43,7 +40,7 @@ router.post('/search-postShop', function(req, res, next) {
 				res.json({
 					postShops: result,
 				});
-			}		
+			}
 			else {
 				console.log("erreur");
 			}
