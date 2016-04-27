@@ -1,5 +1,3 @@
-var app = angular.module('sample', []);
-
 app.controller("SearchPostShopCtrl", function($scope, $http) {
 
 	$scope.isDisabled = true;

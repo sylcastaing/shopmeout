@@ -2,4 +2,4 @@
  ** Pour tous les clients (inclus dans layout.jade)
  **/
 
-
+var app = angular.module('sample', []);

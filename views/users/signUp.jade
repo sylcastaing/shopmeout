@@ -1,4 +1,4 @@
-div(class="modal fade" id="signUpModal" role="dialog" ng-app="sample" ng-controller="SignUpCtrl")
+div(class="modal fade" id="signUpModal" role="dialog" ng-controller="SignUpCtrl")
 	div(class="modal-dialog")
 
 		// Modal content
@@ -10,7 +10,7 @@ div(class="modal fade" id="signUpModal" role="dialog" ng-app="sample" ng-control
 				div(class="row centered-form")
 					div(class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4")
 						div.panel-body
-							form(name="signup", method="post", ng-submit="addClient()" novalidate)
+							form(name="signup", method="get", ng-submit="addClient()" novalidate)
 								div.row
 									div(class="col-xs-6 col-sm-6 col-md-6")
 										div.form-group

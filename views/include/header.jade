@@ -29,13 +29,10 @@
 										a(href='#{baseUrl}/users/sign-out') Déconnecte-toi
 					else
 						li
+							a(href="" data-toggle="modal" data-target="#signUpModal") Inscris-toi !
+						li
 							a(href="" data-toggle="modal" data-target="#signInModal") Connecte-toi !
 								span.sr-only (current)
-							include ../users/signIn.jade
-						li
-							a(href="" data-toggle="modal" data-target="#signUpModal") Inscris-toi !
-							include ../users/signUp.jade
 					li
 						a(href="#{baseUrl}/faq")
 							span.glyphicon.glyphicon-question-sign(aria-hidden='true')
-
