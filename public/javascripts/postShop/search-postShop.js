@@ -8,7 +8,9 @@ app.controller("PostShopCtrl", function($scope, $http) {
 	$scope.checkDateRequired = function() {
 		if($scope.date != undefined) {
 			$scope.postshop.$error.dateRequired = false;
-			$scope.postshop.$error.$invalid = false;
+			if($scope.adresseField != undefined && $scope.adresseField != "") {
+				$scope.postshop.$error.$invalid = false;
+			}
 		}
 	}
 
