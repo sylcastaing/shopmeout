@@ -1,46 +1,43 @@
-extends ../layout
-
-block content
-	div.container(ng-app="sample" ng-controller="PostShopCtrl")
-		div(class="row centered-form")
-			div(class="col-xs-12 col-sm-12 col-md-12")
-				div(class="panel panel-default")
-					div(class="panel-heading")
-						h1(class="panel-title")=title
-					div.panel-body
-						form(name="postshop", method="post", ng-submit="searchPostShop()" novalidate)
-							div.row
-								div(class="col-xs-12 col-sm-12 col-md-12")
-									div.form-group
-										label(class="control-label col-sm-5" id="labelAdresse") Mon adresse
-										input(type="text", ng-model="adresseField" ng-disabled="isDisabled" ng-focus="isDisabled")
-										span(style="color:red", ng-show="postshop.$error.adresseRequis")
-												span(ng-show="postshop.$error.adresseRequis") Une adresse est requise.
-										button(type="button" class="btn btn-primary" ng-click="changeAdress()") {{boutonAdresse}}
-							div.row
-								div(class="col-xs-12 col-sm-12 col-md-12")
-									div.form-group
-										label(class="control-label col-sm-5" id="labelNbArticles") Je veux me faire livrer
-										div(class="btn-group" data-toggle="buttons-radio") 
-											button(type="button" class="btn btn-primary" ng-model="nbArticle" value='0' buttons-radio="") Moins de 5 produits
-											button(type="button" class="btn btn-primary focus" ng-model="nbArticle" value='1' buttons-radio="") Jusqu'à 10 produits
-											button(type="button" class="btn btn-primary" ng-model="nbArticle" value='2' buttons-radio="") Plus de 10 produits
-							div.row
+div.container(ng-app="sample" ng-controller="PostShopCtrl")
+	div(class="row centered-form")
+		div(class="col-xs-12 col-sm-12 col-md-12")
+			div(class="panel panel-default")
+				div(class="panel-heading")
+					h1(class="panel-title")="Rechercher un shopping"
+				div.panel-body
+					form(name="postshop", method="post", ng-submit="searchPostShop()" novalidate)
+						div.row
+							div(class="col-xs-12 col-sm-12 col-md-12")
 								div.form-group
-									label(class="control-label col-sm-5 align-center") Date du shopping
-									div(class="col-sm-7")
-										input(class="form-control input-sm", type="date", name="date", placeholder="Date", ng-model="date", required)
-										span(style="color:red", ng-show="postshop.dateNaissance.$invalid && postshop.dateNaissance.$touched")
-											span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
-							br
-							div(class="alert alert-danger", ng-show="postShop.$error.addPostShop")
-								span(style="color:red" ) {{postShop.$error.message}}
-							div.row
-								span(style="color:red" ) {{distance}} {{nbShoppeur}} {{nbArticle}}
-							div.actions
-								input(type="submit", ng-disabled="dataLoading || postshop.$error.$invalid", value="Rechercher", class="btn btn-info btn-block")
-							br
-							div(style="text-align:center")
-								img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
+									label(class="control-label col-sm-5" id="labelAdresse") Mon adresse
+									input(type="text", ng-model="adresseField" ng-disabled="isDisabled" ng-focus="isDisabled")
+									span(style="color:red", ng-show="postshop.$error.adresseRequis")
+											span(ng-show="postshop.$error.adresseRequis" id="labelErrorAdresseRequis") Une adresse est requise.
+									button(type="button" class="btn btn-primary" ng-click="changeAdress()" id="btnChangeAdresse") {{boutonAdresse}}
+						div.row
+							div(class="col-xs-12 col-sm-12 col-md-12")
+								div.form-group
+									label(class="control-label col-sm-5" id="labelNbArticles") Je veux me faire livrer
+									div(class="btn-group" data-toggle="buttons-radio") 
+										button(type="button" class="btn btn-primary" ng-model="nbArticle" value='0' buttons-radio="") Moins de 5 produits
+										button(type="button" class="btn btn-primary focus" ng-model="nbArticle" value='1' buttons-radio="") Jusqu'à 10 produits
+										button(type="button" class="btn btn-primary" ng-model="nbArticle" value='2' buttons-radio="") Plus de 10 produits
+						div.row
+							div.form-group
+								label(class="control-label col-sm-5 align-center") Date du shopping
+								div(class="col-sm-7")
+									input(class="form-control input-sm", type="date", name="date", placeholder="Date", ng-model="date", required)
+									span(style="color:red", ng-show="postshop.dateNaissance.$invalid && postshop.dateNaissance.$touched")
+										span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
+						br
+						div(class="alert alert-danger", ng-show="postShop.$error.addPostShop")
+							span(style="color:red" ) {{postShop.$error.message}}
+						div.row
+							span(style="color:red" ) {{distance}} {{nbShoppeur}} {{nbArticle}}
+						div.actions
+							input(type="submit", ng-disabled="dataLoading || postshop.$error.$invalid", value="Rechercher", class="btn btn-info btn-block")
+						br
+						div(style="text-align:center")
+							img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
 block scripts-header
 	script(src="/javascripts/postShop/search-postShop.js")

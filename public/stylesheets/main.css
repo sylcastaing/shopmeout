@@ -19,7 +19,7 @@ span.label {
 }
 
 .centered-form{
-	margin-top: 60px;
+	margin-top: 2%;
 }
 
 .centered-form .panel{
@@ -76,4 +76,12 @@ span.label {
 #images {
 	margin-top: 10px;
 	margin-left: 5px;
+}
+
+#labelErrorAdresseRequis {
+	margin-left: 1%;
+}
+
+#btnChangeAdresse {
+	margin-left: 1%;
 }
