@@ -41,15 +41,9 @@ app.controller("PostShopCtrl", function($scope, $http) {
 
 	$scope.searchPostShop = function() {
 
-		//console.log($scope.date.getUTCDate());
-
-		//var newDate = $scope.date.getUTCDate() + "/" + $scope.date.getUTCMonth() + "/" +$scope.date.getUTCFullYear()
-
-		//console.log(newDate);
-
 		var critereProp = [{
 			"magasin": "Auchan",
-			"date": ""
+			"date": data.date
 			//"nbArticle": $scope.nbArticle,
 		}];
 
