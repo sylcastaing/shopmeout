@@ -15,12 +15,12 @@ html
 		script(src="#{baseUrl}/javascripts/users/userSignUp.js")
 		block scripts-header
 	body
-		.container(ng-app="sample")
+		.container(ng-app="ShopMeOut")
+			include ./users/signUp.jade
+			include ./users/signIn.jade
 			include ./include/header.jade
 			block content
 			include ./include/footer.jade
-			include ./users/signUp.jade
-			include ./users/signIn.jade
 		script(src='#{baseUrl}/javascripts/inc/jquery-2.2.2.min.js')
 		script(src='#{baseUrl}/javascripts/inc/jquery-ui.js')
 		script(src='#{baseUrl}/bootstrap/js/bootstrap.min.js')
