@@ -3,7 +3,7 @@ var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 var postShopModel = require('./postShopModel');
 var PostShop = mongoose.model('postShop', postShopModel);
-
+ 
 
 var postShopAccessDb = {
 

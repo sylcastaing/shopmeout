@@ -19,41 +19,38 @@ app.controller("PostShopCtrl", function($scope, $http) {
  	}
 
 	$scope.addPostShop = function() {
-
-		console.log($scope);
 		var isOK = true;
-		if($scope == undefined || $scope.distance == undefined) {
+		if($scope == undefined || $scope.data.distance == undefined) {
 			$scope.postShop.$error.distanceError = true;
 			isOK = false;
 		}
-		if($scope == undefined || $scope.nbShoppeur == undefined) {
+		if($scope == undefined || $scope.data.nbShoppeur == undefined) {
 			$scope.postShop.$error.NbShoppeurError = true;
 			isOK = false;
 		}
-		if($scope == undefined || $scope.nbArticle == undefined) {
+		if($scope == undefined || $scope.data.nbArticle == undefined) {
 			$scope.postShop.$error.NbArticleError = true;
 			isOK = false;
 		}
-		console.log($scope.postShop.$error.dateShopping);
-		if($scope.dateShopping == undefined) {
+		if($scope.data.date == undefined) {
 			$scope.postShop.$error.dateShopping = true;
 			isOK = false;
 		} 
-		console.log($scope.postShop.$error.dateShopping);
 		if(isOK) {
+			$scope.postShop.$error.dateShopping = false;
 			$scope.postShop.$error.distanceError = false;
 			$scope.postShop.$error.NbShoppeurError = false;
 			$scope.postShop.$error.NbArticleError = false;
  			$scope.postShop.dateShopping.$invalid = false;
-		
+		console.log($scope.data)
 		var res = $http({
 			method : 'POST',
 			url : '/ws-post-shop/postShop',
-			data : $scope
+			data : $scope.data
 		}).success(function (data, status, headers, config){
 			if(data.statut==false) {
 				$scope.postShop.$error.addPostShop = true;
-				$scope.postShop.$error.message = data.err.message;
+				$scope.postShop.$error.message = data.err;
 			}
 			else {
 				document.location = '/';
