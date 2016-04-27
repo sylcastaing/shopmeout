@@ -1,4 +1,4 @@
-app.controller("SignCtrl", function($scope, $http) {
+app.controller("SignUpCtrl", function($scope, $http) {
 
 	$(".angular-content").show();
 
