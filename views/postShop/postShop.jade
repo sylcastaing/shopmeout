@@ -49,10 +49,8 @@ block content
 							div(class="alert alert-danger", ng-show="postShop.$error.addPostShop")
 								span(style="color:red" ) {{postShop.$error.message}}
 							div.actions
-								input(type="submit", ng-disabled="dataLoading", value="Ajouter", class="btn btn-info btn-block")
+								input(type="submit", value="Ajouter", class="btn btn-info btn-block")
 							br
-							div(style="text-align:center")
-								img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
 block scripts-header
 	script(src="/javascripts/postShop/postShop.js")
 

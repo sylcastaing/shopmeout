@@ -19,7 +19,6 @@ app.controller("PostShopCtrl", function($scope, $http) {
  	}
 
 	$scope.addPostShop = function() {
-		$scope.dataLoading = true;
 
 		console.log($scope);
 		var isOK = true;
@@ -50,12 +49,11 @@ app.controller("PostShopCtrl", function($scope, $http) {
 		var res = $http({
 			method : 'POST',
 			url : '/ws-post-shop/postShop',
-			data : $scope.postShop
+			data : $scope
 		}).success(function (data, status, headers, config){
 			if(data.statut==false) {
 				$scope.postShop.$error.addPostShop = true;
 				$scope.postShop.$error.message = data.err.message;
-				$scope.dataLoading = false;
 			}
 			else {
 				document.location = '/';
@@ -63,7 +61,6 @@ app.controller("PostShopCtrl", function($scope, $http) {
 		}).error(function (data, status, headers, config){
 			$scope.postShop.$error.addPostShop = true;
 			$scope.postShop.$error.message = "Problème serveur";
-			$scope.dataLoading = false;
 		});
 		}
 	}
