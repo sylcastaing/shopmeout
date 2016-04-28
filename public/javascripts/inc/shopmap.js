@@ -95,6 +95,8 @@ var shopMap = {
 				})
 			});
 
+			console.log(place);
+
 			marker.addListener('click', function () {
 				shopMap.closeInfos();
 				shopMap.selectedMarker = this;
@@ -197,7 +199,12 @@ var shopMap = {
 	 * @param  Object place
 	 */
 	getContent: function (place) {
-		return '<div>' + place.name + '</div><div>' + place.vicinity + '</div>';
+		content = '';
+		content += '<div class="mapShop-infos">';
+		content += '<div class="titre">' + place.name + '</div>';
+		content += '<div class="adresse">' + place.vicinity + '</div>';
+		content += '</div>'
+		return content;
 	}
 
 }
