@@ -9,18 +9,15 @@ div(class="modal fade" id="postShopModal" role="dialog" ng-controller="PostShopC
 			div(class="modal-body")
 				div(class="row centered-form")
 						div.panel-body
-							div(class="col-sm-6")
-								label(for="adresse") Adresse du magasin
-								input(type="text", id="adresse", placeholder="N° rue, nom de la rue", ng-model="data.adresse")
-							div(class="col-sm-6")
-								label(for="codePostal") Code Postal du magasin
-								input(type="text", id="codePostal", placeholder="Code Postal", ng-model="data.codePostal")
-							div#map(style="height:300px")
+							div(class="input-group")
+								input(class="form-control" type="text", id="adresse", placeholder="Adresse du magasin", ng-model="data.adresse")
+								span.input-group-btn
+									button(type = "button" class = "btn btn-default" ng-click="search()")
+										span(class = "glyphicon glyphicon-search")
+							div#map(class="col-sm-12" style="height:300px")
 							form(name="postShop", method="post", ng-submit="addPostShop()" novalidate)
-								div.actions
-									input(type="submit", value="Rechercher", class="btn btn-info btn-block")
 								div.form-group
-									label(class="control-label" id="labelDistance") Je choisis ma distance
+									label(class="control-label" id="labelDistance") Je choisis ma distance de livraison
 									div(class="btn-group" data-toggle="buttons-radio") 
 										button(type="button" class="btn btn-primary" ng-model="data.distance" value='0' buttons-radio="" ng-click="removeErrorDistance()") Moins de 1 km
 										button(type="button" class="btn btn-primary" ng-model="data.distance" value='1' buttons-radio="" ng-click="removeErrorDistance()") Jusqu'à 5 km

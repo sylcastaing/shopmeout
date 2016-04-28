@@ -1,5 +1,7 @@
 app.controller("PostShopCtrl", function($scope, $http) {
 
+	shopMap.init();
+
 	$scope.removeErrorDistance = function() {
  		if($scope.postShop.$error.distanceError) {
  			$scope.postShop.$error.distanceError = false;
@@ -59,6 +61,16 @@ app.controller("PostShopCtrl", function($scope, $http) {
 		});
 		}
 	}
+
+	$scope.search = function() {
+		shopMap.init({
+			adresse: $scope.data.adresse,
+			distance: 2000
+		});
+		console.log(shopMap);
+
+	}
+
 })
 .directive('buttonsRadio', function() {
 	return {
