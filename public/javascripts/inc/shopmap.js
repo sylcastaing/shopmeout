@@ -1,19 +1,47 @@
+/**
+ * Permet de générer une map avec les magasin autour d'une adresse
+ *
+ * Initialisation : 
+ *
+ * Appeler la fonction init() en lui passant en paramètre les informations
+ *
+ * ex : init({
+ * 	adresse: String,
+ * 	distance: int,
+ * 	zoom: int,
+ * 	mapId: String,
+ * })
+ */
 var shopMap = {
 
+	// Map google
 	map: null,
+	// Service Google Place
 	service: null,
+	// Liste des markers pour la recherche courante
 	markers: [],
+	// Marker selectionné
 	selectedMarker: null,
+	// Adresse 
 	adresse: {
 		name: "Bordeaux France",
 		lat: 44.837789,
 		lng: -0.57918
 	},
+	// Distance de recherche
 	distance: 10000,
+	// Zoom par defaut de la ap
 	zoom: 10,
+	// Id de la map
 	mapId: "map",
+	// Type de recherche
 	type: ['grocery_or_supermarket'],
 
+	/**
+	 * Initilisation de la map
+	 * @param  Object  params   Liste des paramètres
+	 * @param  Function callback Fonction de retour
+	 */
 	init: function (params, callback) {
 		shopMap.markers = [];
 		shopMap.parseParams(params);
@@ -35,25 +63,24 @@ var shopMap = {
 		});
 	},
 
+	/**
+	 * Affichage du résultat
+	 * @param Object results
+	 * @param  String status
+	 * @param  Object pagination
+	 */
 	processResults: function (results, status, pagination) {
 		if (status !== google.maps.places.PlacesServiceStatus.OK) {
 			return;
 		} else {
 			shopMap.createMarkers(results);
-
-			/*if (pagination.hasNextPage) {
-				var moreButton = document.getElementById('more');
-
-				moreButton.disabled = false;
-
-				moreButton.addEventListener('click', function () {
-					moreButton.disabled = true;
-					pagination.nextPage();
-				});
-			}*/
 		}
 	},
 
+	/**
+	 * Creation des marqueurs sur la map
+	 * @param  table places 
+	 */
 	createMarkers: function (places) {
 		var bounds = new google.maps.LatLngBounds();
 
@@ -82,12 +109,19 @@ var shopMap = {
 		shopMap.map.fitBounds(bounds);
 	},
 
+	/**
+	 * Fermeture de toutes les infos bulles
+	 */
 	closeInfos: function () {
 		for (i in shopMap.markers) {
 			shopMap.markers[i].infos.close();
 		}
 	},
 
+	/**
+	 * Selectionne un marker en fonction de son id
+	 * @param  String id
+	 */
 	selectMarker: function (id) {
 		shopMap.closeInfos();
 		markerClicked = shopMap.getMarkerById(id);
@@ -97,6 +131,10 @@ var shopMap = {
 		}
 	},
 
+	/**
+	 * Retourne un marker en fonction 
+	 * @param  String id
+	 */
 	getMarkerById: function (id) {
 		retour = null;
 		for (i in shopMap.markers) {
@@ -109,6 +147,10 @@ var shopMap = {
 		return retour;
 	},
 
+	/**
+	 * Récupération des pramatrèes d'entrée
+	 * @param  Object params
+	 */
 	parseParams: function (params) {
 		if (params) {
 			if (params.adresse) {
@@ -126,7 +168,10 @@ var shopMap = {
 		}
 	},
 
-	// Récupére les coordonnées GPS d'une adresse
+	/**
+	 * Récupère les coordonnées GPS d'une adresse
+	 * @param  Function callback
+	 */
 	getGeocode: function (callback) {
 		$.get("http://maps.googleapis.com/maps/api/geocode/json", {
 			address: shopMap.adresse.name
@@ -147,6 +192,10 @@ var shopMap = {
 		});
 	},
 
+	/**
+	 * Formattage du contenu des Infos Bulles
+	 * @param  Object place
+	 */
 	getContent: function (place) {
 		return '<div>' + place.name + '</div><div>' + place.vicinity + '</div>';
 	}
