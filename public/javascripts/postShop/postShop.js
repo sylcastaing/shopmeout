@@ -1,5 +1,3 @@
-var app = angular.module('sample', []);
-
 app.controller("PostShopCtrl", function($scope, $http) {
 
 	$scope.removeErrorDistance = function() {

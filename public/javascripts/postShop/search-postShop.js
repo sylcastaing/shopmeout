@@ -1,6 +1,4 @@
-var app = angular.module('sample', []);
-
-app.controller("PostShopCtrl", function($scope, $http) {
+app.controller("SearchPostShopCtrl", function($scope, $http) {
 
 	$scope.isDisabled = true;
 	$scope.boutonAdresse = "Changer mon adresse";
@@ -83,6 +81,7 @@ app.controller("PostShopCtrl", function($scope, $http) {
 	});
 
 })
+
 .directive('buttonsRadio', function() {
 
  	return {

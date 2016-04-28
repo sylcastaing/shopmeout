@@ -1,86 +1,89 @@
-extends ../layout
+div(class="modal fade" id="signUpModal" role="dialog" ng-controller="SignUpCtrl")
+	div(class="modal-dialog")
 
-block content
-	div.angular-content(ng-app="sample" ng-controller="SignCtrl")
-		div(class="row centered-form")
-			div(class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4")
-				div(class="panel panel-default")
-					div(class="panel-heading")
-						h1(class="panel-title")=title
-					div.panel-body
-						form(name="signup", method="post", ng-submit="addClient()" novalidate)
-							div.row
-								div(class="col-xs-6 col-sm-6 col-md-6")
-									div.form-group
-											input(class="form-control input-sm", type="text", name="nom", placeholder="Nom", ng-model="user.nom",ng-maxlength="30", required)
-											span(style="color:red", ng-show="signup.nom.$invalid && signup.nom.$touched")
+		// Modal content
+		div(class="modal-content")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal") &times;
+				h4(class="modal-title") Inscription
+			div(class="modal-body")
+				div(class="row centered-form")
+					div(class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4")
+						div.panel-body
+							form(name="signup", method="get", ng-submit="addClient()" novalidate)
+								div.row
+									div(class="col-xs-6 col-sm-6 col-md-6")
+										div.form-group
+												input(class="form-control input-sm", type="text", name="nom", placeholder="Nom", ng-model="user.nom",ng-maxlength="30", required)
+												span(style="color:red", ng-show="signup.nom.$invalid && signup.nom.$touched")
+													span(ng-show="signup.nom.$error.maxlength") Il faut au maximum 30 caractères.
+													span(ng-show="signup.nom.$error.required") Le nom est requis.
+									div(class="col-xs-6 col-sm-6 col-md-6")
+										div.form-group
+											input(class="form-control input-sm", type="text", name="prenom", placeholder="Prenom", ng-model="user.prenom",ng-maxlength="30", required)
+											span(style="color:red", ng-show="signup.prenom.$invalid && signup.prenom.$touched")
 												span(ng-show="signup.nom.$error.maxlength") Il faut au maximum 30 caractères.
-												span(ng-show="signup.nom.$error.required") Le nom est requis.
-								div(class="col-xs-6 col-sm-6 col-md-6")
-									div.form-group
-										input(class="form-control input-sm", type="text", name="prenom", placeholder="Prenom", ng-model="user.prenom",ng-maxlength="30", required)
-										span(style="color:red", ng-show="signup.prenom.$invalid && signup.prenom.$touched")
-											span(ng-show="signup.nom.$error.maxlength") Il faut au maximum 30 caractères.
-											span(ng-show="signup.prenom.$error.required") Le prénom est requis.
-							div.form-group
-								input(class ="form-control input-sm", type="email", name="email", placeholder="Email", ng-model="user.email",ng-maxlength="51", ng-blur="checkEmail()", required)
-								span(style="color:red", ng-show="signup.email.$invalid && signup.email.$touched")
-									span(ng-show="signup.email.$error.emailPrise") {{signup.email.$error.emailPriseMessage}}
-									span(ng-show="signup.email.$error.required") L'email est requis.
-									span(ng-show="signup.email.$error.email") L'adresse email n'est pas valide.
-									span(ng-show="signup.email.$error.maxlength") L'adresse email est trop grande
-							div.row
-								div(class="col-xs-6 col-sm-6 col-md-6")
-									div.form-group
-										input(class="form-control input-sm", type="password", name="motDePasse", placeholder="Mot de passe", ng-model="motDePasse",ng-minlength="8",ng-maxlength="18", required)
-										span(style="color:red", ng-show="signup.motDePasse.$invalid && signup.motDePasse.$touched")
-											span(ng-show="signup.motDePasse.$error.required") Le mot de passe est requis.
-											span(ng-show="signup.motDePasse.$error.maxlength") Le mot de passe doit faire 18 caractères au maximum.
-											span(ng-show="signup.motDePasse.$error.minlength") Le mot de passe doit faire 8 caractères au minimum.
-								div(class="col-xs-6 col-sm-6 col-md-6")
-									div.form-group
-										input(class="form-control input-sm", type="password" name="confirmMdp", placeholder="Mot de passe", ng-model="confirmMotDePasse" compare-to="motDePasse", required)
-										span(style="color:red", ng-show="signup.confirmMdp.$invalid && signup.confirmMdp.$touched")
-											span(ng-show="signup.confirmMdp.$error") Les deux mots de passe sont différents.
-							div.form-group
-								input(class="form-control input-sm", type="text", name="adresse", placeholder="Adresse",ng-maxlength="60", ng-model="user.adresse", required)
-								span(style="color:red", ng-show="signup.adresse.$invalid && signup.adresse.$touched")
-									span(ng-show="signup.adresse.$error.required") L'adresse est requise.
-									span(ng-show="signup.adresse.$error.maxlength") L'adresse est trop grande.
-							div.row
-								div(class="col-xs-6 col-sm-6 col-md-6")
-									div.form-group
-										input(class="form-control input-sm", type="text", name="codePostal", placeholder="Code postal", ng-model="user.codePostal", required)
-										span(style="color:red", ng-show="signup.codePostal.$invalid && signup.codePostal.$touched")
-											span(ng-show="signup.codePostal.$error.required") Le code postal est requis.
-								div(class="col-xs-6 col-sm-6 col-md-6")
-									div.form-group
-										input.input-block-level(class="form-control input-sm", type="text", name="ville", placeholder="Ville", ng-model="user.ville", required)
-										span(style="color:red", ng-show="signup.adresse.$invalid && signup.ville.$touched")
-											span(ng-show="signup.ville.$error.required") La ville est requise.
-							div.form-group
-								input(class="form-control input-sm", type="text", name="telephone", placeholder="Telephone", ng-model="user.telephone",ng-maxlength="10",ng-minlength="10", required)
-								span(style="color:red", ng-show="signup.telephone.$invalid && signup.telephone.$touched")
-									span(ng-show="signup.telephone.$error.maxlength") Il doit y avoir 10 caractères
-									span(ng-show="signup.telephone.$error.minlength") Il doit y avoir 10 caractères
-							div.row
-								div(class="col-xs-12 col-sm-12 col-md-12")
-									div.form-group.align-center
-										div(class="btn-group",  data-toggle="buttons-radio")
-											button(type='button', value='0', ng-model="myModel['sexe']", buttons-radio="" class="btn", ng-click="removeError()") Femme
-											button(type='button', value='1', ng-model="myModel['sexe']", buttons-radio="" class="btn", ng-click="removeError()") Homme
-											span(style="color:red", ng-show="signup.$error.sexeError")
-												span(ng-show="signup.$error.sexeError") Le choix du sexe est obligatoire.
-							div.row
+												span(ng-show="signup.prenom.$error.required") Le prénom est requis.
 								div.form-group
-									label(class="control-label col-sm-5 align-center") Date de naissance
-									div(class="col-sm-7")
-										input(class="form-control input-sm" type="date" ng-model-options="{timezone:'-0000'}" name="dateNaissance" placeholder="Date de naissance", ng-model="user.dateNaissance", required)
-										span(style="color:red", ng-show="signup.dateNaissance.$invalid && signup.dateNaissance.$touched")
-											span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
-							div.actions
-								input(type="submit", value="S\'enregistrer", ng-disabled="signup.$invalid && $scope.signup.$error.sexeError" class="btn btn-info btn-block")
-								span(style="color:red", ng-show="$scope.signup.$signUpError")
-									span {{$scope.signup.$signUpErrorMsg}}
-block scripts
-	script(src="#{baseUrl}/javascripts/users/userSignUp.js")
+									input(class ="form-control input-sm", type="email", name="email", placeholder="Email", ng-model="user.email",ng-maxlength="51", ng-blur="checkEmail()", required)
+									span(style="color:red", ng-show="signup.email.$invalid && signup.email.$touched")
+										span(ng-show="signup.email.$error.emailPrise") {{signup.email.$error.emailPriseMessage}}
+										span(ng-show="signup.email.$error.required") L'email est requis.
+										span(ng-show="signup.email.$error.email") L'adresse email n'est pas valide.
+										span(ng-show="signup.email.$error.maxlength") L'adresse email est trop grande
+								div.row
+									div(class="col-xs-6 col-sm-6 col-md-6")
+										div.form-group
+											input(class="form-control input-sm", type="password", name="motDePasse", placeholder="Mot de passe", ng-model="motDePasse",ng-minlength="8",ng-maxlength="18", required)
+											span(style="color:red", ng-show="signup.motDePasse.$invalid && signup.motDePasse.$touched")
+												span(ng-show="signup.motDePasse.$error.required") Le mot de passe est requis.
+												span(ng-show="signup.motDePasse.$error.maxlength") Le mot de passe doit faire 18 caractères au maximum.
+												span(ng-show="signup.motDePasse.$error.minlength") Le mot de passe doit faire 8 caractères au minimum.
+									div(class="col-xs-6 col-sm-6 col-md-6")
+										div.form-group
+											input(class="form-control input-sm", type="password" name="confirmMdp", placeholder="Mot de passe", ng-model="confirmMotDePasse" compare-to="motDePasse", required)
+											span(style="color:red", ng-show="signup.confirmMdp.$invalid && signup.confirmMdp.$touched")
+												span(ng-show="signup.confirmMdp.$error") Les deux mots de passe sont différents.
+								div.form-group
+									input(class="form-control input-sm", type="text", name="adresse", placeholder="Adresse",ng-maxlength="60", ng-model="user.adresse", required)
+									span(style="color:red", ng-show="signup.adresse.$invalid && signup.adresse.$touched")
+										span(ng-show="signup.adresse.$error.required") L'adresse est requise.
+										span(ng-show="signup.adresse.$error.maxlength") L'adresse est trop grande.
+								div.row
+									div(class="col-xs-6 col-sm-6 col-md-6")
+										div.form-group
+											input(class="form-control input-sm", type="text", name="codePostal", placeholder="Code postal", ng-model="user.codePostal", required)
+											span(style="color:red", ng-show="signup.codePostal.$invalid && signup.codePostal.$touched")
+												span(ng-show="signup.codePostal.$error.required") Le code postal est requis.
+									div(class="col-xs-6 col-sm-6 col-md-6")
+										div.form-group
+											input.input-block-level(class="form-control input-sm", type="text", name="ville", placeholder="Ville", ng-model="user.ville", required)
+											span(style="color:red", ng-show="signup.adresse.$invalid && signup.ville.$touched")
+												span(ng-show="signup.ville.$error.required") La ville est requise.
+								div.form-group
+									input(class="form-control input-sm", type="text", name="telephone", placeholder="Telephone", ng-model="user.telephone",ng-maxlength="10",ng-minlength="10", required)
+									span(style="color:red", ng-show="signup.telephone.$invalid && signup.telephone.$touched")
+										span(ng-show="signup.telephone.$error.maxlength") Il doit y avoir 10 caractères
+										span(ng-show="signup.telephone.$error.minlength") Il doit y avoir 10 caractères
+								div.row
+									div(class="col-xs-12 col-sm-12 col-md-12")
+										div.form-group.align-center
+											div(class="btn-group",  data-toggle="buttons-radio")
+												button(type='button', value='0', ng-model="myModel['sexe']", buttons-radio="" class="btn", ng-click="removeError()") Femme
+												button(type='button', value='1', ng-model="myModel['sexe']", buttons-radio="" class="btn", ng-click="removeError()") Homme
+												span(style="color:red", ng-show="signup.$error.sexeError")
+													span(ng-show="signup.$error.sexeError") Le choix du sexe est obligatoire.
+								div.row
+									div.form-group
+										label(class="control-label col-sm-5 align-center") Date de naissance
+										div(class="col-sm-7")
+											input(class="form-control input-sm" type="date" ng-model-options="{timezone:'-0000'}" name="dateNaissance" placeholder="Date de naissance", ng-model="user.dateNaissance", required)
+											span(style="color:red", ng-show="signup.dateNaissance.$invalid && signup.dateNaissance.$touched")
+												span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
+								div.actions
+									input(type="submit", value="S\'enregistrer", ng-disabled="signup.$invalid && $scope.signup.$error.sexeError" class="btn btn-info btn-block")
+									span(style="color:red", ng-show="$scope.signup.$signUpError")
+										span {{$scope.signup.$signUpErrorMsg}}
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default" data-dismiss="modal") Close
+
