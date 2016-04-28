@@ -95,8 +95,6 @@
 	 			})
 	 		});
 
-	 		console.log(place);
-
 	 		marker.addListener('click', function () {
 	 			shopMap.closeInfos();
 	 			shopMap.selectedMarker = this;
