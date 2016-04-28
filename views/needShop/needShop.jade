@@ -23,11 +23,11 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 								div.row
 									div(class="col-xs-12 col-sm-12 col-md-12")
 										div.form-group
-											label(class="control-label col-sm-5" id="labelCodePostal") Je choisis mon code postal
+											label(class="control-label col-sm-5" id="labelAdresse") Mon adresse de livraison
 											div(class="col-sm-7")
-												input(class="form-control input-sm", type="text", name="codePostal", placeholder="Votre code postal", ng-model="data.codePostal" ng-model-options="{timezone:'-0000'}" required)
+												input(class="form-control input-sm", type="text", name="adresse", placeholder="Votre adresse de livraison", ng-model="adresse" required)
 											div
-												span(style="color:red", ng-show="(needShop.codePostal.$touched && needShop.codePostal.$invalid) || needShop.$error.codePostal") Le code postal est obligatoire.
+												span(style="color:red", ng-show="(needShop.adresse.$touched && needShop.adresse.$invalid) || needShop.$error.adresse") L'adresse est obligatoire.
 								div.row
 									div.form-group
 										label(class="control-label col-sm-5" id="labelDate") Date du shopping

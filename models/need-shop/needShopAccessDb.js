@@ -11,7 +11,7 @@ var needShopAccessDb = {
 		NeedShop.create({
 			mailShoppeur: datas.mailShoppeur,
 			date: datas.date,
-			codePostal: datas.codePostal,
+			adresse: datas.adresse,
 			nbArticle: datas.nbArticle
 		}, function(err,needShop) {
 			if(err) {
@@ -28,7 +28,7 @@ var needShopAccessDb = {
 	searchNeedShop: function(datas,callback) {
 		NeedShop.find({
 			date: datas.date,
-			codePostal: datas.codePostal
+			adresse: datas.adresse
 		},
 		{
 			_id:0,

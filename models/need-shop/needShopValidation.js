@@ -18,12 +18,12 @@ var needShopValidation = {
 					err = needShopMessages.get("needShop.creation.date.empty");
 					isValid = false;
 		}
-		if(isValid && (datas.codePostal == undefined || datas.codePostal == "")) {
-			err = needShopMessages.get("needShop.creation.codePostal.empty");
+		if(isValid && (datas.adresse == undefined || datas.adresse == "")) {
+			err = needShopMessages.get("needShop.creation.adresse.empty");
 			isValid = false;
 		}
-		else if (isValid && (datas.codePostal.length != 5 || !valideCP.test(datas.codePostal))) {
-			err = needShopMessages.get("needShop.creation.codePostal.notValid");
+		else if (isValid && (datas.adresse.length != 5 || !valideCP.test(datas.adresse))) {
+			err = needShopMessages.get("needShop.creation.adresse.notValid");
 			isValid = false;
 		}
 		if(isValid && datas.nbArticle > 3) {
