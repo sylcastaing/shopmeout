@@ -5,7 +5,7 @@ var shopMap = {
 	markers: [],
 	selectedMarker: null,
 	adresse: {
-		name: "Bordeaux",
+		name: "Bordeaux France",
 		lat: 44.837789,
 		lng: -0.57918
 	},
@@ -112,7 +112,7 @@ var shopMap = {
 	parseParams: function (params) {
 		if (params) {
 			if (params.adresse) {
-				shopMap.adresse.name = params.adresse;
+				shopMap.adresse.name = params.adresse + " France";
 			}
 			if (params.distance) {
 				shopMap.distance = params.distance;
@@ -126,29 +126,29 @@ var shopMap = {
 		}
 	},
 
-    // Récupére les coordonnées GPS d'une adresse
-    getGeocode: function (callback) {
-    	$.get("http://maps.googleapis.com/maps/api/geocode/json", {
-    		address: shopMap.adresse.name
-    	}, function (data) {
-    		if (data.status == 'OK') {
-    			shopMap.adresse.lat = data.results[0].geometry.location.lat;
-    			shopMap.adresse.lng = data.results[0].geometry.location.lng;
-    			callback({
-    				status: true,
-    				err: ""
-    			})
-    		} else {
-    			callback({
-    				status: false,
-    				err: "Impossible de localiser l'adresse"
-    			});
-    		}
-    	});
-    },
+	// Récupére les coordonnées GPS d'une adresse
+	getGeocode: function (callback) {
+		$.get("http://maps.googleapis.com/maps/api/geocode/json", {
+			address: shopMap.adresse.name
+		}, function (data) {
+			if (data.status == 'OK') {
+				shopMap.adresse.lat = data.results[0].geometry.location.lat;
+				shopMap.adresse.lng = data.results[0].geometry.location.lng;
+				callback({
+					status: true,
+					err: ""
+				})
+			} else {
+				callback({
+					status: false,
+					err: "Impossible de localiser l'adresse"
+				});
+			}
+		});
+	},
 
-    getContent: function (place) {
-    	return '<div>' + place.name + '</div><div>' + place.vicinity + '</div>';
-    }
+	getContent: function (place) {
+		return '<div>' + place.name + '</div><div>' + place.vicinity + '</div>';
+	}
 
-  }
+}
