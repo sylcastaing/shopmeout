@@ -3,7 +3,7 @@ div.container(ng-controller="SearchPostShopCtrl")
 		div(class="col-xs-12 col-sm-12 col-md-12")
 			div(class="panel panel-default")
 				div(class="panel-heading")
-					h1(class="panel-title")="Rechercher un shopping"
+					h1(class="panel-title")="Rechercher une demande de Shopping"
 				div.panel-body
 					form(name="postshop", method="post", ng-submit="searchPostShop()" novalidate)
 						div.row
@@ -43,7 +43,6 @@ div.container(ng-controller="SearchPostShopCtrl")
 					p
 						button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
 							span(class = "glyphicon glyphicon-plus-sign" )
-						include ./users/signIn.jade
 						include ./postShop/postShop.jade
 
 block scripts-header
