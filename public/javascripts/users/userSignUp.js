@@ -30,9 +30,9 @@ app.controller("SignUpCtrl", function($scope, $http) {
 						url : '/ws-users/sign-in',
 						data : { "email" : $scope.user.email, "motDePasse" : $scope.user.motDePasse }
 					}).success(function (data, status, headers, config){
+						document.location.reload();
 					}).error(function (data, status, headers, config){
 					});
-					document.location="/";
 				}
 				else {
 					$scope.signup.$signUpError = true;
