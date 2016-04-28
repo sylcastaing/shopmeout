@@ -15,7 +15,7 @@ div(class="modal fade" id="postShopModal" role="dialog" ng-controller="PostShopC
 							div(class="col-sm-6")
 								label(for="codePostal") Code Postal du magasin
 								input(type="text", id="codePostal", placeholder="Code Postal", ng-model="data.codePostal")
-							div#map(style="height:300px")
+							div.col-md-12#map(style="height:300px")
 							form(name="postShop", method="post", ng-submit="addPostShop()" novalidate)
 								div.actions
 									input(type="submit", value="Rechercher", class="btn btn-info btn-block")
