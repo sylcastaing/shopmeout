@@ -10,10 +10,12 @@ div.container(ng-controller="SearchPostShopCtrl")
 							div(class="col-xs-12 col-sm-12 col-md-12")
 								div.form-group
 									label(class="control-label col-sm-5" id="labelAdresse") Mon adresse
-									input(type="text", ng-model="adresseField" ng-disabled="isDisabled" ng-focus="isDisabled")
-									span(style="color:red", ng-show="postshop.$error.adresseRequis")
-											span(ng-show="postshop.$error.adresseRequis" id="labelErrorAdresseRequis") Une adresse est requise.
-									button(type="button" class="btn btn-primary" ng-click="changeAdress()" id="btnChangeAdresse") {{boutonAdresse}}
+									input(type="text", ng-model="adresseField")
+									button(type = "button" class = "btn btn-default" ng-click="search()")
+										span(class = "glyphicon glyphicon-search")
+								div#map(class="col-sm-12 align-center" style="height:300px;width:300px")
+								span(style="color:red", ng-show="postshop.$error.selectRequired")
+									span(ng-show="postshop.$error.selectRequired") Veuillez selectionner un magasin
 						div.row
 							div(class="col-xs-12 col-sm-12 col-md-12")
 								div.form-group
@@ -25,8 +27,8 @@ div.container(ng-controller="SearchPostShopCtrl")
 						div.row
 							div(class="col-xs-12 col-sm-12 col-md-12")
 								div.form-group
-									label(class="control-label col-sm-5 align-center") Date du shopping
-									div(class="col-sm-7")
+									label(class="control-label col-sm-5") Date du shopping
+									div(class="col-sm-3")
 										input(class="form-control input-sm" type="date" name="date" ng-model-options="{timezone:'-0000'}" placeholder="Date" ng-model="date" required)
 										span(style="color:red", ng-show="postshop.dateNaissance.$invalid && postshop.dateNaissance.$touched")
 											span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
@@ -35,11 +37,12 @@ div.container(ng-controller="SearchPostShopCtrl")
 								span(style="color:red" ) {{postShop.$error.message}}
 						div.row
 							span(style="color:red" ) {{distance}} {{nbShoppeur}} {{nbArticle}}
-						div.actions
+						div(class="col-xs-3 actions align-center")
 							input(type="submit", ng-disabled="dataLoading || postshop.$error.$invalid", value="Rechercher", class="btn btn-info btn-block")
 						br
-						div(style="text-align:center")
+						div.align-center
 							img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
+						br
 					p
 						button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
 							span(class = "glyphicon glyphicon-plus-sign" )

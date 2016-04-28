@@ -1,5 +1,7 @@
 app.controller("SearchPostShopCtrl", function($scope, $http) {
 
+	shopMap.init();
+
 	$scope.isDisabled = true;
 	$scope.boutonAdresse = "Changer mon adresse";
 
@@ -12,23 +14,12 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		}
 	}
 
-	$scope.changeAdress = function() {
-			if($scope.isDisabled && $scope.adresseField != "") {
-				$scope.boutonAdresse = "Valider";
-				$scope.isDisabled = false;
-				$scope.postshop.$error.$invalid = false;
-			}
-			else if(!$scope.isDisabled && $scope.adresseField == "") {
-				$scope.isDisabled = false;
-				$scope.postshop.$error.adresseRequis=true;
-				$scope.postshop.$error.$invalid = true;
-			}
-			else if(!$scope.isDisabled && $scope.adresseField !="") {
-				$scope.boutonAdresse = "Changer mon adresse";
-				$scope.postshop.$error.adresseRequis=false;
-				$scope.postshop.$error.$invalid = false;
-				$scope.isDisabled = true;
-			}
+	$scope.search = function() {
+		shopMap.init({
+			adresse: $scope.adresseField,
+			distance: 2000
+		});
+		//console.log(shopMap);
 	}
 
 
@@ -39,6 +30,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
 			$scope.adresseField = data.user.adresse;
+			$scope.search();
 		}
 		else {
 			$scope.adresseField = "";
@@ -55,9 +47,14 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			$scope.postshop.$error.$invalid = true;
 			$scope.resultRecherche = "";
 		}
+		else if(shopMap.selectedMarker == null) {
+			$scope.postshop.$error.selectRequired = true;
+			$scope.postshop.$error.$invalid = true;
+			$scope.resultRecherche = "";
+		}
 		else {
 			var critereProp = [{
-				"magasin": "Auchan",
+				"magasin": shopMap.selectedMarker.title,
 				"date": data.date
 				//"nbArticle": $scope.nbArticle,
 			}];
@@ -67,7 +64,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 					url : '/ws-post-shop/search-postShop',
 					data : critereProp
 				}).success(function (data, status, headers, config) {
-					console.log(data);
+					//console.log(data);
 					if(data.length>0) {
 						$scope.resultRecherche = data;
 					}
