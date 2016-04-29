@@ -36,6 +36,12 @@
 	mapId: "map",
 	// Type de recherche
 	type: ['grocery_or_supermarket'],
+	// URL API maps
+	urlAPI: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgmlzGZ-cNthmweounvx1AI7ojd1jwnKw&signed_in=true&libraries=places&callback=gmap_draw",
+	// API include
+	apiInclude: false,
+
+	apiCharged: false,
 
 	/**
 	 * Initilisation de la map
@@ -45,35 +51,24 @@
 	 init: function (params, callback) {
 	 	shopMap.markers = [];
 	 	shopMap.parseParams(params);
-	 	shopMap.addAPI(function() {
-	 		shopMap.getGeocode(function (result) {
-	 			if (!result.status) {
-	 				callback(result);
-	 			} else {
-	 				shopMap.map = new google.maps.Map(document.getElementById(shopMap.mapId), {
-	 					center: shopMap.adresse,
-	 					zoom: shopMap.zoom
-	 				});
-	 				shopMap.service = new google.maps.places.PlacesService(shopMap.map);
-	 				shopMap.service.nearbySearch({
-	 					location: shopMap.adresse,
-	 					radius: shopMap.distance,
-	 					types: shopMap.type,
-	 				}, shopMap.processResults);
-	 			}
-	 		});
+	 	
+	 	shopMap.getGeocode(function (result) {
+	 		if (!result.status) {
+	 			callback(result);
+	 		} else {
+	 			shopMap.map = new google.maps.Map(document.getElementById(shopMap.mapId), {
+	 				center: shopMap.adresse,
+	 				zoom: shopMap.zoom
+	 			});
+	 			shopMap.service = new google.maps.places.PlacesService(shopMap.map);
+	 			shopMap.service.nearbySearch({
+	 				location: shopMap.adresse,
+	 				radius: shopMap.distance,
+	 				types: shopMap.type,
+	 			}, shopMap.processResults);
+	 		}
 	 	});
-	 },
-
-
-	 addAPI: function (callback) {
-	 	var s = document.createElement("script");
-	 	s.type = "text/javascript";
-	 	s.src  = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgmlzGZ-cNthmweounvx1AI7ojd1jwnKw&signed_in=true&libraries=places&callback=gmap_draw";
-	 	window.gmap_draw = function() {
-	 		callback();
-	 	};
-	 	$("head").append(s);
+	 	
 	 },
 
 	/**
