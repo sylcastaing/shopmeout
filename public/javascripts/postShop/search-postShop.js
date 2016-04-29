@@ -1,6 +1,8 @@
 app.controller("SearchPostShopCtrl", function($scope, $http) {
 
-	shopMap.init();
+	shopMap.init({
+		mapId : "mapSearchPostShop"
+	});
 
 	$scope.isDisabled = true;
 	$scope.boutonAdresse = "Changer mon adresse";
@@ -14,8 +16,9 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		}
 	}
 
-	$scope.search = function() {
+	$scope.searchMapPostShop = function() {
 		shopMap.init({
+			mapId : "mapSearchPostShop",
 			adresse: $scope.adresseField,
 			distance: 2000
 		});
@@ -29,7 +32,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
 			$scope.adresseField = data.user.adresse;
-			$scope.search();
+			$scope.searchMapPostShop();
 		}
 		else {
 			$scope.adresseField = "";
