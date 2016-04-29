@@ -4,6 +4,11 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		mapId : "mapSearchPostShop"
 	});
 
+
+	$scope.$watch(shopMap.selectedMarker, function() {
+		console.log(shopMap.selectedMarker);
+	});
+
 	$scope.isDisabled = true;
 	$scope.boutonAdresse = "Changer mon adresse";
 
@@ -31,8 +36,8 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		url : '/ws-users/consult-profile'
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
-			$scope.adresseField = data.user.adresse;
-			$scope.searchMapPostShop();
+			$scope.adresseField = data.user.adresse +" "+ data.user.codePostal +" "+data.user.ville;
+			//$scope.searchMapPostShop();
 		}
 		else {
 			$scope.adresseField = "";
