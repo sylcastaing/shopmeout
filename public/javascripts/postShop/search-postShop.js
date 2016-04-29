@@ -1,7 +1,15 @@
 app.controller("SearchPostShopCtrl", function($scope, $http) {
 
+	shopMap.init();
+
 	$scope.isDisabled = true;
 	$scope.boutonAdresse = "Changer mon adresse";
+
+	$scope.$watch(function () {
+		return shopMap.selectedMarker;
+	}, function (value) {
+		console.log("chanegements " + value);
+	});
 
 	$scope.checkDateRequired = function() {
 		if($scope.date != undefined) {
@@ -12,23 +20,11 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		}
 	}
 
-	$scope.changeAdress = function() {
-			if($scope.isDisabled && $scope.adresseField != "") {
-				$scope.boutonAdresse = "Valider";
-				$scope.isDisabled = false;
-				$scope.postshop.$error.$invalid = false;
-			}
-			else if(!$scope.isDisabled && $scope.adresseField == "") {
-				$scope.isDisabled = false;
-				$scope.postshop.$error.adresseRequis=true;
-				$scope.postshop.$error.$invalid = true;
-			}
-			else if(!$scope.isDisabled && $scope.adresseField !="") {
-				$scope.boutonAdresse = "Changer mon adresse";
-				$scope.postshop.$error.adresseRequis=false;
-				$scope.postshop.$error.$invalid = false;
-				$scope.isDisabled = true;
-			}
+	$scope.search = function() {
+		shopMap.init({
+			adresse: $scope.adresseField,
+			distance: 2000
+		});
 	}
 
 
@@ -39,6 +35,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
 			$scope.adresseField = data.user.adresse;
+			$scope.search();
 		}
 		else {
 			$scope.adresseField = "";
@@ -55,10 +52,60 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			$scope.postshop.$error.$invalid = true;
 			$scope.resultRecherche = "";
 		}
+		/*else if(shopMap.selectedMarker == null) {
+			$scope.postshop.$error.selectRequired = true;
+			$scope.postshop.$error.$invalid = true;
+			$scope.resultRecherche = "";
+		}*/
 		else {
 			var critereProp = [{
-				"magasin": "Auchan",
-				"date": data.date
+				"magasin": shopMap.selectedMarker.title,
+				"date": $scope.date
+	$scope.searchPostShop = function() {
+		if($scope.date == undefined) {
+			$scope.postshop.$error.dateRequired = true;
+			$scope.postshop.$error.$invalid = true;
+			$scope.resultRecherche = "";
+		}
+		/*else if(shopMap.selectedMarker == null) {
+			$scope.postshop.$error.selectRequired = true;
+			$scope.postshop.$error.$invalid = true;
+			$scope.resultRecherche = "";
+		}*/
+		else {
+			var critereProp = [{
+				"magasin": shopMap.selectedMarker.title,
+				"date": $scope.date
+	$scope.searchPostShop = function() {
+		if($scope.date == undefined) {
+			$scope.postshop.$error.dateRequired = true;
+			$scope.postshop.$error.$invalid = true;
+			$scope.resultRecherche = "";
+		}
+		/*else if(shopMap.selectedMarker == null) {
+			$scope.postshop.$error.selectRequired = true;
+			$scope.postshop.$error.$invalid = true;
+			$scope.resultRecherche = "";
+		}*/
+		else {
+			var critereProp = [{
+				"magasin": shopMap.selectedMarker.title,
+				"date": $scope.date
+		$scope.searchPostShop = function() {
+			if($scope.date == undefined) {
+				$scope.postshop.$error.dateRequired = true;
+				$scope.postshop.$error.$invalid = true;
+				$scope.resultRecherche = "";
+			}
+			else if(shopMap.selectedMarker == null) {
+				$scope.postshop.$error.selectRequired = true;
+				$scope.postshop.$error.$invalid = true;
+				$scope.resultRecherche = "";
+			}
+			else {
+				var critereProp = [{
+					"magasin": shopMap.selectedMarker.title,
+					"date": $scope.date
 				//"nbArticle": $scope.nbArticle,
 			}];
 
@@ -67,38 +114,36 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 					url : '/ws-post-shop/search-postShop',
 					data : critereProp
 				}).success(function (data, status, headers, config) {
-					console.log(data);
 					if(data.length>0) {
 						$scope.resultRecherche = data;
 					}
 					else {
 						$scope.resultRecherche = "Il n'y a pas de résultats, désolé"
 					}
-				});
-			}
 		}
+	}
 
-	});
+});
 
 })
 
 .directive('buttonsRadio', function() {
 
- 	return {
- 		restrict: 'A',
- 		require: 'ngModel',
- 		link: function($scope, element, attr, ctrl) {
- 			element.bind('click', function() {
- 				$scope.$apply(function(scope) {
- 					ctrl.$setViewValue(attr.value);
- 				});
- 			});
+	return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function($scope, element, attr, ctrl) {
+			element.bind('click', function() {
+				$scope.$apply(function(scope) {
+					ctrl.$setViewValue(attr.value);
+				});
+			});
 
- 			$scope.$watch(attr.ngModel, function(newValue, oldValue) {
- 				element.parent(".btn-group").find('button').removeClass("active");
+			$scope.$watch(attr.ngModel, function(newValue, oldValue) {
+				element.parent(".btn-group").find('button').removeClass("active");
 					element.parent(".btn-group") //.children()
 					.find("button[value='" + newValue + "']").addClass('active');
 				});
- 		}
- 	};
+		}
+	};
 });
