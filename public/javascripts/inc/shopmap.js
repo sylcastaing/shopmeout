@@ -207,4 +207,8 @@
 	 	return content;
 	 }
 
+	 on_myproperty_change(function(){
+	 	$scope.$digest();
+	 });
+
 	}
