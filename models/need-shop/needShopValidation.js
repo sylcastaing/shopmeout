@@ -14,16 +14,12 @@ var needShopValidation = {
 					err = needShopMessages.get("needShop.creation.mailShoppeur.empty");
 					isValid = false;
 		}
-		if (isValid && (datas.date == undefined || datas.date == "")) {
-					err = needShopMessages.get("needShop.creation.date.empty");
+		if (isValid && (datas.dateShopping == undefined || datas.dateShopping == "")) {
+					err = needShopMessages.get("needShop.creation.dateShopping.empty");
 					isValid = false;
 		}
 		if(isValid && (datas.adresse == undefined || datas.adresse == "")) {
 			err = needShopMessages.get("needShop.creation.adresse.empty");
-			isValid = false;
-		}
-		else if (isValid && (datas.adresse.length != 5 || !valideCP.test(datas.adresse))) {
-			err = needShopMessages.get("needShop.creation.adresse.notValid");
 			isValid = false;
 		}
 		if(isValid && datas.nbArticle > 3) {

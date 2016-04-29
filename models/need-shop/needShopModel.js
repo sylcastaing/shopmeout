@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var needShopModel = new Schema({
 	mailShoppeur: String,
-	date: Date,
+	dateShopping: Date,
 	adresse: String,
 	nbArticle: Number
 });

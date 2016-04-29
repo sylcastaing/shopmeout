@@ -11,11 +11,13 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 		url : '/ws-users/consult-profile'
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
-			$scope.adresse = data.user.adresse;
+			$scope.adresse = data.user.adresse + " " + data.user.codePostal;
 		}
 		});
 	$scope.addNeedShop = function() {
 		var isOK = true;
+		$scope.data.adresse = $scope.adresse;
+		console.log($scope.data.adresse);
 		if($scope == undefined || $scope.data.nbArticle == undefined) {
 			$scope.needShop.$error.NbArticleError = true;
 			isOK = false;
@@ -24,7 +26,7 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 			$scope.needShop.$error.adresse = true;
 			isOK = false;
 		} 
-		if($scope.data.date == undefined) {
+		if($scope.data.dateShopping == undefined) {
 			$scope.needShop.$error.dateShopping = true;
 			isOK = false;
 		} 
@@ -34,7 +36,6 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 			$scope.needShop.$error.NbArticleError = false;
  			$scope.needShop.dateShopping.$invalid = false;
  			$scope.needShop.adresse.$invalid = false;
-			$scope.data.adresse = $scope.adresse;
 		var res = $http({
 			method : 'POST',
 			url : '/ws-need-shop/needShop',

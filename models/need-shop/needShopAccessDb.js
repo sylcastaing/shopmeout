@@ -10,7 +10,7 @@ var needShopAccessDb = {
 	createNeedShop: function(datas, callback) {
 		NeedShop.create({
 			mailShoppeur: datas.mailShoppeur,
-			date: datas.date,
+			dateShopping: datas.dateShopping,
 			adresse: datas.adresse,
 			nbArticle: datas.nbArticle
 		}, function(err,needShop) {
@@ -27,7 +27,7 @@ var needShopAccessDb = {
 	},
 	searchNeedShop: function(datas,callback) {
 		NeedShop.find({
-			date: datas.date,
+			dateShopping: datas.dateShopping,
 			adresse: datas.adresse
 		},
 		{
