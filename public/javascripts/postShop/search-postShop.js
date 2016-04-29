@@ -5,13 +5,6 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	});
 
 
-	$scope.$watch(shopMap.selectedMarker, function() {
-		console.log(shopMap.selectedMarker);
-	});
-
-	$scope.isDisabled = true;
-	$scope.boutonAdresse = "Changer mon adresse";
-
 	$scope.checkDateRequired = function() {
 		if($scope.date != undefined) {
 			$scope.postshop.$error.dateRequired = false;
@@ -27,6 +20,18 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			adresse: $scope.adresseField,
 			distance: 2000
 		});
+	}
+
+	$scope.magasinChoisi = function() {
+			$scope.selectedMagasin = shopMap.selectedMarker.title;
+			$scope.postshop.$error.magasinSelected = true;
+	}
+
+	$scope.checkNbArticlesRequired = function() {
+		if($scope.postshop.$error.nbArticleRequired) {
+			$scope.postshop.$error.nbArticleRequired = false;
+			$scope.postshop.$error.$invalid = false;
+		}
 	}
 
 
@@ -47,56 +52,59 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 
 
 	$scope.searchPostShop = function() {
-		if($scope.date == undefined) {
+		if($scope.nbArticle == undefined) {
+			$scope.postshop.$error.nbArticleRequired = true;
+			$scope.postshop.$error.$invalid = true;
+			$scope.resultRecherche = "";
+		}
+		else if($scope.date == undefined) {
 			$scope.postshop.$error.dateRequired = true;
 			$scope.postshop.$error.$invalid = true;
 			$scope.resultRecherche = "";
 		}
-		/*else if(shopMap.selectedMarker == null) {
-			$scope.postshop.$error.selectRequired = true;
-			$scope.postshop.$error.$invalid = true;
-			$scope.resultRecherche = "";
-		}*/
 		else {
 			var critereProp = [{
-				"magasin": shopMap.selectedMarker.title,
-				"date": $scope.date
-				//"nbArticle": $scope.nbArticle,
+				"magasin": $scope.selectedMagasin,
+				"date": $scope.date,
+				"nbArticle": $scope.nbArticle
 			}];
 
-			var res = $http({
-					method : 'POST',
-					url : '/ws-post-shop/search-postShop',
-					data : critereProp
-				}).success(function (data, status, headers, config) {
-					if(data.length>0) {
-						$scope.resultRecherche = data;
-					}
-					else {
-						$scope.resultRecherche = "Il n'y a pas de résultats, désolé"
-					}
-				});
-			}
-		}
+			console.log(critereProp);
 
-	})
+			var res = $http({
+				method : 'POST',
+				url : '/ws-post-shop/search-postShop',
+				data : critereProp
+			}).success(function (data, status, headers, config) {
+				if(data.length>0) {
+					$scope.resultRecherche = data;
+				}
+				else {
+					$scope.resultRecherche = "Il n'y a pas de résultats, désolé"
+				}
+			});
+		}
+	}
+
+})
 .directive('buttonsRadio', function() {
 
- 	return {
- 		restrict: 'A',
- 		require: 'ngModel',
- 		link: function($scope, element, attr, ctrl) {
- 			element.bind('click', function() {
- 				$scope.$apply(function(scope) {
- 					ctrl.$setViewValue(attr.value);
- 				});
- 			});
+	return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function($scope, element, attr, ctrl) {
+			element.bind('click', function() {
+				$scope.$apply(function(scope) {
+					console.log(attr.value);
+					ctrl.$setViewValue(attr.value);
+				});
+			});
 
- 			$scope.$watch(attr.ngModel, function(newValue, oldValue) {
- 				element.parent(".btn-group").find('button').removeClass("active");
+			$scope.$watch(attr.ngModel, function(newValue, oldValue) {
+				element.parent(".btn-group").find('button').removeClass("active");
 					element.parent(".btn-group") //.children()
 					.find("button[value='" + newValue + "']").addClass('active');
 				});
- 		}
- 	};
+		}
+	};
 });
