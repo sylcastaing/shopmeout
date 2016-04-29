@@ -19,7 +19,6 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			adresse: $scope.adresseField,
 			distance: 2000
 		});
-		//console.log(shopMap);
 	}
 
 
@@ -43,19 +42,20 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 
 	$scope.searchPostShop = function() {
 		if($scope.date == undefined) {
+			console.log("Date indéfinie");
 			$scope.postshop.$error.dateRequired = true;
 			$scope.postshop.$error.$invalid = true;
 			$scope.resultRecherche = "";
 		}
-		else if(shopMap.selectedMarker == null) {
+		/*else if(shopMap.selectedMarker == null) {
 			$scope.postshop.$error.selectRequired = true;
 			$scope.postshop.$error.$invalid = true;
 			$scope.resultRecherche = "";
-		}
+		}*/
 		else {
 			var critereProp = [{
 				"magasin": shopMap.selectedMarker.title,
-				"date": data.date
+				"date": $scope.date
 				//"nbArticle": $scope.nbArticle,
 			}];
 
@@ -64,14 +64,13 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 					url : '/ws-post-shop/search-postShop',
 					data : critereProp
 				}).success(function (data, status, headers, config) {
-					//console.log(data);
 					if(data.length>0) {
 						$scope.resultRecherche = data;
 					}
 					else {
 						$scope.resultRecherche = "Il n'y a pas de résultats, désolé"
 					}
-				});
+				})
 			}
 		}
 
