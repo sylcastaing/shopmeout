@@ -92,6 +92,7 @@
 	 			map: shopMap.map,
 	 			title: place.name,
 	 			position: place.geometry.location,
+	 			adresse: place.vicinity,
 	 			infos: new google.maps.InfoWindow({
 	 				content: shopMap.getContent(place)
 	 			})
