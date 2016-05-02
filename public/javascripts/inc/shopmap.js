@@ -36,25 +36,19 @@
 	mapId: "map",
 	// Type de recherche
 	type: ['grocery_or_supermarket'],
-	// URL API maps
-	urlAPI: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgmlzGZ-cNthmweounvx1AI7ojd1jwnKw&signed_in=true&libraries=places&callback=gmap_draw",
-	// API include
-	apiInclude: false,
-
-	apiCharged: false,
 
 	/**
 	 * Initilisation de la map
 	 * @param  Object  params   Liste des paramètres
 	 * @param  Function callback Fonction de retour
 	 */
-	 init: function (params, callback) {
+	 init: function (params) {
 	 	shopMap.markers = [];
 	 	shopMap.parseParams(params);
 	 	
 	 	shopMap.getGeocode(function (result) {
 	 		if (!result.status) {
-	 			callback(result);
+	 			console.err("Erreur chargement de la map");
 	 		} else {
 	 			shopMap.map = new google.maps.Map(document.getElementById(shopMap.mapId), {
 	 				center: shopMap.adresse,
@@ -68,7 +62,7 @@
 	 			}, shopMap.processResults);
 	 		}
 	 	});
-	 	
+	 	return shopMap;
 	 },
 
 	/**
