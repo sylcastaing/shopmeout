@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var postShopModel = new Schema({
-	nomShoppeur: String,
+	mailShoppeur: String,
 	date: Date,
 	adresse: String,
 	magasin: String,

@@ -10,7 +10,7 @@ var postShopMessages = require('properties-reader')('messages/postShop.messages.
 router.post('/postShop', function(req, res, next) {
 	console.log(req);
 	if (req.isAuthenticated()) {
-		if(req.session.passport.user.prenom) {
+		if(req.session.passport.user.email) {
 			req.body.mailShoppeur = req.session.passport.user.email;
 		}
 	}
