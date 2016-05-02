@@ -43,9 +43,8 @@ div(class="modal fade" id="postShopModal" role="dialog" ng-controller="PostShopC
 											span(style="color:red", ng-show="postShop.$error.NbArticleError") le nombre d'article est obligatoire.
 								div.form-group
 									div.row
-										label(class="control-label col-xs-12" id="labelDate") Date du shopping
-									div.row
-										div(class="col-xs-12")
+										label(class="control-label col-xs-3" id="labelDate") Date du shopping
+										div(class="col-xs-4")
 											input(class="form-control input-sm", type="date", name="dateShopping", placeholder="Date du Shopping", ng-model="data.date" ng-model-options="{timezone:'-0000'}" required)
 											span(style="color:red", ng-show="(postShop.dateShopping.$touched && postShop.dateShopping.$invalid) || postShop.$error.dateShopping") La date du shopping est obligatoire.
 								br
@@ -55,7 +54,7 @@ div(class="modal fade" id="postShopModal" role="dialog" ng-controller="PostShopC
 									input(type="submit", value="Ajouter", class="btn btn-info btn-block")
 								br
 			div(class="modal-footer")
-				button(type="button" class="btn btn-default" data-dismiss="modal") Close
+				button(type="button" class="btn btn-default" data-dismiss="modal") Fermer
 
 
 

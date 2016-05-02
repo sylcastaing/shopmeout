@@ -71,8 +71,7 @@ div(class="modal fade" id="signUpModal" role="dialog" ng-controller="SignUpCtrl"
 											div(class="btn-group",  data-toggle="buttons-radio")
 												button(type='button', value='0', ng-model="myModel['sexe']", buttons-radio="" class="btn", ng-click="removeError()") Femme
 												button(type='button', value='1', ng-model="myModel['sexe']", buttons-radio="" class="btn", ng-click="removeError()") Homme
-												span(style="color:red", ng-show="signup.$error.sexeError")
-													span(ng-show="signup.$error.sexeError") Le choix du sexe est obligatoire.
+												span(style="color:red", ng-show="signup.$error.sexeError") Le choix du sexe est obligatoire.
 								div.row
 									div.form-group
 										label(class="control-label col-sm-5 align-center") Date de naissance
@@ -86,5 +85,5 @@ div(class="modal fade" id="signUpModal" role="dialog" ng-controller="SignUpCtrl"
 									span(style="color:red", ng-show="$scope.signup.$signUpError")
 										span {{$scope.signup.$signUpErrorMsg}}
 			div(class="modal-footer")
-				button(type="button" class="btn btn-default" data-dismiss="modal") Close
+				button(type="button" class="btn btn-default" data-dismiss="modal") Fermer
 
