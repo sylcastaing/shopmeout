@@ -8,15 +8,15 @@ var postShopMessages = require('properties-reader')('messages/postShop.messages.
 
 
 router.post('/postShop', function(req, res, next) {
-	console.log(req);
 	if (req.isAuthenticated()) {
 		if(req.session.passport.user.email) {
 			req.body.mailShoppeur = req.session.passport.user.email;
+			req.body.prenom = req.session.passport.user.prenom;
+			req.body.nom = req.session.passport.user.nom;
 		}
 	}
 	// Vérification des données
 	postShopValidation.verifDatas(req.body, function (isValid, err) {
-		//console.log(req.body);
 		if (isValid) {
 			// Création de la proposition
 			postShopAccessDb.createPostShop(req.body, function(result, err) {

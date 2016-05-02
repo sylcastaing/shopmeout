@@ -3,3 +3,9 @@
  **/
 
 var app = angular.module('ShopMeOut', []);
+
+app.filter('firstLetter', function() {
+	return function(input) {
+		return input.substr(0,1);
+	};
+});

@@ -70,15 +70,15 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 				"nbArticle": $scope.nbArticle
 			}];
 
-			console.log(critereProp);
-
 			var res = $http({
 				method : 'POST',
 				url : '/ws-post-shop/search-postShop',
 				data : critereProp
 			}).success(function (data, status, headers, config) {
 				//if(data.postShops.length>0) {
-					$scope.resultRecherche = data;
+					console.log(data.postShops);
+
+					$scope.resultRecherche = data.postShops;
 				/*}
 				else {
 					$scope.resultRecherche = "Il n'y a pas de résultats, désolé"
@@ -86,6 +86,18 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			});
 		}
 	}
+
+	$scope.getNbArticles = function(idNbArticle) {
+		var res = "";
+		if (idNbArticle == 0) {
+			res = "Moins de 5";
+		} else if (idNbArticle == 1) {
+			res = "Jusqu'à 10";
+		} else if (idNbArticle == 2) {
+			res = "Plus de 10";
+		}
+		return res;
+	};
 
 })
 .directive('buttonsRadio', function() {
