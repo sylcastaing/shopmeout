@@ -18,8 +18,8 @@ var postShopValidation = {
 					err = postShopMessages.get("postShop.creation.date.empty");
 					isValid = false;
 		}
-		if(isValid && (datas.codePostal == undefined || datas.codePostal == "")) {
-			err = postShopMessages.get("postShop.creation.codePostal.empty");
+		if(isValid && (datas.adresse == undefined || datas.adresse == "")) {
+			err = postShopMessages.get("postShop.creation.adresse.empty");
 			isValid = false;
 		}
 		if (isValid && (datas.magasin == undefined || datas.magasin == "")) {
