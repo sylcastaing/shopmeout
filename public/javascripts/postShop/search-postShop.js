@@ -1,6 +1,6 @@
 app.controller("SearchPostShopCtrl", function($scope, $http) {
 
-	shopMap.init({
+	$scope.mapSearch = shopMap.init({
 		mapId : "mapSearchPostShop"
 	});
 
@@ -15,7 +15,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	}
 
 	$scope.searchMapPostShop = function() {
-		shopMap.init({
+		$scope.mapSearch.init({
 			mapId : "mapSearchPostShop",
 			adresse: $scope.adresseField,
 			distance: 2000
@@ -23,8 +23,8 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	}
 
 	$scope.magasinChoisi = function() {
-		$scope.selectedMagasin = shopMap.selectedMarker.title;
-		$scope.adresseSelectedMagasin = shopMap.selectedMarker.adresse;
+		$scope.selectedMagasin = ($scope.mapSearch.selectedMarker!=null)?$scope.mapSearch.selectedMarker.title:"";
+		$scope.adresseSelectedMagasin = $scope.mapSearch.selectedMarker.adresse;
 		$scope.postshop.$error.magasinSelected = true;
 	}
 
@@ -77,12 +77,12 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 				url : '/ws-post-shop/search-postShop',
 				data : critereProp
 			}).success(function (data, status, headers, config) {
-				if(data.length>0) {
+				//if(data.postShops.length>0) {
 					$scope.resultRecherche = data;
-				}
+				/*}
 				else {
 					$scope.resultRecherche = "Il n'y a pas de résultats, désolé"
-				}
+				}*/
 			});
 		}
 	}

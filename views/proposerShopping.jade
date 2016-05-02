@@ -52,7 +52,7 @@ div.container(ng-controller="SearchPostShopCtrl")
 						br
 						div.row
 							div(class="col-xs-5")
-								span(style="color:red" ) {{resultRecherche}}
+									p(ng-repeat="r in resultRecherche.postShops") {{r.magasin}}
 						div.align-center
 							img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
 						br

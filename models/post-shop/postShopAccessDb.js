@@ -30,8 +30,8 @@ var postShopAccessDb = {
 	},
 	searchPostShop: function(datas,callback) {
 		PostShop.find({
-			date: datas.date,
-			magasin: datas.magasin
+			//date: { $lte: datas[0].date },
+			magasin: datas[0].magasin
 		},
 		{
 			_id:0,
