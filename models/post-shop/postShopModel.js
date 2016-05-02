@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var postShopModel = new Schema({
 	nomShoppeur: String,
 	date: Date,
-	codePostal: String,
+	adresse: String,
 	magasin: String,
 	distance: Number,
 	nbShoppeur: Number,

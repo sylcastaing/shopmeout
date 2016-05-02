@@ -43,6 +43,8 @@ app.controller("PostShopCtrl", function($scope, $http) {
 			$scope.postShop.$error.NbArticleError = false;
 			$scope.postShop.dateShopping.$invalid = false;
 			console.log($scope.data)
+			$scope.data.magasin = $scope.selectedMagasin;
+			$scope.data.adresse = $scope.adresseSelectedMagasin;
 			var res = $http({
 				method : 'POST',
 				url : '/ws-post-shop/postShop',

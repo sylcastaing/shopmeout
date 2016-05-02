@@ -22,10 +22,6 @@ var postShopValidation = {
 			err = postShopMessages.get("postShop.creation.codePostal.empty");
 			isValid = false;
 		}
-		else if (isValid && (datas.codePostal.length != 5 || !valideCP.test(datas.codePostal))) {
-			err = postShopMessages.get("postShop.creation.codePostal.notValid");
-			isValid = false;
-		}
 		if (isValid && (datas.magasin == undefined || datas.magasin == "")) {
 			err = postShopMessages.get("postShop.creation.magasin.empty");
 			isValid = false;

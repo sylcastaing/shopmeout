@@ -9,17 +9,8 @@ div(class="modal fade" id="postShopModal" role="dialog" ng-controller="PostShopC
 			div(class="modal-body")
 				div(class="row centered-form")
 						div.panel-body
-							div(class="input-group")
-								input(class="form-control" type="text", id="adresse", placeholder="Adresse du magasin", ng-model="data.adresse")
-								span.input-group-btn
-									button(type = "button" class = "btn btn-default" ng-click="search()")
-										span(class = "glyphicon glyphicon-search")
 							div
-								span(ng-show="postShop.selectMagasin") Sélectionnez un magasin sur la carte :
-							div#map(class="col-sm-12" style="height:300px")
-							if (data != undefined && data.magasin != null)
-								div
-									span(style="color:green", ng-show="postShop.selectedMagasin") Vous avez sélectionné le magasin {{data.magasin}}
+								span(style="color:green") Vous avez sélectionné le magasin {{selectedMagasin}} situé à l'adresse : {{adresseSelectedMagasin}}
 							form(name="postShop", method="post", ng-submit="addPostShop()" novalidate)
 								div.form-group
 									label(class="control-label" id="labelDistance") Je choisis ma distance de livraison
