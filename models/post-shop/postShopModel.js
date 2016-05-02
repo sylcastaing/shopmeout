@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var postShopModel = new Schema({
-	nomShoppeur: String,
+	mailShoppeur: String,
 	date: Date,
-	codePostal: String,
+	adresse: String,
 	magasin: String,
 	distance: Number,
 	nbShoppeur: Number,

@@ -30,9 +30,9 @@ app.controller("SignUpCtrl", function($scope, $http) {
 						url : '/ws-users/sign-in',
 						data : { "email" : $scope.user.email, "motDePasse" : $scope.user.motDePasse }
 					}).success(function (data, status, headers, config){
+						document.location.reload();
 					}).error(function (data, status, headers, config){
 					});
-					document.location="/";
 				}
 				else {
 					$scope.signup.$signUpError = true;
@@ -46,7 +46,7 @@ app.controller("SignUpCtrl", function($scope, $http) {
 	}
 
 	$scope.checkEmail = function() {
-		if($scope.signup.email.modelValue != undefined) {
+		if($scope.signup.email != undefined) {
 			var res = $http({
 				method : 'POST',
 				url : '/ws-users/check-email',
@@ -65,6 +65,44 @@ app.controller("SignUpCtrl", function($scope, $http) {
 		}
 	}
 
+ 	$scope.checkEmail = function() {
+ 		if($scope.signup.email.modelValue != undefined) {
+ 			var res = $http({
+ 				method : 'POST',
+ 				url : '/ws-users/check-email',
+ 				data : { "email" : $scope.user.email}
+ 			}).success(function (data, status, headers, config){
+ 				if(data.statut==false && data.erreur!="E-mail vide à la récupération.") {
+ 					$scope.signup.email.$invalid = true;
+ 					$scope.signup.email.$error.emailPrise = true;
+ 					$scope.signup.email.$error.emailPriseMessage = data.err;
+ 				}
+ 				else {
+ 					$scope.signup.email.$error.emailPrise = false;
+ 				}
+ 			}).error(function (data, status, headers, config){
+ 			});
+ 		}
+ 	}
+ 	$scope.checkEmail = function() {
+ 		if($scope.signup.email != undefined) {
+ 			var res = $http({
+ 				method : 'POST',
+ 				url : '/ws-users/check-email',
+ 				data : { "email" : $scope.user.email}
+ 			}).success(function (data, status, headers, config){
+ 				if(data.statut==false && data.erreur!="E-mail vide à la récupération.") {
+ 					$scope.signup.email.$invalid = true;
+ 					$scope.signup.email.$error.emailPrise = true;
+ 					$scope.signup.email.$error.emailPriseMessage = data.err;
+ 				}
+ 				else {
+ 					$scope.signup.email.$error.emailPrise = false;
+ 				}
+ 			}).error(function (data, status, headers, config){
+ 			});
+ 		}
+ 	}
 })
 .directive("compareTo", function() {
 	return {

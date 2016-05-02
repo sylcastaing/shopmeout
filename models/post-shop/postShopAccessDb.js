@@ -11,7 +11,7 @@ var postShopAccessDb = {
 		PostShop.create({
 			mailShoppeur: datas.mailShoppeur,
 			date: datas.date,
-			codePostal: datas.codePostal,
+			adresse: datas.adresse,
 			magasin: datas.magasin,
 			distance: datas.distance,
 			nbShoppeur: datas.nbShoppeur,
@@ -30,8 +30,8 @@ var postShopAccessDb = {
 	},
 	searchPostShop: function(datas,callback) {
 		PostShop.find({
-			date: datas.date,
-			magasin: datas.magasin
+			//date: { $lte: datas[0].date },
+			magasin: datas[0].magasin
 		},
 		{
 			_id:0,

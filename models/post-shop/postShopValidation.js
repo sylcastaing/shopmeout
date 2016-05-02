@@ -18,12 +18,8 @@ var postShopValidation = {
 					err = postShopMessages.get("postShop.creation.date.empty");
 					isValid = false;
 		}
-		if(isValid && (datas.codePostal == undefined || datas.codePostal == "")) {
-			err = postShopMessages.get("postShop.creation.codePostal.empty");
-			isValid = false;
-		}
-		else if (isValid && (datas.codePostal.length != 5 || !valideCP.test(datas.codePostal))) {
-			err = postShopMessages.get("postShop.creation.codePostal.notValid");
+		if(isValid && (datas.adresse == undefined || datas.adresse == "")) {
+			err = postShopMessages.get("postShop.creation.adresse.empty");
 			isValid = false;
 		}
 		if (isValid && (datas.magasin == undefined || datas.magasin == "")) {

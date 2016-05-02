@@ -8,14 +8,15 @@ var postShopMessages = require('properties-reader')('messages/postShop.messages.
 
 
 router.post('/postShop', function(req, res, next) {
+	console.log(req);
 	if (req.isAuthenticated()) {
-		if(req.session.passport.user.prenom) {
+		if(req.session.passport.user.email) {
 			req.body.mailShoppeur = req.session.passport.user.email;
 		}
 	}
 	// Vérification des données
 	postShopValidation.verifDatas(req.body, function (isValid, err) {
-		console.log(req.body);
+		//console.log(req.body);
 		if (isValid) {
 			// Création de la proposition
 			postShopAccessDb.createPostShop(req.body, function(result, err) {
@@ -37,6 +38,7 @@ router.post('/postShop', function(req, res, next) {
 router.post('/search-postShop', function(req, res, next) {
 	postShopAccessDb.searchPostShop(req.body, function(result, err) {
 			if(!err) {
+				console.log(result);
 				res.json({
 					postShops: result,
 				});
