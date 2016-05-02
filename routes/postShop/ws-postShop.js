@@ -38,7 +38,6 @@ router.post('/postShop', function(req, res, next) {
 router.post('/search-postShop', function(req, res, next) {
 	postShopAccessDb.searchPostShop(req.body, function(result, err) {
 			if(!err) {
-				console.log(result);
 				res.json({
 					postShops: result,
 				});

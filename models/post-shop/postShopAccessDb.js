@@ -1,6 +1,7 @@
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
+var moment = require('moment');
 var postShopModel = require('./postShopModel');
 var PostShop = mongoose.model('postShop', postShopModel);
  
@@ -31,8 +32,14 @@ var postShopAccessDb = {
 		});
 	},
 	searchPostShop: function(datas,callback) {
+
+		var time = moment.duration("00:01:00");
+		var date = moment(datas[0].date);
+		var newDate = date.subtract(time);
+
 		PostShop.find({
-			//date: { $lte: datas[0].date },
+			date: { $lte: datas[0].date,
+				$gt: newDate.format()},
 			magasin: datas[0].magasin
 		},
 		{
