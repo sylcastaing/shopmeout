@@ -16,7 +16,7 @@ app.controller("SignInCtrl", function($scope, $http) {
 				$scope.dataLoading = false;
 			}
 			else {
-				 document.location = '/';
+				 document.location.reload();
 			}
 		}).error(function (data, status, headers, config){
 			$scope.signin.$error.login = true;

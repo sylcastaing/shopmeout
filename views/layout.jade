@@ -7,7 +7,10 @@ html
 		link(rel='stylesheet', href='#{baseUrl}/stylesheets/header.css')
 		link(rel='stylesheet', href='#{baseUrl}/stylesheets/footer.css')
 		link(rel='stylesheet', href='#{baseUrl}/stylesheets/faq.css')
+		link(rel='stylesheet', href='#{baseUrl}/stylesheets/inc/shopmap.css')
 		block styles
+		script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgmlzGZ-cNthmweounvx1AI7ojd1jwnKw&signed_in=true&libraries=places")
+		script(src="#{baseUrl}/javascripts/inc/shopMap.js")
 		script(src='#{baseUrl}/javascripts/inc/angular.min.js')
 		script(src='#{baseUrl}/javascripts/inc/angular-route.js')
 		script(src='#{baseUrl}/javascripts/main.js')
@@ -25,6 +28,4 @@ html
 		script(src='#{baseUrl}/javascripts/inc/jquery-ui.js')
 		script(src='#{baseUrl}/bootstrap/js/bootstrap.min.js')
 		script(src="#{baseUrl}/javascripts/inc/crypto-sha1.js")
-		script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgmlzGZ-cNthmweounvx1AI7ojd1jwnKw&signed_in=true&libraries=places")
-		script(src="#{baseUrl}/javascripts/inc/shopMap.js")
 		block scripts

@@ -11,7 +11,7 @@ var postShopAccessDb = {
 		PostShop.create({
 			mailShoppeur: datas.mailShoppeur,
 			date: datas.date,
-			codePostal: datas.codePostal,
+			adresse: datas.adresse,
 			magasin: datas.magasin,
 			distance: datas.distance,
 			nbShoppeur: datas.nbShoppeur,

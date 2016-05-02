@@ -1,20 +1,29 @@
 extends layout
 
 block content
-  .replie
-    a.bouton-deplier Ouvrir
-  .deplie
-    span.bouton-replier Fermer
-    .montexte
-      | Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.
-  br
-  br
-  .replie
-    a.bouton-deplier Ouvrir
-  .deplie
-    a.bouton-replier Fermer
-    .montexte
-      | Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.
+	h1 Foire aux questions
+	h2 Premiers pas sur Shopmeout
+	div.container
+		div.panel-group#accordion
+		.panel.panel-default
+			.panel-heading
+				h4.panel-title
+					a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseOne') Comment débuter sur Shopmeout
+			#collapseOne.panel-collapse.collapse
+				.panel-body
+					| Shopmeout met en relations plusieurs personnes souhaitant faire des courses collaboratives. 
+					br
+					| Une personne peut proposer un déplacement, ainsi plusieurs personnes peuvent en profiter pour passer leur commandes de courses.
+
+		.panel.panel-default
+			.panel-heading
+				h4.panel-title
+					a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo') Comment créer mon compte
+			#collapseTwo.panel-collapse.collapse
+				.panel-body
+					| Pour créer son compte c'est très simple, il suffit de cliquer sur le lien "inscris-toi" en haut à droite.
+					br
+					| Il faut évidemment avoir un compte pour créer une demande ou une proposition de shopping !
 
 block scripts
-  script(src="#{baseUrl}/javascripts/index/index.js")
+	script(src="#{baseUrl}/javascripts/index/index.js")
