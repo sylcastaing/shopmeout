@@ -23,8 +23,9 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	}
 
 	$scope.magasinChoisi = function() {
-			$scope.selectedMagasin = shopMap.selectedMarker.title;
-			$scope.postshop.$error.magasinSelected = true;
+		$scope.selectedMagasin = shopMap.selectedMarker.title;
+		$scope.adresseSelectedMagasin = shopMap.selectedMarker.adresse;
+		$scope.postshop.$error.magasinSelected = true;
 	}
 
 	$scope.checkNbArticlesRequired = function() {
@@ -88,7 +89,6 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 
 })
 .directive('buttonsRadio', function() {
-
 	return {
 		restrict: 'A',
 		require: 'ngModel',
@@ -106,5 +106,18 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 					.find("button[value='" + newValue + "']").addClass('active');
 				});
 		}
+	};
+})
+.directive('myEnter', function () {
+	return function (scope, element, attrs) {
+		element.bind("keydown keypress", function (event) {
+			if(event.which === 13) {
+				scope.$apply(function (){
+					scope.$eval(attrs.myEnter);
+				});
+
+				event.preventDefault();
+			}
+		});
 	};
 });

@@ -10,16 +10,19 @@ div.container(ng-controller="SearchPostShopCtrl")
 							div(class="col-xs-2")
 							div(class="col-xs-8")
 								div.input-group
-									input.form-control(type="text", ng-model="adresseField" placeholder="Adresse")
+									input.form-control(type="text", ng-model="adresseField" placeholder="Adresse" my-enter="searchMapPostShop()")
 									span.input-group-btn
 										button(type = "button" class = "btn btn-default" ng-click="searchMapPostShop()")
 											span(class = "glyphicon glyphicon-search")
 								div#mapSearchPostShop(class="col-sm-12 align-center" style="height:300px")
-					
-						div(class="col-xs-5")
-						div(class="col-xs-3")
-							p Magasin choisi : {{selectedMagasin}}
-							button(type = "button" class = "btn btn-default align-center" ng-click="magasinChoisi()") Valider ce magasin
+						div.row
+							div(class="col-xs-4")
+							div(class="col-xs-5" ng-show="postshop.$error.magasinSelected")
+								p Magasin choisi : {{selectedMagasin}} - {{adresseSelectedMagasin}}
+						div.row
+							div(class="col-xs-5")
+							div(class="col-xs-5")
+								button(type = "button" class = "btn btn-default align-center" ng-click="magasinChoisi()") Valider ce magasin
 						br
 						div(ng-show="postshop.$error.magasinSelected")
 							div.row
