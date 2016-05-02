@@ -10,6 +10,8 @@ var needShopAccessDb = {
 	createNeedShop: function(datas, callback) {
 		NeedShop.create({
 			mailShoppeur: datas.mailShoppeur,
+			nomMagasin: datas.nomMagasin,
+			adresseMagasin: datas.adresseMagasin,
 			dateShopping: datas.dateShopping,
 			adresse: datas.adresse,
 			nbArticle: datas.nbArticle
