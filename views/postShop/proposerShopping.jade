@@ -1,15 +1,69 @@
-div.container(ng-controller="SearchPostShopCtrl")
+div.container(ng-controller="SearchNeedShopCtrl")
 	div(class="row centered-form")
 		div(class="col-xs-12 col-sm-12 col-md-12")
 			div(class="panel panel-default")
 				div(class="panel-heading")
-					h1(class="panel-title")="Rechercher une proposition de shopping"
+					h1(class="panel-title")="Rechercher une demande de shopping"
 				div.panel-body
-					form(name="postshop", method="post", ng-submit="searchPostShop()" novalidate)
+					form(name="needshop", method="post", ng-submit="searchNeedShop()" novalidate)
 						div.row
-								include ../users/signIn.jade
-								include ../needShop/needShop.jade
+							div(class="col-xs-2")
+							div(class="col-xs-8")
+								div.input-group
+									input.form-control(type="text", ng-model="adresseField" placeholder="Adresse" my-enter="searchMapNeedShop()")
+									span.input-group-btn
+										button(type = "button" class = "btn btn-default" ng-click="searchMapNeedShop()")
+											span(class = "glyphicon glyphicon-search")
+								div#mapSearchNeedShop(class="col-sm-12 align-center" style="height:300px")
+						div.row
+							div(class="col-xs-4")
+							div(class="col-xs-5" ng-show="needShop.$error.magasinSelected")
+								p Magasin choisi : {{selectedMagasin}} - {{adresseSelectedMagasin}}
+						div.row
+							div(class="col-xs-5")
+							div(class="col-xs-5")
+								button(type = "button" class = "btn btn-default align-center" ng-click="magasinChoisi()") Valider ce magasin
+						br
+						div(ng-show="needShop.$error.magasinSelected")
+							div.row
+								div(class="col-xs-12 col-sm-12 col-md-12")
+									br
+									div.form-group
+										label(class="control-label col-sm-5" id="labelNbArticles") Je veux me faire livrer
+										div(class="btn-group" data-toggle="buttons-radio")
+											button(type="button" class="btn btn-primary" ng-model="nbArticle" value='0' buttons-radio="") Moins de 5 produits
+											button(type="button" class="btn btn-primary" ng-model="nbArticle" value='1' buttons-radio="") Jusqu'à 10 produits
+											button(type="button" class="btn btn-primary" ng-model="nbArticle" value='2' buttons-radio="") Plus de 10 produits
+							div.row
+								div(class="col-xs-12 col-sm-12 col-md-12")
+									div.form-group
+										label(class="control-label col-sm-5") Date du shopping
+										div(class="col-sm-3")
+											input(class="form-control input-sm" type="date" name="date" ng-model-options="{timezone:'-0000'}" placeholder="Date" ng-model="date")
+								br
+						div(class="col-xs-5")
+						div(class="col-xs-3 actions")
+							br
+							input(type="submit", ng-disabled="dataLoading || needshop.$error.$invalid || !needshop.$error.magasinSelected", value="Rechercher", class="btn btn-info btn-block")
+						br
+						div.align-center
+							img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
+						include ../postShop/postShop.jade
+						include ../users/signIn.jade
+					div.row
+						div.col-xs-6(ng-repeat="r in resultRecherche")
+							div.panel.panel-default
+								div.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
+								div.panel-body
+									p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
+									br
+									p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
+									br
+									p.glyphicon.glyphicon-user {{r.nbShoppeur}}
+									br
+									p.glyphicon.glyphicon-shopping-cart
+										span(ng-bind="getNbArticles(r.nbArticle)")
 
 block scripts-header
-	script(src="#{baseUrl}/javascripts/postShop/search-postShop.js")
-	script(src="#{baseUrl}/javascripts/needShop/needShop.js")
+	script(src="#{baseUrl}/javascripts/needShop/search-needShop.js")
+	script(src="#{baseUrl}/javascripts/postShop/postShop.js")
