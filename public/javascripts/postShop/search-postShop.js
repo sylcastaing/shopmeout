@@ -4,6 +4,8 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		mapId : "mapSearchPostShop"
 	});
 
+	$("#mapSearchPostShop").hide();
+	$("#buttonValid").hide();
 
 	$scope.searchMapPostShop = function() {
 		$scope.mapSearch.init({
@@ -22,6 +24,9 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			$scope.postshop.$error.magasinSelected = true;
 			$("#mapSearchPostShop").hide();
 			$("#buttonValid").hide();
+			$scope.postshop.$error.noMagasinSelected = false;
+		} else {
+				$scope.postshop.$error.noMagasinSelected = true;
 		}
 	}
 
@@ -42,26 +47,25 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 
 
 	$scope.searchPostShop = function() {
+			if($scope.mapSearch.selectedMarker==null) {
+				$scope.postshop.$error.noMagasinSelected = true;
+			}
+			else {
+				$scope.postshop.$error.noMagasinSelected = false;
+				var critereProp = [{
+					"magasin": $scope.selectedMagasin,
+					"date": $scope.date,
+					"nbArticle": $scope.nbArticle
+				}];
 
-			var critereProp = [{
-				"magasin": $scope.selectedMagasin,
-				"date": $scope.date,
-				"nbArticle": $scope.nbArticle
-			}];
-
-			var res = $http({
-				method : 'POST',
-				url : '/ws-post-shop/search-postShop',
-				data : critereProp
-			}).success(function (data, status, headers, config) {
-				//if(data.postShops.length>0) {
-
-					$scope.resultRecherche = data.postShops;
-				/*}
-				else {
-					$scope.resultRecherche = "Il n'y a pas de résultats, désolé"
-				}*/
-			});
+				var res = $http({
+					method : 'POST',
+					url : '/ws-post-shop/search-postShop',
+					data : critereProp
+				}).success(function (data, status, headers, config) {
+						$scope.resultRecherche = data.postShops;
+				});
+			}
 	}
 
 	$scope.getNbArticles = function(idNbArticle) {
