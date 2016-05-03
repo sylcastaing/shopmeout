@@ -3,6 +3,8 @@ var Schema = mongoose.Schema;
 
 var postShopModel = new Schema({
 	mailShoppeur: String,
+	prenom: String,
+	nom: String,
 	date: Date,
 	adresse: String,
 	magasin: String,

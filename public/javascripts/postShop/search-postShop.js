@@ -1,6 +1,6 @@
 app.controller("SearchPostShopCtrl", function($scope, $http) {
 
-	shopMap.init({
+	$scope.mapSearch = shopMap.init({
 		mapId : "mapSearchPostShop"
 	});
 
@@ -15,7 +15,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	}
 
 	$scope.searchMapPostShop = function() {
-		shopMap.init({
+		$scope.mapSearch.init({
 			mapId : "mapSearchPostShop",
 			adresse: $scope.adresseField,
 			distance: 2000
@@ -23,8 +23,8 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	}
 
 	$scope.magasinChoisi = function() {
-		$scope.selectedMagasin = shopMap.selectedMarker.title;
-		$scope.adresseSelectedMagasin = shopMap.selectedMarker.adresse;
+		$scope.selectedMagasin = ($scope.mapSearch.selectedMarker!=null)?$scope.mapSearch.selectedMarker.title:"";
+		$scope.adresseSelectedMagasin = $scope.mapSearch.selectedMarker.adresse;
 		$scope.postshop.$error.magasinSelected = true;
 	}
 
@@ -70,22 +70,34 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 				"nbArticle": $scope.nbArticle
 			}];
 
-			console.log(critereProp);
-
 			var res = $http({
 				method : 'POST',
 				url : '/ws-post-shop/search-postShop',
 				data : critereProp
 			}).success(function (data, status, headers, config) {
-				if(data.length>0) {
-					$scope.resultRecherche = data;
-				}
+				//if(data.postShops.length>0) {
+					console.log(data.postShops);
+
+					$scope.resultRecherche = data.postShops;
+				/*}
 				else {
 					$scope.resultRecherche = "Il n'y a pas de résultats, désolé"
-				}
+				}*/
 			});
 		}
 	}
+
+	$scope.getNbArticles = function(idNbArticle) {
+		var res = "";
+		if (idNbArticle == 0) {
+			res = "Moins de 5";
+		} else if (idNbArticle == 1) {
+			res = "Jusqu'à 10";
+		} else if (idNbArticle == 2) {
+			res = "Plus de 10";
+		}
+		return res;
+	};
 
 })
 .directive('buttonsRadio', function() {

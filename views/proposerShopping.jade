@@ -50,9 +50,6 @@ div.container(ng-controller="SearchPostShopCtrl")
 							br
 							input(type="submit", ng-disabled="dataLoading || postshop.$error.$invalid || !postshop.$error.magasinSelected", value="Rechercher", class="btn btn-info btn-block")
 						br
-						div.row
-							div(class="col-xs-5")
-								span(style="color:red" ) {{resultRecherche}}
 						div.align-center
 							img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
 						br
@@ -61,6 +58,19 @@ div.container(ng-controller="SearchPostShopCtrl")
 							span(class = "glyphicon glyphicon-plus-sign" )
 						include ./postShop/postShop.jade
 						include ./users/signIn.jade
+					div.row
+						div.col-xs-6(ng-repeat="r in resultRecherche")
+							div.panel.panel-default
+								div.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
+								div.panel-body
+									p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
+									br
+									p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
+									br
+									p.glyphicon.glyphicon-user {{r.nbShoppeur}}
+									br
+									p.glyphicon.glyphicon-shopping-cart
+										span(ng-bind="getNbArticles(r.nbArticle)")
 
 block scripts-header
 	script(src="#{baseUrl}/javascripts/postShop/search-postShop.js")
