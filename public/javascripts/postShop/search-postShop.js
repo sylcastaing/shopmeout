@@ -53,6 +53,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 				$scope.postshop.$error.noMagasinSelected = false;
 				var critereProp = [{
 					"magasin": $scope.selectedMagasin,
+					"adresse": $scope.adresseSelectedMagasin,
 					"date": $scope.date,
 					"nbArticle": $scope.nbArticle
 				}];

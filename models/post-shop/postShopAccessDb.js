@@ -42,7 +42,8 @@ var postShopAccessDb = {
 			PostShop.find({
 				date: { $lte: datas[0].date,
 					$gt: newDate.format()},
-				magasin: datas[0].magasin
+				magasin: datas[0].magasin,
+				adresse: datas[0].adresse
 			},
 			{
 				_id:0,
@@ -55,7 +56,8 @@ var postShopAccessDb = {
 		else if(datas[0].nbArticle != undefined && datas[0].date == undefined) {
 			PostShop.find({
 				nbArticle : datas[0].nbArticle,
-				magasin: datas[0].magasin
+				magasin: datas[0].magasin,
+				adresse: datas[0].adresse
 			},
 			{
 				_id:0,
@@ -74,7 +76,8 @@ var postShopAccessDb = {
 				date: { $lte: datas[0].date,
 					$gt: newDate.format()},
 				nbArticle : datas[0].nbArticle,
-				magasin: datas[0].magasin
+				magasin: datas[0].magasin,
+				adresse: datas[0].adresse
 			},
 			{
 				_id:0,
@@ -86,7 +89,8 @@ var postShopAccessDb = {
 		// On cherche juste avec magasin
 		else {
 			PostShop.find({
-				magasin: datas[0].magasin
+				magasin: datas[0].magasin,
+				adresse: datas[0].adresse
 			},
 			{
 				_id:0,
