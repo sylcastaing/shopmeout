@@ -14,8 +14,16 @@ var needShopValidation = {
 					err = needShopMessages.get("needShop.creation.mailShoppeur.empty");
 					isValid = false;
 		}
-		if (isValid && (datas.nomMagasin == undefined)) {
-					err = needShopMessages.get("needShop.creation.nomMagasin.empty");
+		if (isValid && (datas.nom == undefined || datas.nom == "")) {
+					err = needShopMessages.get("needShop.creation.nom.empty");
+					isValid = false;
+		}
+		if (isValid && (datas.prenom == undefined || datas.prenom == "")) {
+					err = needShopMessages.get("needShop.creation.prenom.empty");
+					isValid = false;
+		}
+		if (isValid && (datas.magasin == undefined)) {
+					err = needShopMessages.get("needShop.creation.magasin.empty");
 					isValid = false;
 		}
 		if (isValid && (datas.adresseMagasin == undefined)) {

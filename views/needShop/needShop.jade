@@ -10,6 +10,7 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 				div(class="row centered-form")
 					div.panel-body
 						div.row
+							span(class="alert alert-success col-xs-12" style="color:green", ng-show="needShop.$error.validate") La demande de shopping a bien été ajouté !
 							span(class="col-xs-12" style="color:green") Magasin Sélectionné : {{selectedMagasin}}, {{adresseSelectedMagasin}}
 						form(name="needShop", method="post", ng-submit="addNeedShop()" novalidate)
 							div.form-group

@@ -33,7 +33,8 @@ var postShopAccessDb = {
 	},
 	searchPostShop: function(datas,callback) {
 
-		if(datas[0].date != undefined) {
+		// On cherche juste avec magasin et date : 
+		if(datas[0].date != undefined && datas[0].nbArticle == undefined) {
 			var time = moment.duration("00:01:00");
 			var date = moment(datas[0].date);
 			var newDate = date.subtract(time);
@@ -50,6 +51,39 @@ var postShopAccessDb = {
 				callback(user, err);
 			});
 		}
+		// On cherche juste avec nbArticle et magasin
+		else if(datas[0].nbArticle != undefined && datas[0].date == undefined) {
+			PostShop.find({
+				nbArticle : datas[0].nbArticle,
+				magasin: datas[0].magasin
+			},
+			{
+				_id:0,
+				__v:0
+			}, function(err,user) {
+				callback(user, err);
+			});
+		}
+		// On cherche avec nbArticle, date et magasin
+		else if(datas[0].nbArticle != undefined && datas[0].date != undefined) {
+			var time = moment.duration("00:01:00");
+			var date = moment(datas[0].date);
+			var newDate = date.subtract(time);
+
+			PostShop.find({
+				date: { $lte: datas[0].date,
+					$gt: newDate.format()},
+				nbArticle : datas[0].nbArticle,
+				magasin: datas[0].magasin
+			},
+			{
+				_id:0,
+				__v:0
+			}, function(err,user) {
+				callback(user, err);
+			});
+		}
+		// On cherche juste avec magasin
 		else {
 			PostShop.find({
 				magasin: datas[0].magasin

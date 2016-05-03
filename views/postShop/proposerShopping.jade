@@ -31,7 +31,7 @@ div.container(ng-controller="SearchNeedShopCtrl")
 								div(class="col-xs-12 col-sm-12 col-md-12")
 									br
 									div.form-group
-										label(class="control-label col-sm-5" id="labelNbArticles") Je veux me faire livrer
+										label(class="control-label col-sm-5" id="labelNbArticles") Je veux livrer
 										div(class="btn-group" data-toggle="buttons-radio")
 											button(type="button" class="btn btn-primary" ng-model="nbArticle" value='0' buttons-radio="") Moins de 5 produits
 											button(type="button" class="btn btn-primary" ng-model="nbArticle" value='1' buttons-radio="") Jusqu'à 10 produits
@@ -64,9 +64,11 @@ div.container(ng-controller="SearchNeedShopCtrl")
 									p.glyphicon.glyphicon-shopping-cart
 										span(ng-bind="getNbArticles(r.nbArticle)")
 					br
-					p(ng-show="needShop.$error.magasinSelected")
-						button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
+					span(ng-show="needShop.$error.magasinSelected")
+						button(type = "button" class = "btn btn-default" alt="Ajouter une proposition de Shopping" title="Ajouter une proposition de Shopping" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
 							span(class = "glyphicon glyphicon-plus-sign" )
+							&nbsp;
+							span Ajouter une proposition
 					include ./postShop.jade
 					include ../users/signIn.jade
 

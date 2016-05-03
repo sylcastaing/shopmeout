@@ -48,7 +48,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 
 	$scope.searchNeedShop = function() {
 		var critereProp = [{
-			"magasin": $scope.selectedMagasin,
+			"nomMagasin": $scope.selectedMagasin,
 			"date": $scope.date,
 			"nbArticle": $scope.nbArticle
 		}];
@@ -58,7 +58,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 			url : '/ws-need-shop/search-needShop',
 			data : critereProp
 		}).success(function (data, status, headers, config) {
-				$scope.resultRecherche = data.postShops;
+				$scope.resultRecherche = data.needShops;
 		});
 	}
 
