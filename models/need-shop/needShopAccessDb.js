@@ -35,10 +35,10 @@ var needShopAccessDb = {
 			var date = moment(datas[0].date);
 			var newDate = date.subtract(time);
 
-			PostShop.find({
+			needShop.find({
 				date: { $lte: datas[0].date,
 					$gt: newDate.format()},
-				magasin: datas[0].magasin
+				nomMagasin: datas[0].nomMagasin
 			},
 			{
 				_id:0,
@@ -48,8 +48,8 @@ var needShopAccessDb = {
 			});
 		}
 		else {
-			PostShop.find({
-				magasin: datas[0].magasin
+			needShop.find({
+				nomMagasin: datas[0].nomMagasin
 			},
 			{
 				_id:0,

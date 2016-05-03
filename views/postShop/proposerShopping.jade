@@ -64,9 +64,11 @@ div.container(ng-controller="SearchNeedShopCtrl")
 									p.glyphicon.glyphicon-shopping-cart
 										span(ng-bind="getNbArticles(r.nbArticle)")
 					br
-					p(ng-show="needShop.$error.magasinSelected")
+					span(ng-show="needShop.$error.magasinSelected")
 						button(type = "button" class = "btn btn-default" alt="Ajouter une proposition de Shopping" title="Ajouter une proposition de Shopping" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
 							span(class = "glyphicon glyphicon-plus-sign" )
+							&nbsp;
+							span Ajouter une proposition
 					include ./postShop.jade
 					include ../users/signIn.jade
 
