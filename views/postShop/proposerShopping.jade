@@ -7,11 +7,8 @@ div.container(ng-controller="SearchPostShopCtrl")
 				div.panel-body
 					form(name="postshop", method="post", ng-submit="searchPostShop()" novalidate)
 						div.row
-							div(class="col-xs-12 col-sm-12 col-md-12")
-								button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
-									span(class = "glyphicon glyphicon-plus-sign" )
-								include ./users/signIn.jade
-								include ./needShop/needShop.jade
+								include ../users/signIn.jade
+								include ../needShop/needShop.jade
 
 block scripts-header
 	script(src="#{baseUrl}/javascripts/postShop/search-postShop.js")

@@ -23,9 +23,11 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	}
 
 	$scope.magasinChoisi = function() {
-		$scope.selectedMagasin = ($scope.mapSearch.selectedMarker!=null)?$scope.mapSearch.selectedMarker.title:"";
-		$scope.adresseSelectedMagasin = $scope.mapSearch.selectedMarker.adresse;
-		$scope.postshop.$error.magasinSelected = true;
+		if($scope.mapSearch.selectedMarker!=null) {
+			$scope.selectedMagasin = $scope.mapSearch.selectedMarker.title;
+			$scope.adresseSelectedMagasin = $scope.mapSearch.selectedMarker.adresse;
+			$scope.postshop.$error.magasinSelected = true;
+		}
 	}
 
 	$scope.checkNbArticlesRequired = function() {

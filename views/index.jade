@@ -16,7 +16,7 @@ block content
 				.row
 					.col-md-4.col-lg-4.col-sm-6
 						.thumbnail
-							img(src='#{baseUrl}/images/test_dog.jpg', alt='MatchMeNow')
+							img(src='', alt='MatchMeNow')
 							.caption
 								h3 Mon Shopping !
 								p ...
@@ -27,7 +27,7 @@ block content
 										span.glyphicon.glyphicon-search(aria-hidden='true')
 					.col-md-4.col-lg-4.col-sm-6
 						.thumbnail
-							img(src='#{baseUrl}/images/test_dog.jpg', alt='MatchMeNow')
+							img(src='', alt='MatchMeNow')
 							.caption
 								h3 Mon Shopping !
 								p ...
@@ -38,7 +38,7 @@ block content
 										span.glyphicon.glyphicon-search(aria-hidden='true')
 					.col-md-4.col-lg-4.col-sm-6
 						.thumbnail
-							img(src='#{baseUrl}/images/test_dog.jpg', alt='MatchMeNow')
+							img(src='', alt='MatchMeNow')
 							.caption
 								h3 Mon Shopping !
 								p ...
@@ -48,9 +48,9 @@ block content
 									button#btnsearch.btn.btn-default(type='button', aria-label='Search')
 										span.glyphicon.glyphicon-search(aria-hidden='true')
 			#proposerShopping.tab-pane.fade
-				include ./proposerShopping.jade
+				include ./postShop/proposerShopping.jade
 			#demanderShopping.tab-pane.fade
-				include ./demanderShopping.jade
+				include ./needShop/demanderShopping.jade
 				
 block scripts
 	script(type='text/javascript' src='#{baseUrl}/javascripts/index/index.js')
