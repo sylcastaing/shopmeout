@@ -214,4 +214,31 @@
 	 	$scope.$digest();
 	 }
 
+	};
+
+	var distanceManager = {
+
+		url: 'https://maps.googleapis.com/maps/api/distancematrix/json',
+
+		getDistance: function(depart, arrivee, callback) {
+			var service = new google.maps.DistanceMatrixService();
+			var distances = [];
+			service.getDistanceMatrix(
+			{
+				origins: depart,
+				destinations: arrivee,
+				travelMode: google.maps.TravelMode.DRIVING,
+			}, function(response, status) {
+				if (status == 'OK') {
+					for (i in response.rows) {
+						distances.push(response.rows[i].elements[0].distance.value);
+					}
+					callback(distances);
+				}
+				else {
+					callback(distances);
+				}
+			});
+		}
 	}
+
