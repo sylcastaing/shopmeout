@@ -18,7 +18,8 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 			$scope.selectedMagasin = $scope.mapSearchNeedShop.selectedMarker.title;
 			$scope.adresseSelectedMagasin = $scope.mapSearchNeedShop.selectedMarker.adresse;
 			$scope.needShop.$error.magasinSelected = true;
-			//$("#mapSearchNeedShop").hide();
+			$("#mapSearchNeedShop").hide();
+			$("#buttonValid").hide();
 		}
 	}
 
