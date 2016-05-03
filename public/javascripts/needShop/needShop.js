@@ -5,7 +5,6 @@ app.controller("NeedShopCtrl", function($scope, $http) {
  			$scope.needShop.$error.NbArticleError = false;
  		}
  	}
-console.log("totototototot");
 	$scope.addNeedShop = function() {
 		var isOK = true;
 		if($scope == undefined || $scope.data.nbArticle == undefined) {
