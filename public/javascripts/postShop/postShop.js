@@ -54,7 +54,7 @@ app.controller("PostShopCtrl", function($scope, $http) {
 					$scope.postShop.$error.message = data.err;
 				}
 				else {
-					document.location = '/';
+					$scope.postShop.$error.validate = true;
 				}
 			}).error(function (data, status, headers, config){
 				$scope.postShop.$error.addPostShop = true;
