@@ -33,21 +33,36 @@ var postShopAccessDb = {
 	},
 	searchPostShop: function(datas,callback) {
 
-		var time = moment.duration("00:01:00");
-		var date = moment(datas[0].date);
-		var newDate = date.subtract(time);
+		if(datas[0].date != undefined) {
+			var time = moment.duration("00:01:00");
+			var date = moment(datas[0].date);
+			var newDate = date.subtract(time);
 
-		PostShop.find({
-			date: { $lte: datas[0].date,
-				$gt: newDate.format()},
-			magasin: datas[0].magasin
-		},
-		{
-			_id:0,
-			__v:0
-		}, function(err,user) {
-			callback(user, err);
-		});
+			PostShop.find({
+				date: { $lte: datas[0].date,
+					$gt: newDate.format()},
+				magasin: datas[0].magasin
+			},
+			{
+				_id:0,
+				__v:0
+			}, function(err,user) {
+				callback(user, err);
+			});
+		}
+		else {
+			PostShop.find({
+				magasin: datas[0].magasin
+			},
+			{
+				_id:0,
+				__v:0
+			}, function(err,user) {
+				callback(user, err);
+			});
+		}
+
+	
 	}
 }
 
