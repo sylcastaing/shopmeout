@@ -19,7 +19,7 @@ div.container(ng-controller="SearchNeedShopCtrl")
 						div(class="animate-show alert alert-danger", ng-show="needShop.$error.noMagasinSelected")
 										span(style="color:red" ) Veuillez sélectionner un magasin sur la carte
 						div(class="alert alert-success", ng-show="needShop.$error.magasinSelected")
-										span(style="color:green" ) Magasin choisi : {{selectedMagasin}} - {{adresseSelectedMagasin}}
+										span Magasin choisi : {{selectedMagasin}} - {{adresseSelectedMagasin}}
 						div.row
 							div(class="col-xs-5")
 							div(class="col-xs-5")
