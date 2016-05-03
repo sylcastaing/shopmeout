@@ -5,7 +5,7 @@ app.controller("NeedShopCtrl", function($scope, $http) {
  			$scope.needShop.$error.NbArticleError = false;
  		}
  	}
- 		// On récupère l'adresse
+ 	// On récupère l'adresse
 	var res = $http({
 		method : 'GET',
 		url : '/ws-users/consult-profile'
@@ -13,7 +13,7 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 		if(data.user != null) {
 			$scope.adresse = data.user.adresse + " " + data.user.codePostal;
 		}
-		});
+	});
 	$scope.addNeedShop = function() {
 		var isOK = true;
 		$scope.data.adresse = $scope.adresse;

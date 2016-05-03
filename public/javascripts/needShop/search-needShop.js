@@ -4,6 +4,9 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 		mapId : "mapSearchNeedShop"
 	});
 
+	$("#mapSearchNeedShop").hide();
+	$("#buttonValid").hide();
+
 	// Initialise la map en fonction de l'adresse choisie
 	$scope.searchMapNeedShop = function() {
 		$scope.mapSearchNeedShop.init({
@@ -11,6 +14,8 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 			adresse: $scope.adresseField,
 			distance: 2000
 		});
+		$("#mapSearchNeedShop").show();
+		$("#buttonValid").show();
 	}
 
 	$scope.magasinChoisi = function() {
@@ -18,7 +23,11 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 			$scope.selectedMagasin = $scope.mapSearchNeedShop.selectedMarker.title;
 			$scope.adresseSelectedMagasin = $scope.mapSearchNeedShop.selectedMarker.adresse;
 			$scope.needShop.$error.magasinSelected = true;
-			//$("#mapSearchNeedShop").hide();
+			$("#mapSearchNeedShop").hide();
+			$("#buttonValid").hide();
+			$scope.needShop.$error.noMagasinSelected = false;
+		} else {
+			$scope.needShop.$error.noMagasinSelected = true;
 		}
 	}
 
@@ -30,7 +39,6 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
 			$scope.adresseField = data.user.adresse +" "+ data.user.codePostal +" "+data.user.ville;
-			//$scope.searchMapPostShop();
 		}
 		else {
 			$scope.adresseField = "";
