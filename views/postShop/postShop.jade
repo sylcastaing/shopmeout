@@ -9,9 +9,8 @@ div(class="modal fade" id="postShopModal" role="dialog" ng-controller="PostShopC
 			div(class="modal-body")
 				div(class="row centered-form")
 						div.panel-body
-							span(style="color:green", ng-show="postShop.$error.validate") Le shopping a bien été ajouté !
-							div.row
-								span(class="col-xs-12" style="color:green") Magasin Sélectionné : {{selectedMagasin}}, {{adresseSelectedMagasin}}
+							span(class="alert alert-success col-xs-12" style="color:green", ng-show="postShop.$error.validate") Le shopping a bien été ajouté !
+							span(class="alert alert-success col-xs-12" style="color:green") Magasin Sélectionné : {{selectedMagasin}}, {{adresseSelectedMagasin}}
 							form(name="postShop", method="post", ng-submit="addPostShop()" novalidate)
 								div.form-group
 									div.row
