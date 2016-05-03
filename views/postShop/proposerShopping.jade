@@ -15,15 +15,16 @@ div.container(ng-controller="SearchNeedShopCtrl")
 										button(type = "button" class = "btn btn-default" ng-click="searchMapNeedShop()")
 											span(class = "glyphicon glyphicon-search")
 								div#mapSearchNeedShop(class="col-sm-12 align-center" style="height:300px")
-						div.row
-							div(class="col-xs-5")
-							div(class="col-xs-5")
-								button(type = "button" class = "btn btn-default align-center" ng-click="magasinChoisi()") Valider ce magasin
 						br
+						div(class="animate-show alert alert-danger", ng-show="needShop.$error.noMagasinSelected")
+										span(style="color:red" ) Veuillez sélectionner un magasin sur la carte
+						div(class="alert alert-success", ng-show="needShop.$error.magasinSelected")
+										span(style="color:green" ) Magasin choisi : {{selectedMagasin}} - {{adresseSelectedMagasin}}
 						div.row
-							div(class="col-xs-4")
-							div(class="col-xs-5" ng-show="needShop.$error.magasinSelected")
-								p Magasin choisi : {{selectedMagasin}} - {{adresseSelectedMagasin}}
+							div(class="col-xs-5")
+							div(class="col-xs-5")
+								button#buttonValid(type = "button" class = "btn btn-default align-center" ng-click="magasinChoisi()") Valider ce magasin
+						br
 						br
 						div(ng-show="needShop.$error.magasinSelected")
 							div.row
