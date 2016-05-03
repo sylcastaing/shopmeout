@@ -52,8 +52,8 @@ div.container(ng-controller="SearchPostShopCtrl")
 						br
 						div.align-center
 							img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
-						include ./postShop/postShop.jade
-						include ./users/signIn.jade
+						include ../postShop/postShop.jade
+						include ../users/signIn.jade
 					div.row
 						div.col-xs-6(ng-repeat="r in resultRecherche")
 							div.panel.panel-default
