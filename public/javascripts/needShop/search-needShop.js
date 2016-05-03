@@ -14,10 +14,10 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 	}
 
 	$scope.magasinChoisi = function() {
-		if($scope.mapSearch.selectedMarker!=null) {
-			$scope.selectedMagasin = $scope.mapSearch.selectedMarker.title;
-			$scope.adresseSelectedMagasin = $scope.mapSearch.selectedMarker.adresse;
-			$scope.postshop.$error.magasinSelected = true;
+		if($scope.mapSearchNeedShop.selectedMarker!=null) {
+			$scope.selectedMagasin = $scope.mapSearchNeedShop.selectedMarker.title;
+			$scope.adresseSelectedMagasin = $scope.mapSearchNeedShop.selectedMarker.adresse;
+			$scope.needShop.$error.magasinSelected = true;
 			//$("#mapSearchNeedShop").hide();
 		}
 	}
@@ -50,14 +50,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 			url : '/ws-need-shop/search-needShop',
 			data : critereProp
 		}).success(function (data, status, headers, config) {
-			//if(data.postShops.length>0) {
-				console.log(data.postShops);
-
 				$scope.resultRecherche = data.postShops;
-			/*}
-			else {
-				$scope.resultRecherche = "Il n'y a pas de résultats, désolé"
-			}*/
 		});
 	}
 
@@ -81,7 +74,6 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 		link: function($scope, element, attr, ctrl) {
 			element.bind('click', function() {
 				$scope.$apply(function(scope) {
-					console.log(attr.value);
 					ctrl.$setViewValue(attr.value);
 				});
 			});

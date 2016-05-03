@@ -33,6 +33,20 @@ router.post('/needShop', function(req, res, next) {
 	});
 });
 
+router.post('/search-needShop', function(req, res, next) {
+	needShopAccessDb.searchNeedShop(req.body, function(result, err) {
+			if(!err) {
+				res.json({
+					needShops: result,
+				});
+			}
+			else {
+				console.log("erreur");
+			}
+	});
+	
+});
+
 
 
 module.exports = router;
