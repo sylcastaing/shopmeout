@@ -7,8 +7,8 @@ div.container(ng-controller="SearchPostShopCtrl")
 				div.panel-body
 					form(name="postshop", method="post", ng-submit="searchPostShop()" novalidate)
 						div.row
-								include ./../users/signIn.jade
-								include ./needShop.jade
+								include ../users/signIn.jade
+								include ../needShop/needShop.jade
 
 block scripts-header
 	script(src="#{baseUrl}/javascripts/postShop/search-postShop.js")
