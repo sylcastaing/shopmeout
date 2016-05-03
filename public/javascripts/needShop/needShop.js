@@ -1,32 +1,43 @@
 app.controller("NeedShopCtrl", function($scope, $http) {
-
+	
  	$scope.removeErrorNbArticle = function() {
  		if($scope.needShop.$error.NbArticleError) {
  			$scope.needShop.$error.NbArticleError = false;
  		}
  	}
-console.log("totototototot");
+ 	// On récupère l'adresse
+	var res = $http({
+		method : 'GET',
+		url : '/ws-users/consult-profile'
+	}).success(function (data, status, headers, config){
+		if(data.user != null) {
+			$scope.adresse = data.user.adresse + " " + data.user.codePostal;
+		}
+	});
 	$scope.addNeedShop = function() {
 		var isOK = true;
+		$scope.data.adresse = $scope.adresse;
+		console.log($scope.data.adresse);
 		if($scope == undefined || $scope.data.nbArticle == undefined) {
 			$scope.needShop.$error.NbArticleError = true;
 			isOK = false;
 		}
-		if($scope.data.codePostal == undefined) {
-			$scope.needShop.$error.codePostal = true;
+		if($scope.data.adresse == undefined) {
+			$scope.needShop.$error.adresse = true;
 			isOK = false;
 		} 
-		if($scope.data.date == undefined) {
+		if($scope.data.dateShopping == undefined) {
 			$scope.needShop.$error.dateShopping = true;
 			isOK = false;
 		} 
 		if(isOK) {
 			$scope.needShop.$error.dateShopping = false;
-			$scope.needShop.$error.codePostal = false;
+			$scope.needShop.$error.adresse = false;
 			$scope.needShop.$error.NbArticleError = false;
  			$scope.needShop.dateShopping.$invalid = false;
- 			$scope.needShop.codePostal.$invalid = false;
-		console.log($scope.data)
+ 			$scope.needShop.adresse.$invalid = false;
+			$scope.data.magasin = $scope.selectedMagasin;
+			$scope.data.adresseMagasin = $scope.adresseSelectedMagasin;
 		var res = $http({
 			method : 'POST',
 			url : '/ws-need-shop/needShop',
@@ -37,7 +48,7 @@ console.log("totototototot");
 				$scope.needShop.$error.message = data.err;
 			}
 			else {
-				document.location = '/';
+				$scope.needShop.$error.validate = true;
 			}
 		}).error(function (data, status, headers, config){
 			$scope.needShop.$error.addNeedShop = true;

@@ -8,33 +8,34 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 				h4(class="modal-title") Demander un shopping
 			div(class="modal-body")
 				div(class="row centered-form")
-					div(class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4")
-						div.panel-body
-							form(name="needShop", method="post", ng-submit="addNeedShop()" novalidate)
+					div.panel-body
+						div.row
+							span(class="alert alert-success col-xs-12", ng-show="needShop.$error.validate") La demande de shopping a bien été ajouté !
+							span(class="alert alert-info col-xs-12") Magasin Sélectionné : {{selectedMagasin}}, {{adresseSelectedMagasin}}
+						form(name="needShop", method="post", ng-submit="addNeedShop()" novalidate)
+							div.form-group
 								div.row
-									div(class="col-xs-12 col-sm-12 col-md-12")
-										div.form-group
-											label(class="control-label col-sm-5" id="labelNbArticles") J'ai besoin de 
-											div(class="btn-group" data-toggle="buttons-radio") 
-												button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='0' buttons-radio="" ng-click="removeErrorNbArticle()") Moins de 5 produits
-												button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='1' buttons-radio="" ng-click="removeErrorNbArticle()") Jusqu'à 10 produits
-												button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='2' buttons-radio="" ng-click="removeErrorNbArticle()") Plus de 10 produits
-												span(style="color:red", ng-show="needShop.$error.NbArticleError") le nombre d'article est obligatoire.
+									label(class="control-label col-xs-12" id="labelNbArticles") J'ai besoin de :
 								div.row
-									div(class="col-xs-12 col-sm-12 col-md-12")
-										div.form-group
-											label(class="control-label col-sm-5" id="labelCodePostal") Je choisis mon code postal
-											div(class="col-sm-7")
-												input(class="form-control input-sm", type="text", name="codePostal", placeholder="Votre code postal", ng-model="data.codePostal" ng-model-options="{timezone:'-0000'}" required)
-											div
-												span(style="color:red", ng-show="(needShop.codePostal.$touched && needShop.codePostal.$invalid) || needShop.$error.codePostal") Le code postal est obligatoire.
+									div(class="btn-group col-xs-12" data-toggle="buttons-radio") 
+										button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='0' buttons-radio="" ng-click="removeErrorNbArticle()") Moins de 5 produits
+										button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='1' buttons-radio="" ng-click="removeErrorNbArticle()") Jusqu'à 10 produits
+										button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='2' buttons-radio="" ng-click="removeErrorNbArticle()") Plus de 10 produits
+										span(style="color:red", ng-show="needShop.$error.NbArticleError") le nombre d'article est obligatoire.
+							div.form-group
 								div.row
-									div.form-group
-										label(class="control-label col-sm-5" id="labelDate") Date du shopping
-										div(class="col-sm-7")
-											input(class="form-control input-sm", type="date", name="dateShopping", placeholder="Date du Shopping", ng-model="data.date" ng-model-options="{timezone:'-0000'}" required)
-										div
-											span(style="color:red", ng-show="(needShop.dateShopping.$touched && needShop.dateShopping.$invalid) || needShop.$error.dateShopping") La date du shopping est obligatoire.
+									label(class="control-label col-xs-12" id="labelAdresse") Mon adresse de livraison :
+								div.row
+									div(class="col-xs-12")
+										input(class="form-control input-sm", type="text", name="adresse", placeholder="Votre adresse de livraison", ng-model="adresse" required)
+										span(style="color:red", ng-show="(needShop.adresse.$touched && needShop.adresse.$invalid) || needShop.$error.adresse") L'adresse est obligatoire.
+							div.form-group
+								div.row
+									label(class="control-label col-xs-12" id="labelDate") Date du shopping :
+								div.row
+									div(class="col-xs-12")
+										input(class="form-control input-sm", type="date", name="dateShopping", placeholder="Date du Shopping", ng-model="data.dateShopping" ng-model-options="{timezone:'-0000'}" required)
+										span(style="color:red", ng-show="(needShop.dateShopping.$touched && needShop.dateShopping.$invalid) || needShop.$error.dateShopping") La date du shopping est obligatoire.
 								br
 								div(class="alert alert-danger", ng-show="needShop.$error.addNeedShop")
 									span(style="color:red" ) {{needShop.$error.message}}

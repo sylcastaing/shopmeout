@@ -1,32 +1,33 @@
-app.controller("SearchPostShopCtrl", function($scope, $http) {
+app.controller("SearchNeedShopCtrl", function($scope, $http) {
 
-	$scope.mapSearch = shopMap.init({
-		mapId : "mapSearchPostShop"
+	$scope.mapSearchNeedShop = shopMap.init({
+		mapId : "mapSearchNeedShop"
 	});
 
-	$("#mapSearchPostShop").hide();
+	$("#mapSearchNeedShop").hide();
 	$("#buttonValid").hide();
 
-	$scope.searchMapPostShop = function() {
-		$scope.mapSearch.init({
-			mapId : "mapSearchPostShop",
+	// Initialise la map en fonction de l'adresse choisie
+	$scope.searchMapNeedShop = function() {
+		$scope.mapSearchNeedShop.init({
+			mapId : "mapSearchNeedShop",
 			adresse: $scope.adresseField,
 			distance: 2000
 		});
-		$("#mapSearchPostShop").show();
+		$("#mapSearchNeedShop").show();
 		$("#buttonValid").show();
 	}
 
 	$scope.magasinChoisi = function() {
-		if($scope.mapSearch.selectedMarker!=null) {
-			$scope.selectedMagasin = $scope.mapSearch.selectedMarker.title;
-			$scope.adresseSelectedMagasin = $scope.mapSearch.selectedMarker.adresse;
-			$scope.postshop.$error.magasinSelected = true;
-			$("#mapSearchPostShop").hide();
+		if($scope.mapSearchNeedShop.selectedMarker!=null) {
+			$scope.selectedMagasin = $scope.mapSearchNeedShop.selectedMarker.title;
+			$scope.adresseSelectedMagasin = $scope.mapSearchNeedShop.selectedMarker.adresse;
+			$scope.needShop.$error.magasinSelected = true;
+			$("#mapSearchNeedShop").hide();
 			$("#buttonValid").hide();
-			$scope.postshop.$error.noMagasinSelected = false;
+			$scope.needShop.$error.noMagasinSelected = false;
 		} else {
-				$scope.postshop.$error.noMagasinSelected = true;
+			$scope.needShop.$error.noMagasinSelected = true;
 		}
 	}
 
@@ -45,27 +46,20 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	});
 
 
-	$scope.searchPostShop = function() {
-			if($scope.mapSearch.selectedMarker==null) {
-				$scope.postshop.$error.noMagasinSelected = true;
-			}
-			else {
-				$scope.postshop.$error.noMagasinSelected = false;
-				var critereProp = [{
-					"magasin": $scope.selectedMagasin,
-					"adresse": $scope.adresseSelectedMagasin,
-					"date": $scope.date,
-					"nbArticle": $scope.nbArticle
-				}];
+	$scope.searchNeedShop = function() {
+		var critereProp = [{
+			"nomMagasin": $scope.selectedMagasin,
+			"date": $scope.date,
+			"nbArticle": $scope.nbArticle
+		}];
 
-				var res = $http({
-					method : 'POST',
-					url : '/ws-post-shop/search-postShop',
-					data : critereProp
-				}).success(function (data, status, headers, config) {
-						$scope.resultRecherche = data.postShops;
-				});
-			}
+		var res = $http({
+			method : 'POST',
+			url : '/ws-need-shop/search-needShop',
+			data : critereProp
+		}).success(function (data, status, headers, config) {
+				$scope.resultRecherche = data.needShops;
+		});
 	}
 
 	$scope.getNbArticles = function(idNbArticle) {
@@ -88,7 +82,6 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		link: function($scope, element, attr, ctrl) {
 			element.bind('click', function() {
 				$scope.$apply(function(scope) {
-					console.log(attr.value);
 					ctrl.$setViewValue(attr.value);
 				});
 			});
