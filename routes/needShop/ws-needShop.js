@@ -11,6 +11,8 @@ router.post('/needShop', function(req, res, next) {
 	if (req.isAuthenticated()) {
 		if(req.session.passport.user.prenom) {
 			req.body.mailShoppeur = req.session.passport.user.email;
+			req.body.nom = req.session.passport.user.nom;
+			req.body.prenom = req.session.passport.user.prenom;
 		}
 	}
 	// Vérification des données

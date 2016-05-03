@@ -36,7 +36,7 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 			$scope.needShop.$error.NbArticleError = false;
  			$scope.needShop.dateShopping.$invalid = false;
  			$scope.needShop.adresse.$invalid = false;
-			$scope.data.nomMagasin = $scope.selectedMagasin;
+			$scope.data.magasin = $scope.selectedMagasin;
 			$scope.data.adresseMagasin = $scope.adresseSelectedMagasin;
 		var res = $http({
 			method : 'POST',
@@ -48,7 +48,7 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 				$scope.needShop.$error.message = data.err;
 			}
 			else {
-				document.location = '/';
+				$scope.needShop.$error.validate = true;
 			}
 		}).error(function (data, status, headers, config){
 			$scope.needShop.$error.addNeedShop = true;
