@@ -1,5 +1,5 @@
 app.controller("NeedShopCtrl", function($scope, $http) {
-
+	
  	$scope.removeErrorNbArticle = function() {
  		if($scope.needShop.$error.NbArticleError) {
  			$scope.needShop.$error.NbArticleError = false;
@@ -36,6 +36,8 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 			$scope.needShop.$error.NbArticleError = false;
  			$scope.needShop.dateShopping.$invalid = false;
  			$scope.needShop.adresse.$invalid = false;
+			$scope.data.nomMagasin = $scope.selectedMagasin;
+			$scope.data.adresseMagasin = $scope.adresseSelectedMagasin;
 		var res = $http({
 			method : 'POST',
 			url : '/ws-need-shop/needShop',

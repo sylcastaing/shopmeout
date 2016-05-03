@@ -3,7 +3,7 @@ div.container(ng-controller="SearchPostShopCtrl")
 		div(class="col-xs-12 col-sm-12 col-md-12")
 			div(class="panel panel-default")
 				div(class="panel-heading")
-					h1(class="panel-title")="Rechercher une demande de Shopping"
+					h1(class="panel-title")="Rechercher une proposition de Shopping"
 				div.panel-body
 					form(name="postshop", method="post", ng-submit="searchPostShop()" novalidate)
 						div.row
@@ -52,8 +52,12 @@ div.container(ng-controller="SearchPostShopCtrl")
 						br
 						div.align-center
 							img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
-						include ../postShop/postShop.jade
-						include ../users/signIn.jade
+						br
+					p(ng-show="postshop.$error.magasinSelected")
+						button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
+							span(class = "glyphicon glyphicon-plus-sign" )
+					include ../needShop/needShop.jade
+					include ../users/signIn.jade
 					div.row
 						div.col-xs-6(ng-repeat="r in resultRecherche")
 							div.panel.panel-default
@@ -70,4 +74,4 @@ div.container(ng-controller="SearchPostShopCtrl")
 
 block scripts-header
 	script(src="#{baseUrl}/javascripts/postShop/search-postShop.js")
-	script(src="#{baseUrl}/javascripts/postShop/postShop.js")
+	script(src="#{baseUrl}/javascripts/needShop/needShop.js")
