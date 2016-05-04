@@ -16,6 +16,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 		});
 		$("#mapSearchNeedShop").show();
 		$("#buttonValid").show();
+		$scope.erreurMessage = false;
 	}
 
 	$scope.magasinChoisi = function() {
@@ -59,6 +60,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 			data : critereProp
 		}).success(function (data, status, headers, config) {
 				$scope.resultRecherche = data.needShops;
+				$scope.erreurMessage = true;
 		});
 	}
 
