@@ -27,6 +27,7 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 								div.row
 									div(class="col-xs-12")
 										input(class="form-control input-sm", type="text", name="adresse", placeholder="Votre adresse de livraison", ng-model="adresse" required)
+										span(style="color:red", ng-show="(needShop.adresse.$touched && needShop.adresse.$invalid) || needShop.$error.adresse") L'adresse est obligatoire.
 										span(style="color:red", ng-show="needShop.adresse.$invalid || needShop.$error.adresse") L'adresse est obligatoire.
 							div.form-group
 								div.row
@@ -34,12 +35,14 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 								div.row
 									div(class="col-xs-12")
 										input(class="form-control input-sm", type="date", name="dateShopping", placeholder="Date du Shopping", ng-model="data.dateShopping" ng-model-options="{timezone:'-0000'}" required)
-										span(style="color:red", ng-show="needShop.$error.dateShopping") La date du shopping est obligatoire.
+										span(style="color:red", ng-show="(needShop.dateShopping.$touched && needShop.dateShopping.$invalid) || needShop.$error.dateShopping") La date du shopping est obligatoire.
 								br
+								span(style="color:red" ) form:  {{needShop.$invalid}} 
+								span(style="color:red" ) nbr{{$scope.needShop.$error.NbArticleError}}
 								div(class="alert alert-danger", ng-show="needShop.$error.addNeedShop")
 									span(style="color:red" ) {{needShop.$error.message}}
 								div.actions
-									input(type="submit", value="Ajouter", class="btn btn-info btn-block")
+									input(type="submit", value="Ajouter",  ng-disabled="needShop.$invalid", class="btn btn-info btn-block")
 								br
 			div(class="modal-footer")
 				button(type="button" class="btn btn-default" data-dismiss="modal") Close
