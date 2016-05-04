@@ -6,18 +6,6 @@ router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Shop Me Out' });
 });
 
-router.get('/#/home', function(req, res, next) {
-	res.render('index', { title: 'Shop Me Out' });
-});
-
-router.get('/#/proposerShopping', function(req, res, next) {
-	res.render('search-postShop', { title: 'Shop Me Out' });
-});
-
-router.get('/#/demanderShopping', function(req, res, next) {
-	res.render('search-postShop', { title: 'Shop Me Out' });
-});
-
 router.get('/mentions-legales', function(req, res, next) {
 	res.render('mentionslegales', { title: 'Mentions Légales' });
 });
