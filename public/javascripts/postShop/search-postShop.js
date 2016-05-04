@@ -15,6 +15,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		});
 		$("#mapSearchPostShop").show();
 		$scope.showDiv = false;
+		$scope.erreurMessage = false;
 	}
 
 	$scope.magasinChoisi = function() {
@@ -63,6 +64,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 					url : '/ws-post-shop/search-postShop',
 					data : critereProp
 				}).success(function (data, status, headers, config) {
+						$scope.erreurMessage = true;
 						$scope.resultRecherche = data.postShops;
 				});
 			}

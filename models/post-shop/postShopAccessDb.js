@@ -55,7 +55,7 @@ var postShopAccessDb = {
 		// On cherche juste avec nbArticle et magasin
 		else if(datas[0].nbArticle != undefined && datas[0].date == undefined) {
 			PostShop.find({
-				nbArticle : datas[0].nbArticle,
+				nbArticle: { $gte: datas[0].nbArticle },
 				magasin: datas[0].magasin,
 				adresse: datas[0].adresse
 			},
