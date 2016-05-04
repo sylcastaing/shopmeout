@@ -9,9 +9,8 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 			div(class="modal-body")
 				div(class="row centered-form")
 					div.panel-body
-						div.row
-							span(class="alert alert-success col-xs-12", ng-show="needShop.$error.validate") La demande de shopping a bien été ajouté !
-							span(class="alert alert-info col-xs-12") Magasin Sélectionné : {{selectedMagasin}}, {{adresseSelectedMagasin}}
+						span(class="alert alert-success col-xs-12", ng-show="needShop.$error.validate") La demande de shopping a bien été ajouté !
+						span(class="alert alert-info col-xs-12") Magasin Sélectionné : {{selectedMagasin}}, {{adresseSelectedMagasin}}
 						form(name="needShop", method="post", ng-submit="addNeedShop()" novalidate)
 							div.form-group
 								div.row
@@ -28,14 +27,14 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 								div.row
 									div(class="col-xs-12")
 										input(class="form-control input-sm", type="text", name="adresse", placeholder="Votre adresse de livraison", ng-model="adresse" required)
-										span(style="color:red", ng-show="(needShop.adresse.$touched && needShop.adresse.$invalid) || needShop.$error.adresse") L'adresse est obligatoire.
+										span(style="color:red", ng-show="needShop.adresse.$invalid || needShop.$error.adresse") L'adresse est obligatoire.
 							div.form-group
 								div.row
-									label(class="control-label col-xs-12" id="labelDate") Date du shopping :
+									label(class="control-label col-xs-12 align-center" id="labelDate") Date du shopping :
 								div.row
 									div(class="col-xs-12")
 										input(class="form-control input-sm", type="date", name="dateShopping", placeholder="Date du Shopping", ng-model="data.dateShopping" ng-model-options="{timezone:'-0000'}" required)
-										span(style="color:red", ng-show="(needShop.dateShopping.$touched && needShop.dateShopping.$invalid) || needShop.$error.dateShopping") La date du shopping est obligatoire.
+										span(style="color:red", ng-show="needShop.$error.dateShopping") La date du shopping est obligatoire.
 								br
 								div(class="alert alert-danger", ng-show="needShop.$error.addNeedShop")
 									span(style="color:red" ) {{needShop.$error.message}}

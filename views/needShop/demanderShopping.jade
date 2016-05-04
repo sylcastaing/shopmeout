@@ -1,4 +1,4 @@
-div.container(ng-controller="SearchPostShopCtrl")
+div(ng-controller="SearchPostShopCtrl")
 	div(class="row centered-form")
 		div(class="col-xs-12 col-sm-12 col-md-12")
 			div(class="panel panel-default")
@@ -23,7 +23,7 @@ div.container(ng-controller="SearchPostShopCtrl")
 						div.row
 							div(class="col-xs-5")
 							div(class="col-xs-5")
-								button#buttonValid(type = "button" class ="btn btn-default align-center" ng-click="magasinChoisi()") Valider ce magasin
+								button#buttonValid(type = "button" class ="btn btn-default align-center" ng-click="magasinChoisi()" ng-show="!showDiv") Valider ce magasin
 						br
 						div(ng-show="postshop.$error.magasinSelected")
 							div.row
@@ -46,29 +46,29 @@ div.container(ng-controller="SearchPostShopCtrl")
 									div.col-xs-3
 									span(style="color:red", ng-show="postshop.$error.nbArticleRequired") Veuillez préciser le nombre d'articles souhaités
 							
-								div(class="col-xs-5")
-								div(class="col-xs-3 actions")
+								div(class="actions"  style="text-align: center")
 									br
-									input(type="submit", ng-disabled="dataLoading", value="Rechercher", class="btn btn-info btn-block")
+									input(style="display: inline-block; width: 200px" type="submit", ng-disabled="dataLoading", value="Rechercher", class="btn btn-info btn-block")
 								div.align-center
 									img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
 								br
 							div.row
 								br
 							div.row
-								div.col-xs-1
-								div.col-xs-5(ng-repeat="r in resultRecherche" ng-if="resultRecherche.length > 0")
-									div.panel.panel-default
-										div.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
-										div.panel-body
-											p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
-											br
-											p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
-											br
-											p.glyphicon.glyphicon-user {{r.nbShoppeur}}
-											br
-											p.glyphicon.glyphicon-shopping-cart
-												span(ng-bind="getNbArticles(r.nbArticle)")
+								.col-md-10.col-md-offset-1
+									.row
+										div.col-xs-6(ng-repeat="r in resultRecherche" ng-if="resultRecherche.length > 0")
+											div.panel.panel-default
+												div.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
+												div.panel-body
+													p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
+													br
+													p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
+													br
+													p.glyphicon.glyphicon-user {{r.nbShoppeur}}
+													br
+													p.glyphicon.glyphicon-shopping-cart
+														span(ng-bind="getNbArticles(r.nbArticle)")
 							div.row
 								div(ng-if="resultRecherche.length == 0" class="animate-show alert alert-danger")
 									span(style="color:red" ) Il n y a pas de résultats, désolé !
