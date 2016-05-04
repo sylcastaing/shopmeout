@@ -16,6 +16,8 @@ block content
 				br
 				.row
 					.col-xs-6(ng-repeat="r in resultRandomPostShops")
+						// TODO : Les propositions à gauche et les demandes à droite
+						// Une row avec ng-repeat dans les col
 						.panel.panel-default
 							.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
 							.panel-body
