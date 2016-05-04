@@ -13,40 +13,36 @@ block content
 					a.item(href='#demanderShopping', data-toggle="tab", role="tab", aria-controls="demanderShopping") Je demande un shopping !
 		.tab-content
 			#home.tab-pane.fade.in.active
+				br
 				.row
-					.col-md-4.col-lg-4.col-sm-6
-						.thumbnail
-							img(src='', alt='MatchMeNow')
-							.caption
-								h3 Mon Shopping !
-								p ...
-								p
-									button#btnshopcart.btn.btn-default(type='button', aria-label='Shopping cart')
-										span.glyphicon.glyphicon-shopping-cart(aria-hidden='true')
-									button#btnsearch.btn.btn-default(type='button', aria-label='Search')
-										span.glyphicon.glyphicon-search(aria-hidden='true')
-					.col-md-4.col-lg-4.col-sm-6
-						.thumbnail
-							img(src='', alt='MatchMeNow')
-							.caption
-								h3 Mon Shopping !
-								p ...
-								p
-									button#btnshopcart.btn.btn-default(type='button', aria-label='Shopping cart')
-										span.glyphicon.glyphicon-shopping-cart(aria-hidden='true')
-									button#btnsearch.btn.btn-default(type='button', aria-label='Search')
-										span.glyphicon.glyphicon-search(aria-hidden='true')
-					.col-md-4.col-lg-4.col-sm-6
-						.thumbnail
-							img(src='', alt='MatchMeNow')
-							.caption
-								h3 Mon Shopping !
-								p ...
-								p
-									button#btnshopcart.btn.btn-default(type='button', aria-label='Shopping cart')
-										span.glyphicon.glyphicon-shopping-cart(aria-hidden='true')
-									button#btnsearch.btn.btn-default(type='button', aria-label='Search')
-										span.glyphicon.glyphicon-search(aria-hidden='true')
+					.col-sm-6
+						label Les 3 dernières propositions de shopping :
+						.row(ng-repeat="r in resultRandomPostShops")
+							.panel.panel-default
+								.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
+								.panel-body
+									p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
+									br
+									p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
+									br
+									p.glyphicon.glyphicon-user {{r.nbShoppeur}}
+									br
+									p.glyphicon.glyphicon-shopping-cart
+										span(ng-bind="getNbArticles(r.nbArticle)")
+					.col-sm-6
+						label Les 3 dernières demandes de shopping :
+						.row(ng-repeat="r in resultRandomPostShops")
+							.panel.panel-default
+								.panel-heading Shopping demandé par {{r.prenom}} {{r.nom | firstLetter}}.
+								.panel-body
+									p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
+									br
+									p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
+									br
+									p.glyphicon.glyphicon-user {{r.nbShoppeur}}
+									br
+									p.glyphicon.glyphicon-shopping-cart
+										span(ng-bind="getNbArticles(r.nbArticle)")
 			#proposerShopping.tab-pane.fade
 				include ./postShop/proposerShopping.jade
 			#demanderShopping.tab-pane.fade

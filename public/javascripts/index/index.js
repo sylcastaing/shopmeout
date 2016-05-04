@@ -1,17 +1,4 @@
-app.controller("IndexCtrl", function($scope, $location) {
-	/*$(function(){
-		console.log("test");
-	    $('.deplie').hide(); // on masque tout 
-	    $('.bouton-deplier').click(function(event){
-	        event.preventDefault(); // on ne suit pas le lien
-	        $(this).parent().next().slideToggle();
-	    });
-	    $('.bouton-replier').click(function(event){
-	        event.preventDefault(); // on ne suit pas le lien
-	        $(this).parent().slideToggle();
-	    });
-	});*/
-
+app.controller("IndexCtrl", function($scope, $location, $http) {
 	// Gestion de la navigation des onglets avec ancre
 	var vm = this;
 	vm.currentUrl = "";
@@ -25,7 +12,35 @@ app.controller("IndexCtrl", function($scope, $location) {
 			// On bascule sur le bon onglet
 			$('#indexNavTab a[href="' + vm.ongletCourant + '"]').tab('show');
 		}
-	);
+	)
+
+	var resRandomPostShops = $http({
+			method : 'POST',
+			url : '/ws-index/search-randomPostShops',
+			data : ''
+		}).success(function (data, status, headers, config) {
+				$scope.resultRandomPostShops = data.randomPostShops;
+		});
+
+	var resRandomNeedShops = $http({
+			method : 'POST',
+			url : '/ws-index/search-randomNeedShops',
+			data : ''
+		}).success(function (data, status, headers, config) {
+				$scope.resultRandomNeedShops = data.randomNeedShops;
+		});
+
+	$scope.getNbArticles = function(idNbArticle) {
+		var res = "";
+		if (idNbArticle == 0) {
+			res = "Moins de 5";
+		} else if (idNbArticle == 1) {
+			res = "Jusqu'à 10";
+		} else if (idNbArticle == 2) {
+			res = "Plus de 10";
+		}
+		return res;
+	};
 })
 
 .directive("ngAnchor",

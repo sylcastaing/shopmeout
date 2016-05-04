@@ -1,6 +1,7 @@
 {
 	"routes": [
-		{"pattern": "/", "route": "./routes/index"},
+		{"pattern": "/", "route": "./routes/index/index"},
+		{"pattern": "/ws-index", "route": "./routes/index/ws-index"},
 		{"pattern": "/users", "route": "./routes/users/users"},
 		{"pattern": "/ws-users", "route": "./routes/users/ws-users"},
 		{"pattern": "/post-shop", "route": "./routes/postShop/postShop"},

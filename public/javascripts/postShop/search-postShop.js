@@ -4,6 +4,8 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		mapId : "mapSearchPostShop"
 	});
 
+	$("#mapSearchPostShop").hide();
+	$scope.showDiv = true;
 
 	$scope.searchMapPostShop = function() {
 		$scope.mapSearch.init({
@@ -12,7 +14,8 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			distance: 2000
 		});
 		$("#mapSearchPostShop").show();
-		$("#buttonValid").show();
+		$scope.showDiv = false;
+		$scope.erreurMessage = false;
 	}
 
 	$scope.magasinChoisi = function() {
@@ -21,7 +24,10 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			$scope.adresseSelectedMagasin = $scope.mapSearch.selectedMarker.adresse;
 			$scope.postshop.$error.magasinSelected = true;
 			$("#mapSearchPostShop").hide();
-			$("#buttonValid").hide();
+			$scope.showDiv = true;
+			$scope.postshop.$error.noMagasinSelected = false;
+		} else {
+				$scope.postshop.$error.noMagasinSelected = true;
 		}
 	}
 
@@ -33,7 +39,6 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
 			$scope.adresseField = data.user.adresse +" "+ data.user.codePostal +" "+data.user.ville;
-			//$scope.searchMapPostShop();
 		}
 		else {
 			$scope.adresseField = "";
@@ -42,26 +47,27 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 
 
 	$scope.searchPostShop = function() {
+			if($scope.mapSearch.selectedMarker==null) {
+				$scope.postshop.$error.noMagasinSelected = true;
+			}
+			else {
+				$scope.postshop.$error.noMagasinSelected = false;
+				var critereProp = [{
+					"magasin": $scope.selectedMagasin,
+					"adresse": $scope.adresseSelectedMagasin,
+					"date": $scope.date,
+					"nbArticle": $scope.nbArticle
+				}];
 
-			var critereProp = [{
-				"magasin": $scope.selectedMagasin,
-				"date": $scope.date,
-				"nbArticle": $scope.nbArticle
-			}];
-
-			var res = $http({
-				method : 'POST',
-				url : '/ws-post-shop/search-postShop',
-				data : critereProp
-			}).success(function (data, status, headers, config) {
-				//if(data.postShops.length>0) {
-
-					$scope.resultRecherche = data.postShops;
-				/*}
-				else {
-					$scope.resultRecherche = "Il n'y a pas de résultats, désolé"
-				}*/
-			});
+				var res = $http({
+					method : 'POST',
+					url : '/ws-post-shop/search-postShop',
+					data : critereProp
+				}).success(function (data, status, headers, config) {
+						$scope.erreurMessage = true;
+						$scope.resultRecherche = data.postShops;
+				});
+			}
 	}
 
 	$scope.getNbArticles = function(idNbArticle) {

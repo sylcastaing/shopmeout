@@ -31,7 +31,7 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 										span(style="color:red", ng-show="needShop.adresse.$invalid || needShop.$error.adresse") L'adresse est obligatoire.
 							div.form-group
 								div.row
-									label(class="control-label col-xs-12" id="labelDate") Date du shopping :
+									label(class="control-label col-xs-12 align-center" id="labelDate") Date du shopping :
 								div.row
 									div(class="col-xs-12")
 										input(class="form-control input-sm", type="date", name="dateShopping", placeholder="Date du Shopping", ng-model="data.dateShopping" ng-model-options="{timezone:'-0000'}" required)

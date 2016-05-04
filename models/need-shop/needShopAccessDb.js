@@ -1,6 +1,7 @@
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
+var moment = require('moment');
 var needShopModel = require('./needShopModel');
 var NeedShop = mongoose.model('needShop', needShopModel);
  
@@ -35,12 +36,12 @@ var needShopAccessDb = {
 			var date = moment(datas[0].date);
 			var newDate = date.subtract(time);
 
-			needShop.find({
-				date: { $lte: datas[0].date,
+			NeedShop.find({
+				date: { 
+					$lte: datas[0].date,
 					$gt: newDate.format()},
 				nomMagasin: datas[0].nomMagasin
-			},
-			{
+			},{
 				_id:0,
 				__v:0
 			}, function(err,user) {
@@ -48,10 +49,9 @@ var needShopAccessDb = {
 			});
 		}
 		else {
-			needShop.find({
+			NeedShop.find({
 				nomMagasin: datas[0].nomMagasin
-			},
-			{
+			},{
 				_id:0,
 				__v:0
 			}, function(err,user) {
