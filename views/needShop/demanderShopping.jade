@@ -17,41 +17,28 @@ div(ng-controller="SearchPostShopCtrl")
 								div#mapSearchPostShop(class="col-sm-12 align-center" style="height:300px")
 						br 
 						div(class="animate-show alert alert-danger", ng-show="postshop.$error.noMagasinSelected")
-										span(style="color:red" ) Veuillez sélectionner un magasin sur la carte
+										span Veuillez sélectionner un magasin sur la carte
 						div(class="alert alert-success", ng-show="postshop.$error.magasinSelected")
-										span(style="color:green" ) Magasin choisi : {{selectedMagasin}} - {{adresseSelectedMagasin}}
+										span Magasin choisi : {{selectedMagasin}} - {{adresseSelectedMagasin}}
+						div.align-center
+							button#buttonValid(type = "button" class ="btn btn-default" ng-click="magasinChoisi()" ng-show="!showDiv") Valider ce magasin
 						div.row
-							div(class="col-xs-5")
-							div(class="col-xs-5")
-								button#buttonValid(type = "button" class ="btn btn-default align-center" ng-click="magasinChoisi()" ng-show="!showDiv") Valider ce magasin
-						br
+							br
 						div.row(ng-show="postshop.$error.magasinSelected")
-							div.align-center
-								div.form-group
-									label(class="control-label col-sm-5") Date du shopping
-									div(class="col-sm-3")
-										input(class="date form-control input-sm" type="date" name="date" ng-model-options="{timezone:'-0000'}" placeholder="Date" ng-model="date")
+							div.form-group.align-center
+								label(class="control-label" id="labelNbArticles") Je veux me faire livrer
+								div(class="btn-group" data-toggle="buttons-radio")
+									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='0' buttons-radio="") Moins de 5 produits
+									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='1' buttons-radio="") Jusqu'à 10 produits
+									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='2' buttons-radio="") Plus de 10 produits
+							div.col-xs-12
 								br
+							div.align-center.col-xs-12
+								label(class="control-label") Date du shopping
+								input(class="date form-control input-sm inline-block" type="date" name="date" ng-model-options="{timezone:'-0000'}" placeholder="Date" ng-model="date")
 							div.row
-								div(class="col-xs-12 col-sm-12 col-md-12")
-									br
-									div.form-group
-										label(class="control-label col-sm-5" id="labelNbArticles") Je veux me faire livrer
-										div(class="btn-group" data-toggle="buttons-radio")
-											button(type="button" class="btn btn-primary" ng-model="nbArticle" value='0' buttons-radio="" ng-click="checkNbArticlesRequired()") Moins de 5 produits
-											button(type="button" class="btn btn-primary" ng-model="nbArticle" value='1' buttons-radio="" ng-click="checkNbArticlesRequired()") Jusqu'à 10 produits
-											button(type="button" class="btn btn-primary" ng-model="nbArticle" value='2' buttons-radio="" ng-click="checkNbArticlesRequired()") Plus de 10 produits
-									div.col-xs-2
-									div.col-xs-3
-									span(style="color:red", ng-show="postshop.$error.nbArticleRequired") Veuillez préciser le nombre d'articles souhaités
-							
-								div(class="actions"  style="text-align: center")
-									br
-									input(style="display: inline-block; width: 200px" type="submit", ng-disabled="dataLoading", value="Rechercher", class="btn btn-info btn-block")
-								div.align-center
-									img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
 								br
-							div.row
+							div(class="actions align-center")
 								br
 							div.row
 								.col-md-10.col-md-offset-1
