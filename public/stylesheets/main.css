@@ -75,3 +75,11 @@ span.label {
 .date {
 	width: 150px;
 }
+
+.inline-block {
+	display: inline-block;
+}
+
+.btn-search {
+	width: 200px;
+}
