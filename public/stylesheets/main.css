@@ -1,4 +1,4 @@
-a{
+a {
 	color: #0A68C0;
 }
 
@@ -14,33 +14,22 @@ span.label {
 	color:#000;
 }
 
-.align-center {
-	text-align: center;
+.control-label {
+	margin-right:10px;
 }
 
-.centered-form{
+.centered-form {
 	margin-top: 2%;
 }
 
-.centered-form .panel{
+.centered-form .panel {
 	background: rgba(255, 255, 255, 0.8);
 	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }
 
-.wrap-spinner {
-	text-align: center;
-}
-
-.spinner{
+.spinner {
 	width: 20px;
 	height: 5%;
-}
-#labelDate{
-	text-align:center;
-}
-
-#radioB{
-	text-align:center
 }
 
 #menu {
@@ -55,9 +44,6 @@ span.label {
 #images {
 	margin-top: 10px;
 	margin-left: 5px;
-}
-.wrap-spinner {
-	text-align: center;
 }
 
 .spinner {

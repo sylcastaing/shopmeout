@@ -23,7 +23,7 @@ div(class="modal fade" id="signInModal" role="dialog" ng-controller="SignInCtrl"
 								div.actions
 									input(type="submit", ng-disabled="dataLoading", value="Connexion", class="btn btn-info btn-block")
 								br
-								.wrap-spinner(ng-if="dataLoading")
+								.align-center(ng-if="dataLoading")
 									img(class="spinner" src="#{baseUrl}/spinner.gif")
 			div(class="modal-footer")
 				button(type="button" class="btn btn-default" data-dismiss="modal") Fermer
