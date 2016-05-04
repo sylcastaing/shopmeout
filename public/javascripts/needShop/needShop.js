@@ -36,7 +36,6 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 			$scope.needShop.$error.NbArticleError = false;
  			$scope.needShop.dateShopping.$invalid = false;
  			$scope.needShop.adresse.$invalid = false;
- 			$scope.needShop.$invalid = false;
 			$scope.data.magasin = $scope.selectedMagasin;
 			$scope.data.adresseMagasin = $scope.adresseSelectedMagasin;
 		var res = $http({
@@ -61,7 +60,6 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 				}
 				});
 			}
-
 		}).error(function (data, status, headers, config){
 			$scope.needShop.$error.addNeedShop = true;
 			$scope.needShop.$error.message = "Problème serveur";
