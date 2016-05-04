@@ -23,7 +23,7 @@ div.container(ng-controller="SearchPostShopCtrl")
 						div.row
 							div(class="col-xs-5")
 							div(class="col-xs-5")
-								button#buttonValid(type = "button" class ="btn btn-default align-center" ng-click="magasinChoisi()") Valider ce magasin
+								button#buttonValid(type = "button" class ="btn btn-default align-center" ng-click="magasinChoisi()" ng-show="!showDiv") Valider ce magasin
 						br
 						div(ng-show="postshop.$error.magasinSelected")
 							div.row
@@ -46,10 +46,9 @@ div.container(ng-controller="SearchPostShopCtrl")
 									div.col-xs-3
 									span(style="color:red", ng-show="postshop.$error.nbArticleRequired") Veuillez préciser le nombre d'articles souhaités
 							
-								div(class="col-xs-5")
-								div(class="col-xs-3 actions")
+								div(class="actions"  style="text-align: center")
 									br
-									input(type="submit", ng-disabled="dataLoading", value="Rechercher", class="btn btn-info btn-block")
+									input(style="display: inline-block; width: 200px" type="submit", ng-disabled="dataLoading", value="Rechercher", class="btn btn-info btn-block")
 								div.align-center
 									img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
 								br

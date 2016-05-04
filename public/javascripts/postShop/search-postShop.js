@@ -5,7 +5,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	});
 
 	$("#mapSearchPostShop").hide();
-	$("#buttonValid").hide();
+	$scope.showDiv = true;
 
 	$scope.searchMapPostShop = function() {
 		$scope.mapSearch.init({
@@ -14,7 +14,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			distance: 2000
 		});
 		$("#mapSearchPostShop").show();
-		$("#buttonValid").show();
+		$scope.showDiv = false;
 	}
 
 	$scope.magasinChoisi = function() {
@@ -23,7 +23,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			$scope.adresseSelectedMagasin = $scope.mapSearch.selectedMarker.adresse;
 			$scope.postshop.$error.magasinSelected = true;
 			$("#mapSearchPostShop").hide();
-			$("#buttonValid").hide();
+			$scope.showDiv = true;
 			$scope.postshop.$error.noMagasinSelected = false;
 		} else {
 				$scope.postshop.$error.noMagasinSelected = true;
