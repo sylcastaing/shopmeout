@@ -25,13 +25,12 @@ div(ng-controller="SearchPostShopCtrl")
 							div(class="col-xs-5")
 								button#buttonValid(type = "button" class ="btn btn-default align-center" ng-click="magasinChoisi()" ng-show="!showDiv") Valider ce magasin
 						br
-						div(ng-show="postshop.$error.magasinSelected")
-							div.row
-								div(class="col-xs-12 col-sm-12 col-md-12")
-									div.form-group
-										label(class="control-label col-sm-5") Date du shopping
-										div(class="col-sm-3")
-											input(class="form-control input-sm" type="date" name="date" ng-model-options="{timezone:'-0000'}" placeholder="Date" ng-model="date")
+						div.row(ng-show="postshop.$error.magasinSelected")
+							div.align-center
+								div.form-group
+									label(class="control-label col-sm-5") Date du shopping
+									div(class="col-sm-3")
+										input(class="date form-control input-sm" type="date" name="date" ng-model-options="{timezone:'-0000'}" placeholder="Date" ng-model="date")
 								br
 							div.row
 								div(class="col-xs-12 col-sm-12 col-md-12")

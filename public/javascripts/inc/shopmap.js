@@ -226,7 +226,7 @@
 			service.getDistanceMatrix(
 			{
 				origins: depart,
-				destinations: arrivee,
+				destinations: [arrivee],
 				travelMode: google.maps.TravelMode.DRIVING,
 			}, function(response, status) {
 				if (status == 'OK') {
