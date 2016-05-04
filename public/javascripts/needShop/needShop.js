@@ -49,6 +49,16 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 			}
 			else {
 				$scope.needShop.$error.validate = true;
+				$scope.data = angular.copy();
+				// On récupère l'adresse
+				var res = $http({
+					method : 'GET',
+					url : '/ws-users/consult-profile'
+				}).success(function (data, status, headers, config){
+				if(data.user != null) {
+					$scope.adresse = data.user.adresse + " " + data.user.codePostal;
+				}
+				});
 			}
 		}).error(function (data, status, headers, config){
 			$scope.needShop.$error.addNeedShop = true;
