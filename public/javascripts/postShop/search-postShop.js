@@ -66,9 +66,19 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 				}).success(function (data, status, headers, config) {
 						$scope.erreurMessage = true;
 						$scope.resultRecherche = data.postShops;
+						console.log(data.postShops);
 				});
 			}
 	}
+
+	 $scope.openMyModalView = function(id) {
+		var modalInstance = $modal.open({
+			templateUrl: 'bookShop.jade',
+			controller: 'BookShopCtrl'
+		});
+		modalInstance.id = id;
+	};
+
 
 	$scope.getNbArticles = function(idNbArticle) {
 		var res = "";
