@@ -86,12 +86,10 @@ span.label {
 
 .bgOrange.panel-default>.panel-heading {
 	background-color: #FF6100;
-	font-weight: bold;
 	color: white;
 }
 
 .bgBlue.panel-default>.panel-heading {
 	background-color: #0A68C0;
-	font-weight: bold;
 	color: white;
 }
