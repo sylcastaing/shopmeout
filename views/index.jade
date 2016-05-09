@@ -46,7 +46,7 @@ block content
 											p.glyphicon.glyphicon-user {{r.nbShoppeur}}
 											br
 											p.glyphicon.glyphicon-shopping-cart
-												span(ng-bind="getNbArticles(r.nbArticle)")
+												span {{r.nbArticle | nbArticleLabel}} articles
 					.row(ng-if="resultRandomNeedShops.length != 0")
 						.col-md-10.col-md-offset-1
 							.row
@@ -54,12 +54,12 @@ block content
 									.panel.panel-default(class="bgBlue")
 										.panel-heading Bookeur {{r.prenom}} {{r.nom | firstLetter}}. demande
 										.panel-body(class="resultCard")
-											p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
+											p.glyphicon.glyphicon-map-marker A livrer au {{r.adresse}}
 											br
 											p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
 											br
 											p.glyphicon.glyphicon-shopping-cart
-												span(ng-bind="getNbArticles(r.nbArticle)")
+												span {{r.nbArticle | nbArticleLabel}} articles
 			#proposerShopping.tab-pane.fade
 				include ./postShop/proposerShopping.jade
 			#demanderShopping.tab-pane.fade
