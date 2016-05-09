@@ -59,15 +59,14 @@ div(ng-controller="SearchNeedShopCtrl")
 												span(ng-bind="getNbArticles(r.nbArticle)")
 
 					div.row
-						.col-xs-12
-							div(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
-								span Il n y a pas de résultats, désolé !
+						div(ng-if="resultRecherche.length == 0 && erreurMessage" class="col-xs-12 animate-show alert alert-danger")
+							span Il n y a pas de résultats, désolé !
 						br
-					span(ng-show="needShop.$error.magasinSelected")
-						button(type = "button" class = "btn btn-default" alt="Ajouter une proposition de Shopping" title="Ajouter une proposition de Shopping" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
-							span(class = "glyphicon glyphicon-plus-sign" )
-							&nbsp;
-							span Ajouter une proposition
+						span(ng-show="needShop.$error.magasinSelected")
+							button(type = "button" class = "btn btn-default" alt="Ajouter une proposition de Shopping" title="Ajouter une proposition de Shopping" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
+								span(class = "glyphicon glyphicon-plus-sign" )
+								&nbsp;
+								span Ajouter une proposition
 					include ./postShop.jade
 					include ../users/signIn.jade
 
