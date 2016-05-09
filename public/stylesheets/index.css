@@ -34,6 +34,11 @@
 
 .resultCard {
 	text-align: left;
+	font-family: Georgia;
+}
+
+.resultCard .glyphicon {
+	margin-right: 8px;
 }
 
 h1 {
