@@ -17,7 +17,6 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 	$scope.addNeedShop = function() {
 		var isOK = true;
 		$scope.data.adresse = $scope.adresse;
-		console.log($scope.data.adresse);
 		if($scope == undefined || $scope.data.nbArticle == undefined) {
 			$scope.needShop.$error.NbArticleError = true;
 			isOK = false;
@@ -26,15 +25,15 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 			$scope.needShop.$error.adresse = true;
 			isOK = false;
 		} 
-		if($scope.data.dateShopping == undefined) {
-			$scope.needShop.$error.dateShopping = true;
+		if($scope.data.date == undefined) {
+			$scope.needShop.$error.date = true;
 			isOK = false;
 		} 
 		if(isOK) {
-			$scope.needShop.$error.dateShopping = false;
+			$scope.needShop.$error.date = false;
 			$scope.needShop.$error.adresse = false;
 			$scope.needShop.$error.NbArticleError = false;
- 			$scope.needShop.dateShopping.$invalid = false;
+ 			$scope.needShop.date.$invalid = false;
  			$scope.needShop.adresse.$invalid = false;
 			$scope.data.magasin = $scope.selectedMagasin;
 			$scope.data.adresseMagasin = $scope.adresseSelectedMagasin;
