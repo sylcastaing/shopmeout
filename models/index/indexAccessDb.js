@@ -12,7 +12,7 @@ var indexAccessDb = {
 		// Sélectionner les 3 dernières propositions de shoppping (les plus récentes)
 		var dateActuelle = new Date();
 		PostShop.find({
-			date: {$gt: dateActuelle}
+			date: {$gte: dateActuelle}
 		},
 		{
 			_id:0,
@@ -26,7 +26,7 @@ var indexAccessDb = {
 		// Sélectionner les 3 dernières demandes de shopping (les plus récentes)
 		var dateActuelle = new Date();
 		NeedShop.find({
-			date: {$gt: dateActuelle}
+			date: {$gte: dateActuelle}
 		},
 		{
 			_id:0,
