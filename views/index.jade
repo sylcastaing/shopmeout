@@ -15,34 +15,37 @@ block content
 			#home.tab-pane.fade.in.active
 				br
 				.row
+					// TODO : faire une classe CSS bg-color pour définir une couleur de fond
 					.col-sm-6
 						label Les 3 dernières propositions de shopping :
 						.row(ng-repeat="r in resultRandomPostShops")
-							.panel.panel-default
-								.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
-								.panel-body
-									p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
-									br
-									p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
-									br
-									p.glyphicon.glyphicon-user {{r.nbShoppeur}}
-									br
-									p.glyphicon.glyphicon-shopping-cart
-										span(ng-bind="getNbArticles(r.nbArticle)")
+							.col-md-12
+								.panel.panel-default(class="bgOrange")
+									.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
+									.panel-body
+										p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
+										br
+										p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
+										br
+										p.glyphicon.glyphicon-user {{r.nbShoppeur}}
+										br
+										p.glyphicon.glyphicon-shopping-cart
+											span(ng-bind="getNbArticles(r.nbArticle)")
 					.col-sm-6
 						label Les 3 dernières demandes de shopping :
 						.row(ng-repeat="r in resultRandomPostShops")
-							.panel.panel-default
-								.panel-heading Shopping demandé par {{r.prenom}} {{r.nom | firstLetter}}.
-								.panel-body
-									p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
-									br
-									p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
-									br
-									p.glyphicon.glyphicon-user {{r.nbShoppeur}}
-									br
-									p.glyphicon.glyphicon-shopping-cart
-										span(ng-bind="getNbArticles(r.nbArticle)")
+							.col-md-12
+								.panel.panel-default(class="bgBlue")
+									.panel-heading Shopping demandé par {{r.prenom}} {{r.nom | firstLetter}}.
+									.panel-body
+										p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
+										br
+										p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
+										br
+										p.glyphicon.glyphicon-user {{r.nbShoppeur}}
+										br
+										p.glyphicon.glyphicon-shopping-cart
+											span(ng-bind="getNbArticles(r.nbArticle)")
 			#proposerShopping.tab-pane.fade
 				include ./postShop/proposerShopping.jade
 			#demanderShopping.tab-pane.fade
