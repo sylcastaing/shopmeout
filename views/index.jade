@@ -17,42 +17,54 @@ block content
 					.col-md-12
 						.explain
 							h1 ShopMeOut : mes courses collaboratives !
-							span Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare metus feugiat libero luctus imperdiet. Proin ante lectus, pulvinar et consectetur at, posuere id sem. Cras euismod velit ut ipsum euismod, quis faucibus augue aliquam. Vivamus sed tellus varius orci volutpat placerat in vel augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse eu mattis quam. Maecenas ullamcorper tellus sed magna mollis, eget accumsan dui euismod. Maecenas eu venenatis nisl, a auctor elit. Cras finibus justo sed augue mattis, quis porta urna lacinia. Curabitur hendrerit auctor dui at varius. Praesent non risus mi. Nunc euismod ex at turpis ornare elementum id eget felis. Cras laoreet velit quam. Aenean et nibh in tellus congue convallis quis sed metus. Vestibulum auctor ex a tortor consectetur, non tempor ante consequat. Quisque nunc metus, sollicitudin ac nisi at, mattis ullamcorper enim.
-							span Aenean quis diam elit. Maecenas pretium aliquam nisl, sed tincidunt orci varius ut. Duis commodo viverra nunc, eu fermentum magna consectetur et. Morbi condimentum elit justo, quis scelerisque augue placerat in. Curabitur commodo fringilla lacinia. Nunc nisi diam, mollis ac urna vitae, ornare lobortis odio. Pellentesque consectetur facilisis felis, et consectetur lorem pharetra ut. Phasellus mattis scelerisque erat nec sollicitudin. Vestibulum vel eleifend ante, et blandit arcu. In hac habitasse platea dictumst. Pellentesque egestas ligula vel risus bibendum, eget lobortis turpis facilisis. Etiam sodales lectus sit amet sem suscipit placerat. Mauris tortor dui, rhoncus nec lectus non, volutpat aliquet ipsum.
+							p Tu as besoin d’une course mais tu n’es pas dispo ?
+							p Quelqu’un peut sûrement y aller pour toi !!!
+							p Ta solution ?
+							p Shop Me Out ou comment faire des courses collaboratives !
 				.row
 					.col-md-12
-						h2 Ils ont utilisé ShopMeOut !
-				.row
-					.col-sm-6
-						label Les 3 dernières propositions de shopping :
-						.row(ng-repeat="r in resultRandomPostShops")
+						.reasons
+							h1 Les 2 bonnes raisons d'utiliser ShopMeOut !
+							p bla bla bla
+				div(class="usersOfSMO")
+					.row
+						div(ng-if="(resultRandomPostShops.length != 0) && (resultRandomNeedShops.length != 0)")
 							.col-md-12
-								.panel.panel-default(class="bgOrange")
-									.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
-									.panel-body
-										p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
-										br
-										p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
-										br
-										p.glyphicon.glyphicon-user {{r.nbShoppeur}}
-										br
-										p.glyphicon.glyphicon-shopping-cart
-											span(ng-bind="getNbArticles(r.nbArticle)")
-					.col-sm-6
-						label Les 3 dernières demandes de shopping :
-						.row(ng-repeat="r in resRandomNeedShops")
-							.col-md-12
-								.panel.panel-default(class="bgBlue")
-									.panel-heading Shopping demandé par {{r.prenom}} {{r.nom | firstLetter}}.
-									.panel-body
-										p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
-										br
-										p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
-										br
-										p.glyphicon.glyphicon-user {{r.nbShoppeur}}
-										br
-										p.glyphicon.glyphicon-shopping-cart
-											span(ng-bind="getNbArticles(r.nbArticle)")
+								.usersOfSMO
+									h1 Ils utilisent ShopMeOut !
+					.row(ng-if="resultRandomPostShops.length != 0")
+						.col-md-10.col-md-offset-1
+							.row
+								.col-xs-4(ng-repeat="r in resultRandomPostShops")
+									.panel.panel-default(class="bgOrange")
+										.panel-heading Shoppeur {{r.prenom}} {{r.nom | firstLetter}}. propose
+										.panel-body(class="resultCard")
+											span.glyphicon.glyphicon-map-marker
+											span {{r.magasin}} - {{r.adresse}}
+											br
+											span.glyphicon.glyphicon-calendar
+											span {{r.date | date:"dd/MM/yyyy"}}
+											br
+											span.glyphicon.glyphicon-user
+											span {{r.nbShoppeur}} shoppeurs
+											br
+											span.glyphicon.glyphicon-shopping-cart
+											span {{r.nbArticle | nbArticleLabel}} articles
+					.row(ng-if="resultRandomNeedShops.length != 0")
+						.col-md-10.col-md-offset-1
+							.row
+								.col-xs-4(ng-repeat="r in resultRandomNeedShops")
+									.panel.panel-default(class="bgBlue")
+										.panel-heading Bookeur {{r.prenom}} {{r.nom | firstLetter}}. demande
+										.panel-body(class="resultCard")
+											span.glyphicon.glyphicon-map-marker 
+											span {{r.adresse}}
+											br
+											span.glyphicon.glyphicon-calendar
+											span {{r.date | date:"dd/MM/yyyy"}}
+											br
+											span.glyphicon.glyphicon-shopping-cart
+											span {{r.nbArticle | nbArticleLabel}} articles
 			#proposerShopping.tab-pane.fade
 				include ./postShop/proposerShopping.jade
 			#demanderShopping.tab-pane.fade

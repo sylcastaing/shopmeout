@@ -10,7 +10,9 @@ var NeedShop = mongoose.model('needShop', needShopModel);
 var indexAccessDb = {
 	searchRandomPostShops: function(datas,callback) {
 		// Sélectionner les 3 dernières propositions de shoppping (les plus récentes)
+		var dateActuelle = new Date();
 		PostShop.find({
+			date: {$gte: dateActuelle}
 		},
 		{
 			_id:0,
@@ -22,7 +24,9 @@ var indexAccessDb = {
 
 	searchRandomNeedShops: function(datas,callback) {
 		// Sélectionner les 3 dernières demandes de shopping (les plus récentes)
+		var dateActuelle = new Date();
 		NeedShop.find({
+			date: {$gte: dateActuelle}
 		},
 		{
 			_id:0,

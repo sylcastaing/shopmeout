@@ -1,4 +1,4 @@
-app.controller("PostShopCtrl", function($scope, $http) {
+app.controller("PostShopCtrl", function($scope, $http, $timeout) {
 
 	shopMap.init();
 
@@ -33,15 +33,14 @@ app.controller("PostShopCtrl", function($scope, $http) {
 			isOK = false;
 		}
 		if($scope.data.date == undefined) {
-			$scope.postShop.$error.dateShopping = true;
+			$scope.postShop.$error.date = true;
 			isOK = false;
 		} 
 		if(isOK) {
-			$scope.postShop.$error.dateShopping = false;
+			$scope.postShop.$error.date = false;
 			$scope.postShop.$error.distanceError = false;
 			$scope.postShop.$error.NbShoppeurError = false;
 			$scope.postShop.$error.NbArticleError = false;
-			$scope.postShop.dateShopping.$invalid = false;
 			$scope.data.magasin = $scope.selectedMagasin;
 			$scope.data.adresse = $scope.adresseSelectedMagasin;
 			var res = $http({
@@ -52,9 +51,12 @@ app.controller("PostShopCtrl", function($scope, $http) {
 				if(data.statut==false) {
 					$scope.postShop.$error.addPostShop = true;
 					$scope.postShop.$error.message = data.err;
-				}
-				else {
+				} else {
 					$scope.postShop.$error.validate = true;
+					$timeout(function() {
+						$scope.postShop.$error.validate = false;
+					}, 3000);
+					$scope.data = angular.copy();
 				}
 			}).error(function (data, status, headers, config){
 				$scope.postShop.$error.addPostShop = true;

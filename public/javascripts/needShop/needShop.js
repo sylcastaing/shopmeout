@@ -1,4 +1,4 @@
-app.controller("NeedShopCtrl", function($scope, $http) {
+app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 	
 	
  	$scope.removeErrorNbArticle = function() {
@@ -18,7 +18,6 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 	$scope.addNeedShop = function() {
 		var isOK = true;
 		$scope.data.adresse = $scope.adresse;
-		console.log($scope.data.adresse);
 		if($scope == undefined || $scope.data.nbArticle == undefined) {
 			$scope.needShop.$error.NbArticleError = true;
 			isOK = false;
@@ -27,15 +26,15 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 			$scope.needShop.$error.adresse = true;
 			isOK = false;
 		} 
-		if($scope.data.dateShopping == undefined) {
-			$scope.needShop.$error.dateShopping = true;
+		if($scope.data.date == undefined) {
+			$scope.needShop.$error.date = true;
 			isOK = false;
 		} 
 		if(isOK) {
-			$scope.needShop.$error.dateShopping = false;
+			$scope.needShop.$error.date = false;
 			$scope.needShop.$error.adresse = false;
 			$scope.needShop.$error.NbArticleError = false;
- 			$scope.needShop.dateShopping.$invalid = false;
+ 			$scope.needShop.date.$invalid = false;
  			$scope.needShop.adresse.$invalid = false;
 			$scope.data.magasin = $scope.selectedMagasin;
 			$scope.data.adresseMagasin = $scope.adresseSelectedMagasin;
@@ -47,18 +46,20 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 			if(data.statut==false) {
 				$scope.needShop.$error.addNeedShop = true;
 				$scope.needShop.$error.message = data.err;
-			}
-			else {
+			} else {
 				$scope.needShop.$error.validate = true;
+				$timeout(function() {
+					$scope.needShop.$error.validate = false;
+				}, 3000);
 				$scope.data = angular.copy();
 				// On récupère l'adresse
 				var res = $http({
 					method : 'GET',
 					url : '/ws-users/consult-profile'
 				}).success(function (data, status, headers, config){
-				if(data.user != null) {
-					$scope.adresse = data.user.adresse + " " + data.user.codePostal;
-				}
+					if(data.user != null) {
+						$scope.adresse = data.user.adresse + " " + data.user.codePostal;
+					}
 				});
 			}
 		}).error(function (data, status, headers, config){

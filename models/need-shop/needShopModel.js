@@ -7,7 +7,7 @@ var needShopModel = new Schema({
 	prenom: String,
 	magasin: String,
 	adresseMagasin: String,
-	dateShopping: Date,
+	date: Date,
 	adresse: String,
 	nbArticle: Number
 });

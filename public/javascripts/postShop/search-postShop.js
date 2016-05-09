@@ -67,22 +67,9 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 				}).success(function (data, status, headers, config) {
 						$scope.erreurMessage = true;
 						$scope.resultRecherche = data.postShops;
-						console.log(data.postShops);
 				});
 			}
 	}
-
-	$scope.getNbArticles = function(idNbArticle) {
-		var res = "";
-		if (idNbArticle == 0) {
-			res = "Moins de 5";
-		} else if (idNbArticle == 1) {
-			res = "Jusqu'à 10";
-		} else if (idNbArticle == 2) {
-			res = "Plus de 10";
-		}
-		return res;
-	};
 
 })
 .directive('buttonsRadio', function() {
@@ -92,7 +79,6 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		link: function($scope, element, attr, ctrl) {
 			element.bind('click', function() {
 				$scope.$apply(function(scope) {
-					console.log(attr.value);
 					ctrl.$setViewValue(attr.value);
 				});
 			});
