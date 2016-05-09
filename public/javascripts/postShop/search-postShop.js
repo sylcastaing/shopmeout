@@ -66,7 +66,6 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 				}).success(function (data, status, headers, config) {
 						$scope.erreurMessage = true;
 						$scope.resultRecherche = data.postShops;
-						console.log(data.postShops);
 				});
 			}
 	}
@@ -91,7 +90,6 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		link: function($scope, element, attr, ctrl) {
 			element.bind('click', function() {
 				$scope.$apply(function(scope) {
-					console.log(attr.value);
 					ctrl.$setViewValue(attr.value);
 				});
 			});

@@ -17,7 +17,6 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 	$scope.addNeedShop = function() {
 		var isOK = true;
 		$scope.data.adresse = $scope.adresse;
-		console.log($scope.data.adresse);
 		if($scope == undefined || $scope.data.nbArticle == undefined) {
 			$scope.needShop.$error.NbArticleError = true;
 			isOK = false;

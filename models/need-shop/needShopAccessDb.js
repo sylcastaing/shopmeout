@@ -31,7 +31,10 @@ var needShopAccessDb = {
 		});
 	},
 	searchNeedShop: function(datas,callback) {
-		if(datas[0].date != undefined) {
+
+		// On cherche juste avec magasin et date :
+		console.log(datas[0]) ;
+		if(datas[0].date != undefined && datas[0].nbArticle == undefined) {
 			var time = moment.duration("00:01:00");
 			var date = moment(datas[0].date);
 			var newDate = date.subtract(time);
@@ -39,20 +42,56 @@ var needShopAccessDb = {
 			NeedShop.find({
 				date: { 
 					$lte: datas[0].date,
-					$gt: newDate.format()},
-				nomMagasin: datas[0].nomMagasin
-			},{
-				_id:0,
+					$gt: newDate.format()
+				},
+				magasin: datas[0].magasin,
+				adresseMagasin: datas[0].adresseMagasin
+			},
+			{
 				__v:0
 			}, function(err,user) {
 				callback(user, err);
 			});
 		}
+		// On cherche juste avec nbArticle et magasin
+		else if(datas[0].nbArticle != undefined && datas[0].date == undefined) {
+			NeedShop.find({
+				nbArticle: { $gte: datas[0].nbArticle },
+				magasin: datas[0].magasin,
+				adresseMagasin: datas[0].adresseMagasin
+			},
+			{
+				__v:0
+			}, function(err,user) {
+				callback(user, err);
+			});
+		}
+		// On cherche avec nbArticle, date et magasin
+		else if(datas[0].nbArticle != undefined && datas[0].date != undefined) {
+			var time = moment.duration("00:01:00");
+			var date = moment(datas[0].date);
+			var newDate = date.subtract(time);
+
+			NeedShop.find({
+				date: { $lte: datas[0].date,
+					$gt: newDate.format()},
+				nbArticle : datas[0].nbArticle,
+				magasin: datas[0].magasin,
+				adresseMagasin: datas[0].adresseMagasin
+			},
+			{
+				__v:0
+			}, function(err,user) {
+				callback(user, err);
+			});
+		}
+		// On cherche juste avec magasin
 		else {
 			NeedShop.find({
-				nomMagasin: datas[0].nomMagasin
-			},{
-				_id:0,
+				magasin: datas[0].magasin,
+				adresseMagasin: datas[0].adresseMagasin
+			},
+			{
 				__v:0
 			}, function(err,user) {
 				callback(user, err);
