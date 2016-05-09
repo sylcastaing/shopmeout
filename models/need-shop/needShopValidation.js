@@ -30,8 +30,8 @@ var needShopValidation = {
 					err = needShopMessages.get("needShop.creation.adresseMagasin.empty");
 					isValid = false;
 		}
-		if (isValid && (datas.dateShopping == undefined || datas.dateShopping == "")) {
-					err = needShopMessages.get("needShop.creation.dateShopping.empty");
+		if (isValid && (datas.date == undefined || datas.date == "")) {
+					err = needShopMessages.get("needShop.creation.date.empty");
 					isValid = false;
 		}
 		if(isValid && (datas.adresse == undefined || datas.adresse == "")) {
