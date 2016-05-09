@@ -49,7 +49,8 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 
 	$scope.searchNeedShop = function() {
 		var critereProp = [{
-			"nomMagasin": $scope.selectedMagasin,
+			"magasin": $scope.selectedMagasin,
+			"adresseMagasin": $scope.adresseSelectedMagasin,
 			"date": $scope.date,
 			"nbArticle": $scope.nbArticle
 		}];
