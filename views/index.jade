@@ -40,7 +40,7 @@ block content
 											span(ng-bind="getNbArticles(r.nbArticle)")
 					.col-sm-6
 						label Les 3 dernières demandes de shopping :
-						.row(ng-repeat="r in resultRandomPostShops")
+						.row(ng-repeat="r in resRandomNeedShops")
 							.col-md-12
 								.panel.panel-default(class="bgBlue")
 									.panel-heading Shopping demandé par {{r.prenom}} {{r.nom | firstLetter}}.
