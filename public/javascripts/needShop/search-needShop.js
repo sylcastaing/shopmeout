@@ -60,16 +60,13 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 			url : '/ws-need-shop/search-needShop',
 			data : critereProp
 		}).success(function (data, status, headers, config) {
-			console.log($scope.distance);
 			if($scope.distance != undefined && $scope.distance != 3) {
 				var tabAdress = [];
 				var tabRes = [];
 				for(i in data.needShops) {
 					tabAdress.push(data.needShops[i].adresse);
 				}
-				console.log(tabAdress);
 				distanceManager.getDistance(tabAdress, $scope.adresseSelectedMagasin, function(distances) {
-					console.log("distances : " + distances);
 					for(i in distances) {
 						if($scope.distance == 0 && distances[i] < 1000) {
 							tabRes.push(data.needShops[i]);
@@ -78,7 +75,6 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 						} else if ($scope.distance == 2 && distances[i] < 10000) {
 							tabRes.push(data.needShops[i]);
 						}
-						console.log("tabRes : " + tabRes);
 					}
 					$scope.resultRecherche = tabRes;
 					$scope.erreurMessage = true;
