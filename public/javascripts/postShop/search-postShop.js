@@ -7,6 +7,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	$("#mapSearchPostShop").hide();
 	$scope.showDiv = true;
 
+
 	$scope.searchMapPostShop = function() {
 		$scope.mapSearch.init({
 			mapId : "mapSearchPostShop",

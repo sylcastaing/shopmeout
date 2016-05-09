@@ -1,5 +1,6 @@
 app.controller("NeedShopCtrl", function($scope, $http) {
 	
+	
  	$scope.removeErrorNbArticle = function() {
  		if($scope.needShop.$error.NbArticleError) {
  			$scope.needShop.$error.NbArticleError = false;

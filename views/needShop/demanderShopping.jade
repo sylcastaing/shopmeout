@@ -67,8 +67,9 @@ div(ng-controller="SearchPostShopCtrl")
 													p.glyphicon.glyphicon-shopping-cart
 														span(ng-bind="getNbArticles(r.nbArticle)")
 													p
-														button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#bookShopModal":"#signInModal")
-															span(class = "glyphicon glyphicon-shopping-cart")
+														a(href="#/demanderShopping?id={{r._id}}")
+															button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#bookShopModal":"#signInModal")
+																span(class = "glyphicon glyphicon-shopping-cart")
 							div.row
 								div(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
 									span(style="color:red" ) Il n y a pas de résultats, désolé !
@@ -76,9 +77,9 @@ div(ng-controller="SearchPostShopCtrl")
 								div(ng-show="postshop.$error.magasinSelected")
 										button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
 											span(class = "glyphicon glyphicon-plus-sign" )
-include bookShop.jade
-include needShop.jade
-include ../users/signIn.jade
+	include needShop.jade
+	include ../users/signIn.jade
+	include bookShop.jade
 
 
 block scripts-header
