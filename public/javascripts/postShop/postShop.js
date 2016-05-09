@@ -52,9 +52,9 @@ app.controller("PostShopCtrl", function($scope, $http) {
 				if(data.statut==false) {
 					$scope.postShop.$error.addPostShop = true;
 					$scope.postShop.$error.message = data.err;
-				}
-				else {
+				} else {
 					$scope.postShop.$error.validate = true;
+					$scope.data = angular.copy();
 				}
 			}).error(function (data, status, headers, config){
 				$scope.postShop.$error.addPostShop = true;
