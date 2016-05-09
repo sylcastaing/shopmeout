@@ -1,4 +1,4 @@
-app.controller("NeedShopCtrl", function($scope, $http) {
+app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 	
  	$scope.removeErrorNbArticle = function() {
  		if($scope.needShop.$error.NbArticleError) {
@@ -47,6 +47,9 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 				$scope.needShop.$error.message = data.err;
 			} else {
 				$scope.needShop.$error.validate = true;
+				$timeout(function() {
+					$scope.needShop.$error.validate = false;
+				}, 3000);
 				$scope.data = angular.copy();
 				// On récupère l'adresse
 				var res = $http({
