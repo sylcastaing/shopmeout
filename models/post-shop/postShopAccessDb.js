@@ -46,7 +46,6 @@ var postShopAccessDb = {
 				adresse: datas[0].adresse
 			},
 			{
-				_id:0,
 				__v:0
 			}, function(err,user) {
 				callback(user, err);
@@ -60,7 +59,6 @@ var postShopAccessDb = {
 				adresse: datas[0].adresse
 			},
 			{
-				_id:0,
 				__v:0
 			}, function(err,user) {
 				callback(user, err);
@@ -80,7 +78,6 @@ var postShopAccessDb = {
 				adresse: datas[0].adresse
 			},
 			{
-				_id:0,
 				__v:0
 			}, function(err,user) {
 				callback(user, err);
@@ -93,15 +90,20 @@ var postShopAccessDb = {
 				adresse: datas[0].adresse
 			},
 			{
-				_id:0,
 				__v:0
 			}, function(err,user) {
 				callback(user, err);
 			});
 		}
-
-	
+	},
+	getProposition: function(id,callback) {
+		PostShop.findOne({
+			_id: id
+		}, function(err,user) {
+			callback(user, err);
+		});
 	}
+	
 }
 
 module.exports = postShopAccessDb;
