@@ -1,4 +1,4 @@
-app.controller("NeedShopCtrl", function($scope, $http) {
+app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 	
  	$scope.removeErrorNbArticle = function() {
  		if($scope.needShop.$error.NbArticleError) {
@@ -45,18 +45,20 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 			if(data.statut==false) {
 				$scope.needShop.$error.addNeedShop = true;
 				$scope.needShop.$error.message = data.err;
-			}
-			else {
+			} else {
 				$scope.needShop.$error.validate = true;
+				$timeout(function() {
+					$scope.needShop.$error.validate = false;
+				}, 3000);
 				$scope.data = angular.copy();
 				// On récupère l'adresse
 				var res = $http({
 					method : 'GET',
 					url : '/ws-users/consult-profile'
 				}).success(function (data, status, headers, config){
-				if(data.user != null) {
-					$scope.adresse = data.user.adresse + " " + data.user.codePostal;
-				}
+					if(data.user != null) {
+						$scope.adresse = data.user.adresse + " " + data.user.codePostal;
+					}
 				});
 			}
 		}).error(function (data, status, headers, config){

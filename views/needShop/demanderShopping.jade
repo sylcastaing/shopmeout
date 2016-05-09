@@ -62,7 +62,7 @@ div(ng-controller="SearchPostShopCtrl")
 											p.glyphicon.glyphicon-user {{r.nbShoppeur}}
 											br
 											p.glyphicon.glyphicon-shopping-cart
-												span(ng-bind="getNbArticles(r.nbArticle)")
+												span {{r.nbArticle | nbArticleLabel}} articles
 					div.row
 						div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
 							span Il n y a pas de résultats, désolé !

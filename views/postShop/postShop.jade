@@ -9,7 +9,6 @@ div(class="modal fade" id="postShopModal" role="dialog" ng-controller="PostShopC
 			div(class="modal-body")
 				div(class="row centered-form")
 					div.panel-body
-						span(class="alert alert-success col-xs-12" style="color:green", ng-show="postShop.$error.validate") Le shopping a bien été ajouté !
 						span(class="alert alert-info col-xs-12") Magasin Sélectionné : {{selectedMagasin}}, {{adresseSelectedMagasin}}
 						form(name="postShop", method="post", ng-submit="addPostShop()" novalidate)
 							div.form-group
@@ -45,11 +44,12 @@ div(class="modal fade" id="postShopModal" role="dialog" ng-controller="PostShopC
 								div.row
 									label(class="control-label col-xs-3 align-center" id="labelDate") Date du shopping
 									div(class="col-xs-4")
-										input(class="form-control input-sm", type="date", name="dateShopping", placeholder="Date du Shopping", ng-model="data.date" ng-model-options="{timezone:'-0000'}" required)
-										span(style="color:red", ng-show="(postShop.dateShopping.$touched && postShop.dateShopping.$invalid) || postShop.$error.dateShopping") La date du shopping est obligatoire.
+										input(class="form-control input-sm", type="date", name="date", placeholder="Date du Shopping", ng-model="data.date" ng-model-options="{timezone:'-0000'}" required)
+										span(style="color:red", ng-show="postShop.$error.date") La date du shopping est obligatoire.
 							br
-							div(class="alert alert-danger", ng-show="postShop.$error.addPostShop")
-								span(style="color:red" ) {{postShop.$error.message}}
+							div
+								span(class="alert alert-danger", ng-show="postShop.$error.addPostShop") {{postShop.$error.message}}
+								span(class="alert alert-success col-xs-12", ng-show="postShop.$error.validate") La proposition de shopping a bien été ajoutée !
 							div.actions
 								input(type="submit", value="Ajouter", class="btn btn-info btn-block")
 							br

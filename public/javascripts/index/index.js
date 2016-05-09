@@ -30,7 +30,7 @@ app.controller("IndexCtrl", function($scope, $location, $http) {
 				$scope.resultRandomNeedShops = data.randomNeedShops;
 		});
 
-	$scope.getNbArticles = function(idNbArticle) {
+	/*$scope.getNbArticles = function(idNbArticle) {
 		var res = "";
 		if (idNbArticle == 0) {
 			res = "Moins de 5";
@@ -40,7 +40,7 @@ app.controller("IndexCtrl", function($scope, $location, $http) {
 			res = "Plus de 10";
 		}
 		return res;
-	};
+	};*/
 })
 
 .directive("ngAnchor",

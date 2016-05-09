@@ -9,7 +9,6 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 			div(class="modal-body")
 				div(class="row centered-form")
 					div.panel-body
-						span(class="alert alert-success col-xs-12", ng-show="needShop.$error.validate") La demande de shopping a bien été ajouté !
 						span(class="alert alert-info col-xs-12") Magasin Sélectionné : {{selectedMagasin}}, {{adresseSelectedMagasin}}
 						form(name="needShop", method="post", ng-submit="addNeedShop()" novalidate)
 							div.form-group
@@ -35,11 +34,12 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 									div(class="col-xs-12")
 										input(class="form-control input-sm", type="date", name="date", placeholder="Date du Shopping", ng-model="data.date" ng-model-options="{timezone:'-0000'}" required)
 										span(style="color:red", ng-show="needShop.$error.date") La date du shopping est obligatoire.
-								br
-								div(class="alert alert-danger", ng-show="needShop.$error.addNeedShop")
-									span(style="color:red" ) {{needShop.$error.message}}
-								div.actions
-									input(type="submit", value="Ajouter", class="btn btn-info btn-block")
-								br
+							br
+							div
+								span(class="col-xs-12 alert alert-danger", ng-show="needShop.$error.addNeedShop") {{needShop.$error.message}}
+								span(class="col-xs-12 alert alert-success", ng-show="needShop.$error.validate") La demande de shopping a bien été ajoutée !
+							div.actions
+								input(type="submit", value="Ajouter", class="btn btn-info btn-block")
+							br
 			div(class="modal-footer")
 				button(type="button" class="btn btn-default" data-dismiss="modal") Close
