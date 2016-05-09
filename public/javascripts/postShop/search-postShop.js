@@ -71,15 +71,6 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			}
 	}
 
-	 $scope.openMyModalView = function(id) {
-		var modalInstance = $modal.open({
-			templateUrl: 'bookShop.jade',
-			controller: 'BookShopCtrl'
-		});
-		modalInstance.id = id;
-	};
-
-
 	$scope.getNbArticles = function(idNbArticle) {
 		var res = "";
 		if (idNbArticle == 0) {
