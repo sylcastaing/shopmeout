@@ -24,7 +24,15 @@ div(ng-controller="SearchNeedShopCtrl")
 							button#buttonValid(type = "button" class = "btn btn-default inline-block" ng-click="magasinChoisi()") Valider ce magasin
 						div.row
 							br
+							
 						div.row(ng-show="needShop.$error.magasinSelected")
+							div.form-group.align-center
+								label(class="control-label" id="labelNbArticles") Distance de livraison :
+								div(class="btn-group" data-toggle="buttons-radio") 
+									button(type="button" class="btn btn-primary" ng-model="distance" value='0' buttons-radio="") Moins de 1 km
+									button(type="button" class="btn btn-primary" ng-model="distance" value='1' buttons-radio="") Jusqu'à 5 km
+									button(type="button" class="btn btn-primary" ng-model="distance" value='2' buttons-radio="") Jusqu'à 10 km
+									button(type="button" class="btn btn-primary" ng-model="distance" value='3' buttons-radio="") Plus de 10 km
 							div.form-group.align-center
 								label(class="control-label" id="labelNbArticles") Je veux livrer
 								div(class="btn-group" data-toggle="buttons-radio")
