@@ -9,7 +9,11 @@ var needShopModel = new Schema({
 	adresseMagasin: String,
 	dateShopping: Date,
 	adresse: String,
-	nbArticle: Number
+	nbArticle: Number,
+	articles: [{
+		nomArticle: String,
+		nbrArticle: Number
+	}]
 });
 
 module.exports = mongoose.model('needShop', needShopModel);

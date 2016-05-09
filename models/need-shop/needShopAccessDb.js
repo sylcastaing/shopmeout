@@ -17,7 +17,8 @@ var needShopAccessDb = {
 			adresseMagasin: datas.adresseMagasin,
 			dateShopping: datas.dateShopping,
 			adresse: datas.adresse,
-			nbArticle: datas.nbArticle
+			nbArticle: datas.nbArticle,
+			articles: datas.articles
 		}, function(err,needShop) {
 			if(err) {
 				callback(false, err);
