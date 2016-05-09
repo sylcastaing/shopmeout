@@ -21,40 +21,50 @@ block content
 							p Quelqu’un peut sûrement y aller pour toi !!!
 							p Ta solution ?
 							p Shop Me Out ou comment faire des courses collaboratives !
-				.row(ng-if="resultRandomPostShops.length != 0 && resRandomNeedShops.length != 0")
+				.row
 					.col-md-12
-						h2 Ils ont utilisé ShopMeOut !
-				.row(ng-if="resultRandomPostShops.length != 0 && resRandomNeedShops.length != 0")
-					.col-sm-6
-						label Les 3 dernières propositions de shopping :
-						.row(ng-repeat="r in resultRandomPostShops")
+						.reasons
+							h1 Les 2 bonnes raisons d'utiliser ShopMeOut !
+							p bla bla bla
+				div(class="usersOfSMO")
+					.row
+						div(ng-if="(resultRandomPostShops.length != 0) && (resultRandomNeedShops.length != 0)")
 							.col-md-12
-								.panel.panel-default(class="bgOrange")
-									.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
-									.panel-body
-										p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
-										br
-										p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
-										br
-										p.glyphicon.glyphicon-user {{r.nbShoppeur}}
-										br
-										p.glyphicon.glyphicon-shopping-cart
-											span(ng-bind="getNbArticles(r.nbArticle)")
-					.col-sm-6
-						label Les 3 dernières demandes de shopping :
-						.row(ng-repeat="r in resRandomNeedShops")
-							.col-md-12
-								.panel.panel-default(class="bgBlue")
-									.panel-heading Shopping demandé par {{r.prenom}} {{r.nom | firstLetter}}.
-									.panel-body
-										p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
-										br
-										p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
-										br
-										p.glyphicon.glyphicon-user {{r.nbShoppeur}}
-										br
-										p.glyphicon.glyphicon-shopping-cart
-											span(ng-bind="getNbArticles(r.nbArticle)")
+								.usersOfSMO
+									h1 Ils utilisent ShopMeOut !
+					.row(ng-if="resultRandomPostShops.length != 0")
+						.col-md-10.col-md-offset-1
+							.row
+								.col-xs-4(ng-repeat="r in resultRandomPostShops")
+									.panel.panel-default(class="bgOrange")
+										.panel-heading Shoppeur {{r.prenom}} {{r.nom | firstLetter}}. propose
+										.panel-body(class="resultCard")
+											span.glyphicon.glyphicon-map-marker
+											span {{r.magasin}} - {{r.adresse}}
+											br
+											span.glyphicon.glyphicon-calendar
+											span {{r.date | date:"dd/MM/yyyy"}}
+											br
+											span.glyphicon.glyphicon-user
+											span {{r.nbShoppeur}} shoppeurs
+											br
+											span.glyphicon.glyphicon-shopping-cart
+											span {{r.nbArticle | nbArticleLabel}} articles
+					.row(ng-if="resultRandomNeedShops.length != 0")
+						.col-md-10.col-md-offset-1
+							.row
+								.col-xs-4(ng-repeat="r in resultRandomNeedShops")
+									.panel.panel-default(class="bgBlue")
+										.panel-heading Bookeur {{r.prenom}} {{r.nom | firstLetter}}. demande
+										.panel-body(class="resultCard")
+											span.glyphicon.glyphicon-map-marker 
+											span {{r.adresse}}
+											br
+											span.glyphicon.glyphicon-calendar
+											span {{r.date | date:"dd/MM/yyyy"}}
+											br
+											span.glyphicon.glyphicon-shopping-cart
+											span {{r.nbArticle | nbArticleLabel}} articles
 			#proposerShopping.tab-pane.fade
 				include ./postShop/proposerShopping.jade
 			#demanderShopping.tab-pane.fade
