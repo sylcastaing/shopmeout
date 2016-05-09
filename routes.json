@@ -1,7 +1,12 @@
 {
 	"routes": [
-		{"pattern": "/", "route": "./routes/index"},
+		{"pattern": "/", "route": "./routes/index/index"},
+		{"pattern": "/ws-index", "route": "./routes/index/ws-index"},
 		{"pattern": "/users", "route": "./routes/users/users"},
-		{"pattern": "/ws-users", "route": "./routes/users/ws-users"}
+		{"pattern": "/ws-users", "route": "./routes/users/ws-users"},
+		{"pattern": "/post-shop", "route": "./routes/postShop/postShop"},
+		{"pattern": "/ws-post-shop", "route": "./routes/postShop/ws-postShop"},
+		{"pattern": "/need-shop", "route": "./routes/needShop/needShop"},
+		{"pattern": "/ws-need-shop", "route": "./routes/needShop/ws-needShop"}
 	]
 }

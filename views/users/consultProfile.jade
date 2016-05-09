@@ -2,7 +2,7 @@ extends ../layout
 
 
 block content
-	div.angular-content(ng-app="sample" ng-controller="ConsultProfileCtrl" style="display:none;")
+	div.angular-content(ng-controller="ConsultProfileCtrl" style="display:none;")
 		div(class="panel panel-info")
 			div(class="panel-heading")
 				h3(class="panel-title") Bienvenue sur votre profil {{user.prenom}} !
@@ -12,38 +12,38 @@ block content
 						table(class="table table-user-information")
 							tbody
 								tr
-									td Email:
+									td Email :
 									td {{user.email}}
 								tr
 								tr
-									td Nom:
+									td Nom :
 									td {{user.nom}}
 								tr
 								tr
-									td Prénom:
+									td Prénom :
 									td {{user.prenom}}
 								tr
-									td Adresse:
+									td Adresse :
 									td {{user.adresse}}
 								tr
 								tr
-									td Code Postal:
+									td Code Postal :
 									td {{user.codePostal}}
 								tr
 								tr
-									td Ville:
+									td Ville :
 									td {{user.ville}}
 								tr
 								tr
-									td Telephone:
+									td Téléphone :
 									td {{user.telephone}}
 								tr
 								tr
-									td Sexe:
+									td Sexe :
 									td {{user.sexe}}
 								tr
 								tr
-									td Date de naissance:
+									td Date de naissance :
 									td {{user.dateNaissance | date:"dd/MM/yyyy"}}
 								tr
 								tr

@@ -1,28 +1,30 @@
-extends ../layout
+div(class="modal fade" id="signInModal" role="dialog" ng-controller="SignInCtrl")
+	div(class="modal-dialog")
 
-block content
-	div.angular-content(ng-app="sample" ng-controller="SignCtrl")
-		div(class="row centered-form")
-			div(class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4")
-				div(class="panel panel-default")
-					div(class="panel-heading")
-						h1(class="panel-title")=title
-					div.panel-body
-						form(name="signin", method="post", ng-submit="connectClient()" novalidate)
-							div.form-group
-								label(for="login") Login
-								input(type="text",class="form-control", id="email", placeholder="Entrez votre Email", ng-model="user.email")
-							div.form-group
-								label(for="password") Mot de passe
-								input(type="password", class="form-control", id="password", placeholder="Entrez votre Mot de passe", ng-model="motDePasse")
+		// Modal content
+		div(class="modal-content")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal") &times;
+				h4(class="modal-title") Connexion
+			div(class="modal-body")
+				div(class="row centered-form")
+					div(class="col-xs-12")
+						div.panel-body
+							form(name="signin", method="post", ng-submit="connectClient()" novalidate)
+								div.form-group
+									label(for="login") Login
+									input(type="text",class="form-control", id="email", placeholder="Entre ton mot de passe", ng-model="user.email")
+								div.form-group
+									label(for="password") Mot de passe
+									input(type="password", class="form-control", id="password", placeholder="Entre ton mot de passe", ng-model="motDePasse")
+									br
+									div(class="alert alert-danger", ng-show="signin.$error.login")
+										span(style="color:red" ) {{signin.$error.message}}
+								div.actions
+									input(type="submit", ng-disabled="dataLoading", value="Connexion", class="btn btn-info btn-block")
 								br
-								div(class="alert alert-danger", ng-show="signin.$error.login")
-									span(style="color:red" ) {{signin.$error.message}}
-							div.actions
-								input(type="submit", ng-disabled="dataLoading", value="Connexion", class="btn btn-info btn-block")
-							br
-							.wrap-spinner(ng-if="dataLoading")
-								img(class="spinner" src="#{baseUrl}/spinner.gif")
-block scripts-header
-	script(src="#{baseUrl}/javascripts/users/userSignIn.js")
+								.align-center(ng-if="dataLoading")
+									img(class="spinner" src="#{baseUrl}/spinner.gif")
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default" data-dismiss="modal") Fermer
 
