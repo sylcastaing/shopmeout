@@ -1,0 +1,22 @@
+div(class="modal fade" id="bookShopModal" role="dialog" ng-controller="BookShopCtrl")
+	div(class="modal-dialog")
+
+		// Modal content
+		div(class="modal-content")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal") &times;
+				h4(class="modal-title") Reserver un shopping
+			div(class="modal-body")
+				div(class="row centered-form")
+					div.panel-body
+						form(name="postShop", method="post", ng-submit="bookShop()" novalidate)
+							div.form-group
+								div.row
+									p {{test}}
+							div.form-group
+								div.row
+									label(class="control-label col-xs-12" id="labelAdresse") Votre adresse de livraison :
+									input.form-control(type="text", ng-model="adresseField" placeholder="Adresse")
+
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default" data-dismiss="modal") Fermer

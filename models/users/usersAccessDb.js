@@ -7,11 +7,6 @@ var usersMessages = require('properties-reader')('messages/users.messages.proper
 
 var usersAccessDb = {
 
-	// url de la BDD
-	urlBase: 'mongodb://localhost:27017/shopmeout',
-	// collection de la base de données
-	collectionBase : 'users',
-
 	createUser: function(datas, callback) {
 		User.create({
 			email: datas.email,

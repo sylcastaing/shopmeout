@@ -1,5 +1,3 @@
-var app = angular.module('sample', []);
-
 app.controller("ConsultProfileCtrl", function($scope, $http) {
 	var res = $http({
 			method : 'GET',
