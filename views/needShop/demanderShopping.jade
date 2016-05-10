@@ -55,7 +55,7 @@ div(ng-controller="SearchPostShopCtrl")
 								.col-md-10.col-md-offset-1
 									.row
 										div.col-xs-6(ng-repeat="r in resultRecherche" ng-if="resultRecherche.length > 0")
-											div.panel.panel-default
+											div.panel.panel-default.bgOrange
 												div.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
 												div.panel-body
 													span.glyphicon.glyphicon-map-marker
