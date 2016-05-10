@@ -53,7 +53,7 @@ div(ng-controller="SearchPostShopCtrl")
 								br
 							div.row
 								.col-md-10.col-md-offset-1
-									.row
+									.row(ng-if="r.length != 0")
 										br
 										div.col-xs-6(ng-repeat="r in resultRecherche" ng-if="resultRecherche.length > 0")
 											div.panel.panel-default.bgOrange
