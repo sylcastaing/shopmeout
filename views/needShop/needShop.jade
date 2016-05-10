@@ -16,11 +16,15 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 									label(class="control-label col-xs-12" id="labelArticles") Ajouter un article :
 								div.row
 									div(class="col-xs-6")
-										input(class="form-control input-sm", type="text", name="nomArticle", placeholder="Nom de l'article", ng-model="nomArticle")
+										input(class="form-control input-sm", type="text", name="nomArticle", placeholder="Nom de l'article", ng-model="nomArticle" ng-keydown="resetErreur()")
 									div(class="col-xs-3")
 										input(class="form-control input-sm", type="number", name="nbrArticle", placeholder="Nombre d'article", ng-model="nbrArticle")
 									div(class="col-xs-3")
-											button(type="button" class="btn btn-primary" ng-click="addArticle()") Ajouter
+										button(type="button" class="btn btn-primary" ng-click="addArticle()") Ajouter
+								div.row
+									div(class="col-xs-12")
+										span(style="color:red", ng-show="errorArticleInvalid") Article invalide.
+								div.row
 									div(class="col-xs-12")
 										table(class="table table-striped" ng-show='displayTable')
 											thead

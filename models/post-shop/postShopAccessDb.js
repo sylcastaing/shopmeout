@@ -33,6 +33,7 @@ var postShopAccessDb = {
 	},
 	searchPostShop: function(datas,callback) {
 
+		
 		// On cherche juste avec magasin et date : 
 		if(datas[0].date != undefined && datas[0].nbArticle == undefined) {
 			var time = moment.duration("00:01:00");
@@ -47,8 +48,8 @@ var postShopAccessDb = {
 			},
 			{
 				__v:0
-			}, function(err,user) {
-				callback(user, err);
+			}, function(err,postShop) {
+				callback(postShop, err);
 			});
 		}
 		// On cherche juste avec nbArticle et magasin
@@ -60,8 +61,8 @@ var postShopAccessDb = {
 			},
 			{
 				__v:0
-			}, function(err,user) {
-				callback(user, err);
+			}, function(err,postShop) {
+				callback(postShop, err);
 			});
 		}
 		// On cherche avec nbArticle, date et magasin
@@ -79,8 +80,8 @@ var postShopAccessDb = {
 			},
 			{
 				__v:0
-			}, function(err,user) {
-				callback(user, err);
+			}, function(err,postShop) {
+				callback(postShop, err);
 			});
 		}
 		// On cherche juste avec magasin
@@ -91,16 +92,16 @@ var postShopAccessDb = {
 			},
 			{
 				__v:0
-			}, function(err,user) {
-				callback(user, err);
+			}, function(err,postShop) {
+				callback(postShop, err);
 			});
 		}
 	},
 	getProposition: function(id,callback) {
 		PostShop.findOne({
 			_id: id
-		}, function(err,user) {
-			callback(user, err);
+		}, function(err,postShop) {
+			callback(postShop, err);
 		});
 	}
 	

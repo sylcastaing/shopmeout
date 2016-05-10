@@ -80,6 +80,8 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 									tabRes.push(data.postShops[i]);
 								} else if (data.postShops[i].distance == 2 && distances[i] < 10000) {
 									tabRes.push(data.postShops[i]);
+								} else if (data.postShops[i].distance == 3) {
+									tabRes.push(data.postShops[i]);
 								}
 							}
 							$scope.resultRecherche = tabRes;
