@@ -5,40 +5,40 @@ div(class="modal fade" id="bookShopModal" role="dialog" ng-controller="BookShopC
 		div(class="modal-content")
 			div(class="modal-header")
 				button(type="button" class="close" data-dismiss="modal") &times;
-				h4(class="modal-title") Reserver un shopping
+				h4(class="modal-title") Réserve ton shopping !
 			div(class="modal-body")
 				div
 					p Shopping proposé par {{propShop.prenom}} {{propShop.nom}} le {{propShop.date | date:"dd/MM/yyyy"}}
 					p {{selectedMagasin}} - {{adresseSelectedMagasin}}
-					p {{propShop.nbArticle | nbArticleLabel}} articles disponibles
+					p {{propShop.nbArticle | nbArticleLabel}} articles possibles
 				div(class="row centered-form")
 					div.panel-body
 						form(name="postShop", method="post", ng-submit="bookShop()" novalidate)
 							div.form-group
 								div.row
 									div(class="col-xs-10")
-										label(class="control-label col-xs-12" id="labelAdresse") Votre adresse de livraison :
+										label(class="control-label col-xs-12" id="labelAdresse") Ton adresse de livraison :
 								div.row
 									div(class="col-xs-10")
 										input.form-control(type="text", ng-model="adresseField" placeholder="Adresse")
 							div.form-group
 								div.row
-									label(class="control-label col-xs-12" id="labelArticles") Ajouter un article :
+									label(class="control-label col-xs-12" id="labelArticles") Ajoute un article :
 								div.row
 									div(class="col-xs-6")
 										input(class="form-control input-sm", type="text", name="nomArticle", placeholder="Nom de l'article", ng-model="nomArticle" ng-disabled="erreurLimiteArticles" ng-keydown="resetErreur()")
 									div(class="col-xs-3")
 										input(class="form-control input-sm", type="number", name="nbrArticle", placeholder="Nombre d'article", ng-model="nbrArticle" ng-disabled="erreurLimiteArticles")
 									div(class="col-xs-3")
-											button(type="button" class="btn btn-primary" ng-click="addArticle()" ng-disabled="erreurLimiteArticles") Ajouter
+											button(type="button" class="btn btn-primary" ng-click="addArticle()" ng-disabled="erreurLimiteArticles") Ajouter !
 								div.row
 									div(class="col-xs-12")
-										span(style="color:red", ng-show="erreurLimiteArticles") La limite d'article est atteinte
-										span(style="color:red", ng-show="erreurChampVide") Veuiller spécifier un article
+										span(style="color:red", ng-show="erreurLimiteArticles") La limite d'articles est atteinte.
+										span(style="color:red", ng-show="erreurChampVide") Spécifie un article !
 							form(name="needShop", method="post", ng-submit="bookShop()" novalidate)
 								div.form-group(ng-show='displayTable')
 									div.row
-										label(class="control-label col-xs-12") Votre liste de courses :
+										label(class="control-label col-xs-12") Ta liste de courses :
 									div(class="col-xs-12")
 										table(class="table table-striped")
 											thead
@@ -57,13 +57,13 @@ div(class="modal fade" id="bookShopModal" role="dialog" ng-controller="BookShopC
 														span(class="glyphicon glyphicon-remove" style="color:red" ng-click='removeArticle($index)')
 												tr
 													td
-														b Nombre total d'article :
+														b Nombre total d'articles :
 													td
 														b {{nbrTotalArticles}}
 
-									span(style="color:red", ng-show="needShop.articles.$invalid || needShop.$error.articles") La liste d'articles ne peut pas etre vide.
+									span(style="color:red", ng-show="needShop.articles.$invalid || needShop.$error.articles") La liste d'articles ne peut pas être vide.
 								div
-									span(class="col-xs-12 alert alert-success", ng-show="reservationEnvoyee") Votre demande de reservation a été envoyée à {{propShop.prenom}} {{propShop.nom}}.
+									span(class="col-xs-12 alert alert-success", ng-show="reservationEnvoyee") Ta demande de réservation a été envoyée à {{propShop.prenom}} {{propShop.nom}}.
 									span(class="col-xs-12 alert alert-danger", ng-show="reservationNonValide") {{messageErreurReservation}}
 								div.actions
 									input(type="submit", value="Reserver", class="btn btn-info btn-block" ng-disabled="erreurLimiteArticles" ng-click="bookPostShop()")

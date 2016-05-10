@@ -3,7 +3,7 @@ div(ng-controller="SearchNeedShopCtrl")
 		div(class="col-xs-12 col-sm-12 col-md-12")
 			div(class="panel panel-default")
 				div(class="panel-heading")
-					h1(class="panel-title")="Rechercher une demande de shopping"
+					h1(class="panel-title")="Je recherche une demande de shopping !"
 				div.panel-body
 					form(name="needShop", method="post", ng-submit="searchNeedShop()" novalidate)
 						div.row
@@ -21,7 +21,7 @@ div(ng-controller="SearchNeedShopCtrl")
 						div(class="alert alert-success", ng-show="needShop.$error.magasinSelected")
 										span Magasin choisi : {{selectedMagasin}} - {{adresseSelectedMagasin}}
 						div.align-center
-							button#buttonValid(type = "button" class = "btn btn-default inline-block" ng-click="magasinChoisi()") Valider ce magasin
+							button#buttonValid(type = "button" class = "btn btn-default inline-block" ng-click="magasinChoisi()") Valide ton magasin !
 						div.row
 							br
 							
