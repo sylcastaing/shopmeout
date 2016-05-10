@@ -52,7 +52,7 @@ div(ng-controller="SearchNeedShopCtrl")
 						br
 					div.row
 						.col-md-10.col-md-offset-1
-							.row
+							.row(ng-if="resultRecherche")
 								div.col-xs-6(ng-repeat="r in resultRecherche")
 									div.panel.panel-default.bgBlue
 										div.panel-heading Shopping demandé par 

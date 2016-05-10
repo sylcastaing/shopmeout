@@ -2,7 +2,7 @@ div(class="modal fade" id="listArticles" role="dialog")
 	div(class="modal-dialog")
 
 		// Modal content
-		div.modal-content(ng-if="r.length != 0")
+		div.modal-content(ng-if="selectedDemande")
 			div.modal-header
 				button.close(type="button" data-dismiss="modal") &times;
 				h4.modal-title Liste des articles demandés par {{selectedDemande.prenom}} {{selectedDemande.nom | firstLetter}}. le {{selectedDemande.date | date:"dd/MM/yyyy"}}
