@@ -1,4 +1,4 @@
-app.controller("BookPostShopCtrl", function($scope, $http, $location) {
+app.controller("BookPostShopCtrl", function($scope, $http, $location, $timeout) {
 	
 	$("#bookPostShopModal").on('shown.bs.modal', function() {
 		var res = $http({
@@ -63,12 +63,28 @@ app.controller("BookPostShopCtrl", function($scope, $http, $location) {
 				data : datas
 			}).success(function (data, status, headers, config) {
 					if(data.statut) {
+						$timeout(function() {
+							$scope.reservationEnvoyee = false;
+						}, 3000);
 						$scope.reservationEnvoyee=true;
 						datas = angular.copy();
 						$scope.erreurLimiteArticles = false;
 						$scope.displayTable = false;
 						$scope.articles = [];
 						$scope.nbrTotalArticles = 0;
+						// On récupère l'adresse
+						var res = $http({
+						method : 'GET',
+						url : '/ws-users/consult-profile'
+						}).success(function (data, status, headers, config){
+						if(data.user != null) {
+							$scope.adresseField = data.user.adresse +" "+ data.user.codePostal +" "+data.user.ville;
+							$scope.isAuthenticated = true;
+						}
+						else {
+							$scope.adresseField = "";
+						}
+					});
 					}
 					else {
 						$scope.reservationNonValide=true;

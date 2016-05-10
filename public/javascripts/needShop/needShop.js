@@ -5,6 +5,11 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
  			$scope.needShop.$error.NbArticleError = false;
  		}
  	}
+
+ 		$scope.resetErreur = function () {
+		$scope.errorArticleInvalid = false;
+	}
+
  	// On récupère l'adresse
 	var res = $http({
 		method : 'GET',
@@ -20,7 +25,11 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 	$scope.nbrArticle=1;
 
 	$scope.addArticle = function () {
-	$scope.displayTable = true;
+	if( $scope.nomArticle == undefined || $scope.nomArticle == "" || $scope.nbrArticle == 0){
+		$scope.errorArticleInvalid = true;
+	}
+	else{
+		$scope.displayTable = true;
 		$scope.articles.push({
 			nomArticle: $scope.nomArticle,
 			nbrArticle: $scope.nbrArticle
@@ -29,6 +38,7 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 	$scope.needShop.$error.articles = false;
 	$scope.nomArticle="";
 	$scope.nbrArticle=1;
+	}
 	};
 
 	$scope.removeArticle = function (index) {
@@ -80,6 +90,7 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 				$scope.displayTable = false;
 				$scope.articles = [];
 				$scope.nbrTotalArticles = 0;
+				$scope.errorArticleInvalid = false;
 				// On récupère l'adresse
 				var res = $http({
 					method : 'GET',
