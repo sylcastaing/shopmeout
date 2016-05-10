@@ -55,7 +55,7 @@ div(ng-controller="SearchPostShopCtrl")
 								.col-md-10.col-md-offset-1
 									.row
 										div.col-xs-6(ng-repeat="r in resultRecherche" ng-if="resultRecherche.length > 0")
-											div.panel.panel-default
+											div.panel.panel-default.bgOrange
 												div.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
 												div.panel-body
 													span.glyphicon.glyphicon-map-marker
@@ -67,21 +67,21 @@ div(ng-controller="SearchPostShopCtrl")
 													span.glyphicon.glyphicon-user
 													span {{r.nbShoppeur}} shoppeurs
 													br
-													span.glyphicon.glyphicon-shopping-cart
+													span.glyphicon.glyphicon-barcode
 													span {{r.nbArticle | nbArticleLabel}} articles
 													p.align-center
 														a(href="#/demanderShopping?id={{r._id}}")
 															button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#bookShopModal":"#signInModal")
 																| Reserver ce shopping 
 																span(class = "glyphicon glyphicon-ok")
-						div.row
+						div
 							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
-								span Il n y a pas de résultats, désolé !
+								span Il n'y a pas de résultat, désolé !
 						div(ng-show="postshop.$error.magasinSelected")
 								button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
 									span(class = "glyphicon glyphicon-plus-sign" )
 									&nbsp;
-									span Ajouter une demande
+									span Ajoute ta demande !
 	include ../needShop/needShop.jade
 	include bookShop.jade
 

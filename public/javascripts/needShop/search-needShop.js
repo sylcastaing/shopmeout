@@ -7,6 +7,19 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 	$("#mapSearchNeedShop").hide();
 	$("#buttonValid").hide();
 
+	// On récupère l'adresse
+	var res = $http({
+		method : 'GET',
+		url : '/ws-users/consult-profile'
+	}).success(function (data, status, headers, config){
+		if(data.user != null) {
+			$scope.adresseField = data.user.adresse +" "+ data.user.codePostal +" "+data.user.ville;
+		}
+		else {
+			$scope.adresseField = "";
+		}
+	});
+
 	// Initialise la map en fonction de l'adresse choisie
 	$scope.searchMapNeedShop = function() {
 		$scope.mapSearchNeedShop.init({
@@ -32,21 +45,6 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 		}
 	}
 
-
-	// On récupère l'adresse
-	var res = $http({
-		method : 'GET',
-		url : '/ws-users/consult-profile'
-	}).success(function (data, status, headers, config){
-		if(data.user != null) {
-			$scope.adresseField = data.user.adresse +" "+ data.user.codePostal +" "+data.user.ville;
-		}
-		else {
-			$scope.adresseField = "";
-		}
-	});
-
-
 	$scope.searchNeedShop = function() {
 		var critereProp = [{
 			"magasin": $scope.selectedMagasin,
@@ -60,31 +58,39 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 			url : '/ws-need-shop/search-needShop',
 			data : critereProp
 		}).success(function (data, status, headers, config) {
-			if($scope.distance != undefined && $scope.distance != 3) {
-				var tabAdress = [];
-				var tabRes = [];
-				for(i in data.needShops) {
-					tabAdress.push(data.needShops[i].adresse);
-				}
-				distanceManager.getDistance(tabAdress, $scope.adresseSelectedMagasin, function(distances) {
-					for(i in distances) {
-						if($scope.distance == 0 && distances[i] < 1000) {
-							tabRes.push(data.needShops[i]);
-						} else if ($scope.distance == 1 && distances[i] < 5000) {
-							tabRes.push(data.needShops[i]);
-						} else if ($scope.distance == 2 && distances[i] < 10000) {
-							tabRes.push(data.needShops[i]);
-						}
-					}
-					$scope.resultRecherche = tabRes;
-					$scope.erreurMessage = true;
-					$scope.$apply();
-				});
-			} else {
-				$scope.resultRecherche = data.needShops;
-				$scope.erreurMessage = true;
+			// On calcule les distances entre le magasin et les adresses
+			var tabAdress = [];
+			var tabRes = [];
+			for(i in data.needShops) {
+				tabAdress.push(data.needShops[i].adresse);
 			}
+			distanceManager.getDistance(tabAdress, $scope.adresseSelectedMagasin, function(distances) {
+				for(i in distances) {
+					if($scope.distance == 0 && distances[i] < 1000) {
+						data.needShops[i].distance = distances[i];
+						tabRes.push(data.needShops[i]);
+					} else if ($scope.distance == 1 && distances[i] < 5000) {
+						data.needShops[i].distance = distances[i];
+						tabRes.push(data.needShops[i]);
+					} else if ($scope.distance == 2 && distances[i] < 10000) {
+						data.needShops[i].distance = distances[i];
+						tabRes.push(data.needShops[i]);
+					} else {
+						data.needShops[i].distance = distances[i];
+						tabRes.push(data.needShops[i]);
+					}
+				}
+				$scope.resultRecherche = tabRes;
+				$scope.erreurMessage = true;
+				$scope.$apply();
+			});
 		});
+	}
+
+	$scope.openListArticles = function(demande) {
+		$scope.selectedDemande = demande;
+		$("#listArticles").modal('show');
+		console.log("TG");
 	}
 
 })
