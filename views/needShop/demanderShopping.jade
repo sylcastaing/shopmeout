@@ -58,14 +58,17 @@ div(ng-controller="SearchPostShopCtrl")
 											div.panel.panel-default
 												div.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
 												div.panel-body
-													p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
+													span.glyphicon.glyphicon-map-marker
+													span {{r.magasin}} - {{r.adresse}}
 													br
-													p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
+													span.glyphicon.glyphicon-calendar
+													span {{r.date | date:"dd/MM/yyyy"}}
 													br
-													p.glyphicon.glyphicon-user {{r.nbShoppeur}}
+													span.glyphicon.glyphicon-user
+													span {{r.nbShoppeur}} shoppeurs
 													br
-													p.glyphicon.glyphicon-shopping-cart
-														span(ng-bind="getNbArticles(r.nbArticle)")
+													span.glyphicon.glyphicon-shopping-cart
+													span {{r.nbArticle | nbArticleLabel}} articles
 													p
 														a(href="#/demanderShopping?id={{r._id}}")
 															button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#bookShopModal":"#signInModal")
