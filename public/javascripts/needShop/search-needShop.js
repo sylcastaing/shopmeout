@@ -7,6 +7,19 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 	$("#mapSearchNeedShop").hide();
 	$("#buttonValid").hide();
 
+	// On récupère l'adresse
+	var res = $http({
+		method : 'GET',
+		url : '/ws-users/consult-profile'
+	}).success(function (data, status, headers, config){
+		if(data.user != null) {
+			$scope.adresseField = data.user.adresse +" "+ data.user.codePostal +" "+data.user.ville;
+		}
+		else {
+			$scope.adresseField = "";
+		}
+	});
+
 	// Initialise la map en fonction de l'adresse choisie
 	$scope.searchMapNeedShop = function() {
 		$scope.mapSearchNeedShop.init({
@@ -32,21 +45,6 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 		}
 	}
 
-
-	// On récupère l'adresse
-	var res = $http({
-		method : 'GET',
-		url : '/ws-users/consult-profile'
-	}).success(function (data, status, headers, config){
-		if(data.user != null) {
-			$scope.adresseField = data.user.adresse +" "+ data.user.codePostal +" "+data.user.ville;
-		}
-		else {
-			$scope.adresseField = "";
-		}
-	});
-
-
 	$scope.searchNeedShop = function() {
 		var critereProp = [{
 			"magasin": $scope.selectedMagasin,
@@ -60,6 +58,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 			url : '/ws-need-shop/search-needShop',
 			data : critereProp
 		}).success(function (data, status, headers, config) {
+			// On calcule les distances entre le magasin et les adresses
 			var tabAdress = [];
 			var tabRes = [];
 			for(i in data.needShops) {
@@ -86,6 +85,12 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 				$scope.$apply();
 			});
 		});
+	}
+
+	$scope.openListArticles = function(demande) {
+		$scope.selectedDemande = demande;
+		$("#listArticles").modal('show');
+		console.log("TG");
 	}
 
 })
