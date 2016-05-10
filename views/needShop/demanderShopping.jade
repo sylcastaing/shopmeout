@@ -47,34 +47,42 @@ div(ng-controller="SearchPostShopCtrl")
 									input(style="display: inline-block; width: 200px" type="submit", ng-disabled="dataLoading", value="Rechercher", class="btn btn-info btn-block")
 								div.align-center
 									img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
-						br
-					div.row
-						.col-md-10.col-md-offset-1
-							.row
-								div.col-xs-6(ng-repeat="r in resultRecherche" ng-if="resultRecherche.length > 0")
-									div.panel.panel-default
-										div.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
-										div.panel-body
-											span.glyphicon.glyphicon-map-marker
-											span {{r.magasin}} - {{r.adresse}}
-											br
-											span.glyphicon.glyphicon-calendar
-											span {{r.date | date:"dd/MM/yyyy"}}
-											br
-											span.glyphicon.glyphicon-user
-											span {{r.nbShoppeur}} shoppeurs
-											br
-											span.glyphicon.glyphicon-shopping-cart
-											span {{r.nbArticle | nbArticleLabel}} articles
-					div.row
-						div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
-							span Il n y a pas de résultats, désolé !
-					div(ng-show="postshop.$error.magasinSelected")
-							button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
-								span(class = "glyphicon glyphicon-plus-sign" )
-								&nbsp;
-								span Ajouter une demande
+							div.row
+								br
+							div(class="actions align-center")
+								br
+							div.row
+								.col-md-10.col-md-offset-1
+									.row
+										div.col-xs-6(ng-repeat="r in resultRecherche" ng-if="resultRecherche.length > 0")
+											div.panel.panel-default
+												div.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
+												div.panel-body
+													span.glyphicon.glyphicon-map-marker
+													span {{r.magasin}} - {{r.adresse}}
+													br
+													span.glyphicon.glyphicon-calendar
+													span {{r.date | date:"dd/MM/yyyy"}}
+													br
+													span.glyphicon.glyphicon-user
+													span {{r.nbShoppeur}} shoppeurs
+													br
+													span.glyphicon.glyphicon-barcode
+													span {{r.nbArticle | nbArticleLabel}} articles
+													p
+														a(href="#/demanderShopping?id={{r._id}}")
+															button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#bookShopModal":"#signInModal")
+																span(class = "glyphicon glyphicon-shopping-cart")
+						div.row
+							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
+								span Il n y a pas de résultats, désolé !
+						div(ng-show="postshop.$error.magasinSelected")
+								button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
+									span(class = "glyphicon glyphicon-plus-sign" )
+									&nbsp;
+									span Ajouter une demande
 	include ../needShop/needShop.jade
+	include bookShop.jade
 
 
 block scripts-header

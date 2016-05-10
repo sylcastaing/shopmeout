@@ -14,11 +14,38 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 			$scope.adresse = data.user.adresse + " " + data.user.codePostal;
 		}
 	});
+	$scope.displayTable = false;
+	$scope.articles = [];
+	$scope.nbrTotalArticles = 0;
+	$scope.nbrArticle=1;
+
+	$scope.addArticle = function () {
+	$scope.displayTable = true;
+		$scope.articles.push({
+			nomArticle: $scope.nomArticle,
+			nbrArticle: $scope.nbrArticle
+		});
+	$scope.nbrTotalArticles = $scope.nbrTotalArticles + $scope.nbrArticle;
+	$scope.needShop.$error.articles = false;
+	$scope.nomArticle="";
+	$scope.nbrArticle=1;
+	};
+
+	$scope.removeArticle = function (index) {
+		$scope.nbrTotalArticles = $scope.nbrTotalArticles - $scope.articles[index].nbrArticle;
+		$scope.articles.splice(index, 1);
+		if($scope.articles.length == 0){
+			$scope.displayTable = false;
+		}
+	}
+
 	$scope.addNeedShop = function() {
 		var isOK = true;
+		$scope.data.articles = $scope.articles;
 		$scope.data.adresse = $scope.adresse;
-		if($scope == undefined || $scope.data.nbArticle == undefined) {
-			$scope.needShop.$error.NbArticleError = true;
+		$scope.data.nbArticle = $scope.nbrTotalArticles;
+		if($scope == undefined || $scope.data.articles == 0) {
+			$scope.needShop.$error.articles = true;
 			isOK = false;
 		}
 		if($scope.data.adresse == undefined) {
