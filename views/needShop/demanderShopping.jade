@@ -80,7 +80,6 @@ div(ng-controller="SearchPostShopCtrl")
 															button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#bookPostShopModal":"#signInModal")
 																| Reserver ce shopping 
 																span(class = "glyphicon glyphicon-ok")
-						div
 							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
 								span Il n'y a pas de résultat, désolé !
 						div(ng-show="postshop.$error.magasinSelected")
@@ -88,6 +87,10 @@ div(ng-controller="SearchPostShopCtrl")
 								span(class = "glyphicon glyphicon-plus-sign" )
 								&nbsp;
 								span Ajoute ta demande !
+						div.row
+							br
+						div.row
+							br
 	include ../needShop/needShop.jade
 	include bookPostShop.jade
 
