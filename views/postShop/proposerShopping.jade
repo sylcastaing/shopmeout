@@ -54,7 +54,7 @@ div(ng-controller="SearchNeedShopCtrl")
 						.col-md-10.col-md-offset-1
 							.row
 								div.col-xs-6(ng-repeat="r in resultRecherche")
-									div.panel.panel-default
+									div.panel.panel-default.bgBlue
 										div.panel-heading Shopping demandé par {{r.prenom}} {{r.nom | firstLetter}}.
 										div.panel-body
 											span.glyphicon.glyphicon-map-marker 
@@ -69,13 +69,13 @@ div(ng-controller="SearchNeedShopCtrl")
 
 					div.row
 						div(ng-if="resultRecherche.length == 0 && erreurMessage" class="col-xs-12 animate-show alert alert-danger")
-							span Il n y a pas de résultats, désolé !
+							span Il n'y a pas de résultats, désolé !
 						br
 						span(ng-show="needShop.$error.magasinSelected")
 							button(type = "button" class = "btn btn-default" alt="Ajouter une proposition de Shopping" title="Ajouter une proposition de Shopping" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
 								span(class = "glyphicon glyphicon-plus-sign" )
 								&nbsp;
-								span Ajouter une proposition
+								span Ajoute ta proposition !
 	include ./postShop.jade
 
 block scripts-header
