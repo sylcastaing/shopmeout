@@ -13,13 +13,34 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 						form(name="needShop", method="post", ng-submit="addNeedShop()" novalidate)
 							div.form-group
 								div.row
-									label(class="control-label col-xs-12" id="labelNbArticles") J'ai besoin de :
+									label(class="control-label col-xs-12" id="labelArticles") Ajouter un article :
 								div.row
-									div(class="btn-group col-xs-12" data-toggle="buttons-radio") 
-										button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='0' buttons-radio="" ng-click="removeErrorNbArticle()") Moins de 5 produits
-										button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='1' buttons-radio="" ng-click="removeErrorNbArticle()") Jusqu'à 10 produits
-										button(type="button" class="btn btn-primary" ng-model="data.nbArticle" value='2' buttons-radio="" ng-click="removeErrorNbArticle()") Plus de 10 produits
-										span(style="color:red", ng-show="needShop.$error.NbArticleError") le nombre d'article est obligatoire.
+									div(class="col-xs-6")
+										input(class="form-control input-sm", type="text", name="nomArticle", placeholder="Nom de l'article", ng-model="nomArticle")
+									div(class="col-xs-3")
+										input(class="form-control input-sm", type="number", name="nbrArticle", placeholder="Nombre d'article", ng-model="nbrArticle")
+									div(class="col-xs-3")
+											button(type="button" class="btn btn-primary" ng-click="addArticle()") Ajouter
+									div(class="col-xs-12")
+										table(class="table table-striped" ng-show='displayTable')
+											thead
+												tr
+													th 
+														b Article
+													th 
+														b Quantité
+											tbody
+												tr(ng-repeat="article in articles")
+													td
+														{{article.nomArticle}}
+													td
+														{{article.nbrArticle}}
+													td
+														span(class="glyphicon glyphicon-remove" style="color:red" ng-click='removeArticle($index)')
+									div(class="col-xs-12")
+										b Nombre total d'article : 
+										{{nbrTotalArticles}}
+									span(style="color:red", ng-show="needShop.articles.$invalid || needShop.$error.articles") La liste d'articles ne peut pas etre vide.
 							div.form-group
 								div.row
 									label(class="control-label col-xs-12" id="labelAdresse") Mon adresse de livraison :

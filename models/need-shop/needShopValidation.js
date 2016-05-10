@@ -38,7 +38,7 @@ var needShopValidation = {
 			err = needShopMessages.get("needShop.creation.adresse.empty");
 			isValid = false;
 		}
-		if(isValid && datas.nbArticle > 3) {
+		if(isValid && datas.nbArticle == 0) {
 			err = needShopMessages.get("needShop.creation.nbArticle.notValid");
 			isValid = false;
 		}
