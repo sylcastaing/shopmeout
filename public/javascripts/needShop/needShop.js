@@ -54,7 +54,6 @@ app.controller("NeedShopCtrl", function($scope, $http) {
 		if(isOK) {
 			$scope.needShop.$error.dateShopping = false;
 			$scope.needShop.$error.adresse = false;
-			$scope.needShop.$error.NbArticleError = false;
  			$scope.needShop.dateShopping.$invalid = false;
  			$scope.needShop.adresse.$invalid = false;
 			$scope.data.magasin = $scope.selectedMagasin;
