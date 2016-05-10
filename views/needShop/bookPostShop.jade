@@ -1,4 +1,4 @@
-div(class="modal fade" id="bookShopModal" role="dialog" ng-controller="BookShopCtrl")
+div(class="modal fade" id="bookPostShopModal" role="dialog" ng-controller="BookPostShopCtrl")
 	div(class="modal-dialog")
 
 		// Modal content
@@ -13,7 +13,7 @@ div(class="modal fade" id="bookShopModal" role="dialog" ng-controller="BookShopC
 					p {{propShop.nbArticle | nbArticleLabel}} articles disponibles
 				div(class="row centered-form")
 					div.panel-body
-						form(name="postShop", method="post", ng-submit="bookShop()" novalidate)
+						form(name="postShop", method="post", ng-submit="bookPostShop()" novalidate)
 							div.form-group
 								div.row
 									div(class="col-xs-10")
@@ -35,7 +35,7 @@ div(class="modal fade" id="bookShopModal" role="dialog" ng-controller="BookShopC
 									div(class="col-xs-12")
 										span(style="color:red", ng-show="erreurLimiteArticles") La limite d'article est atteinte
 										span(style="color:red", ng-show="erreurChampVide") Veuiller spécifier un article
-							form(name="needShop", method="post", ng-submit="bookShop()" novalidate)
+							form(name="needShop", method="post", ng-submit="bookPostShop()" novalidate)
 								div.form-group(ng-show='displayTable')
 									div.row
 										label(class="control-label col-xs-12") Votre liste de courses :

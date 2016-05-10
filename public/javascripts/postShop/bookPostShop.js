@@ -1,6 +1,6 @@
-app.controller("BookShopCtrl", function($scope, $http, $location) {
+app.controller("BookPostShopCtrl", function($scope, $http, $location) {
 	
-	$("#bookShopModal").on('shown.bs.modal', function() {
+	$("#bookPostShopModal").on('shown.bs.modal', function() {
 		var res = $http({
 					method : 'POST',
 					url : '/ws-post-shop/get-postShop',
@@ -64,6 +64,11 @@ app.controller("BookShopCtrl", function($scope, $http, $location) {
 			}).success(function (data, status, headers, config) {
 					if(data.statut) {
 						$scope.reservationEnvoyee=true;
+						datas = angular.copy();
+						$scope.erreurLimiteArticles = false;
+						$scope.displayTable = false;
+						$scope.articles = [];
+						$scope.nbrTotalArticles = 0;
 					}
 					else {
 						$scope.reservationNonValide=true;

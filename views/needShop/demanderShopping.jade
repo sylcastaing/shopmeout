@@ -71,7 +71,7 @@ div(ng-controller="SearchPostShopCtrl")
 													span {{r.nbArticle | nbArticleLabel}} articles
 													p.align-center
 														a(href="#/demanderShopping?id={{r._id}}")
-															button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#bookShopModal":"#signInModal")
+															button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#bookPostShopModal":"#signInModal")
 																| Reserver ce shopping 
 																span(class = "glyphicon glyphicon-ok")
 						div
@@ -83,10 +83,10 @@ div(ng-controller="SearchPostShopCtrl")
 									&nbsp;
 									span Ajoute ta demande !
 	include ../needShop/needShop.jade
-	include bookShop.jade
+	include bookPostShop.jade
 
 
 block scripts-header
 	script(src="#{baseUrl}/javascripts/postShop/search-postShop.js")
 	script(src="#{baseUrl}/javascripts/needShop/needShop.js")
-	script(src="#{baseUrl}/javascripts/postShop/bookShop.js")
+	script(src="#{baseUrl}/javascripts/postShop/bookPostShop.js")
