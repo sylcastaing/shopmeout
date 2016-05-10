@@ -59,7 +59,6 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 		if(isOK) {
 			$scope.needShop.$error.date = false;
 			$scope.needShop.$error.adresse = false;
-			$scope.needShop.$error.NbArticleError = false;
  			$scope.needShop.date.$invalid = false;
  			$scope.needShop.adresse.$invalid = false;
 			$scope.data.magasin = $scope.selectedMagasin;
@@ -78,6 +77,9 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 					$scope.needShop.$error.validate = false;
 				}, 3000);
 				$scope.data = angular.copy();
+				$scope.displayTable = false;
+				$scope.articles = [];
+				$scope.nbrTotalArticles = 0;
 				// On récupère l'adresse
 				var res = $http({
 					method : 'GET',
