@@ -72,11 +72,8 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 						for(i in data.postShops) {
 							tabAdress.push(data.postShops[i].adresse);
 						}
-						console.log(data.postShops);
 						distanceManager.getDistance(tabAdress, $scope.adresseField, function(distances) {
-							console.log(distances);
 							for(i in distances) {
-								console.log(data.postShops[i].distance);
 								if(data.postShops[i].distance == 0 && distances[i] < 1000) {
 									tabRes.push(data.postShops[i]);
 								} else if (data.postShops[i].distance == 1 && distances[i] < 5000) {
