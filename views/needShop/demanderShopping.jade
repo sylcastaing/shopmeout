@@ -75,12 +75,12 @@ div(ng-controller="SearchPostShopCtrl")
 																span(class = "glyphicon glyphicon-shopping-cart")
 						div
 							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
-								span Il n y a pas de résultats, désolé !
+								span Il n'y a pas de résultat, désolé !
 						div(ng-show="postshop.$error.magasinSelected")
 								button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
 									span(class = "glyphicon glyphicon-plus-sign" )
 									&nbsp;
-									span Ajouter une demande
+									span Ajoute ta demande !
 	include ../needShop/needShop.jade
 	include bookShop.jade
 
