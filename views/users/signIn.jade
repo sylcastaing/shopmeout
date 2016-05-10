@@ -13,10 +13,10 @@ div(class="modal fade" id="signInModal" role="dialog" ng-controller="SignInCtrl"
 							form(name="signin", method="post", ng-submit="connectClient()" novalidate)
 								div.form-group
 									label(for="login") Login
-									input(type="text",class="form-control", id="email", placeholder="Entre ton login", ng-model="user.email")
+									input(type="text",class="form-control", id="email", placeholder="Entre ton login !", ng-model="user.email")
 								div.form-group
 									label(for="password") Mot de passe
-									input(type="password", class="form-control", id="password", placeholder="Entre ton mot de passe", ng-model="motDePasse")
+									input(type="password", class="form-control", id="password", placeholder="Entre ton mot de passe !", ng-model="motDePasse")
 									br
 									div(class="alert alert-danger", ng-show="signin.$error.login")
 										span(style="color:red" ) {{signin.$error.message}}

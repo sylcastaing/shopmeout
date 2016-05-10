@@ -2,28 +2,30 @@ extends layout
 
 block content
 	h1 Foire aux questions
-	h2 Premiers pas sur Shopmeout
+	h2 Tes premiers pas sur Shopmeout
 	div
 		div.panel-group#accordion
 		.panel.panel-default
 			.panel-heading
 				h4.panel-title
-					a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseOne') Comment débuter sur Shopmeout
+					a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseOne') ShopMeOut c'est quoi ?
 			#collapseOne.panel-collapse.collapse
 				.panel-body
-					| Shopmeout met en relations plusieurs personnes souhaitant faire des courses collaboratives. 
+					| Shopmeout met en relation plusieurs personnes souhaitant faire des courses collaboratives. 
 					br
-					| Une personne peut proposer un déplacement, ainsi plusieurs personnes peuvent en profiter pour passer leur commandes de courses.
+					| Une personne peut proposer un déplacement et ainsi plusieurs personnes peuvent en profiter pour passer leurs listes de courses.
 
 		.panel.panel-default
 			.panel-heading
 				h4.panel-title
-					a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo') Comment créer mon compte
+					a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo') Comment créer mon compte ?
 			#collapseTwo.panel-collapse.collapse
 				.panel-body
-					| Pour créer son compte c'est très simple, il suffit de cliquer sur le lien "inscris-toi" en haut à droite.
+					| Pour créer son compte c'est très simple, il suffit de cliquer sur "Inscris-toi !" en haut à droite.
 					br
 					| Il faut évidemment avoir un compte pour créer une demande ou une proposition de shopping !
+					br
+					| Si tu as déjà un compte, tu peux te connecter en cliquant sur "Connete-toi !" toujours en haut et à droite.
 
 block scripts
 	script(src="#{baseUrl}/javascripts/index/index.js")
