@@ -93,3 +93,9 @@ span.label {
 	background-color: #0A68C0;
 	color: white;
 }
+
+#footer {
+	font-family: Georgia;
+	font-size: Small;
+	width: 100%;
+}
