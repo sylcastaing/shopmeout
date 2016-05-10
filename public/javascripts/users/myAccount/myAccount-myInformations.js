@@ -1,4 +1,7 @@
-app.controller("ConsultProfileCtrl", function($scope, $http) {
+app.controller("myInformationsCtrl", function($scope, $http) {
+
+	$scope.user = null;
+
 	var res = $http({
 			method : 'GET',
 			url : '/ws-users/consult-profile'
@@ -11,10 +14,5 @@ app.controller("ConsultProfileCtrl", function($scope, $http) {
 			else {
 				 document.location = '/users';
 			}
-		}).error(function (data, status, headers, config){
-			$scope.signin.$error.login = true;
-			$scope.signin.$error.message = "Problème serveur";
-			$scope.dataLoading = false;
 		});
-
 });

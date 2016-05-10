@@ -1,0 +1,22 @@
+extends ../../layout
+
+block content
+	div
+		.row
+			.col-md-2
+				ul.nav.nav-pills.nav-stacked
+					li.active(role="presentation")
+						a(href="#") Mes informations
+					li(role="presentation")
+						a(href="#") Mes propositions
+					li(role="presentation")
+						a(href="#") Mes demandes
+					li(role="presentation")
+						a(href="#") Mes messages
+			.col-md-10
+				include myInformations.jade
+
+
+
+block scripts-header
+	script(src="#{baseUrl}/javascripts/users/myAccount/myAccount-main.js")

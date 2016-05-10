@@ -89,9 +89,34 @@ span.label {
 	color: white;
 }
 
+
 .bgBlue.panel-default>.panel-heading {
 	background-color: #0A68C0;
 	color: white;
+}
+
+.iconBlue {
+	color: #0A68C0;
+	padding-right: 5px;
+}
+
+.iconOrange {
+	color: #FF6100;
+	padding-right: 5px;
+}
+
+.linkOrange:hover {
+	text-decoration: underline;
+	color: #FF6100;
+}
+
+.linkBlue {
+	text-decoration: underline;
+	color: #0A68C0;
+}
+
+.linkBlue:hover {
+	cursor: pointer;
 }
 
 #footer {
