@@ -69,10 +69,11 @@ div(ng-controller="SearchPostShopCtrl")
 													br
 													span.glyphicon.glyphicon-shopping-cart
 													span {{r.nbArticle | nbArticleLabel}} articles
-													p
+													p.align-center
 														a(href="#/demanderShopping?id={{r._id}}")
 															button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#bookShopModal":"#signInModal")
-																span(class = "glyphicon glyphicon-shopping-cart")
+																| Reserver ce shopping 
+																span(class = "glyphicon glyphicon-ok")
 						div.row
 							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
 								span Il n y a pas de résultats, désolé !
