@@ -3,7 +3,7 @@ div(ng-controller="SearchPostShopCtrl")
 		div(class="col-xs-12 col-sm-12 col-md-12")
 			div(class="panel panel-default")
 				div(class="panel-heading")
-					h1(class="panel-title")="Rechercher une proposition de Shopping"
+					h1(class="panel-title")="Rechercher une proposition de shopping"
 				div.panel-body
 					form(name="postshop", method="post", ng-submit="searchPostShop()" novalidate)
 						div.row
@@ -17,11 +17,11 @@ div(ng-controller="SearchPostShopCtrl")
 								div#mapSearchPostShop(class="col-sm-12 align-center" style="height:300px")
 						br 
 						div(class="animate-show alert alert-danger", ng-show="postshop.$error.noMagasinSelected")
-										span Veuillez sélectionner un magasin sur la carte
+										span Sélectionne ton magasin sur la carte !
 						div(class="alert alert-success", ng-show="postshop.$error.magasinSelected")
 										span Magasin choisi : {{selectedMagasin}} - {{adresseSelectedMagasin}}
 						div.align-center
-							button#buttonValid(type = "button" class ="btn btn-default" ng-click="magasinChoisi()" ng-show="!showDiv") Valider ce magasin
+							button#buttonValid(type = "button" class ="btn btn-default" ng-click="magasinChoisi()" ng-show="!showDiv") Valide ton magasin !
 						div.row
 							br
 						div.row(ng-show="postshop.$error.magasinSelected")
@@ -33,7 +33,7 @@ div(ng-controller="SearchPostShopCtrl")
 									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='2' buttons-radio="") Plus de 10 produits
 									div.col-xs-2
 									div.col-xs-3
-									span(style="color:red", ng-show="postshop.$error.nbArticleRequired") Veuillez préciser le nombre d'articles souhaités
+									span(style="color:red", ng-show="postshop.$error.nbArticleRequired") Précise le nombre d'articles souhaités
 						
 							div.col-xs-12
 								br
@@ -75,12 +75,12 @@ div(ng-controller="SearchPostShopCtrl")
 																span(class = "glyphicon glyphicon-shopping-cart")
 						div.row
 							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
-								span Il n y a pas de résultats, désolé !
+								span Il n'y a pas de résultats, désolé !
 						div(ng-show="postshop.$error.magasinSelected")
 								button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
 									span(class = "glyphicon glyphicon-plus-sign" )
 									&nbsp;
-									span Ajouter une demande
+									span Ajoute une demande !
 	include ../needShop/needShop.jade
 	include bookShop.jade
 
