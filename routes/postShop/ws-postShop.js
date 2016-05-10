@@ -49,5 +49,19 @@ router.post('/search-postShop', function(req, res, next) {
 	
 });
 
+router.post('/get-postShop', function(req, res, next) {
+	postShopAccessDb.getProposition(req.body.id, function(result, err) {
+			if(!err) {
+				res.json({
+					postShop: result,
+				});
+			}
+			else {
+				console.log("erreur");
+			}
+	});
+	
+});
+
 
 module.exports = router;

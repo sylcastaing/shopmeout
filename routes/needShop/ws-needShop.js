@@ -17,7 +17,6 @@ router.post('/needShop', function(req, res, next) {
 	}
 	// Vérification des données
 	needShopValidation.verifDatas(req.body, function (isValid, err) {
-		console.log(req.body);
 		if (isValid) {
 			// Création de la proposition
 			needShopAccessDb.createNeedShop(req.body, function(result, err) {
@@ -37,14 +36,9 @@ router.post('/needShop', function(req, res, next) {
 
 router.post('/search-needShop', function(req, res, next) {
 	needShopAccessDb.searchNeedShop(req.body, function(result, err) {
-			if(!err) {
-				res.json({
-					needShops: result,
-				});
-			}
-			else {
-				console.log("erreur");
-			}
+		res.json({
+			needShops: result,
+		});
 	});
 	
 });

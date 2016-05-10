@@ -8,4 +8,19 @@ app.filter('firstLetter', function() {
 	return function(input) {
 		return input.substr(0,1);
 	};
+
+});
+
+app.filter('nbArticleLabel', function() {
+	return function(idNbArticle) {
+		var res = "";
+		if (idNbArticle == 0) {
+			res = "Moins de 5";
+		} else if (idNbArticle == 1) {
+			res = "Jusqu'à 10";
+		} else if (idNbArticle == 2) {
+			res = "Plus de 10";
+		}
+		return res;
+	};
 });

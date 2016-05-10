@@ -7,6 +7,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	$("#mapSearchPostShop").hide();
 	$scope.showDiv = true;
 
+
 	$scope.searchMapPostShop = function() {
 		$scope.mapSearch.init({
 			mapId : "mapSearchPostShop",
@@ -39,6 +40,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
 			$scope.adresseField = data.user.adresse +" "+ data.user.codePostal +" "+data.user.ville;
+			$scope.isAuthenticated = true;
 		}
 		else {
 			$scope.adresseField = "";
@@ -64,23 +66,33 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 					url : '/ws-post-shop/search-postShop',
 					data : critereProp
 				}).success(function (data, status, headers, config) {
+					if ($scope.isAuthenticated) {
+						var tabAdress = [];
+						var tabRes = [];
+						for(i in data.postShops) {
+							tabAdress.push(data.postShops[i].adresse);
+						}
+						distanceManager.getDistance(tabAdress, $scope.adresseField, function(distances) {
+							for(i in distances) {
+								if(data.postShops[i].distance == 0 && distances[i] < 1000) {
+									tabRes.push(data.postShops[i]);
+								} else if (data.postShops[i].distance == 1 && distances[i] < 5000) {
+									tabRes.push(data.postShops[i]);
+								} else if (data.postShops[i].distance == 2 && distances[i] < 10000) {
+									tabRes.push(data.postShops[i]);
+								}
+							}
+							$scope.resultRecherche = tabRes;
+							$scope.erreurMessage = true;
+							$scope.$apply();
+						});
+					} else {
 						$scope.erreurMessage = true;
 						$scope.resultRecherche = data.postShops;
+					}
 				});
 			}
 	}
-
-	$scope.getNbArticles = function(idNbArticle) {
-		var res = "";
-		if (idNbArticle == 0) {
-			res = "Moins de 5";
-		} else if (idNbArticle == 1) {
-			res = "Jusqu'à 10";
-		} else if (idNbArticle == 2) {
-			res = "Plus de 10";
-		}
-		return res;
-	};
 
 })
 .directive('buttonsRadio', function() {
@@ -90,7 +102,6 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		link: function($scope, element, attr, ctrl) {
 			element.bind('click', function() {
 				$scope.$apply(function(scope) {
-					console.log(attr.value);
 					ctrl.$setViewValue(attr.value);
 				});
 			});

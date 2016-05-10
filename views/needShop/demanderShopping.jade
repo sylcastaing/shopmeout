@@ -31,6 +31,10 @@ div(ng-controller="SearchPostShopCtrl")
 									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='0' buttons-radio="") Moins de 5 produits
 									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='1' buttons-radio="") Jusqu'à 10 produits
 									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='2' buttons-radio="") Plus de 10 produits
+									div.col-xs-2
+									div.col-xs-3
+									span(style="color:red", ng-show="postshop.$error.nbArticleRequired") Veuillez préciser le nombre d'articles souhaités
+						
 							div.col-xs-12
 								br
 							div.align-center.col-xs-12
@@ -38,36 +42,50 @@ div(ng-controller="SearchPostShopCtrl")
 								input(class="date form-control input-sm inline-block" type="date" name="date" ng-model-options="{timezone:'-0000'}" placeholder="Date" ng-model="date")
 							div.row
 								br
+							div(class="actions"  style="text-align: center")
+									br
+									input(style="display: inline-block; width: 200px" type="submit", ng-disabled="dataLoading", value="Rechercher", class="btn btn-info btn-block")
+								div.align-center
+									img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
+							div.row
+								br
 							div(class="actions align-center")
 								br
-								input(type="submit", ng-disabled="dataLoading", value="Rechercher", class="btn btn-info btn-search")
-						br
-					div.row
-						.col-md-10.col-md-offset-1
-							.row
-								div.col-xs-6(ng-repeat="r in resultRecherche" ng-if="resultRecherche.length > 0")
-									div.panel.panel-default
-										div.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
-										div.panel-body
-											p.glyphicon.glyphicon-map-marker {{r.magasin}} - {{r.adresse}}
-											br
-											p.glyphicon.glyphicon-calendar {{r.date | date:"dd/MM/yyyy"}}
-											br
-											p.glyphicon.glyphicon-user {{r.nbShoppeur}}
-											br
-											p.glyphicon.glyphicon-shopping-cart
-												span(ng-bind="getNbArticles(r.nbArticle)")
-					div.row
-						div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
-							span Il n y a pas de résultats, désolé !
-					div(ng-show="postshop.$error.magasinSelected")
-							button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
-								span(class = "glyphicon glyphicon-plus-sign" )
-								&nbsp;
-								span Ajouter une demande
+							div.row
+								.col-md-10.col-md-offset-1
+									.row
+										div.col-xs-6(ng-repeat="r in resultRecherche" ng-if="resultRecherche.length > 0")
+											div.panel.panel-default
+												div.panel-heading Shopping proposé par {{r.prenom}} {{r.nom | firstLetter}}.
+												div.panel-body
+													span.glyphicon.glyphicon-map-marker
+													span {{r.magasin}} - {{r.adresse}}
+													br
+													span.glyphicon.glyphicon-calendar
+													span {{r.date | date:"dd/MM/yyyy"}}
+													br
+													span.glyphicon.glyphicon-user
+													span {{r.nbShoppeur}} shoppeurs
+													br
+													span.glyphicon.glyphicon-barcode
+													span {{r.nbArticle | nbArticleLabel}} articles
+													p
+														a(href="#/demanderShopping?id={{r._id}}")
+															button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#bookShopModal":"#signInModal")
+																span(class = "glyphicon glyphicon-shopping-cart")
+						div
+							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
+								span Il n y a pas de résultats, désolé !
+						div(ng-show="postshop.$error.magasinSelected")
+								button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
+									span(class = "glyphicon glyphicon-plus-sign" )
+									&nbsp;
+									span Ajouter une demande
 	include ../needShop/needShop.jade
+	include bookShop.jade
 
 
 block scripts-header
 	script(src="#{baseUrl}/javascripts/postShop/search-postShop.js")
 	script(src="#{baseUrl}/javascripts/needShop/needShop.js")
+	script(src="#{baseUrl}/javascripts/postShop/bookShop.js")

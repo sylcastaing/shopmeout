@@ -63,9 +63,9 @@ div(class="modal fade" id="signUpModal" role="dialog" ng-controller="SignUpCtrl"
 								div.form-group
 									input(class="form-control input-sm", type="text", name="telephone" placeholder="Telephone" ng-model="user.telephone" ng-minlength="10" ng-maxlength="10" required)
 									span(style="color:red", ng-show="signup.telephone.$invalid && signup.telephone.$touched")
-										span(ng-show="signup.telephone.$error.maxlength") Il doit y avoir 10 caractères
-										span(ng-show="signup.telephone.$error.minlength") Il doit y avoir 10 caractères
-										span(ng-show="signup.telephone.$error.required") Le telephone est requis
+										span(ng-show="signup.telephone.$error.maxlength") Il doit y avoir 10 caractères.
+										span(ng-show="signup.telephone.$error.minlength") Il doit y avoir 10 caractères.
+										span(ng-show="signup.telephone.$error.required") Le telephone est requis.
 								div.row
 									div(class="col-xs-12 col-sm-12 col-md-12")
 										div.form-group.align-center

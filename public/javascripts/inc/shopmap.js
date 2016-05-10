@@ -216,29 +216,39 @@
 
 	};
 
-	var distanceManager = {
+	/*
+	 * Récupération de la distance entre adresse
+	 */
+	 var distanceManager = {
 
+		// URL du calculateur de distance
 		url: 'https://maps.googleapis.com/maps/api/distancematrix/json',
 
-		getDistance: function(depart, arrivee, callback) {
-			var service = new google.maps.DistanceMatrixService();
-			var distances = [];
-			service.getDistanceMatrix(
-			{
-				origins: depart,
-				destinations: [arrivee],
-				travelMode: google.maps.TravelMode.DRIVING,
-			}, function(response, status) {
-				if (status == 'OK') {
-					for (i in response.rows) {
-						distances.push(response.rows[i].elements[0].distance.value);
-					}
-					callback(distances);
-				}
-				else {
-					callback(distances);
-				}
-			});
+		/**
+		 * Retourne un tableau de distances
+		 * @param  Array[String]   depart   Les adresse de départ (adresse des clients)
+		 * @param  String   arrivee  L'adresse d'arrivée (adresse du magasin)
+		 * @param  {Function} callback(distances) Callback avec le tableau de distance
+		 */
+		 getDistance: function(depart, arrivee, callback) {
+		 	var service = new google.maps.DistanceMatrixService();
+		 	var distances = [];
+		 	service.getDistanceMatrix(
+		 	{
+		 		origins: depart,
+		 		destinations: [arrivee],
+		 		travelMode: google.maps.TravelMode.DRIVING,
+		 	}, function(response, status) {
+		 		if (status == 'OK') {
+		 			for (i in response.rows) {
+		 				distances.push(response.rows[i].elements[0].distance.value);
+		 			}
+		 			callback(distances);
+		 		}
+		 		else {
+		 			callback(distances);
+		 		}
+		 	});
+		 }
 		}
-	}
 

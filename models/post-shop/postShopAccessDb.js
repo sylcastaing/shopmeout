@@ -46,7 +46,6 @@ var postShopAccessDb = {
 				adresse: datas[0].adresse
 			},
 			{
-				_id:0,
 				__v:0
 			}, function(err,user) {
 				callback(user, err);
@@ -55,12 +54,11 @@ var postShopAccessDb = {
 		// On cherche juste avec nbArticle et magasin
 		else if(datas[0].nbArticle != undefined && datas[0].date == undefined) {
 			PostShop.find({
-				nbArticle: { $gte: datas[0].nbArticle },
+				nbArticle: { $lte: datas[0].nbArticle },
 				magasin: datas[0].magasin,
 				adresse: datas[0].adresse
 			},
 			{
-				_id:0,
 				__v:0
 			}, function(err,user) {
 				callback(user, err);
@@ -75,12 +73,11 @@ var postShopAccessDb = {
 			PostShop.find({
 				date: { $lte: datas[0].date,
 					$gt: newDate.format()},
-				nbArticle : datas[0].nbArticle,
+				nbArticle : { $lte: datas[0].nbArticle },
 				magasin: datas[0].magasin,
 				adresse: datas[0].adresse
 			},
 			{
-				_id:0,
 				__v:0
 			}, function(err,user) {
 				callback(user, err);
@@ -93,15 +90,20 @@ var postShopAccessDb = {
 				adresse: datas[0].adresse
 			},
 			{
-				_id:0,
 				__v:0
 			}, function(err,user) {
 				callback(user, err);
 			});
 		}
-
-	
+	},
+	getProposition: function(id,callback) {
+		PostShop.findOne({
+			_id: id
+		}, function(err,user) {
+			callback(user, err);
+		});
 	}
+	
 }
 
 module.exports = postShopAccessDb;
