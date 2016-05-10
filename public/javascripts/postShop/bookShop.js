@@ -22,6 +22,7 @@ app.controller("BookShopCtrl", function($scope, $http, $location) {
 
 	$scope.addArticle = function () {
 		if($scope.nomArticle != "" && $scope.nomArticle != undefined) {
+			$scope.reservationNonValide = false;
 			$scope.displayTable = true;
 				$scope.articles.push({
 					nomArticle: $scope.nomArticle,
