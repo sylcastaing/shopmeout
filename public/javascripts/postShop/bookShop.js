@@ -42,16 +42,21 @@ app.controller("BookShopCtrl", function($scope, $http, $location) {
 
 
 	$scope.bookPostShop = function () {
-
-		var datas = {
+		if($scope.nbrTotalArticles == 0) {
+			$scope.messageErreurReservation = "Vous n'avez aucun articles dans votre liste de courses ! "
+			$scope.reservationNonValide = true;
+		}
+		else {
+			$scope.reservationNonValide = false;
+			var datas = {
 			"nbrArticleTotal": $scope.nbrTotalArticles,
 			"adresseLivraisonBookeur": $scope.adresseField,
 			"idPostShop": $location.search().id,
 			"articles": $scope.articles,
 			"statut": "En attente"
-		}
+			}
 
-		var res = $http({
+			var res = $http({
 				method : 'POST',
 				url : '/ws-book-post-shop/bookPostShop',
 				data : datas
@@ -64,6 +69,7 @@ app.controller("BookShopCtrl", function($scope, $http, $location) {
 						$scope.messageErreurReservation=data.err;
 					}
 			});
+		}
 	};
 
 	$scope.$watch('nbrTotalArticles', function() {
