@@ -82,6 +82,10 @@ span.label {
 
 .btn-search {
 	width: 200px;
+	color: white;
+}
+
+.btn-fixed {
 }
 
 .bgOrange.panel-default>.panel-heading {
@@ -97,7 +101,6 @@ span.label {
 
 .bgBlue {
 	background-color: #0A68C0;
-	color: white;
 }
 
 .iconBlue {
@@ -129,7 +132,6 @@ span.label {
 }
 
 #footer {
-	font-family: Georgia;
 	font-size: Small;
 	width: 100%;
 }

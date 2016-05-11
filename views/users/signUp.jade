@@ -20,7 +20,7 @@ div(class="modal fade" id="signUpModal" role="dialog" ng-controller="SignUpCtrl"
 													span(ng-show="signup.nom.$error.required") Le nom est requis.
 									div(class="col-xs-6 col-sm-6 col-md-6")
 										div.form-group
-											input(class="form-control input-sm", type="text", name="prenom", placeholder="Prenom", ng-model="user.prenom",ng-maxlength="30", required)
+											input(class="form-control input-sm", type="text", name="prenom", placeholder="Prénom", ng-model="user.prenom",ng-maxlength="30", required)
 											span(style="color:red", ng-show="signup.prenom.$invalid && signup.prenom.$touched")
 												span(ng-show="signup.nom.$error.maxlength") Il faut au maximum 30 caractères.
 												span(ng-show="signup.prenom.$error.required") Le prénom est requis.
@@ -61,7 +61,7 @@ div(class="modal fade" id="signUpModal" role="dialog" ng-controller="SignUpCtrl"
 											span(style="color:red", ng-show="signup.adresse.$invalid && signup.ville.$touched")
 												span(ng-show="signup.ville.$error.required") La ville est requise.
 								div.form-group
-									input(class="form-control input-sm", type="text", name="telephone" placeholder="Telephone" ng-model="user.telephone" ng-minlength="10" ng-maxlength="10" required)
+									input(class="form-control input-sm", type="text", name="telephone" placeholder="Téléphone" ng-model="user.telephone" ng-minlength="10" ng-maxlength="10" required)
 									span(style="color:red", ng-show="signup.telephone.$invalid && signup.telephone.$touched")
 										span(ng-show="signup.telephone.$error.maxlength") Il doit y avoir 10 caractères.
 										span(ng-show="signup.telephone.$error.minlength") Il doit y avoir 10 caractères.
@@ -85,7 +85,7 @@ div(class="modal fade" id="signUpModal" role="dialog" ng-controller="SignUpCtrl"
 									input(type="submit", value="S\'enregistrer", ng-disabled="signup.$invalid || $scope.signup.$error.sexeError" class="bgBlue btn btn-block")
 									span(style="color:red", ng-show="$scope.signup.$signUpError")
 										span {{$scope.signup.$signUpErrorMsg}}
-			div.row(class="modal-footer")
+			div(class="modal-footer")
 				.align-left.col-xs-8
 					span.linkBlue(ng-click="openSignIn()") Déjà Inscrit(e) ? Connecte-toi !
 				.col-xs-4
