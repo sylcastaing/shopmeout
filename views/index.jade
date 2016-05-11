@@ -24,8 +24,29 @@ block content
 				.row
 					.col-md-12
 						.reasons
-							h1 Les 2 bonnes raisons d'utiliser ShopMeOut !
-							p bla bla bla
+							h1 Les 3 bonnes raisons d'utiliser ShopMeOut !
+							.row
+								.col
+									.col-md-4
+										.thumbnail
+											h3 Impossible de te déplacer pour faire tes courses ?
+											img(id="imgReason1", src='#{baseUrl}/images/Gif-Besoin-Service.gif', alt='')
+											.caption
+												p Il y a forcément un shoppeur pour te venir en aide !
+								.col
+									.col-md-4
+										.thumbnail
+											h3 Envie de rendre service ?
+											img(id="imgReason2", src='#{baseUrl}/images/Echange-Service.png', alt='')
+											.caption
+												p Il y a des bookeurs qui ont besoin de toi !
+								.col
+									.col-md-4
+										.thumbnail
+											h3 Overbooké(e) ?
+											img(id="imgReason3", src='#{baseUrl}/images/shoppeur.png', alt='')
+											.caption
+												p Il y a forcément un shoppeur pour faire les courses à ta place !
 				div(class="usersOfSMO")
 					.row
 						div(ng-if="(resultRandomPostShops.length != 0) || (resultRandomNeedShops.length != 0)")
@@ -64,7 +85,7 @@ block content
 											span {{r.date | date:"dd/MM/yyyy"}}
 											br
 											span.glyphicon.glyphicon-shopping-cart
-											span {{r.nbArticle | nbArticleLabel}} articles
+											span {{r.nbArticle}} articles
 			#proposerShopping.tab-pane.fade
 				include ./postShop/proposerShopping.jade
 			#demanderShopping.tab-pane.fade

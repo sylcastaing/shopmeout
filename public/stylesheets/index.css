@@ -41,6 +41,10 @@
 	margin-right: 8px;
 }
 
+.reasons .thumbnail {
+	border: none;
+}
+
 h1 {
 	margin-bottom: 10px;
 	font-family: Forte;
@@ -54,4 +58,12 @@ h2 {
 
 #home {
 	margin-top: 10px;
+}
+
+#imgReason1 {
+	width: 150px;
+}
+
+#imgReason2 {
+	width: 300px;
 }
