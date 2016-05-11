@@ -73,11 +73,12 @@ div(ng-controller="SearchNeedShopCtrl")
 											span.linkBlue(ng-click="openListArticles(r)") 
 												b {{r.nbArticle }} 
 												span articles
-											p.align-center
-												button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#bookNeedShopModal":"#signInModal")
+											p.align-center()
+											span.align-center.btn.btn-default(ng-click="openBookNeedShop(r)")
 													| Faire ce shopping 
 													span(class = "glyphicon glyphicon-ok")
 								include ../needShop/listArticles.jade
+								include ./bookNeedShop.jade
 
 						div(ng-if="resultRecherche.length == 0 && erreurMessage" class="col-xs-12 animate-show alert alert-danger")
 							span Il n'y a pas de résultats, désolé !

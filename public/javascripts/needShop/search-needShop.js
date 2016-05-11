@@ -14,6 +14,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
 			$scope.adresseField = data.user.adresse + " " + data.user.codePostal + " " + data.user.ville;
+			$scope.isAuthenticated = true;
 		}
 		else {
 			$scope.adresseField = "";
@@ -104,7 +105,15 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 	$scope.openListArticles = function(demande) {
 		$scope.selectedDemande = demande;
 		$("#listArticles").modal('show');
-		console.log("TG");
+	}
+
+	$scope.openBookNeedShop = function(demande) {
+		if ($scope.isAuthenticated) {
+			$scope.selectedDemande = demande;
+			$("#bookNeedShopModal").modal('show');
+		} else {
+			$("#signInModal").modal('show');
+		}
 	}
 
 })
