@@ -83,9 +83,7 @@ span.label {
 .btn-search {
 	width: 200px;
 	color: white;
-}
-
-.btn-fixed {
+	background-color: #0A68C0;
 }
 
 .bgOrange.panel-default>.panel-heading {
@@ -97,10 +95,6 @@ span.label {
 .bgBlue.panel-default>.panel-heading {
 	background-color: #0A68C0;
 	color: white;
-}
-
-.bgBlue {
-	background-color: #0A68C0;
 }
 
 .iconBlue {

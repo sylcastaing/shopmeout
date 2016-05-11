@@ -75,9 +75,9 @@ block content
 						.col-md-10.col-md-offset-1
 							.row
 								.col-xs-4(ng-repeat="r in resultRandomNeedShops")
-									.panel.panel-default(class="bgBlue")
+									.panel.panel-default.bgBlue
 										.panel-heading Bookeur {{r.prenom}} {{r.nom | firstLetter}}. demande
-										.panel-body(class="resultCard")
+										.panel-body.resultCard
 											span.glyphicon.glyphicon-map-marker 
 											span {{r.adresse}}
 											br
