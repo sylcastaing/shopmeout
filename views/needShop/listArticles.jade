@@ -13,7 +13,7 @@ div(class="modal fade" id="listArticles" role="dialog")
 							ul.list-group
 								li.list-group-item(ng-repeat="a in selectedDemande.articles")
 									span.badge {{a.nbrArticle}}
-									{{a.nomArticle}}
+									| {{a.nomArticle}}
 			div.modal-footer
 				button.btn.btn-default(type="button" data-dismiss="modal") Fermer
 

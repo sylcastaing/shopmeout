@@ -36,14 +36,14 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 											tbody
 												tr(ng-repeat="article in articles")
 													td
-														{{article.nomArticle}}
+														| {{article.nomArticle}}
 													td
-														{{article.nbrArticle}}
+														| {{article.nbrArticle}}
 													td
 														span(class="glyphicon glyphicon-remove" style="color:red" ng-click='removeArticle($index)')
 									div(class="col-xs-12")
 										b Nombre total d'articles : 
-										{{nbrTotalArticles}}
+										| {{nbrTotalArticles}}
 									span(style="color:red", ng-show="needShop.articles.$invalid || needShop.$error.articles") La liste d'articles ne peut pas être vide.
 							div.form-group
 								div.row
