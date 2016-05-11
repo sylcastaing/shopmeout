@@ -56,6 +56,14 @@ h2 {
 	margin-bottom: 10px;
 }
 
+h3 {
+	font-family: Geogia;
+}
+
+.caption p {
+	font-family: Georgia;
+}
+
 #home {
 	margin-top: 10px;
 }
@@ -65,5 +73,9 @@ h2 {
 }
 
 #imgReason2 {
-	width: 300px;
+	width: 250px;
+}
+
+#imgReason3 {
+	width: 150px;
 }
