@@ -241,7 +241,11 @@
 		 	}, function(response, status) {
 		 		if (status == 'OK') {
 		 			for (i in response.rows) {
-		 				distances.push(response.rows[i].elements[0].distance.value);
+		 				if (response.rows[i].elements[0].status == 'OK') {
+		 					distances.push(response.rows[i].elements[0].distance.value);
+		 				} else {
+		 					distances.push(-1);
+		 				}
 		 			}
 		 			callback(distances);
 		 		}
