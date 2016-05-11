@@ -58,11 +58,12 @@ div(ng-controller="SearchNeedShopCtrl")
 										div.panel-heading Shopping demandé par 
 											b {{r.prenom}} {{r.nom | firstLetter}}.
 										div.panel-body
-											span.glyphicon.glyphicon-map-marker.iconBlue
-											span A livrer au 
-												b {{r.adresse}} 
-											br
+											// span.glyphicon.glyphicon-map-marker.iconBlue
+											// span A livrer au 
+											// 	b {{r.adresse}} 
+											// br
 											span.glyphicon.glyphicon-road.iconBlue
+											span A livrer à 
 											b {{r.distance/1000}}km 
 											span du magasin
 											br
@@ -73,8 +74,10 @@ div(ng-controller="SearchNeedShopCtrl")
 											span.linkBlue(ng-click="openListArticles(r)") 
 												b {{r.nbArticle }} 
 												span articles
-											p.align-center()
-											span.align-center.btn.btn-default(ng-click="openBookNeedShop(r)")
+											br
+											br
+											p.align-center
+												span.align-center.btn.btn-default(ng-click="openBookNeedShop(r)")
 													| Réalise ce shopping 
 													span(class = "glyphicon glyphicon-ok")
 								include ../needShop/listArticlesModal.jade

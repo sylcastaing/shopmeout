@@ -9,6 +9,14 @@ div(class="modal fade" id="bookNeedShopModal" role="dialog")
 			div(class="modal-body")
 				div
 					p Shopping demandé par {{selectedDemande.prenom}} {{selectedDemande.nom | firstLetter}}. le {{selectedDemande.date | date:"dd/MM/yyyy"}}
+				span.glyphicon.glyphicon-home.iconBlue
+				span {{selectedDemande.nbArticle}} articles à acheter à {{selectedMagasin}}
+				br
+				span.glyphicon.glyphicon-road.iconBlue
+				span A livrer à 
+				b {{selectedDemande.distance/1000}}km 
+				span du magasin
+				br
 				include ../needShop/listArticles.jade
 
 			div(class="modal-footer")
