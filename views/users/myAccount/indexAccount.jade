@@ -1,22 +1,22 @@
 extends ../../layout
 
 block content
-	div
+	div(ng-controller="myAccountCtrl")
 		.row
 			.col-md-2
-				ul.nav.nav-pills.nav-stacked
+				ul.nav.nav-pills.nav-stacked#myAccountTabs(role="tablist")
 					li.active(role="presentation")
-						a(href="#") Mes informations
+						a(href="#myInformations" aria-controls="myInformations" role="tab" data-toggle="tab") Mes informations
 					li(role="presentation")
-						a(href="#") Mes propositions
+						a(href="#myPostsShops" aria-controls="myPostsShops" role="tab" data-toggle="tab") Mes propositions
 					li(role="presentation")
 						a(href="#") Mes demandes
 					li(role="presentation")
 						a(href="#") Mes messages
 			.col-md-10
-				include myInformations.jade
-
-
+				.tab-content
+					include myInformations.jade
+					include myPostsShops.jade
 
 block scripts-header
 	script(src="#{baseUrl}/javascripts/users/myAccount/myAccount-main.js")

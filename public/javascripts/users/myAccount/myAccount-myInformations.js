@@ -12,7 +12,7 @@ app.controller("myInformationsCtrl", function($scope, $http) {
 				$(".angular-content").show();
 			}
 			else {
-				 document.location = '/users';
+				 document.location = '/';
 			}
 		});
 });
