@@ -66,7 +66,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 					url : '/ws-post-shop/search-postShop',
 					data : critereProp
 				}).success(function (data, status, headers, config) {
-					if ($scope.isAuthenticated) {
+					if ($scope.isAuthenticated && data.postShops.length != 0) {
 						var tabAdress = [];
 						var tabRes = [];
 						for(i in data.postShops) {

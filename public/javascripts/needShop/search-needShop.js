@@ -58,32 +58,37 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 			url : '/ws-need-shop/search-needShop',
 			data : critereProp
 		}).success(function (data, status, headers, config) {
-			// On calcule les distances entre le magasin et les adresses
-			var tabAdress = [];
-			var tabRes = [];
-			for(i in data.needShops) {
-				tabAdress.push(data.needShops[i].adresse);
-			}
-			distanceManager.getDistance(tabAdress, $scope.adresseSelectedMagasin, function(distances) {
-				for(i in distances) {
-					if($scope.distance == 0 && distances[i] < 1000) {
-						data.needShops[i].distance = distances[i];
-						tabRes.push(data.needShops[i]);
-					} else if ($scope.distance == 1 && distances[i] < 5000) {
-						data.needShops[i].distance = distances[i];
-						tabRes.push(data.needShops[i]);
-					} else if ($scope.distance == 2 && distances[i] < 10000) {
-						data.needShops[i].distance = distances[i];
-						tabRes.push(data.needShops[i]);
-					} else {
-						data.needShops[i].distance = distances[i];
-						tabRes.push(data.needShops[i]);
-					}
+			if (data.needShops.length != 0) {
+				// On calcule les distances entre le magasin et les adresses
+				var tabAdress = [];
+				var tabRes = [];
+				for(i in data.needShops) {
+					tabAdress.push(data.needShops[i].adresse);
 				}
-				$scope.resultRecherche = tabRes;
+				distanceManager.getDistance(tabAdress, $scope.adresseSelectedMagasin, function(distances) {
+					for(i in distances) {
+						if($scope.distance == 0 && distances[i] < 1000) {
+							data.needShops[i].distance = distances[i];
+							tabRes.push(data.needShops[i]);
+						} else if ($scope.distance == 1 && distances[i] < 5000) {
+							data.needShops[i].distance = distances[i];
+							tabRes.push(data.needShops[i]);
+						} else if ($scope.distance == 2 && distances[i] < 10000) {
+							data.needShops[i].distance = distances[i];
+							tabRes.push(data.needShops[i]);
+						} else {
+							data.needShops[i].distance = distances[i];
+							tabRes.push(data.needShops[i]);
+						}
+					}
+					$scope.resultRecherche = tabRes;
+					$scope.erreurMessage = true;
+					$scope.$apply();
+				});
+			} else {
+				$scope.resultRecherche = [];
 				$scope.erreurMessage = true;
-				$scope.$apply();
-			});
+			}
 		});
 	}
 

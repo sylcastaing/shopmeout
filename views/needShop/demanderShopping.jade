@@ -24,7 +24,7 @@ div(ng-controller="SearchPostShopCtrl")
 							button#buttonValid(type = "button" class ="btn btn-default" ng-click="magasinChoisi()" ng-show="!showDiv") Valide ton magasin !
 						div.row
 							br
-						div.row(ng-show="postshop.$error.magasinSelected")
+						div(ng-show="postshop.$error.magasinSelected")
 							div.form-group.align-center
 								label(class="control-label" id="labelNbArticles") Je veux me faire livrer
 								div(class="btn-group" data-toggle="buttons-radio")

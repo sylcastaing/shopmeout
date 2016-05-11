@@ -16,7 +16,7 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 		url : '/ws-users/consult-profile'
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
-			$scope.adresse = data.user.adresse + " " + data.user.codePostal;
+			$scope.adresse = data.user.adresse + " " + data.user.codePostal + " " + data.user.ville;
 		}
 	});
 	$scope.displayTable = false;
@@ -97,7 +97,7 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 					url : '/ws-users/consult-profile'
 				}).success(function (data, status, headers, config){
 					if(data.user != null) {
-						$scope.adresse = data.user.adresse + " " + data.user.codePostal;
+						$scope.adresse = data.user.adresse + " " + data.user.codePostal + " " + data.user.ville;
 					}
 				});
 			}
