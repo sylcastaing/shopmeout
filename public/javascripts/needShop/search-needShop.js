@@ -104,7 +104,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 
 	$scope.openListArticles = function(demande) {
 		$scope.selectedDemande = demande;
-		$("#listArticles").modal('show');
+		$("#listArticlesModal").modal('show');
 	}
 
 	$scope.openBookNeedShop = function(demande) {

@@ -1,19 +1,7 @@
-div(class="modal fade" id="listArticles" role="dialog")
-	div(class="modal-dialog")
-
-		// Modal content
-		div.modal-content(ng-if="selectedDemande")
-			div.modal-header
-				button.close(type="button" data-dismiss="modal") &times;
-				h4.modal-title Liste des articles demandés par {{selectedDemande.prenom}} {{selectedDemande.nom | firstLetter}}. le {{selectedDemande.date | date:"dd/MM/yyyy"}}
-			div.modal-body
-				div.row.centered-form
-					div.col-xs-12
-						div.panel-body
-							ul.list-group
-								li.list-group-item(ng-repeat="a in selectedDemande.articles")
-									span.badge {{a.nbrArticle}}
-									| {{a.nomArticle}}
-			div.modal-footer
-				button.btn.btn-default(type="button" data-dismiss="modal") Fermer
-
+div.row.centered-form
+	div.col-xs-12
+		div.panel-body
+			ul.list-group
+				li.list-group-item(ng-repeat="a in selectedDemande.articles")
+					span.badge {{a.nbrArticle}}
+					| {{a.nomArticle}}
