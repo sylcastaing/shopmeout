@@ -9,7 +9,7 @@ div(class="modal fade" id="bookShopModal" role="dialog" ng-controller="BookShopC
 			div(class="modal-body")
 				div
 					p Shopping proposé par {{propShop.prenom}} {{propShop.nom}} le {{propShop.date | date:"dd/MM/yyyy"}}
-					span {{propShop.nbArticle | nbArticleLabel}} articles disponibles
+					span {{propShop.nbArticle | nbArticleLabel}} articles possibles
 				div(class="row centered-form")
 					div.panel-body
 						form(name="postShop", method="post", ng-submit="bookShop()" novalidate)

@@ -3,7 +3,7 @@ div(ng-controller="SearchPostShopCtrl")
 		div(class="col-xs-12 col-sm-12 col-md-12")
 			div(class="panel panel-default")
 				div(class="panel-heading")
-					h1(class="panel-title")="Rechercher une proposition de shopping"
+					h1(class="panel-title")="Recherche une proposition de shopping !"
 				div.panel-body
 					form(name="postshop", method="post", ng-submit="searchPostShop()" novalidate)
 						div.row
@@ -33,7 +33,7 @@ div(ng-controller="SearchPostShopCtrl")
 									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='2' buttons-radio="") Plus de 10 produits
 									div.col-xs-2
 									div.col-xs-3
-									span(style="color:red", ng-show="postshop.$error.nbArticleRequired") Précise le nombre d'articles souhaités
+									span(style="color:red", ng-show="postshop.$error.nbArticleRequired") Précise le nombre d'articles souhaités !
 						
 							div.col-xs-12
 								br
