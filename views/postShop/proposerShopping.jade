@@ -36,9 +36,9 @@ div(ng-controller="SearchNeedShopCtrl")
 							div.form-group.align-center
 								label(class="control-label" id="labelNbArticles") Je veux livrer
 								div(class="btn-group" data-toggle="buttons-radio")
-									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='0' buttons-radio="") Moins de 5 produits
-									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='1' buttons-radio="") Jusqu'à 10 produits
-									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='2' buttons-radio="") Plus de 10 produits
+									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='5' buttons-radio="") Jusqu'à 5 produits
+									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='10' buttons-radio="") Jusqu'à 10 produits
+									button(type="button" class="btn btn-primary" ng-model="nbArticle" value='1000' buttons-radio="") Plus de 10 produits
 							div.col-xs-12
 								br
 							div.align-center.col-xs-12
@@ -63,7 +63,7 @@ div(ng-controller="SearchNeedShopCtrl")
 												b {{r.adresse}} 
 											br
 											span.glyphicon.glyphicon-road.iconBlue
-											b {{r.distance}}m 
+											b {{r.distance/1000}}km 
 											span du magasin
 											br
 											span.glyphicon.glyphicon-calendar.iconBlue

@@ -60,6 +60,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 		}).success(function (data, status, headers, config) {
 			if (data.needShops.length != 0) {
 				// On calcule les distances entre le magasin et les adresses
+				//console.log(data.needShops);
 				var tabAdress = [];
 				var tabRes = [];
 				for(i in data.needShops) {
@@ -76,17 +77,25 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 						} else if ($scope.distance == 2 && distances[i] < 10000) {
 							data.needShops[i].distance = distances[i];
 							tabRes.push(data.needShops[i]);
-						} else {
+						} else if ($scope.distance == 3) {
 							data.needShops[i].distance = distances[i];
 							tabRes.push(data.needShops[i]);
+						} else {
+							data.needShops[i].distance = distances[i];
 						}
 					}
-					$scope.resultRecherche = tabRes;
-					$scope.erreurMessage = true;
-					$scope.$apply();
+					if($scope.distance == undefined) {
+						$scope.resultRecherche = data.needShops;
+						$scope.erreurMessage = true;
+						$scope.$apply();
+					} else {
+						$scope.resultRecherche = tabRes;
+						$scope.erreurMessage = true;
+						$scope.$apply();
+					}
 				});
 			} else {
-				$scope.resultRecherche = [];
+				$scope.resultRecherche = data.needShops;
 				$scope.erreurMessage = true;
 			}
 		});

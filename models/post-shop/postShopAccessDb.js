@@ -33,7 +33,6 @@ var postShopAccessDb = {
 	},
 	searchPostShop: function(datas,callback) {
 
-		
 		// On cherche juste avec magasin et date : 
 		if(datas[0].date != undefined && datas[0].nbArticle == undefined) {
 			var time = moment.duration("00:01:00");
