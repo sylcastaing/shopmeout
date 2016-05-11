@@ -39,7 +39,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		url : '/ws-users/consult-profile'
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
-			$scope.adresseField = data.user.adresse +" "+ data.user.codePostal +" "+data.user.ville;
+			$scope.adresseField = data.user.adresse + " " + data.user.codePostal + " " + data.user.ville;
 			$scope.isAuthenticated = true;
 		}
 		else {
