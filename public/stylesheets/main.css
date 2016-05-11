@@ -86,6 +86,10 @@ span.label {
 	background-color: #0A68C0;
 }
 
+.btn-search:hover {
+	color:#AFAFAF;
+}
+
 .bgOrange.panel-default>.panel-heading {
 	background-color: #FF6100;
 	color: white;
