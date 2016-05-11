@@ -73,13 +73,11 @@ div(ng-controller="SearchPostShopCtrl")
 													span shoppeurs
 													br
 													span.glyphicon.glyphicon-shopping-cart.iconOrange
-													b {{r.nbArticle | nbArticleLabel}} 
-													span articles
-													p.align-center
-														a(href="#/demanderShopping?id={{r._id}}")
-															button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#bookPostShopModal":"#signInModal")
-																| Reserver ce shopping 
-																span(class = "glyphicon glyphicon-ok")
+													b {{r.nbArticle | nbArticleLabel}} articles
+													br
+													span.align-center.btn.btn-default(ng-click="openBookPostShop(r)")
+														| Reserver ce shopping 
+														span(class = "glyphicon glyphicon-ok")
 							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
 								span Il n'y a pas de résultats, désolé !
 						div(ng-show="postshop.$error.magasinSelected")

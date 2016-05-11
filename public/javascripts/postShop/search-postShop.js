@@ -96,6 +96,15 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			}
 	}
 
+	$scope.openBookPostShop = function(shopping) {
+		if ($scope.isAuthenticated) {
+			$scope.propShop = shopping;
+			$("#bookPostShopModal").modal('show');
+		} else {
+			$("#signInModal").modal('show');
+		}
+	}
+
 })
 .directive('buttonsRadio', function() {
 	return {

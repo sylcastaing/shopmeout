@@ -26,9 +26,9 @@ div(class="modal fade" id="bookPostShopModal" role="dialog" ng-controller="BookP
 									label(class="control-label col-xs-12" id="labelArticles") Ajoute un article :
 								div.row
 									div(class="col-xs-6")
-										input(class="form-control input-sm", type="text", name="nomArticle", placeholder="Nom de l'article", ng-model="nomArticle" ng-disabled="erreurLimiteArticles" ng-keydown="resetErreur()")
+										input(class="form-control input-sm", type="text" placeholder="Nom de l'article" name="nameArticle" ng-model="modal.nameArticle" ng-disabled="erreurLimiteArticles" ng-keydown="resetErreur()")
 									div(class="col-xs-3")
-										input(class="form-control input-sm", type="number", name="nbrArticle", placeholder="Nombre d'article", ng-model="nbrArticle" ng-disabled="erreurLimiteArticles")
+										input(class="form-control input-sm", type="number", name="nbrArticle", placeholder="Nombre d'article", ng-model="modal.nbrArticle" ng-disabled="erreurLimiteArticles")
 									div(class="col-xs-3")
 											button(type="button" class="btn btn-primary" ng-click="addArticle()" ng-disabled="erreurLimiteArticles") Ajouter !
 								div.row
@@ -50,9 +50,9 @@ div(class="modal fade" id="bookPostShopModal" role="dialog" ng-controller="BookP
 											tbody
 												tr(ng-repeat="article in articles")
 													td
-														{{article.nomArticle}}
+														| {{article.nomArticle}}
 													td
-														{{article.nbrArticle}}
+														| {{article.nbrArticle}}
 													td
 														span(class="glyphicon glyphicon-remove" style="color:red" ng-click='removeArticle($index)')
 												tr

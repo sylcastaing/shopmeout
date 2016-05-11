@@ -1,36 +1,27 @@
 app.controller("BookPostShopCtrl", function($scope, $http, $location, $timeout) {
-	
-	$("#bookPostShopModal").on('shown.bs.modal', function() {
-		var res = $http({
-					method : 'POST',
-					url : '/ws-post-shop/get-postShop',
-					data : {"id" : $location.search().id }
-				}).success(function (data, status, headers, config) {
-						$scope.propShop = data.postShop;
-				});
-	});
 
 
 	$scope.erreurLimiteArticles = false;
 	$scope.displayTable = false;
 	$scope.articles = [];
 	$scope.nbrTotalArticles = 0;
-	$scope.nbrArticle=1;
 	$scope.reservationEnvoyee=false;
 	$scope.reservationNonValide=false;
 	$scope.erreurChampVide = false;
+	$scope.modal = {};
+	$scope.modal.nbrArticle=1;
 
 	$scope.addArticle = function () {
-		if($scope.nomArticle != "" && $scope.nomArticle != undefined) {
+		if($scope.modal.nameArticle != "" && $scope.modal.nameArticle != undefined) {
 			$scope.reservationNonValide = false;
 			$scope.displayTable = true;
-				$scope.articles.push({
-					nomArticle: $scope.nomArticle,
-					nbrArticle: $scope.nbrArticle
-				});
-			$scope.nbrTotalArticles = $scope.nbrTotalArticles + $scope.nbrArticle;
-			$scope.nomArticle="";
-			$scope.nbrArticle=1;
+			$scope.articles.push({
+				nomArticle: $scope.modal.nameArticle,
+				nbrArticle: $scope.modal.nbrArticle
+			});
+			$scope.nbrTotalArticles = $scope.nbrTotalArticles + $scope.modal.nbrArticle;
+			$scope.modal.nameArticle="";
+			$scope.modal.nbrArticle=1;
 		}
 		else {
 			$scope.erreurChampVide = true;
@@ -52,7 +43,7 @@ app.controller("BookPostShopCtrl", function($scope, $http, $location, $timeout) 
 			var datas = {
 			"nbrArticleTotal": $scope.nbrTotalArticles,
 			"adresseLivraisonBookeur": $scope.adresseField,
-			"idPostShop": $location.search().id,
+			"idPostShop": $scope.propShop._id,
 			"articles": $scope.articles,
 			"statut": "En attente"
 			}
@@ -96,7 +87,7 @@ app.controller("BookPostShopCtrl", function($scope, $http, $location, $timeout) 
 
 	$scope.$watch('nbrTotalArticles', function() {
 		if($scope.propShop != undefined) {
-			if((($scope.nbrArticle + $scope.nbrTotalArticles) <= 5 && $scope.propShop.nbArticle == 0) || (($scope.nbrArticle + $scope.nbrTotalArticles) <= 11 && $scope.propShop.nbArticle == 1) || $scope.propShop.nbArticle == 2) {
+			if((($scope.modal.nbrArticle + $scope.nbrTotalArticles) <= 5 && $scope.propShop.nbArticle == 0) || (($scope.modal.nbrArticle + $scope.nbrTotalArticles) <= 11 && $scope.propShop.nbArticle == 1) || $scope.propShop.nbArticle == 2) {
 				$scope.erreurLimiteArticles = false;
 			}
 			else {
