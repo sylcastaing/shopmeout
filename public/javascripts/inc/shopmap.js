@@ -48,7 +48,7 @@
 	 	
 	 	shopMap.getGeocode(function (result) {
 	 		if (!result.status) {
-	 			console.err("Erreur chargement de la map");
+	 			console.error("Erreur chargement de la map");
 	 		} else {
 	 			shopMap.map = new google.maps.Map(document.getElementById(shopMap.mapId), {
 	 				center: shopMap.adresse,
