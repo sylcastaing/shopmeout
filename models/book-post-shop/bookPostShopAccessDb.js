@@ -27,6 +27,16 @@ var bookPostShopAccessDb = {
 				}
 			}
 		});
+	},
+	getBookPostShops: function(id,callback) {
+		BookPostShop.find({
+			idPostShop: id
+		},
+		{
+			__v:0
+		}, function(err,bookPostShop) {
+			callback(bookPostShop, err);
+		});
 	}
 }
 

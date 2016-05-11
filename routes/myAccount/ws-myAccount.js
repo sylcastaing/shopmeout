@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var postShopAccessDb = require('../../models/post-shop/postShopAccessDb');
 var needShopAccessDb = require('../../models/need-shop/needShopAccessDb');
+var bookPostShopAccessDb = require('../../models/book-post-shop/bookPostShopAccessDb');
 var usersMessages = require('properties-reader')('messages/users.messages.properties');
 
 
@@ -57,5 +58,16 @@ router.get('/consult-needShops', function (req, res, next) {
 		});
 	}
 });
+
+/* Prend l'ID du postShop en param */
+router.get('/consult-bookPostShops', function (req, res, next) {
+	bookPostShopAccessDb.getBookPostShops(req.query.id, function(bookPostShops, err) {
+		res.json({
+			bookPostShops : bookPostShops,
+			err : err
+		});
+	});
+});
+
 
 module.exports = router;
