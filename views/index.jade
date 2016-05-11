@@ -60,17 +60,17 @@ block content
 									.panel.panel-default(class="bgOrange")
 										.panel-heading Shoppeur {{r.prenom}} {{r.nom | firstLetter}}. propose
 										.panel-body(class="resultCard")
-											span.glyphicon.glyphicon-map-marker
+											span.glyphicon.glyphicon-map-marker.iconOrange
 											span {{r.magasin}} - {{r.adresse}}
 											br
-											span.glyphicon.glyphicon-calendar
+											span.glyphicon.glyphicon-calendar.iconOrange
 											span {{r.date | date:"dd/MM/yyyy"}}
 											br
-											span.glyphicon.glyphicon-user
+											span.glyphicon.glyphicon-user.iconOrange
 											span {{r.nbShoppeur}} shoppeurs
 											br
-											span.glyphicon.glyphicon-shopping-cart
-											span {{r.nbArticle | nbArticleLabel}} articles
+											span.glyphicon.glyphicon-shopping-cart.iconOrange
+											span {{r.nbArticle | nbArticleLabel}} article(s)
 					.row(ng-if="resultRandomNeedShops.length != 0")
 						.col-md-10.col-md-offset-1
 							.row
@@ -78,14 +78,14 @@ block content
 									.panel.panel-default.bgBlue
 										.panel-heading Bookeur {{r.prenom}} {{r.nom | firstLetter}}. demande
 										.panel-body.resultCard
-											span.glyphicon.glyphicon-map-marker 
+											span.glyphicon.glyphicon-map-marker.iconBlue
 											span {{r.adresse}}
 											br
-											span.glyphicon.glyphicon-calendar
+											span.glyphicon.glyphicon-calendar.iconBlue
 											span {{r.date | date:"dd/MM/yyyy"}}
 											br
-											span.glyphicon.glyphicon-shopping-cart
-											span {{r.nbArticle}} articles
+											span.glyphicon.glyphicon-shopping-cart.iconBlue
+											span {{r.nbArticle}} article(s)
 			#proposerShopping.tab-pane.fade
 				include ./postShop/proposerShopping.jade
 			#demanderShopping.tab-pane.fade
