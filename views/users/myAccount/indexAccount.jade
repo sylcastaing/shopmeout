@@ -10,13 +10,14 @@ block content
 					li(role="presentation")
 						a(href="#myPostsShops" aria-controls="myPostsShops" role="tab" data-toggle="tab") Mes propositions
 					li(role="presentation")
-						a(href="#") Mes demandes
+						a(href="#myNeedsShops" aria-controls="myNeedsShops" role="tab" data-toggle="tab") Mes demandes
 					li(role="presentation")
 						a(href="#") Mes messages
 			.col-md-10
 				.tab-content
 					include myInformations.jade
 					include myPostsShops.jade
+					include myNeedsShops.jade
 
 block scripts-header
 	script(src="#{baseUrl}/javascripts/users/myAccount/myAccount-main.js")

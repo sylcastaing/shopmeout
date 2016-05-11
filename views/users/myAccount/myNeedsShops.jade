@@ -1,0 +1,26 @@
+.tab-pane#myNeedsShops(role="tabpanel")
+	div(ng-controller="myNeedsShopsCtrl")
+		.row
+			.col-xs-6(ng-repeat="r in myNeedsShops")
+				.panel.panel-default.bgBlue
+					.panel-heading Shopping demandé par 
+						b {{r.prenom}} {{r.nom | firstLetter}}.
+					.panel-body
+						span.glyphicon.glyphicon-map-marker.iconBlue
+						span A livrer au 
+							b {{r.adresse}} 
+						br
+						span.glyphicon.glyphicon-road.iconBlue
+						b {{r.distance/1000}}km 
+						span du magasin
+						br
+						span.glyphicon.glyphicon-calendar.iconBlue
+						b {{r.date | date:"dd/MM/yyyy"}}
+						br
+						span.glyphicon.glyphicon-shopping-cart.iconBlue
+						span.linkBlue(ng-click="openListArticles(r)") 
+							b {{r.nbArticle }} 
+							span articles
+
+block scripts-header
+	script(src="#{baseUrl}/javascripts/users/myAccount/myAccount-myNeedsShops.js") 
