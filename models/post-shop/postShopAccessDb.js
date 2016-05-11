@@ -103,6 +103,16 @@ var postShopAccessDb = {
 		}, function(err,postShop) {
 			callback(postShop, err);
 		});
+	},
+	getPostShops: function(email,callback) {
+		PostShop.find({
+			mailShoppeur: email
+		},
+		{
+			__v:0
+		}, function(err,postShop) {
+			callback(postShop, err);
+		});
 	}
 	
 }

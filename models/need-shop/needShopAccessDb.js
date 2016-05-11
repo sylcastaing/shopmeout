@@ -96,6 +96,16 @@ var needShopAccessDb = {
 				callback(user, err);
 			});
 		}
+	},
+	getNeedShops: function(email,callback) {
+		NeedShop.find({
+			mailShoppeur: email
+		},
+		{
+			__v:0
+		}, function(err,needShop) {
+			callback(needShop, err);
+		});
 	}
 }
 
