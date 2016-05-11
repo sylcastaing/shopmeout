@@ -95,6 +95,11 @@ span.label {
 	color: white;
 }
 
+.bgBlue {
+	background-color: #0A68C0;
+	color: white;
+}
+
 .iconBlue {
 	color: #0A68C0;
 	padding-right: 5px;

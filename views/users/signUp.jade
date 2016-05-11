@@ -65,7 +65,7 @@ div(class="modal fade" id="signUpModal" role="dialog" ng-controller="SignUpCtrl"
 									span(style="color:red", ng-show="signup.telephone.$invalid && signup.telephone.$touched")
 										span(ng-show="signup.telephone.$error.maxlength") Il doit y avoir 10 caractères.
 										span(ng-show="signup.telephone.$error.minlength") Il doit y avoir 10 caractères.
-										span(ng-show="signup.telephone.$error.required") Le telephone est requis.
+										span(ng-show="signup.telephone.$error.required") Le téléphone est requis.
 								div.row
 									div(class="col-xs-12 col-sm-12 col-md-12")
 										div.form-group.align-center
@@ -82,7 +82,7 @@ div(class="modal fade" id="signUpModal" role="dialog" ng-controller="SignUpCtrl"
 												span(ng-show="signup.dateNaissance.$error.required") La date est obligatoire.
 								br
 								div.actions
-									input(type="submit", value="S\'enregistrer", ng-disabled="signup.$invalid || $scope.signup.$error.sexeError" class="btn btn-info btn-block")
+									input(type="submit", value="S\'enregistrer", ng-disabled="signup.$invalid || $scope.signup.$error.sexeError" class="bgBlue btn btn-block")
 									span(style="color:red", ng-show="$scope.signup.$signUpError")
 										span {{$scope.signup.$signUpErrorMsg}}
 			div.row(class="modal-footer")

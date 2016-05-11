@@ -21,7 +21,7 @@ div(class="modal fade" id="signInModal" role="dialog" ng-controller="SignInCtrl"
 									div(class="alert alert-danger", ng-show="signin.$error.login")
 										span(style="color:red" ) {{signin.$error.message}}
 								div.actions
-									input(type="submit", ng-disabled="dataLoading", value="Connexion", class="btn btn-info btn-block")
+									input(type="submit", ng-disabled="dataLoading", value="Connexion", class="bgBlue btn btn-block")
 								br
 								.align-center(ng-if="dataLoading")
 									img(class="spinner" src="#{baseUrl}/spinner.gif")
