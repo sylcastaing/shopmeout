@@ -21,4 +21,9 @@ app.controller("myShoppingsCtrl", function($scope, $http) {
 		}
 	});
 
+	$scope.openListArticles = function(demande) {
+		$scope.selectedDemande = demande;
+		$("#listArticlesModal").modal('show');
+	}
+
 });
