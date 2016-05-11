@@ -100,9 +100,9 @@ var needShopAccessDb = {
 		},
 		{
 			__v:0
-		}, function(err,needShop) {
-			callback(needShop, err);
-		});
+		}).sort({date: 1 }).exec(function(err,postShop) {
+			callback(postShop, err);
+		});;
 	}
 }
 
