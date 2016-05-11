@@ -17,7 +17,7 @@ div(ng-controller="SearchNeedShopCtrl")
 								div#mapSearchNeedShop(class="col-sm-12 align-center" style="height:300px")
 						br
 						div(class="animate-show alert alert-danger", ng-show="needShop.$error.noMagasinSelected")
-										span Veuillez sélectionner un magasin sur la carte
+										span Sélectionne ton magasin sur la carte !
 						div(class="alert alert-success", ng-show="needShop.$error.magasinSelected")
 										span Magasin choisi : {{selectedMagasin}} - {{adresseSelectedMagasin}}
 						div.align-center
@@ -30,9 +30,9 @@ div(ng-controller="SearchNeedShopCtrl")
 								label(class="control-label" id="labelNbArticles") Distance de livraison :
 								div(class="btn-group" data-toggle="buttons-radio") 
 									button(type="button" class="btn btn-primary" ng-model="distance" value='0' buttons-radio="") Moins de 1 km
-									button(type="button" class="btn btn-primary" ng-model="distance" value='1' buttons-radio="") Jusqu'à 5 km
-									button(type="button" class="btn btn-primary" ng-model="distance" value='2' buttons-radio="") Jusqu'à 10 km
-									button(type="button" class="btn btn-primary" ng-model="distance" value='3' buttons-radio="") Plus de 10 km
+									button(type="button" class="btn btn-primary" ng-model="distance" value='1' buttons-radio="") Jusqu'à 5 kms
+									button(type="button" class="btn btn-primary" ng-model="distance" value='2' buttons-radio="") Jusqu'à 10 kms
+									button(type="button" class="btn btn-primary" ng-model="distance" value='3' buttons-radio="") Plus de 10 kms
 							div.form-group.align-center
 								label(class="control-label" id="labelNbArticles") Je veux livrer
 								div(class="btn-group" data-toggle="buttons-radio")
@@ -76,13 +76,21 @@ div(ng-controller="SearchNeedShopCtrl")
 								include ../needShop/listArticles.jade
 
 						div(ng-if="resultRecherche.length == 0 && erreurMessage" class="col-xs-12 animate-show alert alert-danger")
+<<<<<<< HEAD
 							span Il n'y a pas de résultats, désolé !
+=======
+							span Il n'y a pas de résultat, désolé !
+>>>>>>> refs/remotes/origin/US08
 						br
 						span(ng-show="needShop.$error.magasinSelected")
 							button(type = "button" class = "btn btn-default" alt="Ajouter une proposition de Shopping" title="Ajouter une proposition de Shopping" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
 								span(class = "glyphicon glyphicon-plus-sign" )
 								&nbsp;
+<<<<<<< HEAD
 								span Ajoute ta proposition !
+=======
+								span Ajouter une proposition !
+>>>>>>> refs/remotes/origin/US08
 	include ./postShop.jade
 
 block scripts-header

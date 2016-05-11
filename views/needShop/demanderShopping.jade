@@ -3,7 +3,11 @@ div(ng-controller="SearchPostShopCtrl")
 		div(class="col-xs-12 col-sm-12 col-md-12")
 			div(class="panel panel-default")
 				div(class="panel-heading")
+<<<<<<< HEAD
 					h1(class="panel-title")="Je recherche une proposition de shopping !"
+=======
+					h1(class="panel-title")="Rechercher une proposition de shopping"
+>>>>>>> refs/remotes/origin/US08
 				div.panel-body
 					form(name="postshop", method="post", ng-submit="searchPostShop()" novalidate)
 						div.row
@@ -17,7 +21,7 @@ div(ng-controller="SearchPostShopCtrl")
 								div#mapSearchPostShop(class="col-sm-12 align-center" style="height:300px")
 						br 
 						div(class="animate-show alert alert-danger", ng-show="postshop.$error.noMagasinSelected")
-										span Veuillez sélectionner un magasin sur la carte
+										span Sélectionne ton magasin sur la carte !
 						div(class="alert alert-success", ng-show="postshop.$error.magasinSelected")
 										span Magasin choisi : {{selectedMagasin}} - {{adresseSelectedMagasin}}
 						div.align-center
@@ -81,6 +85,7 @@ div(ng-controller="SearchPostShopCtrl")
 																| Reserver ce shopping 
 																span(class = "glyphicon glyphicon-ok")
 							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
+<<<<<<< HEAD
 								span Il n'y a pas de résultat, désolé !
 						div(ng-show="postshop.$error.magasinSelected")
 							button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
@@ -91,6 +96,14 @@ div(ng-controller="SearchPostShopCtrl")
 							br
 						div.row
 							br
+=======
+								span Il n'y a pas de résultats, désolé !
+						div(ng-show="postshop.$error.magasinSelected")
+								button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
+									span(class = "glyphicon glyphicon-plus-sign" )
+									&nbsp;
+									span Ajoute une demande !
+>>>>>>> refs/remotes/origin/US08
 	include ../needShop/needShop.jade
 	include bookPostShop.jade
 

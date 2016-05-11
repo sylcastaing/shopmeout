@@ -9,11 +9,11 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 			div(class="modal-body")
 				div(class="row centered-form")
 					div.panel-body
-						span(class="alert alert-info col-xs-12") Magasin Sélectionné : {{selectedMagasin}}, {{adresseSelectedMagasin}}
+						span(class="alert alert-info col-xs-12") Magasin sélectionné : {{selectedMagasin}}, {{adresseSelectedMagasin}}
 						form(name="needShop", method="post", ng-submit="addNeedShop()" novalidate)
 							div.form-group
 								div.row
-									label(class="control-label col-xs-12" id="labelArticles") Ajouter un article :
+									label(class="control-label col-xs-12" id="labelArticles") Ajoute un article :
 								div.row
 									div(class="col-xs-6")
 										input(class="form-control input-sm", type="text", name="nomArticle", placeholder="Nom de l'article", ng-model="nomArticle" ng-keydown="resetErreur()")
@@ -42,9 +42,9 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 													td
 														span(class="glyphicon glyphicon-remove" style="color:red" ng-click='removeArticle($index)')
 									div(class="col-xs-12")
-										b Nombre total d'article : 
+										b Nombre total d'articles : 
 										{{nbrTotalArticles}}
-									span(style="color:red", ng-show="needShop.articles.$invalid || needShop.$error.articles") La liste d'articles ne peut pas etre vide.
+									span(style="color:red", ng-show="needShop.articles.$invalid || needShop.$error.articles") La liste d'articles ne peut pas être vide.
 							div.form-group
 								div.row
 									label(class="control-label col-xs-12" id="labelAdresse") Mon adresse de livraison :
