@@ -44,7 +44,8 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 									div(class="col-xs-12")
 										b Nombre total d'articles : 
 										| {{nbrTotalArticles}}
-									span(style="color:red", ng-show="needShop.articles.$invalid || needShop.$error.articles") La liste d'articles ne peut pas être vide.
+									div(class="col-xs-12")
+										span(style="color:red", ng-show="needShop.articles.$invalid || needShop.$error.articles") La liste d'articles ne peut pas être vide.
 							div.form-group
 								div.row
 									label(class="control-label col-xs-12" id="labelAdresse") Mon adresse de livraison :
