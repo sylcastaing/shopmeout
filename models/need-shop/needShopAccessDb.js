@@ -32,14 +32,11 @@ var needShopAccessDb = {
 		});
 	},
 	searchNeedShop: function(datas,callback) {
-
 		// On cherche juste avec magasin et date :
-		console.log(datas[0]) ;
 		if(datas[0].date != undefined && datas[0].nbArticle == undefined) {
 			var time = moment.duration("00:01:00");
 			var date = moment(datas[0].date);
 			var newDate = date.subtract(time);
-			console.log("NewDate " + newDate.format());
 			NeedShop.find({
 				date: { $lte: datas[0].date,
 					$gt: newDate.format()},

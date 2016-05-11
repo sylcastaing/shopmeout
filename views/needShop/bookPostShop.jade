@@ -8,7 +8,7 @@ div(class="modal fade" id="bookPostShopModal" role="dialog" ng-controller="BookP
 				h4(class="modal-title") Réserve ton shopping !
 			div(class="modal-body")
 				div
-					p Shopping proposé par {{propShop.prenom}} {{propShop.nom}} le {{propShop.date | date:"dd/MM/yyyy"}}
+					p Shopping proposé par {{propShop.prenom}} {{propShop.nom | firstLetter}} le {{propShop.date | date:"dd/MM/yyyy"}}
 					p {{selectedMagasin}} - {{adresseSelectedMagasin}}
 					p {{propShop.nbArticle | nbArticleLabel}} articles possibles
 				div(class="row centered-form")
