@@ -1,13 +1,12 @@
 app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
-	
- 	$scope.removeErrorNbArticle = function() {
- 		if($scope.needShop.$error.NbArticleError) {
- 			$scope.needShop.$error.NbArticleError = false;
- 		}
- 	}
 
- 		$scope.resetErreur = function () {
+
+	$scope.resetErreur = function () {
 		$scope.errorArticleInvalid = false;
+	}
+
+	$scope.removeError = function () {
+	$scope.needShop.$error.dateNeedShop = false;
 	}
 
  	// On récupère l'adresse
@@ -23,7 +22,7 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 	$scope.articles = [];
 	$scope.nbrTotalArticles = 0;
 	$scope.nbrArticle=1;
-
+	$scope.data={};
 	$scope.addArticle = function () {
 	if( $scope.nomArticle == undefined || $scope.nomArticle == "" || $scope.nbrArticle == 0){
 		$scope.errorArticleInvalid = true;
@@ -50,26 +49,28 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 	}
 
 	$scope.addNeedShop = function() {
+		console.log($scope.dateNeedShop);
 		var isOK = true;
-		$scope.data.articles = $scope.articles;
-		$scope.data.adresse = $scope.adresse;
-		$scope.data.nbArticle = $scope.nbrTotalArticles;
-		if($scope == undefined || $scope.data.articles == 0) {
+		if($scope == undefined || $scope.articles == 0) {
 			$scope.needShop.$error.articles = true;
 			isOK = false;
 		}
-		if($scope.data.adresse == undefined) {
+		if($scope.adresse == undefined || $scope.adresse == null || $scope.adresse == "") {
 			$scope.needShop.$error.adresse = true;
 			isOK = false;
 		} 
-		if($scope.data.date == undefined) {
-			$scope.needShop.$error.date = true;
+		if($scope.dateNeedShop == undefined || $scope.dateNeedShop == null) {
+			$scope.needShop.$error.dateNeedShop = true;
 			isOK = false;
 		} 
 		if(isOK) {
-			$scope.needShop.$error.date = false;
+
+			$scope.data.articles = $scope.articles;
+			$scope.data.date = $scope.dateNeedShop;
+			$scope.data.adresse = $scope.adresse;
+			$scope.data.nbArticle = $scope.nbrTotalArticles;
+			$scope.needShop.$error.dateNeedShop = false;
 			$scope.needShop.$error.adresse = false;
- 			$scope.needShop.date.$invalid = false;
  			$scope.needShop.adresse.$invalid = false;
 			$scope.data.magasin = $scope.selectedMagasin;
 			$scope.data.adresseMagasin = $scope.adresseSelectedMagasin;
@@ -91,6 +92,8 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 				$scope.articles = [];
 				$scope.nbrTotalArticles = 0;
 				$scope.errorArticleInvalid = false;
+				$scope.needShop.$error.dateNeedShop = false;
+				$scope.dateNeedShop = null;
 				// On récupère l'adresse
 				var res = $http({
 					method : 'GET',
@@ -108,22 +111,3 @@ app.controller("NeedShopCtrl", function($scope, $http, $timeout) {
 		}
 	}
 })
-.directive('buttonsRadio', function() {
-	return {
-		restrict: 'A',
-		require: 'ngModel',
-		link: function($scope, element, attr, ctrl) {
-			element.bind('click', function() {
-				$scope.$apply(function(scope) {
-					ctrl.$setViewValue(attr.value);
-				});
-			});
-
-			$scope.$watch(attr.ngModel, function(newValue, oldValue) {
-					element.parent(".btn-group").find('button').removeClass("active");
-					element.parent(".btn-group") //.children()
-					.find("button[value='" + newValue + "']").addClass('active');
-				});
-	}
-};
-});
