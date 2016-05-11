@@ -119,6 +119,10 @@ span.label {
 	cursor: pointer;
 }
 
+.align-left {
+	text-align: left;
+}
+
 #footer {
 	font-family: Georgia;
 	font-size: Small;
