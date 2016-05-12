@@ -10,7 +10,7 @@ var needShopMessages = require('properties-reader')('messages/needShop.messages.
 router.post('/needShop', function(req, res, next) {
 	if (req.isAuthenticated()) {
 		if(req.session.passport.user.prenom) {
-			req.body.mailShoppeur = req.session.passport.user.email;
+			req.body.mail = req.session.passport.user.email;
 			req.body.nom = req.session.passport.user.nom;
 			req.body.prenom = req.session.passport.user.prenom;
 		}
@@ -38,6 +38,15 @@ router.post('/search-needShop', function(req, res, next) {
 	needShopAccessDb.searchNeedShop(req.body, function(result, err) {
 		res.json({
 			needShops: result,
+		});
+	});
+	
+});
+
+router.post('/add-shoppeur', function(req, res, next) {
+	needShopAccessDb.addShoppeur(req.body, function(err) {
+		res.json({
+			err: err,
 		});
 	});
 	
