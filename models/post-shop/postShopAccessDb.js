@@ -47,7 +47,7 @@ var postShopAccessDb = {
 			},
 			{
 				__v:0
-			}.sort({date: 1 }).exec(function(err,postShop) {
+			}).sort({date: 1 }).exec(function(err,postShop) {
 				callback(postShop, err);
 			});
 		}
@@ -60,7 +60,7 @@ var postShopAccessDb = {
 			},
 			{
 				__v:0
-			}.sort({date: 1 }).exec(function(err,postShop) {
+			}).sort({date: 1 }).exec(function(err,postShop) {
 				callback(postShop, err);
 			});
 		}
@@ -79,7 +79,7 @@ var postShopAccessDb = {
 			},
 			{
 				__v:0
-			}.sort({date: 1 }).exec(function(err,postShop) {
+			}).sort({date: 1 }).exec(function(err,postShop) {
 				callback(postShop, err);
 			});
 		}

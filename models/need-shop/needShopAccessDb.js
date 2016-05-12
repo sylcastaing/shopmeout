@@ -45,7 +45,7 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}.sort({date: 1 }).exec(function(err,postShop) {
+			}).sort({date: 1 }).exec(function(err,postShop) {
 				callback(postShop, err);
 			});
 		}
@@ -58,7 +58,7 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}.sort({date: 1 }).exec(function(err,postShop) {
+			}).sort({date: 1 }).exec(function(err,postShop) {
 				callback(postShop, err);
 			});
 		}
@@ -77,7 +77,7 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}.sort({date: 1 }).exec(function(err,postShop) {
+			}).sort({date: 1 }).exec(function(err,postShop) {
 				callback(postShop, err);
 			});
 		}
@@ -89,7 +89,7 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}.sort({date: 1 }).exec(function(err,postShop) {
+			}).sort({date: 1 }).exec(function(err,postShop) {
 				callback(postShop, err);
 			});
 		}
