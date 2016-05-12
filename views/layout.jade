@@ -17,7 +17,7 @@ html
 		script(src="#{baseUrl}/javascripts/users/userSignIn.js")
 		block scripts-header
 	body
-		.container(ng-app="ShopMeOut")
+		.container(ng-app="ShopMeOut", ng-controller="MainCtrl")
 			include ./users/signUp.jade
 			include ./users/signIn.jade
 			include ./include/header.jade
