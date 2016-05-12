@@ -45,8 +45,8 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}, function(err,user) {
-				callback(user, err);
+			}.sort({date: 1 }).exec(function(err,postShop) {
+				callback(postShop, err);
 			});
 		}
 		// On cherche juste avec nbArticle et magasin
@@ -58,8 +58,8 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}, function(err,user) {
-				callback(user, err);
+			}.sort({date: 1 }).exec(function(err,postShop) {
+				callback(postShop, err);
 			});
 		}
 		// On cherche avec nbArticle, date et magasin
@@ -77,8 +77,8 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}, function(err,user) {
-				callback(user, err);
+			}.sort({date: 1 }).exec(function(err,postShop) {
+				callback(postShop, err);
 			});
 		}
 		// On cherche juste avec magasin
@@ -89,8 +89,8 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}, function(err,user) {
-				callback(user, err);
+			}.sort({date: 1 }).exec(function(err,postShop) {
+				callback(postShop, err);
 			});
 		}
 	},
@@ -102,7 +102,7 @@ var needShopAccessDb = {
 			__v:0
 		}).sort({date: 1 }).exec(function(err,postShop) {
 			callback(postShop, err);
-		});;
+		});
 	}
 }
 
