@@ -53,15 +53,15 @@ div(ng-controller="SearchNeedShopCtrl")
 					div
 						.col-md-10.col-md-offset-1
 							.row(ng-if="resultRecherche")
+								div(ng-show="needShop.$error.magasinSelected" class="btnBeforeSearch")
+									button(type = "button" class = "btn btn-default btn-fixed" alt="Ajouter une proposition de Shopping" title="Ajouter une proposition de Shopping" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
+										span(class = "glyphicon glyphicon-plus-sign iconBlue" )
+										span Ajoute ta proposition !
 								div.col-xs-6(ng-repeat="r in resultRecherche")
 									div.panel.panel-default.bgBlue
 										div.panel-heading Shopping demandé par 
 											b {{r.prenom}} {{r.nom | firstLetter}}.
 										div.panel-body
-											// span.glyphicon.glyphicon-map-marker.iconBlue
-											// span A livrer au 
-											// 	b {{r.adresse}} 
-											// br
 											span.glyphicon.glyphicon-road.iconBlue
 											span A livrer à 
 											b {{r.distance/1000}}km 
@@ -73,7 +73,7 @@ div(ng-controller="SearchNeedShopCtrl")
 											span.glyphicon.glyphicon-shopping-cart.iconBlue
 											span.linkBlue(ng-click="openListArticles(r)") 
 												b {{r.nbArticle }} 
-												span articles
+												span article(s)
 											br
 											br
 											p.align-center
@@ -82,14 +82,13 @@ div(ng-controller="SearchNeedShopCtrl")
 													span(class = "glyphicon glyphicon-ok")
 								include ../needShop/listArticlesModal.jade
 								include ./bookNeedShop.jade
-
+							.row(ng-if="resultRecherche")
+								div(ng-show="needShop.$error.magasinSelected" ng-if="resultRecherche" class="btnBeforeSearch")
+									button(type = "button" class = "btn btn-default btn-fixed" alt="Ajouter une proposition de Shopping" title="Ajouter une proposition de Shopping" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
+										span(class = "glyphicon glyphicon-plus-sign iconBlue" )
+										span Ajoute ta proposition !
 						div(ng-if="resultRecherche.length == 0 && erreurMessage" class="col-xs-12 animate-show alert alert-danger")
 							span Il n'y a pas de résultats, désolé !
-						br
-						span(ng-show="needShop.$error.magasinSelected")
-							button(type = "button" class = "btn btn-default btn-fixed" alt="Ajouter une proposition de Shopping" title="Ajouter une proposition de Shopping" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
-								span(class = "glyphicon glyphicon-plus-sign iconBlue" )
-								span Ajoute ta proposition !
 	include ./postShop.jade
 
 block scripts-header
