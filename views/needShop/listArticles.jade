@@ -1,0 +1,8 @@
+div.row.centered-form
+	div.col-xs-12
+		div.panel-body
+			ul.list-group
+				label Liste des articles demandés :
+				li.list-group-item(ng-repeat="a in selectedDemande.articles")
+					span.badge {{a.nbrArticle}}
+					| {{a.nomArticle}}

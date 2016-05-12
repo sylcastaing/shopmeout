@@ -34,7 +34,6 @@
 
 .resultCard {
 	text-align: left;
-	font-family: Georgia;
 }
 
 .resultCard .glyphicon {
@@ -54,14 +53,6 @@ h2 {
 	font-family: Forte;
 	text-align: center;
 	margin-bottom: 10px;
-}
-
-h3 {
-	font-family: Geogia;
-}
-
-.caption p {
-	font-family: Georgia;
 }
 
 #home {

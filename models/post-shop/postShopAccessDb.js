@@ -47,8 +47,8 @@ var postShopAccessDb = {
 			},
 			{
 				__v:0
-			}, function(err,user) {
-				callback(user, err);
+			}, function(err,postShop) {
+				callback(postShop, err);
 			});
 		}
 		// On cherche juste avec nbArticle et magasin
@@ -60,8 +60,8 @@ var postShopAccessDb = {
 			},
 			{
 				__v:0
-			}, function(err,user) {
-				callback(user, err);
+			}, function(err,postShop) {
+				callback(postShop, err);
 			});
 		}
 		// On cherche avec nbArticle, date et magasin
@@ -79,8 +79,8 @@ var postShopAccessDb = {
 			},
 			{
 				__v:0
-			}, function(err,user) {
-				callback(user, err);
+			}, function(err,postShop) {
+				callback(postShop, err);
 			});
 		}
 		// On cherche juste avec magasin
@@ -91,16 +91,26 @@ var postShopAccessDb = {
 			},
 			{
 				__v:0
-			}, function(err,user) {
-				callback(user, err);
+			}, function(err,postShop) {
+				callback(postShop, err);
 			});
 		}
 	},
 	getProposition: function(id,callback) {
 		PostShop.findOne({
 			_id: id
-		}, function(err,user) {
-			callback(user, err);
+		}, function(err,postShop) {
+			callback(postShop, err);
+		});
+	},
+	getPostShops: function(email,callback) {
+		PostShop.find({
+			mailShoppeur: email
+		},
+		{
+			__v:0
+		}).sort({date: 1 }).exec(function(err,postShop) {
+			callback(postShop, err);
 		});
 	}
 	

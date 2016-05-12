@@ -39,7 +39,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		url : '/ws-users/consult-profile'
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
-			$scope.adresseField = data.user.adresse +" "+ data.user.codePostal +" "+data.user.ville;
+			$scope.adresseField = data.user.adresse + " " + data.user.codePostal + " " + data.user.ville;
 			$scope.isAuthenticated = true;
 		}
 		else {
@@ -66,7 +66,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 					url : '/ws-post-shop/search-postShop',
 					data : critereProp
 				}).success(function (data, status, headers, config) {
-					if ($scope.isAuthenticated) {
+					if ($scope.isAuthenticated && data.postShops.length != 0) {
 						var tabAdress = [];
 						var tabRes = [];
 						for(i in data.postShops) {
@@ -80,6 +80,8 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 									tabRes.push(data.postShops[i]);
 								} else if (data.postShops[i].distance == 2 && distances[i] < 10000) {
 									tabRes.push(data.postShops[i]);
+								} else if (data.postShops[i].distance == 3) {
+									tabRes.push(data.postShops[i]);
 								}
 							}
 							$scope.resultRecherche = tabRes;
@@ -92,6 +94,15 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 					}
 				});
 			}
+	}
+
+	$scope.openBookPostShop = function(shopping) {
+		if ($scope.isAuthenticated) {
+			$scope.propShop = shopping;
+			$("#bookPostShopModal").modal('show');
+		} else {
+			$("#signInModal").modal('show');
+		}
 	}
 
 })

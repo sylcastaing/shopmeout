@@ -7,6 +7,8 @@
 		{"pattern": "/post-shop", "route": "./routes/postShop/postShop"},
 		{"pattern": "/ws-post-shop", "route": "./routes/postShop/ws-postShop"},
 		{"pattern": "/need-shop", "route": "./routes/needShop/needShop"},
-		{"pattern": "/ws-need-shop", "route": "./routes/needShop/ws-needShop"}
+		{"pattern": "/ws-need-shop", "route": "./routes/needShop/ws-needShop"},
+		{"pattern": "/ws-book-post-shop", "route": "./routes/bookShop/ws-bookPostShop"},
+		{"pattern": "/ws-my-account", "route": "./routes/myAccount/ws-myAccount"}
 	]
 }

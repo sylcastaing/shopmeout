@@ -5,7 +5,7 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 		div(class="modal-content")
 			div(class="modal-header")
 				button(type="button" class="close" data-dismiss="modal") &times;
-				h4(class="modal-title") Demander un shopping
+				h4(class="modal-title") Demande ton shopping !
 			div(class="modal-body")
 				div(class="row centered-form")
 					div.panel-body
@@ -16,11 +16,15 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 									label(class="control-label col-xs-12" id="labelArticles") Ajoute un article :
 								div.row
 									div(class="col-xs-6")
-										input(class="form-control input-sm", type="text", name="nomArticle", placeholder="Nom de l'article", ng-model="nomArticle")
+										input(class="form-control input-sm", type="text", name="nomArticle", placeholder="Nom de l'article", ng-model="nomArticle" ng-keydown="resetErreur()")
 									div(class="col-xs-3")
 										input(class="form-control input-sm", type="number", name="nbrArticle", placeholder="Nombre d'article", ng-model="nbrArticle")
 									div(class="col-xs-3")
-											button(type="button" class="btn btn-primary" ng-click="addArticle()") Ajouter
+										button(type="button" class="btn btn-primary" ng-click="addArticle()") Ajouter
+								div.row
+									div(class="col-xs-12")
+										span(style="color:red", ng-show="errorArticleInvalid") Article invalide.
+								div.row
 									div(class="col-xs-12")
 										table(class="table table-striped" ng-show='displayTable')
 											thead
@@ -32,35 +36,36 @@ div(class="modal fade" id="needShopModal" role="dialog" ng-controller="NeedShopC
 											tbody
 												tr(ng-repeat="article in articles")
 													td
-														{{article.nomArticle}}
+														| {{article.nomArticle}}
 													td
-														{{article.nbrArticle}}
+														| {{article.nbrArticle}}
 													td
 														span(class="glyphicon glyphicon-remove" style="color:red" ng-click='removeArticle($index)')
 									div(class="col-xs-12")
 										b Nombre total d'articles : 
-										{{nbrTotalArticles}}
-									span(style="color:red", ng-show="needShop.articles.$invalid || needShop.$error.articles") La liste d'articles ne peut pas être vide.
+										| {{nbrTotalArticles}}
+									div(class="col-xs-12")
+										span(style="color:red", ng-show="needShop.articles.$invalid || needShop.$error.articles") La liste d'articles ne peut pas être vide.
 							div.form-group
 								div.row
 									label(class="control-label col-xs-12" id="labelAdresse") Mon adresse de livraison :
 								div.row
 									div(class="col-xs-12")
-										input(class="form-control input-sm", type="text", name="adresse", placeholder="Votre adresse de livraison", ng-model="adresse" required)
-										span(style="color:red", ng-show="needShop.adresse.$invalid || needShop.$error.adresse") L'adresse est obligatoire.
+										input(class="form-control input-sm", type="text", name="adresse", placeholder="Votre adresse de livraison", ng-model="adresse")
+										span(style="color:red", ng-show="needShop.$error.adresse") L'adresse est obligatoire.
 							div.form-group
 								div.row
 									label(class="control-label col-xs-12 align-center" id="labelDate") Date du shopping :
 								div.row
 									div(class="col-xs-12")
-										input(class="form-control input-sm", type="date", name="date", placeholder="Date du Shopping", ng-model="data.date" ng-model-options="{timezone:'-0000'}" required)
-										span(style="color:red", ng-show="needShop.$error.date") La date du shopping est obligatoire.
+										input(class="form-control input-sm", type="date", name="date", placeholder="Date du Shopping", ng-model="dateNeedShop" ng-change="removeError()" ng-model-options="{timezone:'-0000'}")
+										span(style="color:red", ng-show="needShop.$error.dateNeedShop") La date du shopping est obligatoire.
 							br
 							div
 								span(class="col-xs-12 alert alert-danger", ng-show="needShop.$error.addNeedShop") {{needShop.$error.message}}
 								span(class="col-xs-12 alert alert-success", ng-show="needShop.$error.validate") La demande de shopping a bien été ajoutée !
 							div.actions
-								input(type="submit", value="Ajouter", class="btn btn-info btn-block")
+								input(type="submit", value="Valide ta liste de courses !", class="btn btn-info btn-block")
 							br
 			div(class="modal-footer")
 				button(type="button" class="btn btn-default" data-dismiss="modal") Fermer

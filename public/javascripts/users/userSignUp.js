@@ -2,6 +2,12 @@ app.controller("SignUpCtrl", function($scope, $http) {
 
 	$(".angular-content").show();
 
+		$scope.openSignIn = function() {
+		
+		$("#signUpModal").modal('toggle');
+		$("#signInModal").modal('show');
+	}
+
 	$scope.removeError = function() {
 		if($scope.signup.$error.sexeError) {
 			$scope.signup.$error.sexeError = false;

@@ -13,6 +13,10 @@ var needShopModel = new Schema({
 	articles: [{
 		nomArticle: String,
 		nbrArticle: Number
+	}],
+	listShoppeurs: [{
+		mailShoppeur: String,
+		statut: String
 	}]
 });
 

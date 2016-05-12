@@ -48,7 +48,7 @@
 	 	
 	 	shopMap.getGeocode(function (result) {
 	 		if (!result.status) {
-	 			console.err("Erreur chargement de la map");
+	 			console.error("Erreur chargement de la map");
 	 		} else {
 	 			shopMap.map = new google.maps.Map(document.getElementById(shopMap.mapId), {
 	 				center: shopMap.adresse,
@@ -241,7 +241,11 @@
 		 	}, function(response, status) {
 		 		if (status == 'OK') {
 		 			for (i in response.rows) {
-		 				distances.push(response.rows[i].elements[0].distance.value);
+		 				if (response.rows[i].elements[0].status == 'OK') {
+		 					distances.push(response.rows[i].elements[0].distance.value);
+		 				} else {
+		 					distances.push(-1);
+		 				}
 		 			}
 		 			callback(distances);
 		 		}

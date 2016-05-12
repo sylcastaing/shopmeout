@@ -82,6 +82,12 @@ span.label {
 
 .btn-search {
 	width: 200px;
+	color: white;
+	background-color: #0A68C0;
+}
+
+.btn-search:hover {
+	color:#AFAFAF;
 }
 
 .bgOrange.panel-default>.panel-heading {
@@ -89,13 +95,41 @@ span.label {
 	color: white;
 }
 
+
 .bgBlue.panel-default>.panel-heading {
 	background-color: #0A68C0;
 	color: white;
 }
 
-.bgBlue {
-	background-color: #0A68C0;
-	color: white;
-	font-family: Georgia;
+.iconBlue {
+	color: #0A68C0;
+	padding-right: 5px;
+}
+
+.iconOrange {
+	color: #FF6100;
+	padding-right: 5px;
+}
+
+.linkOrange:hover {
+	text-decoration: underline;
+	color: #FF6100;
+}
+
+.linkBlue {
+	text-decoration: underline;
+	color: #0A68C0;
+}
+
+.linkBlue:hover {
+	cursor: pointer;
+}
+
+.align-left {
+	text-align: left;
+}
+
+#footer {
+	font-size: Small;
+	width: 100%;
 }
