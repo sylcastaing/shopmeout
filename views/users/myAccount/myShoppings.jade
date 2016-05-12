@@ -29,7 +29,7 @@
 
 		.row(ng-if="myPostsShopsHistory.length > 0")
 			.col-md-12
-				button.btn.btn-primary(type="button" data-toggle="collapse" data-target="#postShopsHistory" aria-expanded="false" aria-controls="postShopsHistory") Historique
+				button.btn.btn-primary.history-btn(type="button" data-toggle="collapse" data-target="#postShopsHistory" aria-expanded="false" aria-controls="postShopsHistory") Historique
 				div.collapse#postShopsHistory
 					.row
 						.col-xs-6(ng-repeat="r in myPostsShopsHistory")
@@ -78,7 +78,7 @@
 
 		.row(ng-if="myNeedsShopsHistory.length > 0")
 			.col-md-12
-				button.btn.btn-primary(type="button" data-toggle="collapse" data-target="#needShopsHistory" aria-expanded="false" aria-controls="needShopsHistory") Historique
+				button.btn.btn-primary.history-btn(type="button" data-toggle="collapse" data-target="#needShopsHistory" aria-expanded="false" aria-controls="needShopsHistory") Historique
 				div.collapse#needShopsHistory
 					.row
 						.col-xs-6(ng-repeat="r in myNeedsShopsHistory")
