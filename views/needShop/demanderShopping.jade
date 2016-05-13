@@ -77,7 +77,7 @@ div(ng-controller="SearchPostShopCtrl")
 													br
 													br
 													.align-center
-														span.align-center.btn.btn-default(ng-click="openBookPostShop(r)" ng-disabled="r.var")
+														span.align-center.btn.btn-default(ng-disabled="r.var" ng-click="openBookPostShop(r)")
 															| Réserve ce shopping ! 
 															span(class = "glyphicon glyphicon-ok iconOrange")
 							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")

@@ -111,7 +111,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 
 	$scope.openBookNeedShop = function(demande) {
 		if ($scope.isAuthenticated) {
-			$scope.selectedDemande = demande;
+			$scope.selectedDemande = demande.need;
 			$("#bookNeedShopModal").modal('show');
 		} else {
 			$("#signInModal").modal('show');
