@@ -53,7 +53,7 @@ div(ng-controller="SearchPostShopCtrl")
 									.row(ng-if="resultRecherche")
 										div(ng-show="postshop.$error.magasinSelected" ng-if="resultRecherche" class="btnBeforeSearch")
 											button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
-												span(class = "glyphicon glyphicon-plus-sign iconOrange" )
+												span(class = "glyphicon glyphicon-plus-sign iconBlue" )
 												span Ajoute une demande !
 										div.col-xs-6(ng-repeat="r in resultRecherche" ng-if="resultRecherche.length > 0")
 											div.panel.panel-default.bgOrange
@@ -82,7 +82,7 @@ div(ng-controller="SearchPostShopCtrl")
 															span(class = "glyphicon glyphicon-ok iconOrange")
 										div(ng-show="postshop.$error.magasinSelected" ng-if="resultRecherche.length != 0 && nbLignesResultRecherche > 2")
 											button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
-												span(class = "glyphicon glyphicon-plus-sign iconOrange" )
+												span(class = "glyphicon glyphicon-plus-sign iconBlue" )
 												span Ajoute une demande !
 							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
 								span Il n'y a pas de résultats, désolé !
