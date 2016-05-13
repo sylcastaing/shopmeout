@@ -7,7 +7,7 @@ var PostShop = mongoose.model('postShop', postShopModel);
  
 
 var postShopAccessDb = {
-
+	// Creation d'une proposition de shopping
 	createPostShop: function(datas, callback) {
 		PostShop.create({
 			mailShoppeur: datas.mailShoppeur,
@@ -31,8 +31,8 @@ var postShopAccessDb = {
 			}
 		});
 	},
+	// Recherche de proposition de shopping
 	searchPostShop: function(datas,callback) {
-
 			var query = {};
 			if(datas[0].date != undefined && datas[0].date != null) {
 
@@ -60,6 +60,7 @@ var postShopAccessDb = {
 				callback(postShop, err);
 			});
 	},
+	// Récupère les informations d'une proposition de shopping selon son id
 	getProposition: function(id,callback) {
 		PostShop.findOne({
 			_id: id
@@ -67,6 +68,7 @@ var postShopAccessDb = {
 			callback(postShop, err);
 		});
 	},
+	// Récupère toutes les propositions de shopping selon l'email de l'internaute qui les a créé
 	getPostShops: function(email,callback) {
 		PostShop.find({
 			mailShoppeur: email
