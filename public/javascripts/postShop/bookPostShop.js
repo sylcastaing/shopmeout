@@ -1,4 +1,4 @@
-app.controller("BookPostShopCtrl", function($scope, $http, $location, $timeout) {
+app.controller("BookPostShopCtrl", function($scope, $http, $timeout) {
 
 
 	$scope.erreurLimiteArticles = false;

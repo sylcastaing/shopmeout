@@ -101,7 +101,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 
 	$scope.openBookPostShop = function(shopping) {
 		if ($scope.isAuthenticated) {
-			$scope.propShop = shopping;
+			$scope.propShop = shopping.post;
 			$("#bookPostShopModal").modal('show');
 		} else {
 			$("#signInModal").modal('show');
