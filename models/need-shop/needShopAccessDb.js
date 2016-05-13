@@ -12,7 +12,7 @@ var needShopAccessDb = {
 	// Création d'une demande de shopping pour le user
 	createNeedShop: function(datas, callback) {
 		NeedShop.create({
-			mail: datas.mailShoppeur,
+			mail: datas.mail,
 			nom: datas.nom,
 			prenom: datas.prenom,
 			magasin: datas.magasin,

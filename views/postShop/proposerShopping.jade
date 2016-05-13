@@ -71,13 +71,13 @@ div(ng-controller="SearchNeedShopCtrl")
 											b {{r.need.date | date:"dd/MM/yyyy"}}
 											br
 											span.glyphicon.glyphicon-shopping-cart.iconBlue
-											span.linkBlue(ng-click="openListArticles(r)") 
+											span.linkBlue(ng-click="openListArticles(r.need)") 
 												b {{r.need.nbArticle }} 
 												span articles
 											br
 											br
 											p.align-center
-												span.align-center.btn.btn-default( ng-click="openBookNeedShop(r)" ng-if="r.need._id != idDemandeSent" ng-disabled="r.var")
+												span.align-center.btn.btn-default( ng-click="openBookNeedShop(r.need)" ng-if="r.need._id != idDemandeSent" ng-disabled="r.var")
 													| Réalise ce shopping ! 
 													span(class = "glyphicon glyphicon-ok iconBlue")
 												span.align-center.btn.btn-default(ng-show="isSent" ng-if="r.need._id == idDemandeSent")
