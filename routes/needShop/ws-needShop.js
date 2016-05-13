@@ -52,6 +52,16 @@ router.post('/add-shoppeur', function(req, res, next) {
 	
 });
 
+router.post('/is-already-add', function(req, res, next) {
+	needShopAccessDb.isAlreadyShoppeur(req.body, function(result, err) {
+		res.json({
+			needShops: result,
+			err: err
+		});
+	});
+	
+});
+
 
 
 module.exports = router;

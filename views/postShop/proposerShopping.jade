@@ -77,9 +77,12 @@ div(ng-controller="SearchNeedShopCtrl")
 											br
 											br
 											p.align-center
-												span.align-center.btn.btn-default(ng-click="openBookNeedShop(r)")
+												span.align-center.btn.btn-default( ng-click="openBookNeedShop(r)" ng-if="r._id != idDemandeSent")
 													| Réalise ce shopping ! 
 													span(class = "glyphicon glyphicon-ok iconBlue")
+												span.align-center.btn.btn-default(ng-show="isSent" ng-if="r._id == idDemandeSent")
+													span(class = "glyphicon glyphicon-ok")
+													| Une demande a déjà été envoyée !
 								include ../needShop/listArticlesModal.jade
 								include ./bookNeedShop.jade
 

@@ -1,9 +1,25 @@
 app.controller("BookNeedShopCtrl", function($scope, $http, $timeout) {
 
-	$scope.sendPropositionSuccess = false;
+	$('#bookNeedShopModal').on('show.bs.modal', function () {
+		var res = $http({
+			method : 'POST',
+			url : '/ws-need-shop/is-already-add',
+			data: {
+				idDemande: $scope.selectedDemande._id,
+				mailShoppeur: $scope.userConnected.email
+			}
+		}).success(function(data) {
+			console.log(data.needShops);
+			if (data.needShops.length > 0) {
+				$scope.$parent.sendPropositionSuccess = true;
+			} else {
+				$scope.$parent.sendPropositionSuccess = false;
+			}
+		})
+	});
 
 	$scope.sendPropositionShop = function(demande) {
-		console.log(demande);
+		$scope.$parent.idDemandeSent = demande._id;
 		var res = $http({
 			method : 'POST',
 			url : '/ws-need-shop/add-shoppeur',
@@ -11,10 +27,17 @@ app.controller("BookNeedShopCtrl", function($scope, $http, $timeout) {
 				idDemande: demande._id,
 				mailShoppeur: $scope.userConnected.email
 			}
-		}).success(function (data) {
+		}).success(function(data) {
 			if (data.err == null) {
-				$scope.sendPropositionSuccess = true;
+				$scope.$parent.sendPropositionSuccess = true;
 			}
 		});
 	}
+
+	$('#bookNeedShopModal').on('hidden.bs.modal', function () {
+		if ($scope.sendPropositionSuccess) {
+			$scope.$parent.isSent = true;
+			$scope.$apply();
+		}
+	});
 });
