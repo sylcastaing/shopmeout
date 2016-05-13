@@ -36,7 +36,8 @@ var needShopAccessDb = {
 	},
 
 	// Recherche des demandes de shopping selon les critères présents dans data
-	searchNeedShop: function(datas, callback) {
+	searchNeedShop: function(datas, mailUser, callback) {
+
 		// On cherche juste avec magasin et date :
 		if(datas[0].date != undefined && datas[0].nbArticle == undefined) {
 			var time = moment.duration("00:01:00");
@@ -50,8 +51,8 @@ var needShopAccessDb = {
 				},
 				{
 					__v:0
-				}).sort({date: 1 }).exec(function(err, postShop) {
-					callback(postShop, err);
+				}).sort({date: 1 }).exec(function(err, needShop) {
+					callback(needShop, err);
 				});
 			}
 		// On cherche juste avec nbArticle et magasin
@@ -63,8 +64,8 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}).sort({date: 1 }).exec(function(err, postShop) {
-				callback(postShop, err);
+			}).sort({date: 1 }).exec(function(err, needShop) {
+				callback(needShop, err);
 			});
 		}
 		// On cherche avec nbArticle, date et magasin
@@ -82,8 +83,8 @@ var needShopAccessDb = {
 				},
 				{
 					__v:0
-				}).sort({date: 1 }).exec(function(err, postShop) {
-					callback(postShop, err);
+				}).sort({date: 1 }).exec(function(err, needShop) {
+					callback(needShop, err);
 				});
 			}
 		// On cherche juste avec magasin
@@ -94,10 +95,19 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}).sort({date: 1 }).exec(function(err, postShop) {
-				callback(postShop, err);
+			}).sort({date: 1 }).exec(function(err, needShop) {
+				needShop = needShopAccessDb.isMine(needShop, mailUser, function() {
+					callback(needShop, err);
+				});
 			});
 		}
+	},
+
+	isMine: function(needShops, mailUser, callback) {
+		for (i in needShops) {
+			needShops[i].isMine = (needShops[i].mail == mailUser);
+		}
+		callback(needShops);
 	},
 
 	// Récupération de toutes les demandes associé à "email"
@@ -114,7 +124,6 @@ var needShopAccessDb = {
 
 	// Ajout du shoppeur dans une demande (idDemande)
 	addShoppeur: function(data, callback) {
-		console.log(data.idDemande);
 		NeedShop.update(
 		// Condition
 		{
@@ -134,7 +143,6 @@ var needShopAccessDb = {
 	},
 
 	isAlreadyShoppeur: function(data, callback) {
-		console.log(data.email);
 		NeedShop.find({
 			_id: new ObjectId(data.idDemande),
 			'listShoppeurs.mailShoppeur': data.mailShoppeur

@@ -54,7 +54,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 			"magasin": $scope.selectedMagasin,
 			"adresseMagasin": $scope.adresseSelectedMagasin,
 			"date": $scope.date,
-			"nbArticle": $scope.nbArticle
+			"nbArticle": $scope.nbArticle,
 		}];
 
 		var res = $http({

@@ -35,7 +35,9 @@ router.post('/needShop', function(req, res, next) {
 });
 
 router.post('/search-needShop', function(req, res, next) {
-	needShopAccessDb.searchNeedShop(req.body, function(result, err) {
+	// Récupération du mail du user
+	mailUser = (req.isAuthenticated)?req.session.passport.user.email:"";
+	needShopAccessDb.searchNeedShop(req.body, mailUser, function(result, err) {
 		res.json({
 			needShops: result,
 		});

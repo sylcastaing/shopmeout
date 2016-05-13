@@ -17,7 +17,8 @@ var needShopModel = new Schema({
 	listShoppeurs: [{
 		mailShoppeur: String,
 		statut: String
-	}]
+	}],
+	isMine: Boolean
 });
 
 module.exports = mongoose.model('needShop', needShopModel);
