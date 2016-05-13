@@ -58,26 +58,26 @@ div(ng-controller="SearchPostShopCtrl")
 										div.col-xs-6(ng-repeat="r in resultRecherche" ng-if="resultRecherche.length > 0")
 											div.panel.panel-default.bgOrange
 												div.panel-heading Shopping proposé par 
-													b {{r.prenom}} {{r.nom | firstLetter}}.
+													b {{r.post.prenom}} {{r.post.nom | firstLetter}}.
 												div.panel-body
 													span.glyphicon.glyphicon-map-marker.iconOrange
 													span
-														b {{r.magasin}} 
-														span - {{r.adresse}}
+														b {{r.post.magasin}} 
+														span - {{r.post.adresse}}
 													br
 													span.glyphicon.glyphicon-calendar.iconOrange
-													b {{r.date | date:"dd/MM/yyyy"}}
+													b {{r.post.date | date:"dd/MM/yyyy"}}
 													br
 													span.glyphicon.glyphicon-user.iconOrange
-													b {{r.nbShoppeur}} 
+													b {{r.post.nbShoppeur}} 
 													span shoppeurs
 													br
 													span.glyphicon.glyphicon-shopping-cart.iconOrange
-													b {{r.nbArticle | nbArticleLabel}} articles
+													b {{r.post.nbArticle | nbArticleLabel}} articles
 													br
 													br
 													.align-center
-														span.align-center.btn.btn-default(ng-click="openBookPostShop(r)")
+														span.align-center.btn.btn-default(ng-click="openBookPostShop(r)" ng-disabled="r.var")
 															| Réserve ce shopping ! 
 															span(class = "glyphicon glyphicon-ok iconOrange")
 							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")

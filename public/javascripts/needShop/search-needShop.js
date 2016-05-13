@@ -9,13 +9,14 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 	$("#mapSearchNeedShop").hide();
 	$("#buttonValid").hide();
 
-	// On récupère l'adresse
+	// On récupère l'adresse et l'email de l'utilisateur
 	var res = $http({
 		method : 'GET',
 		url : '/ws-users/consult-profile'
 	}).success(function (data, status, headers, config){
 		if(data.user != null) {
 			$scope.adresseField = data.user.adresse + " " + data.user.codePostal + " " + data.user.ville;
+			$scope.email = data.user.email;
 			$scope.isAuthenticated = true;
 		}
 		else {
@@ -66,29 +67,30 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 				//console.log(data.needShops);
 				var tabAdress = [];
 				var tabRes = [];
+				var tabAllRes = [];
+				var tabDisable = [];
 				for(i in data.needShops) {
 					tabAdress.push(data.needShops[i].adresse);
+					tabDisable[i] = false;
+						if(data.needShops[i].mailShoppeur == $scope.email){
+							tabDisable[i] = true;
+						}
 				}
 				distanceManager.getDistance(tabAdress, $scope.adresseSelectedMagasin, function(distances) {
 					for(i in distances) {
-						if($scope.distance == 0 && distances[i] < 1000) {
-							data.needShops[i].distance = distances[i];
-							tabRes.push(data.needShops[i]);
-						} else if ($scope.distance == 1 && distances[i] < 5000) {
-							data.needShops[i].distance = distances[i];
-							tabRes.push(data.needShops[i]);
-						} else if ($scope.distance == 2 && distances[i] < 10000) {
-							data.needShops[i].distance = distances[i];
-							tabRes.push(data.needShops[i]);
-						} else if ($scope.distance == 3) {
-							data.needShops[i].distance = distances[i];
-							tabRes.push(data.needShops[i]);
-						} else {
-							data.needShops[i].distance = distances[i];
+						data.needShops[i].distance = distances[i];
+						if(($scope.distance == 0 && distances[i] < 1000) 
+							|| ($scope.distance == 1 && distances[i] < 5000)
+							|| ($scope.distance == 2 && distances[i] < 10000)
+							|| ($scope.distance == 3)){
+							tabRes.push({"need" : data.needShops[i], "var" : tabDisable[i]});
 						}
 					}
 					if($scope.distance == undefined) {
-						$scope.resultRecherche = data.needShops;
+						for(i in data.needShops) {
+							tabAllRes.push({"need" : data.needShops[i], "var" : tabDisable[i]});
+						}
+						$scope.resultRecherche = tabAllRes;
 						$scope.erreurMessage = true;
 						$scope.$apply();
 					} else {

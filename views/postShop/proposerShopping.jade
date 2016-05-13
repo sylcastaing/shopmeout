@@ -56,7 +56,7 @@ div(ng-controller="SearchNeedShopCtrl")
 								div.col-xs-6(ng-repeat="r in resultRecherche")
 									div.panel.panel-default.bgBlue
 										div.panel-heading Shopping demandé par 
-											b {{r.prenom}} {{r.nom | firstLetter}}.
+											b {{r.need.prenom}} {{r.need.nom | firstLetter}}.
 										div.panel-body
 											// span.glyphicon.glyphicon-map-marker.iconBlue
 											// span A livrer au 
@@ -64,20 +64,20 @@ div(ng-controller="SearchNeedShopCtrl")
 											// br
 											span.glyphicon.glyphicon-road.iconBlue
 											span A livrer à 
-											b {{r.distance/1000}}km 
+											b {{r.need.distance/1000}}km 
 											span du magasin
 											br
 											span.glyphicon.glyphicon-calendar.iconBlue
-											b {{r.date | date:"dd/MM/yyyy"}}
+											b {{r.need.date | date:"dd/MM/yyyy"}}
 											br
 											span.glyphicon.glyphicon-shopping-cart.iconBlue
 											span.linkBlue(ng-click="openListArticles(r)") 
-												b {{r.nbArticle }} 
+												b {{r.need.nbArticle }} 
 												span articles
 											br
 											br
 											p.align-center
-												span.align-center.btn.btn-default( ng-click="openBookNeedShop(r)" ng-if="r._id != idDemandeSent")
+												span.align-center.btn.btn-default( ng-click="openBookNeedShop(r)" ng-if="r._id != idDemandeSent" ng-disabled="r.var")
 													| Réalise ce shopping ! 
 													span(class = "glyphicon glyphicon-ok iconBlue")
 												span.align-center.btn.btn-default(ng-show="isSent" ng-if="r._id == idDemandeSent")
