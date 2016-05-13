@@ -3,7 +3,7 @@ var usersAccessDb = require('../../models/users/usersAccessDb');
 var usersMessages = require('properties-reader')('messages/users.messages.properties');
 
 var usersValidation = {
-
+	// Fonction de vérification des données de l'utilisateur avant sa création
 	verifDatas: function (datas, callback) {
 
 		// Vérification de l'e-mail
@@ -79,7 +79,7 @@ var usersValidation = {
 		});
 
 	},
-
+	// Fonction permettant de vérifier l'email de l'utilisateur
 	verifEmail : function (datas, callback) {
 		if (datas.email && datas.email != "") {
 			// Vérification email valide :
@@ -91,16 +91,14 @@ var usersValidation = {
 			} else {
 				callback(false, usersMessages.get("users.creation.email.fail"));
 			}
-
 		} else {
 			callback(false, usersMessages.get("users.creation.email.empty"));
 		}
 	},
-
+	// Vérifie le bon format de l'adresse email
 	isEmail : function (myVar) {
 		// Définition de l'expression régulière d'une adresse email
 		var regEmail = new RegExp('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$','i');
-
 		return regEmail.test(myVar);
 	}
 

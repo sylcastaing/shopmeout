@@ -7,7 +7,7 @@ var BookPostShop = mongoose.model('bookPostShop', bookPostShopModel);
 
 
 var bookPostShopAccessDb = {
-
+	// Création d'une réservation de proposition de shopping
 	createBookPostShop: function(datas, callback) {
 		BookPostShop.create({
 			mailBookeur: datas.mailBookeur,
@@ -28,6 +28,7 @@ var bookPostShopAccessDb = {
 			}
 		});
 	},
+	// Récupération des réservation d'une proposition (ID de la proposition en paramètre)
 	getBookPostShops: function(id,callback) {
 		BookPostShop.find({
 			idPostShop: id

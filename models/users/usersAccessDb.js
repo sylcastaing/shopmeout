@@ -6,7 +6,7 @@ var User = mongoose.model('users', usersModel);
 var usersMessages = require('properties-reader')('messages/users.messages.properties');
 
 var usersAccessDb = {
-
+	// Création d'un utilisateur
 	createUser: function(datas, callback) {
 		User.create({
 			email: datas.email,
@@ -32,6 +32,7 @@ var usersAccessDb = {
 			}
 		});
 	},
+	// Fonction permettant de vérifier si l'e-mail existe déjà en base de données
 	checkAlreadyExist: function(email, callback) {
 		User.findOne({
 			email: email
@@ -47,6 +48,7 @@ var usersAccessDb = {
 			}
 		});
 	},
+	// Fonction permettant de récupérer les informations d'un utilisateur selon son email
 	getUser: function(email,callback) {
 		User.findOne({
 			email: email

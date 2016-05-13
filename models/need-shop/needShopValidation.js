@@ -4,10 +4,9 @@ var needShopMessages = require('properties-reader')('messages/needShop.messages.
 
 
 var needShopValidation = {
-
+	// Fonction de vérification de création d'une demande
 	verifDatas: function (datas, callback) {
 
-		var valideCP = /^[0-9]{5}$/;
 		var err = "";
 		isValid=true;
 		if (isValid && (datas.mail == undefined || datas.mail == "")) {
