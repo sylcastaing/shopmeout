@@ -83,7 +83,7 @@ div(ng-controller="SearchNeedShopCtrl")
 								include ../needShop/listArticlesModal.jade
 								include ./bookNeedShop.jade
 							.row(ng-if="resultRecherche")
-								div(ng-show="needShop.$error.magasinSelected" ng-if="resultRecherche.length != 0" class="btnBeforeSearch")
+								div(ng-show="needShop.$error.magasinSelected" ng-if="resultRecherche.length != 0 && nbLignesResultRecherche >= 3" class="btnBeforeSearch")
 									button(type = "button" class = "btn btn-default btn-fixed" alt="Ajouter une proposition de Shopping" title="Ajouter une proposition de Shopping" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
 										span(class = "glyphicon glyphicon-plus-sign iconBlue" )
 										span Ajoute ta proposition !

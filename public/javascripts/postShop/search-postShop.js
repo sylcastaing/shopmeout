@@ -91,6 +91,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 							$scope.erreurMessage = true;
 							$scope.$apply();
 						});
+						$scope.nbLignesResultRecherche = data.postShops.length % 2;
 					} else {
 						$scope.erreurMessage = true;
 						$scope.resultRecherche = data.postShops;
