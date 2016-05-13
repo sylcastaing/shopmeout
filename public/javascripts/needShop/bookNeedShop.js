@@ -1,15 +1,5 @@
 app.controller("BookNeedShopCtrl", function($scope, $http, $timeout) {
 
-	$('#bookNeedShopModal').on('show.bs.modal', function () {
-		// TODO
-		console.log($scope.selectedDemande)
-		if ($scope.selectedDemande.isAlreadyShoppeur) {
-			$scope.$parent.sendPropositionSuccess = true;
-		} else {
-			$scope.$parent.sendPropositionSuccess = false;
-		}
-	});
-
 	$scope.sendPropositionShop = function(demande) {
 		$scope.$parent.idDemandeSent = demande._id;
 		var res = $http({
@@ -30,7 +20,7 @@ app.controller("BookNeedShopCtrl", function($scope, $http, $timeout) {
 	$('#bookNeedShopModal').on('hidden.bs.modal', function () {
 		if ($scope.sendPropositionSuccess) {
 			$scope.selectedDemande.isAlreadyShoppeur = true;
-			//$scope.$parent.isSent = true;
+				$scope.$parent.sendPropositionSuccess = false;
 			$scope.$apply();
 		}
 	});
