@@ -1,4 +1,4 @@
-div(class="modal fade" id="bookNeedShopModal" role="dialog")
+div(class="modal fade" id="bookNeedShopModal" role="dialog" ng-controller="BookNeedShopCtrl")
 	div(class="modal-dialog")
 
 		// Modal content
@@ -17,7 +17,19 @@ div(class="modal fade" id="bookNeedShopModal" role="dialog")
 				b {{selectedDemande.distance/1000}}km 
 				span du magasin
 				br
+
 				include ../needShop/listArticles.jade
+
+				p.align-center
+					span.align-center.btn.btn-default(ng-show="!sendPropositionSuccess" ng-click="sendPropositionShop(selectedDemande)")
+						span(class = "glyphicon glyphicon-envelope iconBlue")
+						| Envoyer une demande pour réaliser ce shopping
+					span.align-center.btn.btn-default(ng-show="sendPropositionSuccess")
+						span(class = "glyphicon glyphicon-ok")
+						| Votre message a bien été envoyé !
 
 			div(class="modal-footer")
 				button(type="button" class="btn btn-default" data-dismiss="modal") Fermer
+
+block scripts-header
+	script(src="#{baseUrl}/javascripts/needShop/bookNeedShop.js")
