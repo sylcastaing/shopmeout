@@ -80,7 +80,7 @@ div(ng-controller="SearchPostShopCtrl")
 														span.align-center.btn.btn-default(ng-click="openBookPostShop(r)" ng-disabled="r.var")
 															| Réserve ce shopping ! 
 															span(class = "glyphicon glyphicon-ok iconOrange")
-										div(ng-show="postshop.$error.magasinSelected" ng-if="resultRecherche.length != 0 && nbLignesResultRecherche >= 3")
+										div(ng-show="postshop.$error.magasinSelected" ng-if="resultRecherche.length != 0 && nbLignesResultRecherche > 2")
 											button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
 												span(class = "glyphicon glyphicon-plus-sign iconOrange" )
 												span Ajoute une demande !
