@@ -2,10 +2,12 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 
 	$scope.isSent = false;
 
+	// Affectation de la map à la variable mapSearch
 	$scope.mapSearchNeedShop = shopMap.init({
 		mapId : "mapSearchNeedShop"
 	});
 
+	// On cache la map tant qu'on a pas cliqué sur la loupe
 	$("#mapSearchNeedShop").hide();
 	$("#buttonValid").hide();
 
@@ -36,6 +38,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 		$scope.erreurMessage = false;
 	}
 
+	// Fonction se déclencheant lorsque l'on valide un magasin, affiche la suite du formulaire de recherche
 	$scope.magasinChoisi = function() {
 		if($scope.mapSearchNeedShop.selectedMarker!=null) {
 			$scope.selectedMagasin = $scope.mapSearchNeedShop.selectedMarker.title;
@@ -49,6 +52,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 		}
 	}
 
+	// Recherche des demandes de shopping lorsque l'on a fini de remplir le formulaire de recherche
 	$scope.searchNeedShop = function() {
 		var critereProp = [{
 			"magasin": $scope.selectedMagasin,
@@ -106,11 +110,13 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 		});
 	}
 
+	// Fonction permettant d'ouvrir la liste des articles d'une demande
 	$scope.openListArticles = function(demande) {
 		$scope.selectedDemande = demande;
 		$("#listArticlesModal").modal('show');
 	}
 
+	// Fonction permettant d'ouvrir le modal de reservation d'une demande
 	$scope.openBookNeedShop = function(demande) {
 		if ($scope.isAuthenticated) {
 			$scope.selectedDemande = demande.need;
@@ -121,6 +127,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 	}
 
 })
+// Directive permettant de faire fonctionner les boutons radio du formulaire
 .directive('buttonsRadio', function() {
 	return {
 		restrict: 'A',
@@ -140,6 +147,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 		}
 	};
 })
+// Directive permettant de valider une adresse sur la map avec le bouton "entrer"
 .directive('myEnter', function () {
 	return function (scope, element, attrs) {
 		element.bind("keydown keypress", function (event) {
