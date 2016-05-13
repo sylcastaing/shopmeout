@@ -34,7 +34,6 @@ div(ng-controller="SearchPostShopCtrl")
 									div.col-xs-2
 									div.col-xs-3
 									span(style="color:red", ng-show="postshop.$error.nbArticleRequired") Précise le nombre d'articles souhaités !
-						
 							div.col-xs-12
 								br
 							div.align-center.col-xs-12
@@ -47,45 +46,46 @@ div(ng-controller="SearchPostShopCtrl")
 									input(style="display: inline-block; width: 200px" type="submit", ng-disabled="dataLoading", value="Rechercher", class="bgBlue btn btn-search")
 								div.align-center
 									img(ng-if="dataLoading" class="spinner" src="../spinner.gif")
-							div.row
-								br
 							div(class="actions align-center")
 								br
 							div.row
 								.col-md-10.col-md-offset-1
 									.row(ng-if="resultRecherche")
-										br
+										div(ng-show="postshop.$error.magasinSelected" ng-if="resultRecherche" class="btnBeforeSearch")
+											button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
+												span(class = "glyphicon glyphicon-plus-sign iconOrange" )
+												span Ajoute une demande !
 										div.col-xs-6(ng-repeat="r in resultRecherche" ng-if="resultRecherche.length > 0")
 											div.panel.panel-default.bgOrange
 												div.panel-heading Shopping proposé par 
-													b {{r.post.prenom}} {{r.post.nom | firstLetter}}.
+													b {{r.prenom}} {{r.nom | firstLetter}}.
 												div.panel-body
 													span.glyphicon.glyphicon-map-marker.iconOrange
 													span
-														b {{r.post.magasin}} 
-														span - {{r.post.adresse}}
+														b {{r.magasin}} 
+														span - {{r.adresse}}
 													br
 													span.glyphicon.glyphicon-calendar.iconOrange
-													b {{r.post.date | date:"dd/MM/yyyy"}}
+													b {{r.date | date:"dd/MM/yyyy"}}
 													br
 													span.glyphicon.glyphicon-user.iconOrange
-													b {{r.post.nbShoppeur}} 
+													b {{r.nbShoppeur}} 
 													span shoppeurs
 													br
 													span.glyphicon.glyphicon-shopping-cart.iconOrange
-													b {{r.post.nbArticle | nbArticleLabel}} articles
+													b {{r.nbArticle | nbArticleLabel}} articles
 													br
 													br
 													.align-center
-														span.align-center.btn.btn-default(ng-click="openBookPostShop(r)" ng-disabled="r.var")
+														span.align-center.btn.btn-default(ng-click="openBookPostShop(r)")
 															| Réserve ce shopping ! 
 															span(class = "glyphicon glyphicon-ok iconOrange")
+										div(ng-show="postshop.$error.magasinSelected" ng-if="resultRecherche.length != 0")
+											button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
+												span(class = "glyphicon glyphicon-plus-sign iconOrange" )
+												span Ajoute une demande !
 							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
 								span Il n'y a pas de résultats, désolé !
-						div(ng-show="postshop.$error.magasinSelected")
-								button(type = "button" class = "btn btn-default" data-toggle="modal" data-target=(isAuthenticated)?"#needShopModal":"#signInModal")
-									span(class = "glyphicon glyphicon-plus-sign iconOrange" )
-									span Ajoute une demande !
 	include ../needShop/needShop.jade
 	include bookPostShop.jade
 

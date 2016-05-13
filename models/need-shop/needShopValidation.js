@@ -10,8 +10,8 @@ var needShopValidation = {
 		var valideCP = /^[0-9]{5}$/;
 		var err = "";
 		isValid=true;
-		if (isValid && (datas.mail == undefined || datas.mail == "")) {
-					err = needShopMessages.get("needShop.creation.mail.empty");
+		if (isValid && (datas.mailShoppeur == undefined || datas.mailShoppeur == "")) {
+					err = needShopMessages.get("needShop.creation.mailShoppeur.empty");
 					isValid = false;
 		}
 		if (isValid && (datas.nom == undefined || datas.nom == "")) {

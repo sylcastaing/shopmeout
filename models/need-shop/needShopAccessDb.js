@@ -1,7 +1,6 @@
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
-var ObjectId = mongoose.Types.ObjectId;
 var moment = require('moment');
 var needShopModel = require('./needShopModel');
 var NeedShop = mongoose.model('needShop', needShopModel);
@@ -9,10 +8,9 @@ var NeedShop = mongoose.model('needShop', needShopModel);
 
 var needShopAccessDb = {
 
-	// Création d'une demande de shopping pour le user
 	createNeedShop: function(datas, callback) {
 		NeedShop.create({
-			mail: datas.mailShoppeur,
+			mailShoppeur: datas.mailShoppeur,
 			nom: datas.nom,
 			prenom: datas.prenom,
 			magasin: datas.magasin,
@@ -20,8 +18,7 @@ var needShopAccessDb = {
 			date: datas.date,
 			adresse: datas.adresse,
 			nbArticle: datas.nbArticle,
-			articles: datas.articles,
-			listShoppeurs: []
+			articles: datas.articles
 		}, function(err,needShop) {
 			if(err) {
 				callback(false, err);
@@ -34,9 +31,7 @@ var needShopAccessDb = {
 			}
 		});
 	},
-
-	// Recherche des demandes de shopping selon les critères présents dans data
-	searchNeedShop: function(datas, callback) {
+	searchNeedShop: function(datas,callback) {
 		// On cherche juste avec magasin et date :
 		if(datas[0].date != undefined && datas[0].nbArticle == undefined) {
 			var time = moment.duration("00:01:00");
@@ -50,8 +45,8 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}).sort({date: 1 }).exec(function(err, postShop) {
-				callback(postShop, err);
+			}, function(err,user) {
+				callback(user, err);
 			});
 		}
 		// On cherche juste avec nbArticle et magasin
@@ -63,8 +58,8 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}).sort({date: 1 }).exec(function(err, postShop) {
-				callback(postShop, err);
+			}, function(err,user) {
+				callback(user, err);
 			});
 		}
 		// On cherche avec nbArticle, date et magasin
@@ -82,8 +77,8 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}).sort({date: 1 }).exec(function(err, postShop) {
-				callback(postShop, err);
+			}, function(err,user) {
+				callback(user, err);
 			});
 		}
 		// On cherche juste avec magasin
@@ -94,43 +89,20 @@ var needShopAccessDb = {
 			},
 			{
 				__v:0
-			}).sort({date: 1 }).exec(function(err, postShop) {
-				callback(postShop, err);
+			}, function(err,user) {
+				callback(user, err);
 			});
 		}
 	},
-
-	// Récupération de toutes les demandes associé à "email"
-	getNeedShops: function(email, callback) {
+	getNeedShops: function(email,callback) {
 		NeedShop.find({
-			mail: email
+			mailShoppeur: email
 		},
 		{
 			__v:0
-		}).sort({date: 1 }).exec(function(err, postShop) {
+		}).sort({date: 1 }).exec(function(err,postShop) {
 			callback(postShop, err);
-		});
-	},
-
-	// Ajout du shoppeur dans une demande (idDemande)
-	addShoppeur: function(data, callback) {
-		console.log(data.idDemande);
-		NeedShop.update(
-		// Condition
-		{
-			_id: new ObjectId(data.idDemande)
-		},
-		// update
-		{
-			$push: {
-				listShoppeurs: {
-					mailShoppeur: data.mailShoppeur,
-					statut: "En attente"
-				}
-			}
-		}, function(err, demande) {
-			callback(err);
-		});
+		});;
 	}
 }
 

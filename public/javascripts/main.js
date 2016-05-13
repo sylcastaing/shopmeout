@@ -24,17 +24,3 @@ app.filter('nbArticleLabel', function() {
 		return res;
 	};
 });
-
-app.controller("MainCtrl", function($scope, $http, $timeout) {
-	var res = $http({
-		method : 'GET',
-		url : '/ws-users/consult-profile'
-	}).success(function (data, status, headers, config){
-		if(data.user != null) {
-			$scope.userConnected = data.user;
-		}
-		else {
-			$scope.userConnected = null;
-		}
-	});
-})
