@@ -55,7 +55,7 @@ div(ng-controller="SearchNeedShopCtrl")
 							.row(ng-if="resultRecherche")
 								div(ng-show="needShop.$error.magasinSelected" class="btnBeforeSearch")
 									button(type = "button" class = "btn btn-default btn-fixed" alt="Ajouter une proposition de Shopping" title="Ajouter une proposition de Shopping" data-toggle="modal" data-target=(isAuthenticated)?"#postShopModal":"#signInModal")
-										span(class = "glyphicon glyphicon-plus-sign iconOrange" )
+										span(class = "glyphicon glyphicon-plus-sign iconBlue" )
 										span Ajoute ta proposition !
 								div.col-xs-6(ng-repeat="r in resultRecherche")
 									div.panel.panel-default.bgBlue
