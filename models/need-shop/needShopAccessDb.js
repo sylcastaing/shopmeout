@@ -5,14 +5,14 @@ var ObjectId = mongoose.Types.ObjectId;
 var moment = require('moment');
 var needShopModel = require('./needShopModel');
 var NeedShop = mongoose.model('needShop', needShopModel);
- 
+
 
 var needShopAccessDb = {
 
 	// Création d'une demande de shopping pour le user
 	createNeedShop: function(datas, callback) {
 		NeedShop.create({
-			mail: datas.mailShoppeur,
+			mail: datas.mail,
 			nom: datas.nom,
 			prenom: datas.prenom,
 			magasin: datas.magasin,
@@ -45,15 +45,15 @@ var needShopAccessDb = {
 			NeedShop.find({
 				date: { $lte: datas[0].date,
 					$gt: newDate.format()},
-				magasin: datas[0].magasin,
-				adresseMagasin: datas[0].adresseMagasin
-			},
-			{
-				__v:0
-			}).sort({date: 1 }).exec(function(err, postShop) {
-				callback(postShop, err);
-			});
-		}
+					magasin: datas[0].magasin,
+					adresseMagasin: datas[0].adresseMagasin
+				},
+				{
+					__v:0
+				}).sort({date: 1 }).exec(function(err, postShop) {
+					callback(postShop, err);
+				});
+			}
 		// On cherche juste avec nbArticle et magasin
 		else if(datas[0].nbArticle != undefined && datas[0].date == undefined) {
 			NeedShop.find({
@@ -76,16 +76,16 @@ var needShopAccessDb = {
 			NeedShop.find({
 				date: { $lte: datas[0].date,
 					$gt: newDate.format()},
-				nbArticle : { $lte: datas[0].nbArticle },
-				magasin: datas[0].magasin,
-				adresseMagasin: datas[0].adresseMagasin
-			},
-			{
-				__v:0
-			}).sort({date: 1 }).exec(function(err, postShop) {
-				callback(postShop, err);
-			});
-		}
+					nbArticle : { $lte: datas[0].nbArticle },
+					magasin: datas[0].magasin,
+					adresseMagasin: datas[0].adresseMagasin
+				},
+				{
+					__v:0
+				}).sort({date: 1 }).exec(function(err, postShop) {
+					callback(postShop, err);
+				});
+			}
 		// On cherche juste avec magasin
 		else {
 			NeedShop.find({
@@ -131,7 +131,18 @@ var needShopAccessDb = {
 		}, function(err, demande) {
 			callback(err);
 		});
+	},
+
+	isAlreadyShoppeur: function(data, callback) {
+		console.log(data.email);
+		NeedShop.find({
+			_id: new ObjectId(data.idDemande),
+			'listShoppeurs.mailShoppeur': data.mailShoppeur
+		}, function(err,demande) {
+		callback(demande,err)
+	});
 	}
+
 }
 
 module.exports = needShopAccessDb;

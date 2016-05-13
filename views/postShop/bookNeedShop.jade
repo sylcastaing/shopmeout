@@ -4,7 +4,7 @@ div(class="modal fade" id="bookNeedShopModal" role="dialog" ng-controller="BookN
 		// Modal content
 		div.modal-content(ng-if="selectedDemande")
 			div(class="modal-header")
-				button(type="button" class="close" data-dismiss="modal") &times;
+				button(type="button" class="close" data-dismiss="modal" ng-click="close") &times;
 				h4(class="modal-title") Réalise ce shopping !
 			div(class="modal-body")
 				div
@@ -21,7 +21,7 @@ div(class="modal fade" id="bookNeedShopModal" role="dialog" ng-controller="BookN
 				include ../needShop/listArticles.jade
 
 				p.align-center
-					span.align-center.btn.btn-default(ng-show="!sendPropositionSuccess" ng-click="sendPropositionShop(selectedDemande)")
+					span.align-center.btn.btn-default(ng-hide="sendPropositionSuccess" ng-click="sendPropositionShop(selectedDemande)")
 						span(class = "glyphicon glyphicon-envelope iconBlue")
 						| Envoyer une demande pour réaliser ce shopping
 					span.align-center.btn.btn-default(ng-show="sendPropositionSuccess")

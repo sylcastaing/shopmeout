@@ -1,5 +1,7 @@
 app.controller("SearchNeedShopCtrl", function($scope, $http) {
 
+	$scope.isSent = false;
+
 	$scope.mapSearchNeedShop = shopMap.init({
 		mapId : "mapSearchNeedShop"
 	});
