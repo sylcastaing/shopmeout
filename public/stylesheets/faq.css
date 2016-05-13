@@ -36,7 +36,7 @@
     font-weight:bold;
 }
 
-.panel-body {
+.faq .panel-body {
     font-family: Georgia;
     font-size: Medium;
 }
@@ -74,5 +74,12 @@
 
 #imgadress {
     text-align: center;
-    max-width: 100%;
+}
+
+.faq img {
+	  max-width: 100%;
+}
+
+#imgmap {
+	  max-width: 50%;
 }
