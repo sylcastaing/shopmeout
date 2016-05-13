@@ -18,7 +18,8 @@ var needShopModel = new Schema({
 		mailShoppeur: String,
 		statut: String
 	}],
-	isMine: Boolean
+	isMine: Boolean,
+	isAlreadyShoppeur: Boolean
 });
 
 module.exports = mongoose.model('needShop', needShopModel);

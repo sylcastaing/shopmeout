@@ -96,16 +96,34 @@ var needShopAccessDb = {
 			{
 				__v:0
 			}).sort({date: 1 }).exec(function(err, needShop) {
-				needShop = needShopAccessDb.isMine(needShop, mailUser, function() {
-					callback(needShop, err);
+				needShopAccessDb.isMine(needShop, mailUser, function(needShop) {
+					needShopAccessDb.isAlreadyShoppeur(needShop, mailUser, function(needShop) {
+						console.log(needShop);
+						callback(needShop, err);
+					})
 				});
 			});
 		}
 	},
 
+
 	isMine: function(needShops, mailUser, callback) {
 		for (i in needShops) {
 			needShops[i].isMine = (needShops[i].mail == mailUser);
+		}
+		callback(needShops);
+	},
+
+	isAlreadyShoppeur: function(needShops, mailUser, callback) {
+		for (i in needShops) {
+			isAlreadyShoppeur = false;
+			for (l in needShops[i].listShoppeurs) {
+				if (needShops[i].listShoppeurs[l].mailShoppeur == mailUser) {
+					isAlreadyShoppeur = true;
+					break;
+				}
+			}
+			needShops[i].isAlreadyShoppeur = isAlreadyShoppeur;
 		}
 		callback(needShops);
 	},
@@ -140,16 +158,9 @@ var needShopAccessDb = {
 		}, function(err, demande) {
 			callback(err);
 		});
-	},
-
-	isAlreadyShoppeur: function(data, callback) {
-		NeedShop.find({
-			_id: new ObjectId(data.idDemande),
-			'listShoppeurs.mailShoppeur': data.mailShoppeur
-		}, function(err,demande) {
-		callback(demande,err)
-	});
 	}
+
+
 
 }
 

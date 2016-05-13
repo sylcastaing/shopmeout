@@ -1,21 +1,13 @@
 app.controller("BookNeedShopCtrl", function($scope, $http, $timeout) {
 
 	$('#bookNeedShopModal').on('show.bs.modal', function () {
-		var res = $http({
-			method : 'POST',
-			url : '/ws-need-shop/is-already-add',
-			data: {
-				idDemande: $scope.selectedDemande._id,
-				mailShoppeur: $scope.userConnected.email
-			}
-		}).success(function(data) {
-			console.log(data.needShops);
-			if (data.needShops.length > 0) {
-				$scope.$parent.sendPropositionSuccess = true;
-			} else {
-				$scope.$parent.sendPropositionSuccess = false;
-			}
-		})
+		// TODO
+		console.log($scope.selectedDemande)
+		if ($scope.selectedDemande.isAlreadyShoppeur) {
+			$scope.$parent.sendPropositionSuccess = true;
+		} else {
+			$scope.$parent.sendPropositionSuccess = false;
+		}
 	});
 
 	$scope.sendPropositionShop = function(demande) {
@@ -30,13 +22,15 @@ app.controller("BookNeedShopCtrl", function($scope, $http, $timeout) {
 		}).success(function(data) {
 			if (data.err == null) {
 				$scope.$parent.sendPropositionSuccess = true;
+				demande.isAlreadyShoppeur = true;
 			}
 		});
 	}
 
 	$('#bookNeedShopModal').on('hidden.bs.modal', function () {
 		if ($scope.sendPropositionSuccess) {
-			$scope.$parent.isSent = true;
+			$scope.selectedDemande.isAlreadyShoppeur = true;
+			//$scope.$parent.isSent = true;
 			$scope.$apply();
 		}
 	});
