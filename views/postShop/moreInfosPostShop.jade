@@ -25,9 +25,13 @@ div(class="modal fade" id="MoreInfosPostShopModal" role="dialog" ng-controller="
 									span.btn.btn-default(ng-click="acceptBooking(false, bookeur)")
 										| Refuser
 										span(class = "glyphicon glyphicon-remove")
-								span.align-center.btn.btn-default(ng-if='bookeur.statut=="Validé"' ng-disabled)
-									| Réservation acceptée
-									span(class = "glyphicon glyphicon-ok")
+								.row
+									span.col-xs-12.align-center.btn.btn-default(ng-if='bookeur.statut=="Validé"' ng-disabled)
+										| Réservation acceptée
+										span(class = "glyphicon glyphicon-ok")
+									br
+									br
+									span.col-xs-12.align-center.linkBlue(ng-click="openMoreInfosUserModal(bookeur.mailBookeur, bookeur.nomBookeur, bookeur.prenomBookeur)" ng-if='bookeur.statut=="Validé"') Afficher les informations du demandeur
 								span.align-center.btn.btn-default(ng-if='bookeur.statut=="Refusé"' ng-disabled)
 									| Réservation refusée
 									span(class = "glyphicon glyphicon-remove ")

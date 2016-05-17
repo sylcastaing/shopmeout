@@ -7,8 +7,7 @@
 	.row(ng-if="myPostsShops.length > 0")
 		.col-xs-6(ng-repeat="r in myPostsShops")
 			div.panel.panel-default.bgOrange
-				div.panel-heading Shopping proposé par 
-					b {{r.prenom}} {{r.nom | firstLetter}}.
+				div.panel-heading Shopping proposé par Moi
 				div.panel-body
 					span.glyphicon.glyphicon-map-marker.iconOrange
 					span
@@ -26,7 +25,7 @@
 					b {{r.nbArticle | nbArticleLabel}} 
 					span articles
 					br
-					b.linkBlue(ng-click="openMoreInfosPostShop(r)") Ouvrir
+					b.linkBlue(ng-if="r.listBookeurs.length > 0" ng-click="openMoreInfosPostShop(r)") Ouvrir les réservations
 
 	.row(ng-if="myPostsShopsHistory.length > 0")
 		.col-md-12
@@ -35,8 +34,7 @@
 				.row
 					.col-xs-6(ng-repeat="r in myPostsShopsHistory")
 						div.panel.panel-default
-							div.panel-heading Shopping proposé par 
-								b {{r.prenom}} {{r.nom | firstLetter}}.
+							div.panel-heading Shopping proposé par Moi
 							div.panel-body
 								span.glyphicon.glyphicon-map-marker.iconOrange
 								span
@@ -61,8 +59,7 @@
 	.row(ng-if="myNeedsShops.length > 0")
 		.col-xs-6(ng-repeat="r in myNeedsShops")
 			.panel.panel-default.bgBlue
-				.panel-heading Shopping demandé par 
-					b {{r.prenom}} {{r.nom | firstLetter}}.
+				.panel-heading Shopping demandé par Moi
 				.panel-body
 					span.glyphicon.glyphicon-map-marker.iconBlue
 					span A livrer au 
@@ -76,7 +73,7 @@
 						b {{r.nbArticle }} 
 						span articles
 					br
-					b.linkBlue(ng-click="openMoreInfosNeedShop(r)") Ouvrir
+					b.linkBlue(ng-if="r.listShoppeurs.length > 0" ng-click="openMoreInfosNeedShop(r)") Ouvrir les réservations
 
 	.row(ng-if="myNeedsShopsHistory.length > 0")
 		.col-md-12
@@ -85,8 +82,7 @@
 				.row
 					.col-xs-6(ng-repeat="r in myNeedsShopsHistory")
 						.panel.panel-default
-							.panel-heading Shopping demandé par 
-								b {{r.prenom}} {{r.nom | firstLetter}}.
+							.panel-heading Shopping demandé par Moi
 							.panel-body
 								span.glyphicon.glyphicon-map-marker.iconBlue
 								span A livrer au 

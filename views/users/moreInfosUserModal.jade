@@ -1,0 +1,23 @@
+div(class="modal fade" id="openMoreInfosUserModal" role="dialog")
+	div(class="modal-dialog")
+
+		// Modal content
+		div.modal-content(ng-if="selectedShoppeur")
+			div.modal-header
+				button.close(type="button" data-dismiss="modal") &times;
+				h4.modal-title Information du shoppeur
+			div.modal-body
+
+				b Nom du shoppeur : 
+				| {{selectedShoppeur.nom}}
+				br
+				b Prénom du shoppeur : 
+				| {{selectedShoppeur.prenom}}
+				br
+				b Email du shoppeur : 
+				| {{selectedShoppeur.mail}}
+
+			div.modal-footer
+				button.btn.btn-default(type="button" data-dismiss="modal") Fermer
+
+

@@ -55,6 +55,7 @@ app.controller("myAccountCtrl", function($scope, $http) {
 	}
 
 	$scope.openMoreInfosPostShop = function(proposition) {
+		console.log(proposition);
 		$scope.selectedProposition = proposition;
 		$("#MoreInfosPostShopModal").modal('show');
 	}
@@ -62,5 +63,13 @@ app.controller("myAccountCtrl", function($scope, $http) {
 	$scope.openMoreInfosNeedShop = function(demande) {
 		$scope.selectedDemande = demande;
 		$("#MoreInfosNeedShopModal").modal('show');
+	}
+
+	$scope.openMoreInfosUserModal = function(mail, nom, prenom) {
+		$scope.selectedShoppeur = {};
+		$scope.selectedShoppeur.mail = mail;
+		$scope.selectedShoppeur.nom = nom;
+		$scope.selectedShoppeur.prenom = prenom;
+		$("#openMoreInfosUserModal").modal('show');
 	}
 });

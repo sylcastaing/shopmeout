@@ -18,6 +18,6 @@ app.controller("MoreInfosNeedShopCtrl", function($scope, $http, $timeout) {
 				console.log("PAS AJOUT");
 			}
 		});
-
 	}
+
 });
