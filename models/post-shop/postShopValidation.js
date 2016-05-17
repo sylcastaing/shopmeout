@@ -4,7 +4,7 @@ var postShopMessages = require('properties-reader')('messages/postShop.messages.
 
 
 var postShopValidation = {
-
+	// Fonction de vérification des données lors de la création d'une proposition de shopping
 	verifDatas: function (datas, callback) {
 
 		var valideCP = /^[0-9]{5}$/;

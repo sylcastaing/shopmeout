@@ -8,6 +8,7 @@ app.controller("SignInCtrl", function($scope, $http) {
 		$("#signUpModal").modal('show');
 	}
 
+	// fonction permettant de connecter l'utilisateur
 	$scope.connectClient = function() {
 		$scope.user.motDePasse = CryptoJS.SHA1($scope.motDePasse).toString();
 		$scope.dataLoading = true;

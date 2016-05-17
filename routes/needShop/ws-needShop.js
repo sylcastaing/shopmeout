@@ -35,7 +35,9 @@ router.post('/needShop', function(req, res, next) {
 });
 
 router.post('/search-needShop', function(req, res, next) {
-	needShopAccessDb.searchNeedShop(req.body, function(result, err) {
+	// Récupération du mail du user
+	mailUser = (req.isAuthenticated())?req.session.passport.user.email:"";
+	needShopAccessDb.searchNeedShop(req.body, mailUser, function(result, err) {
 		res.json({
 			needShops: result,
 		});
@@ -47,6 +49,16 @@ router.post('/add-shoppeur', function(req, res, next) {
 	needShopAccessDb.addShoppeur(req.body, function(err) {
 		res.json({
 			err: err,
+		});
+	});
+	
+});
+
+router.post('/is-already-add', function(req, res, next) {
+	needShopAccessDb.isAlreadyShoppeur(req.body, function(result, err) {
+		res.json({
+			needShops: result,
+			err: err
 		});
 	});
 	

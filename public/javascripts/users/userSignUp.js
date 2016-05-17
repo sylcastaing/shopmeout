@@ -2,18 +2,19 @@ app.controller("SignUpCtrl", function($scope, $http) {
 
 	$(".angular-content").show();
 
-		$scope.openSignIn = function() {
-		
+	$scope.openSignIn = function() {
 		$("#signUpModal").modal('toggle');
 		$("#signInModal").modal('show');
 	}
 
+	// Fonction permettant de supprimer l'erreur liée au sexe au clic du bouton
 	$scope.removeError = function() {
 		if($scope.signup.$error.sexeError) {
 			$scope.signup.$error.sexeError = false;
 		}
 	}
 
+	// Fonction permettant de créer un client
 	$scope.addClient = function() {
 
 		if($scope.myModel == undefined) {
@@ -51,6 +52,7 @@ app.controller("SignUpCtrl", function($scope, $http) {
 		}
 	}
 
+	// Fonction permettant de vérifier si l'email est déjà présent en BD
 	$scope.checkEmail = function() {
 		if($scope.signup.email != undefined) {
 			var res = $http({
@@ -71,6 +73,7 @@ app.controller("SignUpCtrl", function($scope, $http) {
 		}
 	}
 })
+// Directive permettant de voir si la confirmation du mot de passe est égale au mot de passe 
 .directive("compareTo", function() {
 	return {
 		require: "ngModel",
@@ -81,14 +84,13 @@ app.controller("SignUpCtrl", function($scope, $http) {
 			ngModel.$validators.compareTo = function(modelValue) {
 				return modelValue == scope.otherModelValue;
 			};
-
 			scope.$watch("otherModelValue", function() {
 				ngModel.$validate();
 			});
 		}
 	};
+// Directive permettant de faire fonctionner les boutons radio du formulaire
 }).directive('buttonsRadio', function() {
-
 	return {
 		restrict: 'A',
 		require: 'ngModel',

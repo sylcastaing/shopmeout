@@ -1,13 +1,16 @@
+// Controller de la recherche de proposition de shopping
 app.controller("SearchPostShopCtrl", function($scope, $http) {
 
+	// Affectation de la map à la variable mapSearch
 	$scope.mapSearch = shopMap.init({
 		mapId : "mapSearchPostShop"
 	});
 
+	// On cache la map tant qu'on a pas cliqué sur la loupe
 	$("#mapSearchPostShop").hide();
 	$scope.showDiv = true;
 
-
+	// Fonction permettant de ouvrir la map avec l'adresse rentrée dans le champ adéquat
 	$scope.searchMapPostShop = function() {
 		$scope.mapSearch.init({
 			mapId : "mapSearchPostShop",
@@ -19,6 +22,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		$scope.erreurMessage = false;
 	}
 
+	// Fonction se déclencheant lorsque l'on valide un magasin, affiche la suite du formulaire de recherche
 	$scope.magasinChoisi = function() {
 		if($scope.mapSearch.selectedMarker!=null) {
 			$scope.selectedMagasin = $scope.mapSearch.selectedMarker.title;
@@ -48,7 +52,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		}
 	});
 
-
+	// Recherche des propositions de shopping lorsque l'on a fini de remplir le formulaire de recherche
 	$scope.searchPostShop = function() {
 			if($scope.mapSearch.selectedMarker==null) {
 				$scope.postshop.$error.noMagasinSelected = true;
@@ -99,16 +103,17 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 			}
 	}
 
+	// Fonction d'ouverture du modal de reservation de proposition
 	$scope.openBookPostShop = function(shopping) {
 		if ($scope.isAuthenticated) {
-			$scope.propShop = shopping;
+			$scope.propShop = shopping.post;
 			$("#bookPostShopModal").modal('show');
 		} else {
 			$("#signInModal").modal('show');
 		}
 	}
-
 })
+// Directive permettant de faire fonctionner les boutons radio du formulaire
 .directive('buttonsRadio', function() {
 	return {
 		restrict: 'A',
@@ -128,6 +133,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		}
 	};
 })
+// Directive permettant de valider une adresse sur la map avec le bouton "entrer"
 .directive('myEnter', function () {
 	return function (scope, element, attrs) {
 		element.bind("keydown keypress", function (event) {

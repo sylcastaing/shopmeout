@@ -7,7 +7,7 @@ var PostShop = mongoose.model('postShop', postShopModel);
  
 
 var postShopAccessDb = {
-
+	// Creation d'une proposition de shopping
 	createPostShop: function(datas, callback) {
 		PostShop.create({
 			mailShoppeur: datas.mailShoppeur,
@@ -31,71 +31,44 @@ var postShopAccessDb = {
 			}
 		});
 	},
+	// Recherche de proposition de shopping
 	searchPostShop: function(datas,callback) {
+			var query = {};
+			if(datas[0].date != undefined && datas[0].date != null) {
 
-		// On cherche juste avec magasin et date : 
-		if(datas[0].date != undefined && datas[0].nbArticle == undefined) {
-			var time = moment.duration("00:01:00");
-			var date = moment(datas[0].date);
-			var newDate = date.subtract(time);
+				var time = moment.duration("00:01:00");
+				var date = moment(datas[0].date);
+				var newDate = date.subtract(time);
 
-			PostShop.find({
-				date: { $lte: datas[0].date,
-					$gt: newDate.format()},
-				magasin: datas[0].magasin,
-				adresse: datas[0].adresse
-			},
-			{
-				__v:0
-			}).sort({date: 1 }).exec(function(err,postShop) {
-				callback(postShop, err);
-			});
-		}
-		// On cherche juste avec nbArticle et magasin
-		else if(datas[0].nbArticle != undefined && datas[0].date == undefined) {
-			PostShop.find({
-				nbArticle: { $lte: datas[0].nbArticle },
-				magasin: datas[0].magasin,
-				adresse: datas[0].adresse
-			},
-			{
-				__v:0
-			}).sort({date: 1 }).exec(function(err,postShop) {
-				callback(postShop, err);
-			});
-		}
-		// On cherche avec nbArticle, date et magasin
-		else if(datas[0].nbArticle != undefined && datas[0].date != undefined) {
-			var time = moment.duration("00:01:00");
-			var date = moment(datas[0].date);
-			var newDate = date.subtract(time);
+				query.date = { $lte: datas[0].date,
+					$gt: newDate.format()
+				};
+			}
+			else {
+				var nowDate = new Date();
+				nowDate.setHours(0,0,0,0);
+				query.date = {
+					$gte: nowDate
+				};
+			}
 
-			PostShop.find({
-				date: { $lte: datas[0].date,
-					$gt: newDate.format()},
-				nbArticle : { $lte: datas[0].nbArticle },
-				magasin: datas[0].magasin,
-				adresse: datas[0].adresse
-			},
+			if(datas[0].nbArticle != undefined && datas[0].nbArticle != null) {
+				query.nbArticle = { $lte: datas[0].nbArticle };
+			}
+
+			query.magasin = datas[0].magasin;
+			query.adresse = datas[0].adresse;
+
+			PostShop.find(
+				query
+			,
 			{
 				__v:0
 			}).sort({date: 1 }).exec(function(err,postShop) {
 				callback(postShop, err);
 			});
-		}
-		// On cherche juste avec magasin
-		else {
-			PostShop.find({
-				magasin: datas[0].magasin,
-				adresse: datas[0].adresse
-			},
-			{
-				__v:0
-			}).sort({date: 1 }).exec(function(err,postShop) {
-				callback(postShop, err);
-			});
-		}
 	},
+	// Récupère les informations d'une proposition de shopping selon son id
 	getProposition: function(id,callback) {
 		PostShop.findOne({
 			_id: id
@@ -103,6 +76,7 @@ var postShopAccessDb = {
 			callback(postShop, err);
 		});
 	},
+	// Récupère toutes les propositions de shopping selon l'email de l'internaute qui les a créé
 	getPostShops: function(email,callback) {
 		PostShop.find({
 			mailShoppeur: email

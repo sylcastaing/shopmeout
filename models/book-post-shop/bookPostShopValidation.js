@@ -3,7 +3,7 @@ var bookPostShopAccessDb = require('./bookPostShopAccessDb');
 var bookPostShopMessages = require('properties-reader')('messages/bookPostShop.messages.properties');
 
 var bookPostShopValidation = {
-
+	// Fonction de vérification des données de création d'une réservation de shopping
 	verifDatas: function (datas, callback) {
 
 		var err = "";
