@@ -1,5 +1,5 @@
 // Controller de la recherche de proposition de shopping
-app.controller("SearchPostShopCtrl", function($scope, $http) {
+app.controller("SearchPostShopCtrl", function($scope, $http, $timeout) {
 
 	// Affectation de la map à la variable mapSearch
 	$scope.mapSearch = shopMap.init({
@@ -10,6 +10,18 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 	$("#mapSearchPostShop").hide();
 	$scope.showDiv = true;
 
+	// Chargement de l'adresse via l'objet stocké dans le scope main
+	$timeout(function() {
+		if($scope.userConnected != undefined) {
+			$scope.adresseField =$scope.userConnected.adresse + " " + $scope.userConnected.codePostal + " " + $scope.userConnected.ville;
+			$scope.email = $scope.userConnected.email;
+			$scope.isAuthenticated = true;
+		}
+		else {
+			$scope.adresseField = "";
+		}
+	}, 500);
+	
 	// Fonction permettant de ouvrir la map avec l'adresse rentrée dans le champ adéquat
 	$scope.searchMapPostShop = function() {
 		$scope.mapSearch.init({
@@ -36,24 +48,9 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 		}
 	}
 
-
-	// On récupère l'adresse et l'email de l'utilisateur
-	var res = $http({
-		method : 'GET',
-		url : '/ws-users/consult-profile'
-	}).success(function (data, status, headers, config){
-		if(data.user != null) {
-			$scope.adresseField = data.user.adresse + " " + data.user.codePostal + " " + data.user.ville;
-			$scope.email = data.user.email;
-			$scope.isAuthenticated = true;
-		}
-		else {
-			$scope.adresseField = "";
-		}
-	});
-
 	// Recherche des propositions de shopping lorsque l'on a fini de remplir le formulaire de recherche
 	$scope.searchPostShop = function() {
+			//console.log($scope.userConnected);
 			if($scope.mapSearch.selectedMarker==null) {
 				$scope.postshop.$error.noMagasinSelected = true;
 			}

@@ -1,4 +1,4 @@
-app.controller("SearchNeedShopCtrl", function($scope, $http) {
+app.controller("SearchNeedShopCtrl", function($scope, $http, $timeout) {
 
 	$scope.isSent = false;
 
@@ -11,23 +11,21 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 	$("#mapSearchNeedShop").hide();
 	$("#buttonValid").hide();
 
-	// On récupère l'adresse et l'email de l'utilisateur
-	var res = $http({
-		method : 'GET',
-		url : '/ws-users/consult-profile'
-	}).success(function (data, status, headers, config){
-		if(data.user != null) {
-			$scope.adresseField = data.user.adresse + " " + data.user.codePostal + " " + data.user.ville;
-			$scope.email = data.user.email;
+	// Chargement de l'adresse via l'objet stocké dans le scope main
+	$timeout(function() {
+		if($scope.userConnected != undefined) {
+			$scope.adresseField =$scope.userConnected.adresse + " " + $scope.userConnected.codePostal + " " + $scope.userConnected.ville;
+			$scope.email = $scope.userConnected.email;
 			$scope.isAuthenticated = true;
 		}
 		else {
 			$scope.adresseField = "";
 		}
-	});
+	}, 500);
 
 	// Initialise la map en fonction de l'adresse choisie
 	$scope.searchMapNeedShop = function() {
+		
 		$scope.mapSearchNeedShop.init({
 			mapId : "mapSearchNeedShop",
 			adresse: $scope.adresseField,
