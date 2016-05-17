@@ -46,6 +46,7 @@ var postShopAccessDb = {
 			}
 			else {
 				var nowDate = new Date();
+				nowDate.setHours(0,0,0,0);
 				query.date = {
 					$gte: nowDate
 				};
