@@ -33,15 +33,10 @@ app.controller("myShoppingsCtrl", function($scope, $http) {
 					$scope.myNeedsShopsHistory.push(needShop);
 				}
 				else {
-					$scope.myNeedsShops.push(needShop)
+					$scope.myNeedsShops.push(needShop);
 				}
 			}
 		}
 	});
-
-	$scope.openListArticles = function(demande) {
-		$scope.selectedDemande = demande;
-		$("#listArticlesModal").modal('show');
-	}
 
 });

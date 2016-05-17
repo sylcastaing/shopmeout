@@ -10,14 +10,13 @@ block content
 					li(role="presentation")
 						a(href="#myShoppings" aria-controls="myShoppings" role="tab" data-toggle="tab") Mes shoppings
 					li(role="presentation")
-						a(href="#myNeedsShops" aria-controls="myNeedsShops" role="tab" data-toggle="tab") Mes demandes
-					li(role="presentation")
-						a(href="#") Mes messages
+						a(href="#myBookings" aria-controls="myBookings" role="tab" data-toggle="tab") Mes réservations
 			.col-md-10
 				.tab-content
 					include myInformations.jade
 					include myShoppings.jade
-
+					include myBookings.jade
+					include ../../needShop/listArticlesModal.jade
 block styles
 	link(rel='stylesheet', href='#{baseUrl}/stylesheets/myAccount.css')
 

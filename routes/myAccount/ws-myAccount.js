@@ -9,25 +9,17 @@ var usersMessages = require('properties-reader')('messages/users.messages.proper
 
 
 router.get('/consult-postShops', function (req, res, next) {
-	if (req.isAuthenticated()) {
-		if(req.session.passport.user.email) {
-			postShopAccessDb.getPostShops(req.session.passport.user.email, function(postShop, err) {
-				res.json({
-					postShops : postShop,
-					err : err
-				});
-			});
-		}
-		else {
+	if (req.isAuthenticated() && req.session.passport.user.email) {
+		postShopAccessDb.getPostShops(req.session.passport.user.email, function(postShop, err) {
 			res.json({
-				user : null,
-				err : usersMessages.get("users.consult.notConnected")
+				postShops : postShop,
+				err : err
 			});
-		}
+		});
 	}
 	else {
 		res.json({
-			user : null,
+			postShops : null,
 			err : usersMessages.get("users.consult.notConnected")
 		});
 	}
@@ -35,25 +27,16 @@ router.get('/consult-postShops', function (req, res, next) {
 
 
 router.get('/consult-needShops', function (req, res, next) {
-	if (req.isAuthenticated()) {
-		if(req.session.passport.user.email) {
-			needShopAccessDb.getNeedShops(req.session.passport.user.email, function(needShop, err) {
-				res.json({
-					needShops : needShop,
-					err : err
-				});
-			});
-		}
-		else {
+	if (req.isAuthenticated() && req.session.passport.user.email) {
+		needShopAccessDb.getNeedShops(req.session.passport.user.email, function(needShop, err) {
 			res.json({
-				user : null,
-				err : usersMessages.get("users.consult.notConnected")
+				needShops : needShop,
+				err : err
 			});
-		}
-	}
-	else {
+		});
+	} else {
 		res.json({
-			user : null,
+			needShops : null,
 			err : usersMessages.get("users.consult.notConnected")
 		});
 	}
@@ -67,6 +50,40 @@ router.get('/consult-bookPostShops', function (req, res, next) {
 			err : err
 		});
 	});
+});
+
+// On récupère les demandes de shopping à partir d'un mail de shoppeur
+router.get('/consult-myBookNeedShops', function (req, res, next) {
+	if (req.isAuthenticated() && req.session.passport.user.email) {
+		needShopAccessDb.getBookNeedShops(req.session.passport.user.email, function(err, needShops) {
+			res.json({
+				needShops : needShops,
+				err : err
+			});
+		});
+	} else {
+		res.json({
+			needShops : null,
+			err : usersMessages.get("users.consult.notConnected")
+		});
+	}
+});
+
+// On récupère les propositions de shopping que l'on a reservé
+router.get('/consult-myBookPostShops', function (req, res, next) {
+	if (req.isAuthenticated() && req.session.passport.user.email) {
+		bookPostShopAccessDb.getMyBookPostShops(req.session.passport.user.email, function(err, postShops) {
+			res.json({
+				postShops : postShops,
+				err : err
+			});
+		});
+	} else {
+		res.json({
+			postShops : null,
+			err : usersMessages.get("users.consult.notConnected")
+		});
+	}
 });
 
 

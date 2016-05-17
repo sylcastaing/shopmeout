@@ -53,7 +53,6 @@
 									b {{r.nbArticle | nbArticleLabel}} 
 									span articles
 
-
 		.row(ng-if="myNeedsShops.length > 0 || myNeedsShopsHistory.length > 0")
 			.col-md-12
 				h3 Mes Demandes de Shopping
@@ -97,8 +96,6 @@
 									span.linkBlue(ng-click="openListArticles(r)") 
 										b {{r.nbArticle }} 
 										span articles
-
-		include ../../needShop/listArticlesModal.jade
 
 block scripts-header
 	script(src="#{baseUrl}/javascripts/users/myAccount/myAccount-myShoppings.js")

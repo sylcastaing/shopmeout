@@ -9,4 +9,9 @@ app.controller("myAccountCtrl", function($scope, $http) {
 			// On bascule sur le bon onglet
 			$('#myAccountTabs a[href="' + vm.ongletCourant + '"]').tab('show');
 		});
+
+	$scope.openListArticles = function(demande) {
+		$scope.selectedDemande = demande;
+		$("#listArticlesModal").modal('show');
+	}
 });

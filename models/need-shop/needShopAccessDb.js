@@ -128,6 +128,14 @@ var needShopAccessDb = {
 		}, function(err, demande) {
 			callback(err);
 		});
+	},
+
+	getBookNeedShops: function(mailShoppeur, callback) {
+		NeedShop.find({
+			"listShoppeurs.mailShoppeur": mailShoppeur
+		}, function(err, bookNeedShops) {
+			callback(err, bookNeedShops);
+		});
 	}
 
 
