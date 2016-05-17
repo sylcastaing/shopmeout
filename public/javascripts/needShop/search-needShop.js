@@ -73,6 +73,7 @@ app.controller("SearchNeedShopCtrl", function($scope, $http) {
 				var tabRes = [];
 				var tabAllRes = [];
 				var tabDisable = [];
+				$scope.nbLignesResultRecherche = data.needShops.length / 2;
 				for(i in data.needShops) {
 					tabAdress.push(data.needShops[i].adresse);
 					tabDisable[i] = false;

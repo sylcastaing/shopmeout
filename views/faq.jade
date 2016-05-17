@@ -1,32 +1,32 @@
 extends layout
 
 block content
-	.explain
+	.faq
 		h1 Foire aux questions
 		div
 			div.panel-group#accordion
 			.panel.panel-default
 				.panel-heading
-					h4.panel-title.blue
+					h4.panel-title.orange
 						a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseOne') ShopMeOut c'est quoi ?
 				#collapseOne.panel-collapse.collapse
 					.panel-body
 						| Shopmeout met en relation des 
-						span.blue shoppeurs 
+						span.orange shoppeurs 
 						| et des 
-						span.orange bookeurs 
+						span.blue bookeurs 
 						| souhaitant faire des courses collaboratives. 
 						br
 						| Un 
-						span.blue shoppeur 
+						span.orange shoppeur 
 						| propose d'aller faire un shopping dans un magasin et ainsi plusieurs 
-						span.orange bookeurs 
+						span.blue bookeurs 
 						| peuvent en profiter pour lui donner leurs listes de courses.
 						br
 
 			.panel.panel-default
 				.panel-heading
-					h4.panel-title.orange
+					h4.panel-title.blue
 						a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo') Comment créer mon compte ?
 				#collapseTwo.panel-collapse.collapse
 					.panel-body
@@ -36,47 +36,140 @@ block content
 						| Et si tu as déjà un compte, tu peux te connecter en cliquant sur "Connecte-toi !" toujours en haut et à droite.
 						br
 						br
-						| Il faut évidemment avoir un compte pour créer 
-						span.blue proposition de shopping  
+						| Il faut évidemment avoir un compte pour créer une 
+						span.orange proposition de shopping  
 						| ou une 
-						span.orange une demande de shopping !
+						span.blue demande de shopping !
 						br
-
-			.panel.panel-default
-				.panel-heading
-					h4.panel-title.blue
-						a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseThree') Comment créer une proposition de shopping ?
-				#collapseThree.panel-collapse.collapse
-					.panel-body
-						| Pour créer une proposition de shopping, il suffit de se rendre dans l'onglet 
-						span.blue " Je propose un shopping !"
-						|.
-						br
-						| Si tu es connecté(e), l'adresse renseignée lors de la création de ton profil sera pré-remplie automatiquement.
-						br
-						| Si tu souhaites effectuer un shopping dans une autre ville par exemple, tu peux renseigner une nouvelle adresse et cliquer sur la petite loupe juste à côté de la barre de recherche.
-						br
-						div(class="align-center")
-							img(id="imgadress", src='#{baseUrl}/images/imgadress.gif', alt='')
-						br
-						| La recherche permet d'afficher une map sur laquelle tu devras sélectionner le magasin de ton choix.
-						br
-						img(id="imgmap", src='#{baseUrl}/images/map.gif', alt='')
-						br
-						| Cela te permet de voir si des 
-						span.orange bookeurs 
-						| ont besoin de toi pour aller faire des courses dans ce même magasin !
-						br
-						| Si tu souhaites effectuer un de leur shopping, tu peux directement cliquer sur "Réalise ce shopping" ce qui va te rediriger sur la liste de courses du 
-						span.orange bookeur
-						| concerné.
 
 			.panel.panel-default
 				.panel-heading
 					h4.panel-title.orange
+						a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseThree') Comment créer une proposition de shopping ?
+				#collapseThree.panel-collapse.collapse
+					.panel-body
+						| Pour créer une 
+						span.orange proposition de shopping
+						| , il suffit de se rendre dans l'onglet 
+						span.orange " Je propose un shopping !"
+						|.
+						br
+						| Cela te permet de connaitre les 
+						span.blue demandes de shopping 
+						| proposées par nos 
+						span.blue bookeurs 
+						| qui ont besoin de toi pour aller faire leurs courses !
+						br
+						br
+						| Si tu es connecté(e), l'adresse renseignée lors de la création de ton profil sera pré-remplie automatiquement. Il te suffit de lancer la recherche.
+						br
+						| Si tu souhaites effectuer un shopping dans une autre ville par exemple, tu peux renseigner une nouvelle adresse et cliquer sur la petite loupe juste à côté de la barre de recherche.
+						br
+						br
+						div(class="align-center")
+							img(id="imgadress", src='#{baseUrl}/images/imgadress.gif', alt='')
+						br
+						| La recherche permet d'afficher une map sur laquelle tu devras sélectionner le magasin de ton choix. Ils proposent les magasins aux alentours de l'adresse indiquée.
+						br
+						br
+						div(class="align-center")
+							img(id="imgmap", src='#{baseUrl}/images/map.jpg', alt='')
+						br
+						| Ensuite tu cliques sur le curseur rouge de ton choix, correspondant au magasin dans lequel tu souhaites aller faire tes courses et tu cliques sur "Valide ce magasin !"
+						br
+						br
+						| Un formulaire de recherche va te permettre de préciser ta 
+						span.orange proposition de shopping 
+						| avec les critères de ton choix : le nombre de 
+						span.blue bookeurs 
+						| que tu souhaites livrer, la distance de livraison entre le magasin et le domicile des 
+						span.blue bookeurs 
+						| que tu veux bien parcourir ou encore le nombre de produits que tu souhaites livrer pour chacun d'entre eux !
+						br
+						br 
+						| Ta recherche lancée, tu prendras connaissances des 
+						span.blue bookeurs 
+						| qui ont besoin de ton aide et qui entre dans tes critères de shopping !
+						br
+						br
+						| Si tu souhaites effectuer un de leur shopping, tu peux directement cliquer sur "Réalise ce shopping !" afin d'être mis en relation avec le/les 
+						span.blue bookeur(s) 
+						| concerné(s).
+						br
+						br
+						| Sinon, tu peux 
+						span.orange "Ajouter ta proposition !" 
+						| et attendre que des 
+						span.blue bookeurs 
+						| la consulte et te contacte pour que tu ailles faire leurs courses grâce au formumaire mis à disposition !
+
+			.panel.panel-default
+				.panel-heading
+					h4.panel-title.blue
 						a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseFour') Comment créer une demande de shopping ?
 				#collapseFour.panel-collapse.collapse
 					.panel-body
+						| Pour créer une 
+						span.blue demande de shopping
+						| , il suffit de se rendre dans l'onglet 
+						span.blue " Je demande un shopping !"
+						|.
+						br
+						| Cela te permet de connaitre les 
+						span.orange propositions de shopping 
+						| proposées par nos 
+						span.orange shoppeurs 
+						| qui peuvent aller faire tes courses !
+						br
+						br
+						| Si tu es connecté(e), l'adresse renseignée lors de la création de ton profil sera pré-remplie automatiquement. Il te suffit de lancer la recherche.
+						br
+						| Si tu souhaites effectuer un booking dans une autre ville par exemple, tu peux renseigner une nouvelle adresse et cliquer sur la petite loupe juste à côté de la barre de recherche.
+						br
+						br
+						div(class="align-center")
+							img(id="imgadress", src='#{baseUrl}/images/imgadress.gif', alt='')
+						br
+						| La recherche permet d'afficher une map sur laquelle tu devras sélectionner le magasin de ton choix. Ils proposent les magasins aux alentours de l'adresse indiquée.
+						br
+						br
+						div(class="align-center")
+							img(id="imgmap", src='#{baseUrl}/images/map.jpg', alt='')
+						br
+						| Ensuite tu cliques sur le curseur rouge de ton choix, correspondant au magasin dans lequel tu souhaites aller faire tes courses et tu cliques sur "Valide ce magasin !"
+						br
+						br
+						| Un formulaire de recherche va te permettre de préciser ta 
+						span.blue demande de shopping 
+						| avec quelques critères de recherche que tu peux préciser ou non : le nombre d'articles dont tu as besoin ainsi que la date à laquelle tu souhaites être livré(e).
+						br
+						br 
+						| Ta recherche lancée, tu prendras connaissances des 
+						span.blue shoppeurs 
+						be qui peuvent faire tes courses !
+						br
+						br
+						| Si tu souhaites choisir un de ces 
+						span.orange shoppeurs
+						| , tu peux directement cliquer sur "Réserve ce shopping !" afin d'être mis en relation avec le/les 
+						span.orange shoppeurs(s) 
+						| concerné(s).
+						br
+						br
+						| Sinon, tu peux 
+						span.blue "Ajouter ta demande !" 
+						| et attendre que des 
+						span.orange shoppeurs  
+						| la consulte et te contacte pour aller faire tes courses en précisant grâce au formulaire ta liste de courses, article par article ainsi que l'adresse et la date à laquelle tu souhaites être livré(e).
+						| Concernant ta liste de courses, pense à bien décrire chacun des articles : marque, gamme de prix, quantité ...
+
+			.panel.panel-default
+				.panel-heading
+					h4.panel-title.orange
+						a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseFive') Comment nous contacter ?
+				#collapseFive.panel-collapse.collapse
+					.panel-body
+						| Si tu as besoin de plus d'informations sur ShopMeOut, tu peux utiliser cliquer sur "Contactez-nous" en bas de la page ce qui te permettra de nous envoyer ta demande ! 
 
 block scripts
 	script(src="#{baseUrl}/javascripts/index/index.js")

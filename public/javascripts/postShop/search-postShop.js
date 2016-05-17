@@ -75,6 +75,7 @@ app.controller("SearchPostShopCtrl", function($scope, $http) {
 						var tabAdress = [];
 						var tabDisable = [];
 						var tabRes = [];
+						$scope.nbLignesResultRecherche = data.postShops.length / 2;
 						for(i in data.postShops) {
 							tabAdress.push(data.postShops[i].adresse);
 							tabDisable[i] = false;
