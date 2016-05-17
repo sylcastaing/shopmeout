@@ -62,8 +62,8 @@ router.post('/get-postShop', function(req, res, next) {
 });
 
 router.post('/add-bookeur', function(req, res, next) {
-	mailUser = (req.isAuthenticated())?req.session.passport.user.email:"";
-	postShopAccessDb.addBookeur(req.body, mailUser, function(err) {
+	user = (req.isAuthenticated())?req.session.passport.user:"";
+	postShopAccessDb.addBookeur(req.body, user, function(err) {
 		res.json({
 			err: err,
 		});

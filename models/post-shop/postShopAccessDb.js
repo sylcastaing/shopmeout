@@ -114,7 +114,7 @@ var postShopAccessDb = {
 	},
 
 	//Ajoute un bookeur à une proposition de shopping (postShop)
-	addBookeur: function(data, mailUser, callback) {
+	addBookeur: function(data, user, callback) {
 		PostShop.update(
 		// Condition
 		{
@@ -124,7 +124,9 @@ var postShopAccessDb = {
 		{
 			$push: {
 				listBookeurs: {
-					mailBookeur: mailUser,
+					mailBookeur: user.email,
+					nomBookeur: user.nom,
+					prenomBookeur: user.prenom,
 					nbrArticleTotal: data.nbrArticleTotal,
 					adresseLivraisonBookeur: data.adresseLivraisonBookeur,
 					articles: data.articles,

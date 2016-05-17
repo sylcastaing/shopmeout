@@ -1,101 +1,99 @@
 .tab-pane#myShoppings(role="tabpanel")
-	div(ng-controller="myShoppingsCtrl")
 
-		.row(ng-if="myPostsShops.length > 0 || myPostsShopsHistory.length > 0")
-			.col-md-12
-				h3 Mes Propositions de Shopping
+	.row(ng-if="myPostsShops.length > 0 || myPostsShopsHistory.length > 0")
+		.col-md-12
+			h3 Mes Propositions de Shopping
 
-		.row(ng-if="myPostsShops.length > 0")
-			.col-xs-6(ng-repeat="r in myPostsShops")
-				div.panel.panel-default.bgOrange
-					div.panel-heading Shopping proposé par 
-						b {{r.prenom}} {{r.nom | firstLetter}}.
-					div.panel-body
-						span.glyphicon.glyphicon-map-marker.iconOrange
-						span
-							b {{r.magasin}} 
-							span - {{r.adresse}}
-						br
-						span.glyphicon.glyphicon-calendar.iconOrange
-						b {{r.date | date:"dd/MM/yyyy"}}
-						br
-						span.glyphicon.glyphicon-user.iconOrange
-						b {{r.nbShoppeur}} 
-						span shoppeurs
-						br
-						span.glyphicon.glyphicon-shopping-cart.iconOrange
-						b {{r.nbArticle | nbArticleLabel}} 
+	.row(ng-if="myPostsShops.length > 0")
+		.col-xs-6(ng-repeat="r in myPostsShops")
+			div.panel.panel-default.bgOrange
+				div.panel-heading Shopping proposé par 
+					b {{r.prenom}} {{r.nom | firstLetter}}.
+				div.panel-body
+					span.glyphicon.glyphicon-map-marker.iconOrange
+					span
+						b {{r.magasin}} 
+						span - {{r.adresse}}
+					br
+					span.glyphicon.glyphicon-calendar.iconOrange
+					b {{r.date | date:"dd/MM/yyyy"}}
+					br
+					span.glyphicon.glyphicon-user.iconOrange
+					b {{r.nbShoppeur}} 
+					span shoppeurs
+					br
+					span.glyphicon.glyphicon-shopping-cart.iconOrange
+					b {{r.nbArticle | nbArticleLabel}} 
+					span articles
+					br
+					b.linkBlue(ng-click="openMoreInfosPostShop(r)") Ouvrir
+
+	.row(ng-if="myPostsShopsHistory.length > 0")
+		.col-md-12
+			button.btn.btn-primary.history-btn(type="button" data-toggle="collapse" data-target="#postShopsHistory" aria-expanded="false" aria-controls="postShopsHistory") Historique
+			div.collapse#postShopsHistory
+				.row
+					.col-xs-6(ng-repeat="r in myPostsShopsHistory")
+						div.panel.panel-default
+							div.panel-heading Shopping proposé par 
+								b {{r.prenom}} {{r.nom | firstLetter}}.
+							div.panel-body
+								span.glyphicon.glyphicon-map-marker.iconOrange
+								span
+									b {{r.magasin}} 
+									span - {{r.adresse}}
+								br
+								span.glyphicon.glyphicon-calendar.iconOrange
+								b {{r.date | date:"dd/MM/yyyy"}}
+								br
+								span.glyphicon.glyphicon-user.iconOrange
+								b {{r.nbShoppeur}} 
+								span shoppeurs
+								br
+								span.glyphicon.glyphicon-shopping-cart.iconOrange
+								b {{r.nbArticle | nbArticleLabel}} 
+								span articles
+
+	.row(ng-if="myNeedsShops.length > 0 || myNeedsShopsHistory.length > 0")
+		.col-md-12
+			h3 Mes Demandes de Shopping
+
+	.row(ng-if="myNeedsShops.length > 0")
+		.col-xs-6(ng-repeat="r in myNeedsShops")
+			.panel.panel-default.bgBlue
+				.panel-heading Shopping demandé par 
+					b {{r.prenom}} {{r.nom | firstLetter}}.
+				.panel-body
+					span.glyphicon.glyphicon-map-marker.iconBlue
+					span A livrer au 
+						b {{r.adresse}} 
+					br
+					span.glyphicon.glyphicon-calendar.iconBlue
+					b {{r.date | date:"dd/MM/yyyy"}}
+					br
+					span.glyphicon.glyphicon-shopping-cart.iconBlue
+					span.linkBlue(ng-click="openListArticles(r)") 
+						b {{r.nbArticle }} 
 						span articles
 
-		.row(ng-if="myPostsShopsHistory.length > 0")
-			.col-md-12
-				button.btn.btn-primary.history-btn(type="button" data-toggle="collapse" data-target="#postShopsHistory" aria-expanded="false" aria-controls="postShopsHistory") Historique
-				div.collapse#postShopsHistory
-					.row
-						.col-xs-6(ng-repeat="r in myPostsShopsHistory")
-							div.panel.panel-default
-								div.panel-heading Shopping proposé par 
-									b {{r.prenom}} {{r.nom | firstLetter}}.
-								div.panel-body
-									span.glyphicon.glyphicon-map-marker.iconOrange
-									span
-										b {{r.magasin}} 
-										span - {{r.adresse}}
-									br
-									span.glyphicon.glyphicon-calendar.iconOrange
-									b {{r.date | date:"dd/MM/yyyy"}}
-									br
-									span.glyphicon.glyphicon-user.iconOrange
-									b {{r.nbShoppeur}} 
-									span shoppeurs
-									br
-									span.glyphicon.glyphicon-shopping-cart.iconOrange
-									b {{r.nbArticle | nbArticleLabel}} 
+	.row(ng-if="myNeedsShopsHistory.length > 0")
+		.col-md-12
+			button.btn.btn-primary.history-btn(type="button" data-toggle="collapse" data-target="#needShopsHistory" aria-expanded="false" aria-controls="needShopsHistory") Historique
+			div.collapse#needShopsHistory
+				.row
+					.col-xs-6(ng-repeat="r in myNeedsShopsHistory")
+						.panel.panel-default
+							.panel-heading Shopping demandé par 
+								b {{r.prenom}} {{r.nom | firstLetter}}.
+							.panel-body
+								span.glyphicon.glyphicon-map-marker.iconBlue
+								span A livrer au 
+									b {{r.adresse}} 
+								br
+								span.glyphicon.glyphicon-calendar.iconBlue
+								b {{r.date | date:"dd/MM/yyyy"}}
+								br
+								span.glyphicon.glyphicon-shopping-cart.iconBlue
+								span.linkBlue(ng-click="openListArticles(r)") 
+									b {{r.nbArticle }} 
 									span articles
-
-		.row(ng-if="myNeedsShops.length > 0 || myNeedsShopsHistory.length > 0")
-			.col-md-12
-				h3 Mes Demandes de Shopping
-
-		.row(ng-if="myNeedsShops.length > 0")
-			.col-xs-6(ng-repeat="r in myNeedsShops")
-				.panel.panel-default.bgBlue
-					.panel-heading Shopping demandé par 
-						b {{r.prenom}} {{r.nom | firstLetter}}.
-					.panel-body
-						span.glyphicon.glyphicon-map-marker.iconBlue
-						span A livrer au 
-							b {{r.adresse}} 
-						br
-						span.glyphicon.glyphicon-calendar.iconBlue
-						b {{r.date | date:"dd/MM/yyyy"}}
-						br
-						span.glyphicon.glyphicon-shopping-cart.iconBlue
-						span.linkBlue(ng-click="openListArticles(r)") 
-							b {{r.nbArticle }} 
-							span articles
-
-		.row(ng-if="myNeedsShopsHistory.length > 0")
-			.col-md-12
-				button.btn.btn-primary.history-btn(type="button" data-toggle="collapse" data-target="#needShopsHistory" aria-expanded="false" aria-controls="needShopsHistory") Historique
-				div.collapse#needShopsHistory
-					.row
-						.col-xs-6(ng-repeat="r in myNeedsShopsHistory")
-							.panel.panel-default
-								.panel-heading Shopping demandé par 
-									b {{r.prenom}} {{r.nom | firstLetter}}.
-								.panel-body
-									span.glyphicon.glyphicon-map-marker.iconBlue
-									span A livrer au 
-										b {{r.adresse}} 
-									br
-									span.glyphicon.glyphicon-calendar.iconBlue
-									b {{r.date | date:"dd/MM/yyyy"}}
-									br
-									span.glyphicon.glyphicon-shopping-cart.iconBlue
-									span.linkBlue(ng-click="openListArticles(r)") 
-										b {{r.nbArticle }} 
-										span articles
-
-block scripts-header
-	script(src="#{baseUrl}/javascripts/users/myAccount/myAccount-myShoppings.js")

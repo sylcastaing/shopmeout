@@ -5,7 +5,8 @@ div(class="modal fade" id="listArticlesModal" role="dialog")
 		div.modal-content(ng-if="selectedDemande")
 			div.modal-header
 				button.close(type="button" data-dismiss="modal") &times;
-				h4.modal-title Liste des articles demandés par {{selectedDemande.prenom}} {{selectedDemande.nom | firstLetter}}. le {{selectedDemande.date | date:"dd/MM/yyyy"}}
+				h4.modal-title Liste des articles demandés 
+					span(ng-if="selectedDemande.nom") par {{selectedDemande.prenom}} {{selectedDemande.nom | firstLetter}}. le {{selectedDemande.date | date:"dd/MM/yyyy"}}
 			div.modal-body
 				include ./listArticles.jade
 			div.modal-footer

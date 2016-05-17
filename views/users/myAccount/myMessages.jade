@@ -1,0 +1,17 @@
+.tab-pane#myMessages(role="tabpanel")
+
+	.row(ng-if="myPostsShops.length > 0 || myPostsShopsHistory.length > 0")
+		.col-md-12
+			h3 Tu as des demandeurs qui ont reservé tes shoppings ! Valide-les ci-dessous :
+
+	.row(ng-if="myPostsShops.length > 0")
+		.col-md-12(ng-repeat="r in myPostsShops")
+			h2 Shopping proposé le {{r.date | date:"dd/MM/yyyy"}} à {{r.magasin}} - {{r.adresse}}
+			.col-xs-6(ng-repeat="bookeur in r.listBookeurs")
+				div.panel.panel-default.bgOrange
+					div.panel-heading Réservation demandée par 
+						b {{bookeur['prenomBookeur']}} {{bookeur.nomBookeur | firstLetter}}.
+					div.panel-body
+						span.glyphicon.glyphicon-shopping-cart.iconOrange
+						b {{bookeur.nbArticle | nbArticleLabel}} 
+						span articles demandés

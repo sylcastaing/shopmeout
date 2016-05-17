@@ -36,6 +36,7 @@ app.controller("myBookingsCtrl", function($scope, $http) {
 				for(j in bookPostShops.listBookeurs) {
 					if (bookPostShops.listBookeurs[j].mailBookeur == $scope.userConnected.email) {
 						bookPostShops.statut = bookPostShops.listBookeurs[j].statut;
+						bookPostShops.articles = bookPostShops.listBookeurs[j].articles;
 					}
 				}
 				if (moment(bookPostShops.date).utc() < moment().utc().startOf('day')) {
