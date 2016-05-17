@@ -1,4 +1,4 @@
-div(class="modal fade" id="MoreInfosPostShopModal" role="dialog")
+div(class="modal fade" id="MoreInfosPostShopModal" role="dialog" ng-controller="MoreInfosPostShopCtrl")
 	div(class="modal-dialog")
 
 		// Modal content
@@ -18,12 +18,22 @@ div(class="modal fade" id="MoreInfosPostShopModal" role="dialog")
 								span.linkBlue(ng-click="openListArticles(bookeur)") 
 									b {{bookeur.nbrArticleTotal }} 
 									span article(s) demandé(s)
-								span.btn.btn-default(ng-click="")
-									| Accepter
+								span(ng-if='bookeur.statut=="En attente"')
+									span.btn.btn-default(ng-click="acceptBooking(true, bookeur)")
+										| Accepter
+										span(class = "glyphicon glyphicon-ok")
+									span.btn.btn-default(ng-click="acceptBooking(false, bookeur)")
+										| Refuser
+										span(class = "glyphicon glyphicon-remove")
+								span.align-center.btn.btn-default(ng-if='bookeur.statut=="Validé"' ng-disabled)
+									| Réservation acceptée
 									span(class = "glyphicon glyphicon-ok")
-								span.btn.btn-default(ng-click="")
-									| Refuser
+								span.align-center.btn.btn-default(ng-if='bookeur.statut=="Refusé"' ng-disabled)
+									| Réservation refusée
 									span(class = "glyphicon glyphicon-remove ")
 			div.modal-footer
 				button.btn.btn-default(type="button" data-dismiss="modal") Fermer
+
+block scripts-header
+	script(src="#{baseUrl}/javascripts/postShop/MoreInfosPostShop.js")
 

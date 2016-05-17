@@ -70,4 +70,15 @@ router.post('/add-bookeur', function(req, res, next) {
 	});
 });
 
+router.post('/accept-postShop', function(req, res, next) {
+	postShopAccessDb.acceptPostShop(req.body, function(err, update) {
+		res.json({
+			err: err,
+			update: update
+		});
+	});
+});
+
+
+
 module.exports = router;

@@ -111,7 +111,7 @@ var needShopAccessDb = {
 	},
 
 	// Ajout du shoppeur dans une demande (idDemande)
-	addShoppeur: function(data, callback) {
+	addShoppeur: function(data, user, callback) {
 		NeedShop.update(
 		// Condition
 		{
@@ -121,7 +121,9 @@ var needShopAccessDb = {
 		{
 			$push: {
 				listShoppeurs: {
-					mailShoppeur: data.mailShoppeur,
+					mailShoppeur: user.email,
+					nomShoppeur: user.nom,
+					prenomShoppeur: user.prenom,
 					statut: "En attente"
 				}
 			}
@@ -135,6 +137,23 @@ var needShopAccessDb = {
 			"listShoppeurs.mailShoppeur": mailShoppeur
 		}, function(err, bookNeedShops) {
 			callback(err, bookNeedShops);
+		});
+	},
+
+	acceptNeedShop: function (data, callback) {
+		NeedShop.update(
+		// Condition
+		{
+			_id: new ObjectId(data.selectedDemande._id),
+			'listShoppeurs._id': new ObjectId(data.shoppeur._id)
+		},
+		// update
+		{
+			$set: {
+				'listShoppeurs.$.statut': (data.isAccepted)?"Validé":"Refusé"
+			}
+		}, function(err, update) {
+			callback(err, update);
 		});
 	}
 

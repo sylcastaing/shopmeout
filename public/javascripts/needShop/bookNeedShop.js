@@ -6,8 +6,7 @@ app.controller("BookNeedShopCtrl", function($scope, $http, $timeout) {
 			method : 'POST',
 			url : '/ws-need-shop/add-shoppeur',
 			data: {
-				idDemande: demande._id,
-				mailShoppeur: $scope.userConnected.email
+				idDemande: demande._id
 			}
 		}).success(function(data) {
 			if (data.err == null) {

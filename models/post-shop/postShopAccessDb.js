@@ -144,7 +144,26 @@ var postShopAccessDb = {
 		}, function(err, bookNeedShops) {
 			callback(err, bookNeedShops);
 		});
+	},
+
+	acceptPostShop: function (data, callback) {
+		PostShop.update(
+		// Condition
+		{
+			_id: new ObjectId(data.selectedProposition._id),
+			'listBookeurs._id': new ObjectId(data.bookeur._id)
+		},
+		// update
+		{
+			$set: {
+				'listBookeurs.$.statut': (data.isAccepted)?"Validé":"Refusé"
+			}
+		}, function(err, update) {
+			callback(err, update);
+		});
 	}
+
+	
 	
 }
 

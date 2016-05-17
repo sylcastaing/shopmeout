@@ -58,4 +58,9 @@ app.controller("myAccountCtrl", function($scope, $http) {
 		$scope.selectedProposition = proposition;
 		$("#MoreInfosPostShopModal").modal('show');
 	}
+
+	$scope.openMoreInfosNeedShop = function(demande) {
+		$scope.selectedDemande = demande;
+		$("#MoreInfosNeedShopModal").modal('show');
+	}
 });

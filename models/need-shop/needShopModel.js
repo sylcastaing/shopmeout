@@ -16,6 +16,8 @@ var needShopModel = new Schema({
 	}],
 	listShoppeurs: [{
 		mailShoppeur: String,
+		nomShoppeur: String,
+		prenomShoppeur: String,
 		statut: String
 	}],
 	isMine: Boolean,
