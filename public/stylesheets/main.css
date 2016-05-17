@@ -134,6 +134,10 @@ span.label {
 	width: 100%;
 }
 
+.btnBeforeSearch {
+	margin-bottom: 1%;
+}
+
 td, th {
 	word-wrap: break-word;
 	max-width: 80px;

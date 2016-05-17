@@ -25,3 +25,61 @@
 .montexte {
     padding: 10px 10px 20px 10px;
 }
+
+.blue {
+    color:#0A68C0;
+    font-weight:bold;
+}
+
+.orange {
+    color:#FF6100;
+    font-weight:bold;
+}
+
+.faq .panel-body {
+    font-family: Georgia;
+    font-size: Medium;
+}
+
+.faq h1 {
+    margin-bottom: 10px;
+    font-family: Forte;
+    text-align: center;
+}
+
+.faq h2 {
+    font-family: Forte;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.faq h4 {
+    font-family: Georgia;
+    font-size: Large;
+}
+
+.faq {
+    padding: 20px;
+    font-size: 18px;
+    background-color: #f6f6f6;
+    margin-bottom: 30px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+#imgCI {
+    float : right;
+}
+
+#imgadress {
+    text-align: center;
+}
+
+.faq img {
+	  max-width: 100%;
+}
+
+#imgmap {
+	  max-width: 50%;
+}
