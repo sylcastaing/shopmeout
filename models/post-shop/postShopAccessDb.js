@@ -41,7 +41,14 @@ var postShopAccessDb = {
 				var newDate = date.subtract(time);
 
 				query.date = { $lte: datas[0].date,
-					$gt: newDate.format()};
+					$gt: newDate.format()
+				};
+			}
+			else {
+				var nowDate = new Date();
+				query.date = {
+					$gte: nowDate
+				};
 			}
 
 			if(datas[0].nbArticle != undefined && datas[0].nbArticle != null) {
