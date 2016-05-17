@@ -37,73 +37,43 @@ var needShopAccessDb = {
 
 	// Recherche des demandes de shopping selon les critères présents dans data
 	searchNeedShop: function(datas, mailUser, callback) {
+		var query = {};
 
-		// On cherche juste avec magasin et date :
-		if(datas[0].date != undefined && datas[0].nbArticle == undefined) {
+		if(datas[0].date != undefined && datas[0].date != null) {
 			var time = moment.duration("00:01:00");
 			var date = moment(datas[0].date);
 			var newDate = date.subtract(time);
-			NeedShop.find({
-				date: { $lte: datas[0].date,
-					$gt: newDate.format()},
-					magasin: datas[0].magasin,
-					adresseMagasin: datas[0].adresseMagasin
-				},
-				{
-					__v:0
-				}).sort({date: 1 }).exec(function(err, needShop) {
-					callback(needShop, err);
-				});
-			}
-		// On cherche juste avec nbArticle et magasin
-		else if(datas[0].nbArticle != undefined && datas[0].date == undefined) {
-			NeedShop.find({
-				nbArticle: { $lte: datas[0].nbArticle },
-				magasin: datas[0].magasin,
-				adresseMagasin: datas[0].adresseMagasin
-			},
-			{
-				__v:0
-			}).sort({date: 1 }).exec(function(err, needShop) {
-				callback(needShop, err);
-			});
+			query.date = { $lte: datas[0].date,
+					$gt: newDate.format()
+			};
 		}
-		// On cherche avec nbArticle, date et magasin
-		else if(datas[0].nbArticle != undefined && datas[0].date != undefined) {
-			var time = moment.duration("00:01:00");
-			var date = moment(datas[0].date);
-			var newDate = date.subtract(time);
-
-			NeedShop.find({
-				date: { $lte: datas[0].date,
-					$gt: newDate.format()},
-					nbArticle : { $lte: datas[0].nbArticle },
-					magasin: datas[0].magasin,
-					adresseMagasin: datas[0].adresseMagasin
-				},
-				{
-					__v:0
-				}).sort({date: 1 }).exec(function(err, needShop) {
-					callback(needShop, err);
-				});
-			}
-		// On cherche juste avec magasin
 		else {
-			NeedShop.find({
-				magasin: datas[0].magasin,
-				adresseMagasin: datas[0].adresseMagasin
-			},
-			{
-				__v:0
-			}).sort({date: 1 }).exec(function(err, needShop) {
-				needShopAccessDb.isMine(needShop, mailUser, function(needShop) {
-					needShopAccessDb.isAlreadyShoppeur(needShop, mailUser, function(needShop) {
-						console.log(needShop);
-						callback(needShop, err);
-					})
-				});
-			});
+			var nowDate = new Date();
+			nowDate.setHours(0,0,0,0);
+			console.log(nowDate);
+			query.date = {
+				$gte: nowDate
+			};
 		}
+		if(datas[0].nbArticle != undefined && datas[0].nbArticle != null) {
+			query.nbArticle = { $lte: datas[0].nbArticle };
+		}
+
+		query.magasin = datas[0].magasin;
+		query.adresseMagasin = datas[0].adresseMagasin;
+		
+		NeedShop.find(
+			query
+		,
+		{
+			__v:0
+		}).exec(function(err, needShop) {
+			needShopAccessDb.isMine(needShop, mailUser, function(needShop) {
+				needShopAccessDb.isAlreadyShoppeur(needShop, mailUser, function(needShop) {
+					callback(needShop, err);
+				})
+			});
+		});
 	},
 
 
