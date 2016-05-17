@@ -5,7 +5,7 @@ var moment = require('moment');
 var ObjectId = mongoose.Types.ObjectId;
 var postShopModel = require('./postShopModel');
 var PostShop = mongoose.model('postShop', postShopModel);
- 
+
 
 var postShopAccessDb = {
 
@@ -35,41 +35,64 @@ var postShopAccessDb = {
 	},
 
 	// Recherche de proposition de shopping
-	searchPostShop: function(datas,callback) {
-			var query = {};
-			if(datas[0].date != undefined && datas[0].date != null) {
+	searchPostShop: function(datas, mailUser, callback) {
+		var query = {};
+		if(datas[0].date != undefined && datas[0].date != null) {
 
-				var time = moment.duration("00:01:00");
-				var date = moment(datas[0].date);
-				var newDate = date.subtract(time);
+			var time = moment.duration("00:01:00");
+			var date = moment(datas[0].date);
+			var newDate = date.subtract(time);
 
-				query.date = { $lte: datas[0].date,
-					$gt: newDate.format()
-				};
-			}
-			else {
-				var nowDate = new Date();
-				nowDate.setHours(0,0,0,0);
-				query.date = {
-					$gte: nowDate
-				};
-			}
+			query.date = { $lte: datas[0].date,
+				$gt: newDate.format()
+			};
+		}
+		else {
+			var nowDate = new Date();
+			nowDate.setHours(0,0,0,0);
+			query.date = {
+				$gte: nowDate
+			};
+		}
 
-			if(datas[0].nbArticle != undefined && datas[0].nbArticle != null) {
-				query.nbArticle = { $lte: datas[0].nbArticle };
-			}
+		if(datas[0].nbArticle != undefined && datas[0].nbArticle != null) {
+			query.nbArticle = { $lte: datas[0].nbArticle };
+		}
 
-			query.magasin = datas[0].magasin;
-			query.adresse = datas[0].adresse;
+		query.magasin = datas[0].magasin;
+		query.adresse = datas[0].adresse;
 
-			PostShop.find(
-				query
-			,
-			{
-				__v:0
-			}).sort({date: 1 }).exec(function(err,postShop) {
-				callback(postShop, err);
+		PostShop.find(query,{
+			__v:0
+		}).sort({date: 1 }).exec(function(err,postShop) {
+			postShopAccessDb.isMine(postShop, mailUser, function(postShop) {
+				postShopAccessDb.isAlreadyShoppeur(postShop, mailUser, function(postShop) {
+					callback(postShop, err);
+				})
 			});
+		});
+	},
+
+	isMine: function(postShops, mailUser, callback) {
+		for (i in postShops) {
+			postShops[i].isMine = (postShops[i].mailShoppeur == mailUser);
+		}
+		callback(postShops);
+	},
+
+	isAlreadyShoppeur: function(postShops, mailUser, callback) {
+		for (i in postShops) {
+			isAlreadyBookeur = false;
+			for (l in postShops[i].listBookeurs) {
+				if (postShops[i].listBookeurs[l].mailBookeur == mailUser) {
+					isAlreadyBookeur = true;
+					break;
+				}
+			}
+			postShops[i].isAlreadyBookeur = isAlreadyBookeur;
+			console.log(postShops[i].isAlreadyBookeur);
+		}
+		callback(postShops);
 	},
 
 	// Récupère les informations d'une proposition de shopping selon son id
@@ -82,7 +105,7 @@ var postShopAccessDb = {
 	},
 
 	//Ajoute un bookeur à une proposition de shopping (postShop)
-	addBookeur: function(data, callback) {
+	addBookeur: function(data, mailUser, callback) {
 		PostShop.update(
 		// Condition
 		{
@@ -92,7 +115,7 @@ var postShopAccessDb = {
 		{
 			$push: {
 				listBookeurs: {
-					mailBookeur: data.mailBookeur,
+					mailBookeur: mailUser,
 					nbrArticleTotal: data.nbrArticleTotal,
 					adresseLivraisonBookeur: data.adresseLivraisonBookeur,
 					articles: data.articles,

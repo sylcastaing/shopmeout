@@ -22,9 +22,9 @@ var postShopModel = new Schema({
 			nbrArticle: Number
 		}],
 		statut: String,
+	}],
 	isMine: Boolean,
-	isAlreadyShoppeur: Boolean
-	}]
+	isAlreadyBookeur: Boolean
 });
 
 module.exports = mongoose.model('postShop', postShopModel);

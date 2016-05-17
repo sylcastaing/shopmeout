@@ -36,7 +36,9 @@ router.post('/postShop', function(req, res, next) {
 
 
 router.post('/search-postShop', function(req, res, next) {
-	postShopAccessDb.searchPostShop(req.body, function(result, err) {
+	// Récupération du mail du user
+	mailUser = (req.isAuthenticated())?req.session.passport.user.email:"";
+	postShopAccessDb.searchPostShop(req.body, mailUser, function(result, err) {
 			if(!err) {
 				res.json({
 					postShops: result,
@@ -60,7 +62,8 @@ router.post('/get-postShop', function(req, res, next) {
 });
 
 router.post('/add-bookeur', function(req, res, next) {
-	postShopAccessDb.addBookeur(req.body, function(err) {
+	mailUser = (req.isAuthenticated())?req.session.passport.user.email:"";
+	postShopAccessDb.addBookeur(req.body, mailUser, function(err) {
 		res.json({
 			err: err,
 		});
