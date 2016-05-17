@@ -10,6 +10,7 @@ app.controller("BookPostShopCtrl", function($scope, $http, $timeout) {
 	$scope.erreurChampVide = false;
 	$scope.modal = {};
 	$scope.modal.nbrArticle=1;
+	$scope.noArticles = false;
 
 	$scope.addArticle = function () {
 		if($scope.modal.nameArticle != "" && $scope.modal.nameArticle != undefined) {
@@ -22,6 +23,7 @@ app.controller("BookPostShopCtrl", function($scope, $http, $timeout) {
 			$scope.nbrTotalArticles = $scope.nbrTotalArticles + $scope.modal.nbrArticle;
 			$scope.modal.nameArticle="";
 			$scope.modal.nbrArticle=1;
+			$scope.noArticles = false;
 		}
 		else {
 			$scope.erreurChampVide = true;
@@ -30,64 +32,11 @@ app.controller("BookPostShopCtrl", function($scope, $http, $timeout) {
 
 	$scope.resetErreur = function () {
 		$scope.erreurChampVide = false;
-	}
-
-
-	$scope.bookPostShop = function () {
-		if($scope.nbrTotalArticles == 0) {
-			$scope.messageErreurReservation = "Vous n'avez aucun articles dans votre liste de courses ! "
-			$scope.reservationNonValide = true;
-		}
-		else {
-			$scope.reservationNonValide = false;
-			var datas = {
-			"nbrArticleTotal": $scope.nbrTotalArticles,
-			"adresseLivraisonBookeur": $scope.adresseField,
-			"idPostShop": $scope.propShop._id,
-			"articles": $scope.articles,
-			"statut": "En attente"
-			}
-
-			var res = $http({
-				method : 'POST',
-				url : '/ws-book-post-shop/bookPostShop',
-				data : datas
-			}).success(function (data, status, headers, config) {
-					if(data.statut) {
-						$timeout(function() {
-							$scope.reservationEnvoyee = false;
-						}, 3000);
-						$scope.reservationEnvoyee=true;
-						datas = angular.copy();
-						$scope.erreurLimiteArticles = false;
-						$scope.displayTable = false;
-						$scope.articles = [];
-						$scope.nbrTotalArticles = 0;
-						// On récupère l'adresse
-						var res = $http({
-						method : 'GET',
-						url : '/ws-users/consult-profile'
-						}).success(function (data, status, headers, config){
-						if(data.user != null) {
-							$scope.adresseField = data.user.adresse +" "+ data.user.codePostal +" "+data.user.ville;
-							$scope.isAuthenticated = true;
-						}
-						else {
-							$scope.adresseField = "";
-						}
-					});
-					}
-					else {
-						$scope.reservationNonValide=true;
-						$scope.messageErreurReservation=data.err;
-					}
-			});
-		}
 	};
 
 	$scope.$watch('nbrTotalArticles', function() {
-		if($scope.propShop != undefined) {
-			if((($scope.modal.nbrArticle + $scope.nbrTotalArticles) <= 5 && $scope.propShop.nbArticle == 0) || (($scope.modal.nbrArticle + $scope.nbrTotalArticles) <= 11 && $scope.propShop.nbArticle == 1) || $scope.propShop.nbArticle == 2) {
+		if($scope.selectedProposition != undefined) {
+			if((($scope.modal.nbrArticle + $scope.nbrTotalArticles) <= 5 && $scope.selectedProposition.nbArticle == 0) || (($scope.modal.nbrArticle + $scope.nbrTotalArticles) <= 11 && $scope.selectedProposition.nbArticle == 1) || $scope.selectedProposition.nbArticle == 2) {
 				$scope.erreurLimiteArticles = false;
 			}
 			else {
@@ -103,5 +52,47 @@ app.controller("BookPostShopCtrl", function($scope, $http, $timeout) {
 			$scope.displayTable = false;
 		}
 	}
+
+	$scope.bookPostShop = function () {
+		if($scope.nbrTotalArticles == 0) {
+			$scope.noArticles = true;
+		}
+		else {
+			var datas = {
+				"nbrArticleTotal": $scope.nbrTotalArticles,
+				"adresseLivraisonBookeur": $scope.adresseField,
+				"idPostShop": $scope.selectedProposition._id,
+				"articles": $scope.articles
+			}
+
+			var res = $http({
+				method : 'POST',
+				url : '/ws-post-shop/add-bookeur',
+				data : datas
+			}).success(function (data, status, headers, config) {
+				if (data.err == null) {
+					$scope.reservationEnvoyee = true;
+					$scope.selectedProposition.isAlreadyBookeur = true;
+				}
+			});
+		}
+	};
+
+	$('#bookPostShopModal').on('hidden.bs.modal', function () {
+		if ($scope.reservationEnvoyee) {
+			$scope.selectedProposition.isAlreadyBookeur = true;
+			$scope.reservationEnvoyee = false;
+			$scope.erreurLimiteArticles = false;
+			$scope.displayTable = false;
+			$scope.articles = [];
+			$scope.nbrTotalArticles = 0;
+			$scope.reservationNonValide=false;
+			$scope.erreurChampVide = false;
+			$scope.modal = {};
+			$scope.modal.nbrArticle=1;
+			$scope.noArticles = false;
+			$scope.$apply();
+		}
+	});
 
 });

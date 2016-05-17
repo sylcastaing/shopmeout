@@ -103,7 +103,8 @@ app.controller("SearchPostShopCtrl", function($scope, $http, $timeout) {
 	// Fonction d'ouverture du modal de reservation de proposition
 	$scope.openBookPostShop = function(shopping) {
 		if ($scope.isAuthenticated) {
-			$scope.propShop = shopping.post;
+			console.log($scope);
+			$scope.selectedProposition = shopping.post;
 			$("#bookPostShopModal").modal('show');
 		} else {
 			$("#signInModal").modal('show');

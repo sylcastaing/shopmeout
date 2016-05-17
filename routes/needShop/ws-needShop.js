@@ -42,7 +42,6 @@ router.post('/search-needShop', function(req, res, next) {
 			needShops: result,
 		});
 	});
-	
 });
 
 router.post('/add-shoppeur', function(req, res, next) {
@@ -51,7 +50,6 @@ router.post('/add-shoppeur', function(req, res, next) {
 			err: err,
 		});
 	});
-	
 });
 
 router.post('/is-already-add', function(req, res, next) {
@@ -61,7 +59,6 @@ router.post('/is-already-add', function(req, res, next) {
 			err: err
 		});
 	});
-	
 });
 
 

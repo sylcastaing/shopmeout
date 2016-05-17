@@ -76,10 +76,16 @@ div(ng-controller="SearchPostShopCtrl")
 													b {{r.post.nbArticle | nbArticleLabel}} articles
 													br
 													br
-													.align-center
-														span.align-center.btn.btn-default(ng-disabled="r.var" ng-click="openBookPostShop(r)")
-															| Réserve ce shopping ! 
-															span(class = "glyphicon glyphicon-ok iconOrange")
+													p.align-center
+														span.align-center.btn.btn-default(ng-click="openBookPostShop(r)" ng-if="!r.post.isAlreadyBookeur && !r.post.isMine")
+															| Réserve ce shopping !
+															span(class = "glyphicon glyphicon-ok iconBlue")
+														span.align-center.btn.btn-default(ng-if="r.post.isAlreadyBookeur" ng-disabled="true")
+															span(class = "glyphicon glyphicon-ok")
+															| Une demande a déjà été envoyée !
+														span.align-center.btn.btn-default(ng-if="r.post.isMine" ng-disabled="true")
+															span.glyphicon.glyphicon-info-sign.iconBlue
+															| Ce shopping t'appartient !
 							div.col-xs-12(ng-if="resultRecherche.length == 0 && erreurMessage" class="animate-show alert alert-danger")
 								span Il n'y a pas de résultats, désolé !
 						div(ng-show="postshop.$error.magasinSelected")

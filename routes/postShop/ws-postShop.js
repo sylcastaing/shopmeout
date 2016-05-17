@@ -41,12 +41,10 @@ router.post('/search-postShop', function(req, res, next) {
 				res.json({
 					postShops: result,
 				});
-			}
-			else {
+			} else {
 				console.log("erreur");
 			}
 	});
-	
 });
 
 router.post('/get-postShop', function(req, res, next) {
@@ -55,13 +53,18 @@ router.post('/get-postShop', function(req, res, next) {
 				res.json({
 					postShop: result,
 				});
-			}
-			else {
+			} else {
 				console.log("erreur");
 			}
 	});
-	
 });
 
+router.post('/add-bookeur', function(req, res, next) {
+	postShopAccessDb.addBookeur(req.body, function(err) {
+		res.json({
+			err: err,
+		});
+	});
+});
 
 module.exports = router;

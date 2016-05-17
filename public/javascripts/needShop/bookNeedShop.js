@@ -20,7 +20,7 @@ app.controller("BookNeedShopCtrl", function($scope, $http, $timeout) {
 	$('#bookNeedShopModal').on('hidden.bs.modal', function () {
 		if ($scope.sendPropositionSuccess) {
 			$scope.selectedDemande.isAlreadyShoppeur = true;
-				$scope.$parent.sendPropositionSuccess = false;
+			$scope.$parent.sendPropositionSuccess = false;
 			$scope.$apply();
 		}
 	});

@@ -2,11 +2,13 @@ var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 var moment = require('moment');
+var ObjectId = mongoose.Types.ObjectId;
 var postShopModel = require('./postShopModel');
 var PostShop = mongoose.model('postShop', postShopModel);
  
 
 var postShopAccessDb = {
+
 	// Creation d'une proposition de shopping
 	createPostShop: function(datas, callback) {
 		PostShop.create({
@@ -31,6 +33,7 @@ var postShopAccessDb = {
 			}
 		});
 	},
+
 	// Recherche de proposition de shopping
 	searchPostShop: function(datas,callback) {
 			var query = {};
@@ -68,6 +71,7 @@ var postShopAccessDb = {
 				callback(postShop, err);
 			});
 	},
+
 	// Récupère les informations d'une proposition de shopping selon son id
 	getProposition: function(id,callback) {
 		PostShop.findOne({
@@ -76,15 +80,27 @@ var postShopAccessDb = {
 			callback(postShop, err);
 		});
 	},
-	// Récupère toutes les propositions de shopping selon l'email de l'internaute qui les a créé
-	getPostShops: function(email,callback) {
-		PostShop.find({
-			mailShoppeur: email
-		},
+
+	//Ajoute un bookeur à une proposition de shopping (postShop)
+	addBookeur: function(data, callback) {
+		PostShop.update(
+		// Condition
 		{
-			__v:0
-		}).sort({date: 1 }).exec(function(err,postShop) {
-			callback(postShop, err);
+			_id: new ObjectId(data.idPostShop)
+		},
+		// update
+		{
+			$push: {
+				listBookeurs: {
+					mailBookeur: data.mailBookeur,
+					nbrArticleTotal: data.nbrArticleTotal,
+					adresseLivraisonBookeur: data.adresseLivraisonBookeur,
+					articles: data.articles,
+					statut: "En attente"
+				}
+			}
+		}, function(err, demande) {
+			callback(err);
 		});
 	}
 	

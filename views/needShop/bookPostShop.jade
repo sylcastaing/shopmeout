@@ -2,18 +2,18 @@ div(class="modal fade" id="bookPostShopModal" role="dialog" ng-controller="BookP
 	div(class="modal-dialog")
 
 		// Modal content
-		div.modal-content(ng-if="propShop")
+		div.modal-content(ng-if="selectedProposition")
 			div(class="modal-header")
 				button(type="button" class="close" data-dismiss="modal") &times;
 				h4(class="modal-title") Réserve ton shopping !
 			div(class="modal-body")
 				div
-					p Shopping proposé par {{propShop.prenom}} {{propShop.nom | firstLetter}} le {{propShop.date | date:"dd/MM/yyyy"}}
+					p Shopping proposé par {{selectedProposition.prenom}} {{selectedProposition.nom | firstLetter}} le {{selectedProposition.date | date:"dd/MM/yyyy"}}
 					p {{selectedMagasin}} - {{adresseSelectedMagasin}}
-					p {{propShop.nbArticle | nbArticleLabel}} articles possibles
+					p {{selectedProposition.nbArticle | nbArticleLabel}} articles possibles
 				div(class="row centered-form")
 					div.panel-body
-						form(name="postShop", method="post", ng-submit="bookPostShop()" novalidate)
+						form(name="selectedProposition", method="post")
 							div.form-group
 								div.row
 									div(class="col-xs-10")
@@ -35,7 +35,7 @@ div(class="modal fade" id="bookPostShopModal" role="dialog" ng-controller="BookP
 									div(class="col-xs-12")
 										span(style="color:red", ng-show="erreurLimiteArticles") La limite d'articles est atteinte.
 										span(style="color:red", ng-show="erreurChampVide") Spécifie un article !
-							form(name="needShop", method="post", ng-submit="bookPostShop()" novalidate)
+							form(name="needShop", method="post")
 								div.form-group(ng-show='displayTable')
 									div.row
 										label(class="control-label col-xs-12") Ta liste de courses :
@@ -60,13 +60,15 @@ div(class="modal fade" id="bookPostShopModal" role="dialog" ng-controller="BookP
 														b Nombre total d'articles :
 													td
 														b {{nbrTotalArticles}}
+							span(style="color:red", ng-show="noArticles") La liste d'articles ne peut pas être vide !
 
-									span(style="color:red", ng-show="needShop.articles.$invalid || needShop.$error.articles") La liste d'articles ne peut pas être vide.
-								div
-									span(class="col-xs-12 alert alert-success", ng-show="reservationEnvoyee") Ta demande de réservation a été envoyée à {{propShop.prenom}} {{propShop.nom}}.
-									span(class="col-xs-12 alert alert-danger", ng-show="reservationNonValide") {{messageErreurReservation}}
-								div.actions
-									input(type="submit", value="Reserver", class="btn btn-info btn-block" ng-disabled="erreurLimiteArticles" ng-click="bookPostShop()")
+							p.align-center
+								span.align-center.btn.btn-default(ng-hide="reservationEnvoyee" ng-click="bookPostShop()")
+									span(class = "glyphicon glyphicon-envelope iconBlue")
+									| Réserver ce shopping
+								span.align-center.btn.btn-default(ng-show="reservationEnvoyee" ng-disabled="true")
+									span(class = "glyphicon glyphicon-ok")
+									| Votre demande a bien été envoyée !
 
 			div(class="modal-footer")
 				button(type="button" class="btn btn-default" data-dismiss="modal") Fermer
