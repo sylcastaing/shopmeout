@@ -62,11 +62,14 @@ div(ng-controller="SearchNeedShopCtrl")
 										div.panel-heading Shopping demandé par 
 											b {{r.need.prenom}} {{r.need.nom | firstLetter}}.
 										div.panel-body
-											span.glyphicon.glyphicon-road.iconBlue
-											span A livrer à 
-											b {{r.need.distance/1000}}km 
-											span du magasin
-											br
+											div(ng-if="r.need.distance/1000 >= 0")
+												span.glyphicon.glyphicon-road.iconBlue
+												span A livrer à 
+												b {{r.need.distance/1000}}km 
+												span du magasin
+											div(ng-if="r.need.distance/1000 < 0")
+												span.glyphicon.glyphicon-road.iconBlue
+												span La distance n'a pas pu être calculée.
 											span.glyphicon.glyphicon-calendar.iconBlue
 											b {{r.need.date | date:"dd/MM/yyyy"}}
 											br
