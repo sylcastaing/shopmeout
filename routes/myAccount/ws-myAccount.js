@@ -61,7 +61,7 @@ router.get('/consult-myBookNeedShops', function (req, res, next) {
 // On récupère les propositions de shopping que l'on a reservé
 router.get('/consult-myBookPostShops', function (req, res, next) {
 	if (req.isAuthenticated() && req.session.passport.user.email) {
-		bookPostShopAccessDb.getMyBookPostShops(req.session.passport.user.email, function(err, postShops) {
+		postShopAccessDb.getBookPostShops(req.session.passport.user.email, function(err, postShops) {
 			res.json({
 				postShops : postShops,
 				err : err

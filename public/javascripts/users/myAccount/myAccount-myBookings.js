@@ -2,6 +2,8 @@ app.controller("myBookingsCtrl", function($scope, $http) {
 
 	$scope.myBookNeedShops = [];
 	$scope.myBookNeedShopsHistory = [];
+	$scope.myBookPostShops = [];
+	$scope.myBookPostShopsHistory = [];
 
 	$http({
 		method : 'GET',
@@ -28,7 +30,21 @@ app.controller("myBookingsCtrl", function($scope, $http) {
 		method : 'GET',
 		url : '/ws-my-account/consult-myBookPostShops'
 	}).success(function (data, status) {
-		console.log(data);
+		if (data.postShops.length > 0) {
+			for (i in data.postShops) {
+				bookPostShops = data.postShops[i];
+				for(j in bookPostShops.listBookeurs) {
+					if (bookPostShops.listBookeurs[j].mailBookeur == $scope.userConnected.email) {
+						bookPostShops.statut = bookPostShops.listBookeurs[j].statut;
+					}
+				}
+				if (moment(bookPostShops.date).utc() < moment().utc().startOf('day')) {
+					$scope.myBookPostShopsHistory.push(bookPostShops);
+				} else {
+					$scope.myBookPostShops.push(bookPostShops);
+				}
+			}
+		}
 	});
 
 });

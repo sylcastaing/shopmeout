@@ -104,6 +104,15 @@ var postShopAccessDb = {
 		});
 	},
 
+	// Récupère toutes les propositions de shopping selon l'email de l'internaute qui les a créé
+	getPostShops: function(email,callback) {
+		PostShop.find({
+			mailShoppeur: email
+		}, function(err, postShop) {
+			callback(postShop, err);
+		});
+	},
+
 	//Ajoute un bookeur à une proposition de shopping (postShop)
 	addBookeur: function(data, mailUser, callback) {
 		PostShop.update(
@@ -124,6 +133,14 @@ var postShopAccessDb = {
 			}
 		}, function(err, demande) {
 			callback(err);
+		});
+	},
+
+	getBookPostShops: function (mailUser, callback) {
+		PostShop.find({
+			"listBookeurs.mailBookeur": mailUser
+		}, function(err, bookNeedShops) {
+			callback(err, bookNeedShops);
 		});
 	}
 	

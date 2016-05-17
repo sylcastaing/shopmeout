@@ -1,4 +1,4 @@
-.tab-pane#myBookings(role="tabpanel")
+.tab-pane#myBookings(role="tabpanel") 
 	div(ng-controller="myBookingsCtrl")
 
 		.row(ng-if="myBookNeedShops.length > 0 || myBookNeedShopsHistory.length > 0")
@@ -26,7 +26,7 @@
 							span articles
 						br
 						span.glyphicon.glyphicon-info-sign.iconOrange
-						a(data-toogle="tooltip" href="#" title="Une demande pour réaliser ce shopping a été envoyé. Le statut est 'en attente' tant que le demandeur n'a pas validé ta demande.") {{r.statut}}
+						a(data-toogle="tooltip" href="#" title="Une demande pour réaliser ce shopping a été envoyée. Le statut est 'en attente' tant que le demandeur n'a pas validé ta demande.") {{r.statut}}
 
 		.row(ng-if="myBookNeedShopsHistory.length > 0")
 			.col-md-12
@@ -76,7 +76,7 @@
 							span articles
 						br
 						span.glyphicon.glyphicon-info-sign.iconBlue
-						a(data-toogle="tooltip" href="#" title="Une demande pour réaliser ce shopping a été envoyé. Le statut est 'en attente' tant que le demandeur n'a pas validé ta demande.") {{r.statut}}
+						a(data-toogle="tooltip" href="#" title="Une demande de réservation pour ce shopping a été envoyée. Le statut est 'en attente' tant que le shoppeur n'a pas validé ta demande.") {{r.statut}}
 
 		.row(ng-if="myBookPostShopsHistory.length > 0")
 			.col-md-12
