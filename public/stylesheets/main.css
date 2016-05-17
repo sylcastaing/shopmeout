@@ -133,3 +133,8 @@ span.label {
 	font-size: Small;
 	width: 100%;
 }
+
+td, th {
+	word-wrap: break-word;
+	max-width: 80px;
+}
