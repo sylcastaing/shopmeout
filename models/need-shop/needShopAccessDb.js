@@ -50,7 +50,6 @@ var needShopAccessDb = {
 		else {
 			var nowDate = new Date();
 			nowDate.setHours(0,0,0,0);
-			console.log(nowDate);
 			query.date = {
 				$gte: nowDate
 			};

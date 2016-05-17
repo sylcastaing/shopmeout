@@ -90,7 +90,6 @@ var postShopAccessDb = {
 				}
 			}
 			postShops[i].isAlreadyBookeur = isAlreadyBookeur;
-			console.log(postShops[i].isAlreadyBookeur);
 		}
 		callback(postShops);
 	},
