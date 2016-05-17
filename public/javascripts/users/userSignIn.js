@@ -1,9 +1,14 @@
-var app = angular.module('sample', []);
-
-app.controller("SignCtrl", function($scope, $http) {
+app.controller("SignInCtrl", function($scope, $http) {
 
 	$(".angular-content").show();
 
+	$scope.openSignUp = function() {
+		
+		$("#signInModal").modal('toggle');
+		$("#signUpModal").modal('show');
+	}
+
+	// fonction permettant de connecter l'utilisateur
 	$scope.connectClient = function() {
 		$scope.user.motDePasse = CryptoJS.SHA1($scope.motDePasse).toString();
 		$scope.dataLoading = true;
@@ -11,16 +16,16 @@ app.controller("SignCtrl", function($scope, $http) {
 			method : 'POST',
 			url : '/ws-users/sign-in',
 			data : $scope.user
-		}).success(function (data, status, headers, config){
+		}).success(function (data, status, headers, config) {
 			if(data.statut==false) {
 				$scope.signin.$error.login = true;
 				$scope.signin.$error.message = data.err.message;
 				$scope.dataLoading = false;
 			}
 			else {
-				 document.location = '/';
+				 document.location.reload();
 			}
-		}).error(function (data, status, headers, config){
+		}).error(function (data, status, headers, config) {
 			$scope.signin.$error.login = true;
 			$scope.signin.$error.message = "Problème serveur";
 			$scope.dataLoading = false;

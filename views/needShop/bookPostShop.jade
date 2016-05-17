@@ -1,0 +1,74 @@
+div(class="modal fade" id="bookPostShopModal" role="dialog" ng-controller="BookPostShopCtrl")
+	div(class="modal-dialog")
+
+		// Modal content
+		div.modal-content(ng-if="selectedProposition")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal") &times;
+				h4(class="modal-title") Réserve ton shopping !
+			div(class="modal-body")
+				div
+					p Shopping proposé par {{selectedProposition.prenom}} {{selectedProposition.nom | firstLetter}} le {{selectedProposition.date | date:"dd/MM/yyyy"}}
+					p {{selectedMagasin}} - {{adresseSelectedMagasin}}
+					p {{selectedProposition.nbArticle | nbArticleLabel}} articles possibles
+				div(class="row centered-form")
+					div.panel-body
+						form(name="selectedProposition", method="post")
+							div.form-group
+								div.row
+									div(class="col-xs-10")
+										label(class="control-label col-xs-12" id="labelAdresse") Ton adresse de livraison :
+								div.row
+									div(class="col-xs-10")
+										input.form-control(type="text", ng-model="adresseField" placeholder="Adresse")
+							div.form-group
+								div.row
+									label(class="control-label col-xs-12" id="labelArticles") Ajoute un article :
+								div.row
+									div(class="col-xs-6")
+										input(class="form-control input-sm", type="text" placeholder="Nom de l'article" name="nameArticle" ng-model="modal.nameArticle" ng-disabled="erreurLimiteArticles" ng-keydown="resetErreur()")
+									div(class="col-xs-3")
+										input(class="form-control input-sm", type="number", name="nbrArticle", placeholder="Nombre d'article", ng-model="modal.nbrArticle" ng-disabled="erreurLimiteArticles")
+									div(class="col-xs-3")
+											button(type="button" class="btn btn-primary" ng-click="addArticle()" ng-disabled="erreurLimiteArticles") Ajouter !
+								div.row
+									div(class="col-xs-12")
+										span(style="color:red", ng-show="erreurLimiteArticles") La limite d'articles est atteinte.
+										span(style="color:red", ng-show="erreurChampVide") Spécifie un article !
+							form(name="needShop", method="post")
+								div.form-group(ng-show='displayTable')
+									div.row
+										label(class="control-label col-xs-12") Ta liste de courses :
+									div(class="col-xs-12")
+										table(class="table table-striped")
+											thead
+												tr
+													th 
+														b Article
+													th 
+														b Quantité
+											tbody
+												tr(ng-repeat="article in articles")
+													td
+														| {{article.nomArticle}}
+													td
+														| {{article.nbrArticle}}
+													td
+														span(class="glyphicon glyphicon-remove" style="color:red" ng-click='removeArticle($index)')
+												tr
+													td
+														b Nombre total d'articles :
+													td
+														b {{nbrTotalArticles}}
+							span(style="color:red", ng-show="noArticles") La liste d'articles ne peut pas être vide !
+
+							p.align-center
+								span.align-center.btn.btn-default(ng-hide="reservationEnvoyee" ng-click="bookPostShop()")
+									span(class = "glyphicon glyphicon-envelope iconBlue")
+									| Réserver ce shopping
+								span.align-center.btn.btn-default(ng-show="reservationEnvoyee" ng-disabled="true")
+									span(class = "glyphicon glyphicon-ok")
+									| Votre demande a bien été envoyée !
+
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default" data-dismiss="modal") Fermer

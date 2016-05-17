@@ -1,0 +1,42 @@
+div(class="modal fade" id="MoreInfosNeedShopModal" role="dialog" ng-controller="MoreInfosNeedShopCtrl")
+	div(class="modal-dialog")
+
+		// Modal content
+		div.modal-content(ng-if="selectedDemande")
+			div.modal-header
+				button.close(type="button" data-dismiss="modal") &times;
+				h4.modal-title Tu as des shoppeurs qui ont proposé de réaliser ton shopping ! Valide-les ci-dessous :
+			div.modal-body
+
+				.row(ng-if="selectedDemande.listShoppeurs.length > 0")
+					.col-xs-6(ng-repeat="shoppeur in selectedDemande.listShoppeurs")
+						div.panel.panel-default.bgBlue
+							div.panel-heading
+								b {{shoppeur.prenomShoppeur}} {{shoppeur.nomShoppeur | firstLetter}}.
+								span  propose de faire ton shopping !
+							div.panel-body
+								span(ng-if='shoppeur.statut=="En attente"')
+									span.btn.btn-default(ng-click="acceptBooking(true, shoppeur)")
+										| Accepter
+										span(class = "glyphicon glyphicon-ok")
+									span.btn.btn-default(ng-click="acceptBooking(false, shoppeur)")
+										| Refuser
+										span(class = "glyphicon glyphicon-remove")
+								.row
+									span.col-xs-12.align-center.btn.btn-default(ng-if='shoppeur.statut=="Validé"' ng-disabled)
+										| Réservation acceptée
+										span(class = "glyphicon glyphicon-ok")
+									br
+									br
+									span.col-xs-12.align-center.linkBlue(ng-click="openMoreInfosUserModal(shoppeur.mailShoppeur, shoppeur.nomShoppeur, shoppeur.prenomShoppeur)" ng-if='shoppeur.statut=="Validé"') Afficher les informations du shoppeur
+
+								span.align-center.btn.btn-default(ng-if='shoppeur.statut=="Refusé"' ng-disabled)
+									| Réservation refusée
+									span(class = "glyphicon glyphicon-remove ")
+
+			div.modal-footer
+				button.btn.btn-default(type="button" data-dismiss="modal") Fermer
+
+block scripts-header
+	script(src="#{baseUrl}/javascripts/needShop/MoreInfosNeedShop.js")
+

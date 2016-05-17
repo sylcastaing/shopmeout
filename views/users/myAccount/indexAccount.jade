@@ -1,0 +1,27 @@
+extends ../../layout
+
+block content
+	div(ng-controller="myAccountCtrl")
+		.row
+			.col-md-2
+				ul.nav.nav-pills.nav-stacked#myAccountTabs(role="tablist")
+					li.active(role="presentation")
+						a(href="#myInformations" aria-controls="myInformations" role="tab" data-toggle="tab") Mes informations
+					li(role="presentation")
+						a(href="#myShoppings" aria-controls="myShoppings" role="tab" data-toggle="tab") Mes shoppings
+					li(role="presentation")
+						a(href="#myBookings" aria-controls="myBookings" role="tab" data-toggle="tab") Mes réservations
+			.col-md-10
+				.tab-content
+					include myInformations.jade
+					include myShoppings.jade
+					include myBookings.jade
+					include ../../postShop/moreInfosPostShop.jade
+					include ../../needShop/moreInfosNeedShop.jade
+					include ../../users/moreInfosUserModal.jade
+					include ../../needShop/listArticlesModal.jade
+block styles
+	link(rel='stylesheet', href='#{baseUrl}/stylesheets/myAccount.css')
+
+block scripts-header
+	script(src="#{baseUrl}/javascripts/users/myAccount/myAccount-main.js")

@@ -7,3 +7,11 @@
 .navbar .navbar-collapse {
 	text-align: center;
 }
+
+#logoHeaderLink {
+	border: 0px !important;
+}
+
+#logoHeaderImg {
+	margin: 3px 5px 0px 0px;
+}

@@ -1,52 +1,96 @@
 extends layout
 
 block content
-	#menu
-		ul(class="nav nav-tabs nav-justified")
-			li.active
-				a.item(href='#images', data-toggle="tab")
-					span.glyphicon.glyphicon-home(aria-hidden='true')
-			li
-				a.item(href='#proposerShopping', data-toggle="tab") Je propose un shopping !
-			li
-				a.item(href='#demanderShopping', data-toggle="tab") Je demande un shopping !
-	.tab-content
-		#images.tab-pane.fade.in.active
-			.row
-				.col-md-4.col-lg-4.col-sm-6
-					.thumbnail
-						img(src='images/test_dog.jpg', alt='MatchMeNow')
-						.caption
-							h3 Mon Shopping !
-							p ...
-							p
-								button#btnshopcart.btn.btn-default(type='button', aria-label='Shopping cart')
-									span.glyphicon.glyphicon-shopping-cart(aria-hidden='true')
-								button#btnsearch.btn.btn-default(type='button', aria-label='Search')
-									span.glyphicon.glyphicon-search(aria-hidden='true')
-				.col-md-4.col-lg-4.col-sm-6
-					.thumbnail
-						img(src='images/test_dog.jpg', alt='MatchMeNow')
-						.caption
-							h3 Mon Shopping !
-							p ...
-							p
-								button#btnshopcart.btn.btn-default(type='button', aria-label='Shopping cart')
-									span.glyphicon.glyphicon-shopping-cart(aria-hidden='true')
-								button#btnsearch.btn.btn-default(type='button', aria-label='Search')
-									span.glyphicon.glyphicon-search(aria-hidden='true')
-				.col-md-4.col-lg-4.col-sm-6
-					.thumbnail
-						img(src='images/test_dog.jpg', alt='MatchMeNow')
-						.caption
-							h3 Mon Shopping !
-							p ...
-							p
-								button#btnshopcart.btn.btn-default(type='button', aria-label='Shopping cart')
-									span.glyphicon.glyphicon-shopping-cart(aria-hidden='true')
-								button#btnsearch.btn.btn-default(type='button', aria-label='Search')
-									span.glyphicon.glyphicon-search(aria-hidden='true')
-		#proposerShopping.tab-pane.fade
-			include ./proposerShopping.jade
-		#demanderShopping.tab-pane.fade
-			include ./demanderShopping.jade
+	div.angular-content(ng-controller="IndexCtrl" style="display:none;")
+		#menu
+			ul(class="nav nav-tabs nav-justified", id="indexNavTab", role="tablist")
+				li.active
+					a.item(href='#home', showtab="", data-toggle="tab", role="tab", aria-controls="home")
+						span.glyphicon.glyphicon-home(aria-hidden='true')
+				li
+					a.item(href='#proposerShopping', data-toggle="tab", role="tab", aria-controls="proposerShopping") Je propose un shopping !
+				li
+					a.item(href='#demanderShopping', data-toggle="tab", role="tab", aria-controls="demanderShopping") Je demande un shopping !
+		.tab-content
+			#home.tab-pane.fade.in.active
+				.row
+					.col-md-12
+						.explain
+							h1 ShopMeOut : mes courses collaboratives !
+							p Tu as besoin d’une course mais tu n’es pas dispo ?
+							p Quelqu’un peut sûrement y aller pour toi !!!
+							p Ta solution ?
+							p ShopMeOut ou comment faire des courses collaboratives !
+				.row
+					.col-md-12
+						.reasons
+							h1 Les 3 bonnes raisons d'utiliser ShopMeOut !
+							.row
+								.col
+									.col-md-4
+										.thumbnail
+											h3 Impossible de te déplacer ?
+											img(id="imgReason1", src='#{baseUrl}/images/Gif-Besoin-Service.gif', alt='')
+											.caption
+												p Des shoppeurs peuvent te venir en aide !
+								.col
+									.col-md-4
+										.thumbnail
+											h3 Envie de rendre service ?
+											img(id="imgReason2", src='#{baseUrl}/images/Echange-Service.png', alt='')
+											.caption
+												p Des bookeurs ont besoin de toi !
+								.col
+									.col-md-4
+										.thumbnail
+											h3 Overbooké(e) ?
+											img(id="imgReason3", src='#{baseUrl}/images/Overbooked.png', alt='')
+											.caption
+												p Des shoppeurs sont dispos pour tes courses !
+				div(class="usersOfSMO")
+					.row
+						div(ng-if="(resultRandomPostShops.length != 0) || (resultRandomNeedShops.length != 0)")
+							.col-md-12
+								.usersOfSMO
+									h1 Ils utilisent ShopMeOut !
+					.row(ng-if="resultRandomPostShops.length != 0")
+						.col-md-10.col-md-offset-1
+							.row
+								.col-xs-4(ng-repeat="r in resultRandomPostShops")
+									.panel.panel-default(class="bgOrange")
+										.panel-heading Shoppeur {{r.prenom}} {{r.nom | firstLetter}}. propose
+										.panel-body(class="resultCard")
+											span.glyphicon.glyphicon-map-marker.iconOrange
+											span {{r.magasin}} - {{r.adresse}}
+											br
+											span.glyphicon.glyphicon-calendar.iconOrange
+											span {{r.date | date:"dd/MM/yyyy"}}
+											br
+											span.glyphicon.glyphicon-user.iconOrange
+											span {{r.nbShoppeur}} bookeurs
+											br
+											span.glyphicon.glyphicon-shopping-cart.iconOrange
+											span {{r.nbArticle | nbArticleLabel}} article(s)
+					.row(ng-if="resultRandomNeedShops.length != 0")
+						.col-md-10.col-md-offset-1
+							.row
+								.col-xs-4(ng-repeat="r in resultRandomNeedShops")
+									.panel.panel-default.bgBlue
+										.panel-heading Bookeur {{r.prenom}} {{r.nom | firstLetter}}. demande
+										.panel-body.resultCard
+											span.glyphicon.glyphicon-map-marker.iconBlue
+											span {{r.magasin}} - {{r.adresseMagasin}}
+											br
+											span.glyphicon.glyphicon-calendar.iconBlue
+											span {{r.date | date:"dd/MM/yyyy"}}
+											br
+											span.glyphicon.glyphicon-shopping-cart.iconBlue
+											span {{r.nbArticle}} article(s)
+			#proposerShopping.tab-pane.fade
+				include ./postShop/proposerShopping.jade
+			#demanderShopping.tab-pane.fade
+				include ./needShop/demanderShopping.jade
+block styles
+	link(rel='stylesheet', href='#{baseUrl}/stylesheets/index.css')
+block scripts
+	script(type='text/javascript' src='#{baseUrl}/javascripts/index/index.js')

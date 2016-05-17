@@ -1,0 +1,105 @@
+.tab-pane#myBookings(role="tabpanel") 
+	div(ng-controller="myBookingsCtrl")
+
+		.row(ng-if="myBookNeedShops.length > 0 || myBookNeedShopsHistory.length > 0")
+			.col-md-12
+				h2 Mes shoppings à faire
+
+		// Affichage des demandes pour lesquelles on a proposé de réaliser le shooping
+		.row(ng-if="myBookNeedShops.length > 0")
+			.col-xs-6(ng-repeat="r in myBookNeedShops")
+				div.panel.panel-default.bgOrange
+					div.panel-heading Shopping demandé par 
+						b {{r.prenom}} {{r.nom | firstLetter}}.
+					div.panel-body
+						span.glyphicon.glyphicon-map-marker.iconOrange
+						span
+							b {{r.magasin}} 
+							span - {{r.adresseMagasin}}
+						br
+						span.glyphicon.glyphicon-calendar.iconOrange
+						b {{r.date | date:"dd/MM/yyyy"}}
+						br
+						span.glyphicon.glyphicon-shopping-cart.iconOrange
+						span.linkBlue(ng-click="openListArticles(r)") 
+							b {{r.nbArticle}} 
+							span articles
+						br
+						span.glyphicon.glyphicon-info-sign.iconOrange
+						a(data-toogle="tooltip" href="#" title="Une demande pour réaliser ce shopping a été envoyée. Le statut est 'en attente' tant que le demandeur n'a pas validé ta demande.") {{r.statut}}
+
+		.row(ng-if="myBookNeedShopsHistory.length > 0")
+			.col-md-12
+				button.btn.btn-primary.history-btn(type="button" data-toggle="collapse" data-target="#BookNeedShopsHistory" aria-expanded="false" aria-controls="BookNeedShopsHistory") Historique
+				div.collapse#BookNeedShopsHistory
+					.row
+						.col-xs-6(ng-repeat="r in myBookNeedShopsHistory")
+							div.panel.panel-default.bgOrange
+								div.panel-heading Shopping demandé par 
+									b {{r.prenom}} {{r.nom | firstLetter}}.
+								div.panel-body
+									span.glyphicon.glyphicon-map-marker.iconOrange
+									span
+										b {{r.magasin}} 
+										span - {{r.adresseMagasin}}
+									br
+									span.glyphicon.glyphicon-calendar.iconOrange
+									b {{r.date | date:"dd/MM/yyyy"}}
+									br
+									span.glyphicon.glyphicon-shopping-cart.iconOrange
+									span.linkBlue(ng-click="openListArticles(r)") 
+										b {{r.nbArticle}} 
+										span articles
+
+		.row(ng-if="myBookPostShops.length > 0 || myBookPostShopsHistory.length > 0")
+			.col-md-12
+				h2 Mes réservations demandés
+
+		// Affichage des demandes pour lesquelles on a proposé de réaliser le shooping
+		.row(ng-if="myBookPostShops.length > 0")
+			.col-xs-6(ng-repeat="r in myBookPostShops")
+				div.panel.panel-default.bgBlue
+					div.panel-heading Shopping proposé par 
+						b {{r.prenom}} {{r.nom | firstLetter}}.
+					div.panel-body
+						span.glyphicon.glyphicon-map-marker.iconBlue
+						span
+							b {{r.magasin}} 
+							span - {{r.adresse}}
+						br
+						span.glyphicon.glyphicon-calendar.iconBlue
+						b {{r.date | date:"dd/MM/yyyy"}}
+						br
+						span.glyphicon.glyphicon-shopping-cart.iconBlue
+						span.linkBlue(ng-click="openListArticles(r)") 
+							b {{r.nbArticle}} 
+							span article(s) demandé(s)
+						br
+						span.glyphicon.glyphicon-info-sign.iconBlue
+						a(data-toogle="tooltip" href="#" title="Une demande de réservation pour ce shopping a été envoyée. Le statut est 'en attente' tant que le shoppeur n'a pas validé ta demande.") {{r.statut}}
+
+		.row(ng-if="myBookPostShopsHistory.length > 0")
+			.col-md-12
+				button.btn.btn-primary.history-btn(type="button" data-toggle="collapse" data-target="#BookPostShopsHistory" aria-expanded="false" aria-controls="BookPostShopsHistory") Historique
+				div.collapse#BookPostShopsHistory
+					.row
+						.col-xs-6(ng-repeat="r in myBookPostShopsHistory")
+							div.panel.panel-default.bgBlue
+								div.panel-heading Shopping demandé par 
+									b {{r.prenom}} {{r.nom | firstLetter}}.
+								div.panel-body
+									span.glyphicon.glyphicon-map-marker.iconBlue
+									span
+										b {{r.magasin}} 
+										span - {{r.adresse}}
+									br
+									span.glyphicon.glyphicon-calendar.iconBlue
+									b {{r.date | date:"dd/MM/yyyy"}}
+									br
+									span.glyphicon.glyphicon-shopping-cart.iconBlue
+									span.linkBlue(ng-click="openListArticles(r)") 
+										b {{r.nbArticle}} 
+										span article(s) demandé(s)
+
+block scripts-header
+	script(src="#{baseUrl}/javascripts/users/myAccount/myAccount-myBookings.js")

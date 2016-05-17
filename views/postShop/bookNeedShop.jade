@@ -1,0 +1,35 @@
+div(class="modal fade" id="bookNeedShopModal" role="dialog" ng-controller="BookNeedShopCtrl")
+	div(class="modal-dialog")
+
+		// Modal content
+		div.modal-content(ng-if="selectedDemande")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal" ng-click="close") &times;
+				h4(class="modal-title") Réalise ce shopping !
+			div(class="modal-body")
+				div
+					p Shopping demandé par {{selectedDemande.prenom}} {{selectedDemande.nom | firstLetter}}. le {{selectedDemande.date | date:"dd/MM/yyyy"}}
+				span.glyphicon.glyphicon-home.iconBlue
+				span {{selectedDemande.nbArticle}} articles à acheter à {{selectedMagasin}}
+				br
+				span.glyphicon.glyphicon-road.iconBlue
+				span A livrer à 
+				b {{selectedDemande.distance/1000}}km 
+				span du magasin
+				br
+
+				include ../needShop/listArticles.jade
+
+				p.align-center
+					span.align-center.btn.btn-default(ng-hide="sendPropositionSuccess" ng-click="sendPropositionShop(selectedDemande)")
+						span(class = "glyphicon glyphicon-envelope iconBlue")
+						| Envoyer une demande pour réaliser ce shopping
+					span.align-center.btn.btn-default(ng-show="sendPropositionSuccess" ng-disabled="true")
+						span(class = "glyphicon glyphicon-ok")
+						| Votre message a bien été envoyé !
+
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default" data-dismiss="modal") Fermer
+
+block scripts-header
+	script(src="#{baseUrl}/javascripts/needShop/bookNeedShop.js")

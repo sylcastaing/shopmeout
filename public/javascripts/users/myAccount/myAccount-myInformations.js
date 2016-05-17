@@ -1,6 +1,7 @@
-var app = angular.module('sample', []);
+app.controller("myInformationsCtrl", function($scope, $http) {
 
-app.controller("ConsultProfileCtrl", function($scope, $http) {
+	$scope.user = null;
+
 	var res = $http({
 			method : 'GET',
 			url : '/ws-users/consult-profile'
@@ -11,12 +12,7 @@ app.controller("ConsultProfileCtrl", function($scope, $http) {
 				$(".angular-content").show();
 			}
 			else {
-				 document.location = '/users';
+				 document.location = '/';
 			}
-		}).error(function (data, status, headers, config){
-			$scope.signin.$error.login = true;
-			$scope.signin.$error.message = "Problème serveur";
-			$scope.dataLoading = false;
 		});
-
 });
