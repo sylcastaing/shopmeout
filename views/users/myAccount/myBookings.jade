@@ -71,9 +71,8 @@
 						b {{r.date | date:"dd/MM/yyyy"}}
 						br
 						span.glyphicon.glyphicon-shopping-cart.iconBlue
-						span.linkBlue(ng-click="openListArticles(r)") 
-							b {{r.nbArticle}} 
-							span article(s) demandé(s)
+						span.linkBlue(ng-click="openListArticles(r)")
+							span Article(s) demandé(s)
 						br
 						span.glyphicon.glyphicon-info-sign.iconBlue
 						a(data-toogle="tooltip" href="#" title="Une demande de réservation pour ce shopping a été envoyée. Le statut est 'en attente' tant que le shoppeur n'a pas validé ta demande.") {{r.statut}}
@@ -97,9 +96,8 @@
 									b {{r.date | date:"dd/MM/yyyy"}}
 									br
 									span.glyphicon.glyphicon-shopping-cart.iconBlue
-									span.linkBlue(ng-click="openListArticles(r)") 
-										b {{r.nbArticle}} 
-										span article(s) demandé(s)
+									span.linkBlue(ng-click="openListArticles(r)")
+										span Article(s) demandé(s)
 
 block scripts-header
 	script(src="#{baseUrl}/javascripts/users/myAccount/myAccount-myBookings.js")
